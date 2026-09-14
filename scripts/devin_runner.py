@@ -94,11 +94,14 @@ def run_capture(args: Sequence[str], *, cwd: Optional[Path] = None, timeout: int
         return {"command": list(args), "returncode": 127, "output": str(exc), "timed_out": False, "elapsed_seconds": round(time.monotonic() - started, 3)}
 
 
-def session_inventory(binary: str) -> Dict[str, Any]:
-    return run_capture([binary, "list", "--format", "json"], timeout=60)
+def session_inventory(binary: str, *, cwd: Optional[Path] = None) -> Dict[str, Any]:
+    return run_capture([binary, "list", "--format", "json"], cwd=cwd, timeout=60)
 
 
 def invocation_command(binary: str, model: str, prompt_file: Path, export_file: Path, workspace: Path, config: Dict[str, Any]) -> List[str]:
+    # The installed CLI reserves positional PATH arguments for desktop mode
+    # and rejects them together with --print. The workspace is therefore
+    # supplied as subprocess cwd; --prompt-file preserves prompt bytes.
     permission = config["agent"].get("permission_mode", "accept-edits")
     trust = "true" if config["agent"].get("workspace_trust_override", False) else "false"
     return [
@@ -109,7 +112,6 @@ def invocation_command(binary: str, model: str, prompt_file: Path, export_file: 
         "--export", str(export_file),
         "--permission-mode", permission,
         "--respect-workspace-trust", trust,
-        str(workspace),
     ]
 
 
@@ -131,6 +133,7 @@ def plan_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, outp
         "model_family": config["agent"].get("model_family"),
         "fusion": {"enabled": False, "lock": config["agent"].get("fusion_lock_method")},
         "command": invocation_command(binary, model, prompt_file, export_file, workspace, config),
+        "working_directory": str(workspace),
         "noninteractive": True,
         "paid_invocation": True,
         "requires_explicit_confirmation": ["--execute", "--confirm-paid"],
@@ -154,10 +157,10 @@ def execute_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, o
     export_file = output_dir / "devin-session-export.json"
     command = invocation_command(binary, model, prompt_file, export_file, workspace, config)
     started_at = now()
-    before = session_inventory(binary)
-    process = run_capture(command, timeout=timeout)
+    before = session_inventory(binary, cwd=workspace)
+    process = run_capture(command, cwd=workspace, timeout=timeout)
     ended_at = now()
-    after = session_inventory(binary)
+    after = session_inventory(binary, cwd=workspace)
     result = {
         "experiment_id": config["experiment_id"],
         "experiment_case_id": case.get("experiment_case_id"),
@@ -187,7 +190,7 @@ def execute_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, o
         "regression_status": "not-run",
         "termination_reason": "timeout" if process["timed_out"] else ("completed" if process["returncode"] == 0 else "process-exit"),
         "evaluator_notes": "Runner capture only; post-session evaluator must be run separately.",
-        "invocation": {"command": command, "returncode": process["returncode"], "timed_out": process["timed_out"], "stdout_stderr": process["output"], "export_path": str(export_file) if export_file.exists() else None},
+        "invocation": {"command": command, "working_directory": str(workspace), "returncode": process["returncode"], "timed_out": process["timed_out"], "stdout_stderr": process["output"], "export_path": str(export_file) if export_file.exists() else None},
         "session_inventory_before": before,
         "session_inventory_after": after,
         "provider_fields": {"session_id": None, "session_url": None, "usage": None, "cost": None, "repository_branch": None, "pull_request_url": None},
