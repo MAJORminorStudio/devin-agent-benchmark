@@ -1,0 +1,17 @@
+{
+  "case_id": "tornado-13",
+  "heldout_test_files": ["test_heldout.py"],
+  "heldout_commands": ["python -m unittest -q test_heldout"],
+  "heldout_test_count": 1,
+  "behavior_under_test": "A client can read a bodyless HTTP/1.0 response without Content-Length and without a method field on the response start line.",
+  "ground_truth_basis": "The evaluator performs a real local socket round trip and checks the received status and empty body. It uses status 204 and different response bytes from the historical 200-response regression test.",
+  "independence": "Independent evaluator test adapted from the HTTP/1.x framing contract, with a different status/body shape and no copied historical assertions.",
+  "regression_commands": [
+    "python -m unittest -q tornado.test.httputil_test"
+  ],
+  "environment": {
+    "python": "3.9",
+    "install": []
+  },
+  "limitations": "The check uses loopback sockets and requires the evaluator host to permit local socket creation."
+}

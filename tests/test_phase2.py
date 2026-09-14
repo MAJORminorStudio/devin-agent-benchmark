@@ -61,6 +61,33 @@ class Phase2UnitTests(unittest.TestCase):
             self.assertEqual(audit["status"], "fail")
             self.assertTrue(any("fixed commit" in item or fixed_hash in item for item in audit["problems"]))
 
+    def test_export_audit_rejects_heldout_filename(self):
+        case = {
+            "case_id": "synthetic",
+            "project": "toy",
+            "bug_id": "1",
+            "buggy_commit": "b" * 40,
+            "fixed_commit": "f" * 40,
+            "test_files": [],
+            "hidden_test_files": ["evaluation/experiment-001/toy/test_heldout.py"],
+        }
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            source = root / "source"
+            (source / "projects/toy/bugs/1").mkdir(parents=True)
+            (source / "projects/toy/bugs/1/bug_patch.txt").write_text(
+                "+++ b/toy.py\n+return the corrected value with sufficient length\n", encoding="utf-8"
+            )
+            (source / ".git").mkdir()
+            destination = root / "export"
+            destination.mkdir()
+            (destination / "test_heldout.py").write_text("not for agents\n", encoding="utf-8")
+            with self.assertRaises(SystemExit):
+                export_case.audit_export(destination, case, source, audit_path=root / "audit.json")
+            audit = json.loads((root / "audit.json").read_text(encoding="utf-8"))
+            self.assertEqual(audit["status"], "fail")
+            self.assertTrue(any("held-out evaluator artifact" in item for item in audit["problems"]))
+
     def test_workspace_case_rejects_ground_truth_fields(self):
         with tempfile.TemporaryDirectory() as temp:
             workspace = Path(temp) / "workspace"

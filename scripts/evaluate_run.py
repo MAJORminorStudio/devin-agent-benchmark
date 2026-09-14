@@ -110,8 +110,97 @@ def fallback_git_patch(workspace: Path) -> Tuple[str, List[str], Dict[str, int]]
     return process.stdout, changed, {"additions": additions, "deletions": deletions}
 
 
-def run_tests(commands: Sequence[str], cwd: Path, timeout: int) -> Dict[str, Any]:
-    return harness.execute_commands(commands, cwd, timeout)
+def run_tests(
+    commands: Sequence[str],
+    cwd: Path,
+    timeout: int,
+    env: Optional[Mapping[str, str]] = None,
+) -> Dict[str, Any]:
+    return harness.execute_commands(commands, cwd, timeout, env=env)
+
+
+def not_run_result(reason: str) -> Dict[str, Any]:
+    return {"overall": "not-run", "commands": [], "reason": reason}
+
+
+def evaluator_error_result(reason: str) -> Dict[str, Any]:
+    return {"overall": "error", "commands": [], "error": reason}
+
+
+def load_heldout_metadata(case: Mapping[str, Any], requested: Optional[Path]) -> Optional[Dict[str, Any]]:
+    if requested is not None:
+        path = requested.expanduser().resolve()
+    elif case.get("heldout_test_files"):
+        path = REPO_ROOT / "evaluation" / "experiment-001" / str(case["case_id"]) / "metadata.json"
+    else:
+        return None
+    try:
+        metadata = read_json(path)
+    except SystemExit as exc:
+        return {"_error": str(exc), "_path": str(path)}
+    if metadata.get("case_id") != case.get("case_id"):
+        return {"_error": f"held-out metadata case mismatch in {path}", "_path": str(path)}
+    commands = metadata.get("heldout_commands")
+    files = metadata.get("heldout_test_files")
+    if not isinstance(commands, list) or not commands or not all(isinstance(item, str) for item in commands):
+        return {"_error": f"held-out commands are missing or invalid in {path}", "_path": str(path)}
+    if not isinstance(files, list) or not files or not all(isinstance(item, str) for item in files):
+        return {"_error": f"held-out file list is missing or invalid in {path}", "_path": str(path)}
+    base = path.parent
+    for filename in files:
+        candidate = (base / filename).resolve()
+        try:
+            candidate.relative_to(base.resolve())
+        except ValueError:
+            return {"_error": f"held-out test escapes metadata directory: {filename}", "_path": str(path)}
+        if not candidate.is_file():
+            return {"_error": f"held-out test is missing: {candidate}", "_path": str(path)}
+    manifest_names = {Path(str(item)).name for item in case.get("heldout_test_files", [])}
+    if manifest_names and not manifest_names.issubset({Path(item).name for item in files}):
+        return {"_error": f"manifest and held-out metadata file lists disagree in {path}", "_path": str(path)}
+    metadata["_path"] = str(path)
+    metadata["_directory"] = str(base)
+    return metadata
+
+
+def evaluator_environment(workspace: Path) -> Dict[str, str]:
+    environment = os.environ.copy()
+    existing = environment.get("PYTHONPATH")
+    paths = [str(workspace)]
+    if existing:
+        paths.append(existing)
+    environment["PYTHONPATH"] = os.pathsep.join(paths)
+    return environment
+
+
+def score_evaluation(
+    public_result: Mapping[str, Any],
+    heldout_result: Mapping[str, Any],
+    regression_result: Mapping[str, Any],
+) -> Dict[str, Any]:
+    """Apply the frozen success rule without treating not-run as success."""
+    public_pass = public_result.get("overall") == "pass"
+    heldout_pass = heldout_result.get("overall") == "pass"
+    regression_pass = regression_result.get("overall") in ("pass", "not-run")
+    evaluation_status = (
+        "EVALUATION_ERROR"
+        if heldout_result.get("overall") in ("error", "not-run")
+        or regression_result.get("overall") == "error"
+        else "OK"
+    )
+    task_success = public_pass and heldout_pass and regression_pass if evaluation_status == "OK" else None
+    if evaluation_status == "EVALUATION_ERROR":
+        regression_status = "inconclusive"
+    elif regression_pass:
+        regression_status = "clean"
+    else:
+        regression_status = "regression"
+    return {
+        "evaluation_status": evaluation_status,
+        "task_success": task_success,
+        "pass": task_success,
+        "regression_status": regression_status,
+    }
 
 
 def reference_metrics(agent_patch: str, reference_patch: Path) -> Dict[str, Any]:
@@ -143,6 +232,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--baseline-dir", type=Path)
     parser.add_argument("--hidden-workspace", type=Path)
     parser.add_argument("--hidden-command", action="append", default=[])
+    parser.add_argument("--heldout-metadata", type=Path)
     parser.add_argument("--reference-patch", type=Path)
     parser.add_argument("--timeout", type=int, default=300)
     args = parser.parse_args(argv)
@@ -181,7 +271,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     tests_before = read_json(before_path) if before_path.is_file() else {"status": "not-recorded"}
     tests_after = run_tests(case["test_command"], workspace, args.timeout)
 
-    hidden_result: Dict[str, Any] = {"overall": "not-run", "commands": []}
+    heldout_metadata = load_heldout_metadata(case, args.heldout_metadata)
+    hidden_result: Dict[str, Any]
     if args.hidden_command:
         if not args.hidden_workspace:
             die("--hidden-workspace is required when hidden tests are requested")
@@ -190,7 +281,35 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             die("hidden evaluator workspace must be separate from the agent workspace")
         if not hidden_workspace.is_dir():
             die(f"hidden evaluator workspace not found: {hidden_workspace}")
-        hidden_result = run_tests(args.hidden_command, hidden_workspace, args.timeout)
+        hidden_result = run_tests(
+            args.hidden_command,
+            hidden_workspace,
+            args.timeout,
+            env=evaluator_environment(workspace),
+        )
+    elif heldout_metadata is None:
+        hidden_result = not_run_result("no held-out suite configured")
+    elif "_error" in heldout_metadata:
+        hidden_result = evaluator_error_result(str(heldout_metadata["_error"]))
+    else:
+        hidden_workspace = Path(str(heldout_metadata["_directory"])).resolve()
+        if hidden_workspace == workspace or workspace in hidden_workspace.parents:
+            hidden_result = evaluator_error_result("held-out evaluator directory overlaps agent workspace")
+        else:
+            hidden_result = run_tests(
+                [str(command) for command in heldout_metadata["heldout_commands"]],
+                hidden_workspace,
+                args.timeout,
+                env=evaluator_environment(workspace),
+            )
+
+    regression_result: Dict[str, Any] = not_run_result("no regression suite configured")
+    if heldout_metadata and "_error" not in heldout_metadata:
+        regression_commands = heldout_metadata.get("regression_commands", [])
+        if not isinstance(regression_commands, list) or not all(isinstance(item, str) for item in regression_commands):
+            regression_result = evaluator_error_result("regression command list is invalid")
+        elif regression_commands:
+            regression_result = run_tests(regression_commands, workspace, args.timeout)
 
     reference: Dict[str, Any] = {"reference_patch_checked_after_session": False}
     if args.reference_patch:
@@ -199,17 +318,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             die("reference patch must be a separate evaluator-side file")
         reference = reference_metrics(patch_text, reference_path)
 
-    public_pass = tests_after.get("overall") == "pass"
-    hidden_pass = hidden_result.get("overall") in ("pass", "not-run")
-    overall_pass = public_pass and hidden_pass
-    if hidden_result.get("overall") == "not-run":
-        regression_status = "not-run" if not public_pass else "inconclusive"
-    elif overall_pass:
-        regression_status = "clean"
-    elif public_pass:
-        regression_status = "regression"
-    else:
-        regression_status = "inconclusive"
+    score = score_evaluation(tests_after, hidden_result, regression_result)
+    overall_pass = score["task_success"]
 
     runner_agent = runner_record.get("agent") if isinstance(runner_record.get("agent"), dict) else {}
     result = {
@@ -230,8 +340,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         "tests_before": tests_before,
         "tests_after": tests_after,
         "hidden_tests": hidden_result,
+        "heldout_tests": hidden_result,
+        "regression_tests": regression_result,
+        "evaluation_status": score["evaluation_status"],
+        "task_success": overall_pass,
         "pass": overall_pass,
-        "regression_status": regression_status,
+        "regression_status": score["regression_status"],
         "termination_reason": runner_record.get("termination_reason") or ("timeout" if runner_record.get("invocation", {}).get("timed_out") else None),
         "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace.",
         "reference_comparison": reference,
@@ -239,6 +353,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     result_path = output_dir / "evaluation-result.json"
     result_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps(result, indent=2))
+    if score["evaluation_status"] == "EVALUATION_ERROR":
+        return 2
     return 0 if overall_pass else 1
 
 

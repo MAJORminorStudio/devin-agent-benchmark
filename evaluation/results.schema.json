@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Devin benchmark result",
   "type": "object",
-  "required": ["experiment_id", "case_id", "agent", "prompt", "started_at", "ended_at", "elapsed_seconds", "interventions", "patch", "tests_before", "tests_after", "pass", "regression_status", "evaluator_notes"],
+  "required": ["experiment_id", "case_id", "agent", "prompt", "started_at", "ended_at", "elapsed_seconds", "interventions", "patch", "tests_before", "tests_after", "heldout_tests", "regression_tests", "evaluation_status", "task_success", "pass", "regression_status", "evaluator_notes"],
   "properties": {
     "experiment_id": {"type": "string"},
     "experiment_case_id": {"type": ["string", "null"]},
@@ -46,6 +46,11 @@
     },
     "tests_before": {"type": "object"},
     "tests_after": {"type": "object"},
+    "hidden_tests": {"type": "object"},
+    "heldout_tests": {"type": "object"},
+    "regression_tests": {"type": "object"},
+    "evaluation_status": {"type": "string", "enum": ["OK", "EVALUATION_ERROR"]},
+    "task_success": {"type": ["boolean", "null"]},
     "pass": {"type": ["boolean", "null"]},
     "regression_status": {"type": "string", "enum": ["not-run", "clean", "regression", "inconclusive"]},
     "evaluator_notes": {"type": "string"}

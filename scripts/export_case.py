@@ -209,6 +209,7 @@ def audit_export(
     fixed_commit = str(case["fixed_commit"])
     buggy_commit = str(case["buggy_commit"])
     hidden_files = [str(item) for item in case.get("hidden_test_files", [])]
+    hidden_basenames = {Path(item).name for item in hidden_files}
     additions = patch_additions(external_source, case)
     public_test_paths = {str(item).replace("\\", "/") for item in case.get("test_files", [])}
     control_strings = {
@@ -232,6 +233,8 @@ def audit_export(
                 continue
             if path.name in harness.FORBIDDEN_AGENT_NAMES:
                 problems.append(f"forbidden artifact name: {rel}")
+            if path.name in hidden_basenames:
+                problems.append(f"held-out evaluator artifact name: {rel}")
             if path.is_dir():
                 continue
             try:

@@ -1,0 +1,95 @@
+{
+  "buggy_heldout_fails": true,
+  "buggy_regression_passes": true,
+  "case_id": "scrapy-3",
+  "environment": {
+    "install": [
+      "Scrapy==2.1.0",
+      "pytest==5.4.2",
+      "six==1.15.0",
+      "testfixtures==6.14.1"
+    ],
+    "python": "3.8"
+  },
+  "fixed_heldout_passes": true,
+  "fixed_regression_passes": true,
+  "heldout_command": [
+    "pytest -q test_heldout.py"
+  ],
+  "regression_commands": [
+    "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent",
+    "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location"
+  ],
+  "reproducible": true,
+  "sides": {
+    "buggy": {
+      "heldout": {
+        "commands": [
+          {
+            "command": "pytest -q test_heldout.py",
+            "elapsed_seconds": 0.216,
+            "output": "F                                                                        [100%]\n=================================== FAILURES ===================================\n_________ test_protocol_relative_redirect_uses_request_scheme_and_host _________\n\n    def test_protocol_relative_redirect_uses_request_scheme_and_host():\n        settings = Settings({\n            \"REDIRECT_ENABLED\": True,\n            \"REDIRECT_MAX_TIMES\": 20,\n            \"REDIRECT_PRIORITY_ADJUST\": 2,\n        })\n        middleware = RedirectMiddleware(settings)\n        request = Request(\"https://origin.example.test/start\", method=\"GET\")\n        response = Response(\n            request.url,\n            status=302,\n            headers={\"Location\": \"///cdn.example.test/next\"},\n        )\n    \n        redirected = middleware.process_response(request, response, Spider(\"heldout\"))\n    \n        assert redirected is not response\n>       assert redirected.url == \"https://cdn.example.test/next\"\nE       AssertionError: assert 'https://orig...ple.test/next' == 'https://cdn....ple.test/next'\nE         - https://cdn.example.test/next\nE         + https://origin.example.test/cdn.example.test/next\n\ntest_heldout.py:27: AssertionError\n=========================== short test summary info ============================\nFAILED test_heldout.py::test_protocol_relative_redirect_uses_request_scheme_and_host\n1 failed in 0.10s\n",
+            "returncode": 1,
+            "status": "fail"
+          }
+        ],
+        "overall": "fail"
+      },
+      "regression": {
+        "commands": [
+          {
+            "command": "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent",
+            "elapsed_seconds": 0.269,
+            "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\ntests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent\n  /tmp/devin-heldout-envs/scrapy-3/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n    from cryptography import x509\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.15s\n",
+            "returncode": 0,
+            "status": "pass"
+          },
+          {
+            "command": "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location",
+            "elapsed_seconds": 0.269,
+            "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\ntests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location\n  /tmp/devin-heldout-envs/scrapy-3/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n    from cryptography import x509\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.15s\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/scrapy-3/verification/buggy"
+    },
+    "fixed": {
+      "heldout": {
+        "commands": [
+          {
+            "command": "pytest -q test_heldout.py",
+            "elapsed_seconds": 0.206,
+            "output": ".                                                                        [100%]\n1 passed in 0.09s\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "regression": {
+        "commands": [
+          {
+            "command": "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent",
+            "elapsed_seconds": 0.268,
+            "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\ntests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent\n  /tmp/devin-heldout-envs/scrapy-3/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n    from cryptography import x509\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.15s\n",
+            "returncode": 0,
+            "status": "pass"
+          },
+          {
+            "command": "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location",
+            "elapsed_seconds": 0.272,
+            "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\ntests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location\n  /tmp/devin-heldout-envs/scrapy-3/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n    from cryptography import x509\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.15s\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/scrapy-3/verification/fixed"
+    }
+  },
+  "validated_at_utc": "2026-09-14T23:28:54Z"
+}

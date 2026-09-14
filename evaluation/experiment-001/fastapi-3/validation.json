@@ -1,0 +1,83 @@
+{
+  "buggy_heldout_fails": true,
+  "buggy_regression_passes": true,
+  "case_id": "fastapi-3",
+  "environment": {
+    "install": [
+      "fastapi==0.55.1",
+      "pydantic==1.5.1",
+      "starlette==0.13.2",
+      "requests==2.23.0",
+      "pytest==5.4.3",
+      "typing-extensions==3.7.4.2",
+      "uvicorn==0.11.5"
+    ],
+    "python": "3.8"
+  },
+  "fixed_heldout_passes": true,
+  "fixed_regression_passes": true,
+  "heldout_command": [
+    "pytest -q test_heldout.py"
+  ],
+  "regression_commands": [
+    "pytest -q tests/test_response_model_invalid.py"
+  ],
+  "reproducible": true,
+  "sides": {
+    "buggy": {
+      "heldout": {
+        "commands": [
+          {
+            "command": "pytest -q test_heldout.py",
+            "elapsed_seconds": 0.307,
+            "output": "FF                                                                       [100%]\n=================================== FAILURES ===================================\n______ test_nested_list_response_models_preserve_aliases_and_unset_fields ______\n\n    def test_nested_list_response_models_preserve_aliases_and_unset_fields():\n        client = TestClient(app)\n    \n>       list_response = client.get(\"/nested-list\")\n\ntest_heldout.py:31: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 2 validation errors for Entry\nE               response -> 0 -> 0 -> display_label\nE                 field required (type=value_error.missing)\nE               response -> 0 -> 1 -> display_label\nE                 field required (type=value_error.missing)\n\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/routing.py:81: ValidationError\n______ test_nested_map_response_models_preserve_aliases_and_unset_fields _______\n\n    def test_nested_map_response_models_preserve_aliases_and_unset_fields():\n        client = TestClient(app)\n    \n>       map_response = client.get(\"/nested-map\")\n\ntest_heldout.py:42: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n/tmp/devin-heldout-envs/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 2 validation errors for Entry\nE               response -> group -> 0 -> display_label\nE                 field required (type=value_error.missing)\nE               response -> group -> 1 -> display_label\nE                 field required (type=value_error.missing)\n\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/routing.py:81: ValidationError\n=========================== short test summary info ============================\nFAILED test_heldout.py::test_nested_list_response_models_preserve_aliases_and_unset_fields\nFAILED test_heldout.py::test_nested_map_response_models_preserve_aliases_and_unset_fields\n2 failed in 0.19s\n",
+            "returncode": 1,
+            "status": "fail"
+          }
+        ],
+        "overall": "fail"
+      },
+      "regression": {
+        "commands": [
+          {
+            "command": "pytest -q tests/test_response_model_invalid.py",
+            "elapsed_seconds": 0.147,
+            "output": "....                                                                     [100%]\n4 passed in 0.04s\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/buggy"
+    },
+    "fixed": {
+      "heldout": {
+        "commands": [
+          {
+            "command": "pytest -q test_heldout.py",
+            "elapsed_seconds": 0.182,
+            "output": "..                                                                       [100%]\n2 passed in 0.07s\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "regression": {
+        "commands": [
+          {
+            "command": "pytest -q tests/test_response_model_invalid.py",
+            "elapsed_seconds": 0.147,
+            "output": "....                                                                     [100%]\n4 passed in 0.04s\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/fixed"
+    }
+  },
+  "validated_at_utc": "2026-09-14T23:28:53Z"
+}

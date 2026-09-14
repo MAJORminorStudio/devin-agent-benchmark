@@ -313,7 +313,12 @@ def classify(returncode: int, *, timed_out: bool = False) -> str:
     return "pass" if returncode == 0 else "fail"
 
 
-def execute_commands(commands: Sequence[str], cwd: Path, timeout: int) -> Dict[str, Any]:
+def execute_commands(
+    commands: Sequence[str],
+    cwd: Path,
+    timeout: int,
+    env: Optional[Mapping[str, str]] = None,
+) -> Dict[str, Any]:
     records: List[Dict[str, Any]] = []
     overall = "pass"
     for command in commands:
@@ -328,6 +333,7 @@ def execute_commands(commands: Sequence[str], cwd: Path, timeout: int) -> Dict[s
                 stderr=subprocess.STDOUT,
                 timeout=timeout,
                 check=False,
+                env=dict(env) if env is not None else None,
             )
             timed_out = False
             output = result.stdout or ""

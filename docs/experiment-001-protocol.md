@@ -79,6 +79,24 @@ counts, patch size, interventions, identifiers, usage/cost/ACUs, termination
 reason, patch, and evaluator notes. Reference-patch comparison is allowed only
 after both conditions for a case are closed and is never returned to Devin.
 
+## Held-out evaluator freeze
+
+Before any Devin execution, evaluator-only held-out suites were added for all
+five frozen cases. They live under `evaluation/experiment-001/` and are never
+copied into sanitized workspaces. Each suite was validated against the
+existing Phase 1 buggy and fixed verification trees in a pinned external
+environment, with the buggy side failing for the target behavior and the
+fixed side passing. Each case also has a small frozen regression subset. The
+case selection, task prompts, conditions, run order, intervention policy,
+experimental question, and scoring definition are unchanged.
+
+The evaluator runs the held-out suite after the Devin session is closed and
+requires all held-out, public, and configured regression checks to pass for
+`TASK_SUCCESS`. Missing or unusable evaluator infrastructure is represented as
+`EVALUATION_ERROR` rather than a task failure. See
+`docs/experiment-001-heldout-evaluation.md` for validation evidence and the
+case-by-case limitations.
+
 `scripts/analyze_results.py` reports Medium solved X/5, Max solved X/5, paired
 outcomes, case-level results, and condition-level efficiency summaries. It
 makes no statistical-significance claims.

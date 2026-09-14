@@ -1,0 +1,25 @@
+{
+  "case_id": "fastapi-3",
+  "heldout_test_files": ["test_heldout.py"],
+  "heldout_commands": ["pytest -q test_heldout.py"],
+  "heldout_test_count": 2,
+  "behavior_under_test": "Response-model serialization recursively preserves field aliases and excludes unset nested fields inside both nested lists and a mapping of lists.",
+  "ground_truth_basis": "The externally returned JSON is the contract under test. The evaluator defines new model names, paths, values, and a deeper container shape than the historical regression coverage.",
+  "independence": "Independent evaluator test; it is informed by the historical nested response regression but does not copy its models, routes, or expected data.",
+  "regression_commands": [
+    "pytest -q tests/test_response_model_invalid.py"
+  ],
+  "environment": {
+    "python": "3.8",
+    "install": [
+      "fastapi==0.55.1",
+      "pydantic==1.5.1",
+      "starlette==0.13.2",
+      "requests==2.23.0",
+      "pytest==5.4.3",
+      "typing-extensions==3.7.4.2",
+      "uvicorn==0.11.5"
+    ]
+  },
+  "limitations": "The check is pinned to the historical FastAPI/Pydantic compatibility environment used for the frozen case."
+}
