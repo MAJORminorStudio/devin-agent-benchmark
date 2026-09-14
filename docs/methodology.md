@@ -2,7 +2,7 @@
 
 ## Scope and isolation
 
-This is a standalone Phase 1 benchmark harness. It does not read, modify,
+This is a standalone benchmark harness. It does not read, modify,
 import from, or connect to Major Minor research databases, Obsidian vaults,
 Supabase projects, research pipelines, or production repositories. The only
 external source in scope is the public BugsInPy Git repository named in
@@ -39,7 +39,19 @@ revision. `bug_patch.txt`, `bug_buggy.txt`, `bug_fixed.txt`, `bug.info`, and all
 other evaluator metadata stay outside `agent-workspace/`.
 
 The preparation script audits the agent workspace for Git history, forbidden
-artifact names, and the fixed commit hash. It fails closed if any are present.
+artifact names, and the fixed commit hash. The Phase 2 exporter then copies
+only that validated workspace into a destination outside the control
+repository, adds `TASK.md`, `SETUP.md`, and a safe `CASE.json`, and fails closed
+if the export contains fixed hashes, reference-patch fragments that were not
+already in the buggy baseline, hidden-test names, ground-truth filenames,
+control paths, escaping symlinks, or source/reference Git history. Its baseline,
+audit report, and export record are evaluator-side siblings, never agent input.
+
+The sanitized case repository is a separate packaging layer. Each immutable
+`E001-C01` through `E001-C05` branch contains one case workspace at its root;
+the control repository and the fixed verification tree are not remotes or
+history in those branches. The requested private organization repository is
+pending GitHub organization repository-create permission.
 
 ## Reproduction protocol
 
@@ -49,15 +61,40 @@ artifact names, and the fixed commit hash. It fails closed if any are present.
 4. Run the buggy verification workspace and confirm the expected failure.
 5. Run the fixed verification workspace separately and confirm the expected pass.
 6. Preserve the resulting command output and status in `reproducibility.json`.
-7. Give only `agent-workspace/` plus the standardized task prompt to Devin in a
-   future phase.
-8. Capture Devin's patch and run evaluator-controlled tests in a separate
-   environment. The human/reference patch is never shown to Devin.
+7. Export one case and inspect its passing leak audit.
+8. Give only the sanitized export plus its standardized task prompt to Devin
+   in a future phase.
+9. Capture Devin's patch and run public and evaluator-controlled tests in a
+   separate environment. Hidden tests and the human/reference patch are never
+   shown to Devin.
 
 The harness does not install dependencies implicitly. Environment creation
 belongs in a disposable, case-specific runner (for example a pinned Python
 container or virtual environment) and should be recorded with the result.
 This prevents a reproduction attempt from changing the host Python environment.
+
+## Phase 2 runner and intervention policy
+
+The runner uses the installed local CLI's inspected flags: exact
+`--model swe-2-medium`, `--print`, `--prompt-file`, `--export`,
+`--permission-mode accept-edits`, and `--respect-workspace-trust false`.
+Fusion is locked out by model-ID validation because this CLI exposes no
+separate Fusion-off switch. The default runner operation writes a plan and
+does not call Devin; a real call requires both `--execute` and
+`--confirm-paid`.
+
+Experiment 001 allows zero substantive human interventions. Only unrelated
+environment/authentication correction or harness recovery is permitted, and
+every such event must be logged with timestamp, reason, and action. No one may
+provide debugging hints, point to implementation files, suggest an approach,
+explain failures, or explain why a patch is wrong.
+
+The post-session evaluator records the public test result, optional hidden
+evaluator result, changed files, patch hash, line counts, regression status,
+and optional non-content reference metrics. It accepts hidden commands and a
+reference patch only through evaluator-side paths after the session is closed.
+The reference content is never copied into the agent workspace or result
+notes.
 
 ## Future results schema
 
@@ -87,5 +124,8 @@ Future agent runs should append records shaped like:
 }
 ```
 
-Cost and usage fields are nullable because availability depends on the future
-agent interface. No Devin integration is part of Phase 1.
+Cost and usage fields are nullable because availability depends on the agent
+interface. No Devin task was invoked during Phase 2 validation. The runner is
+prepared for the explicitly approved future invocation, but provider fields
+that the installed CLI does not expose—stable cloud IDs/URLs, usage/cost/ACUs,
+branch, and PR URL—remain nullable/manual checkpoints.

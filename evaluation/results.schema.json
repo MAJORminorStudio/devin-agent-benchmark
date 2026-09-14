@@ -5,6 +5,7 @@
   "required": ["experiment_id", "case_id", "agent", "prompt", "started_at", "ended_at", "elapsed_seconds", "interventions", "patch", "tests_before", "tests_after", "pass", "regression_status", "evaluator_notes"],
   "properties": {
     "experiment_id": {"type": "string"},
+    "experiment_case_id": {"type": ["string", "null"]},
     "case_id": {"type": "string"},
     "agent": {
       "type": "object",
@@ -25,8 +26,8 @@
       }
     },
     "prompt": {"type": "string"},
-    "started_at": {"type": "string"},
-    "ended_at": {"type": "string"},
+    "started_at": {"type": ["string", "null"]},
+    "ended_at": {"type": ["string", "null"]},
     "elapsed_seconds": {"type": ["number", "null"]},
     "interventions": {"type": "array", "items": {"type": "object"}},
     "patch": {
@@ -34,8 +35,8 @@
       "required": ["format", "path", "sha256"],
       "properties": {
         "format": {"type": "string"},
-        "path": {"type": "string"},
-        "sha256": {"type": "string"}
+        "path": {"type": ["string", "null"]},
+        "sha256": {"type": ["string", "null"]}
       }
     },
     "tests_before": {"type": "object"},

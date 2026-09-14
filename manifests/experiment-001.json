@@ -6,6 +6,7 @@
   "cases": [
     {
       "case_id": "black-16",
+      "experiment_case_id": "E001-C01",
       "source": "BugsInPy",
       "source_commit": "316b95e2353ecda832bad9b42f86fa7c2fcec8ac",
       "project": "black",
@@ -24,6 +25,7 @@
     },
     {
       "case_id": "fastapi-3",
+      "experiment_case_id": "E001-C02",
       "source": "BugsInPy",
       "source_commit": "316b95e2353ecda832bad9b42f86fa7c2fcec8ac",
       "project": "fastapi",
@@ -42,6 +44,7 @@
     },
     {
       "case_id": "scrapy-3",
+      "experiment_case_id": "E001-C03",
       "source": "BugsInPy",
       "source_commit": "316b95e2353ecda832bad9b42f86fa7c2fcec8ac",
       "project": "scrapy",
@@ -60,6 +63,7 @@
     },
     {
       "case_id": "tqdm-5",
+      "experiment_case_id": "E001-C04",
       "source": "BugsInPy",
       "source_commit": "316b95e2353ecda832bad9b42f86fa7c2fcec8ac",
       "project": "tqdm",
@@ -78,6 +82,7 @@
     },
     {
       "case_id": "tornado-13",
+      "experiment_case_id": "E001-C05",
       "source": "BugsInPy",
       "source_commit": "316b95e2353ecda832bad9b42f86fa7c2fcec8ac",
       "project": "tornado",

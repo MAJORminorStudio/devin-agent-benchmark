@@ -1,0 +1,45 @@
+{
+  "experiment_id": "experiment-001",
+  "configuration_version": 1,
+  "frozen_at": "2026-09-14",
+  "agent": {
+    "name": "Devin",
+    "cli_version": "3000.10.21 (611c1cba)",
+    "model": "swe-2-medium",
+    "model_family": "SWE-2",
+    "effort_level": "medium",
+    "fusion": "disabled",
+    "fusion_lock_method": "Use the exact non-Fusion model ID swe-2-medium; reject all fusion-* model IDs. The installed CLI exposes no separate --fusion flag.",
+    "operating_mode": "local",
+    "permission_mode": "accept-edits",
+    "workspace_trust_override": false
+  },
+  "intervention_policy": {
+    "default": "zero substantive human assistance",
+    "allowed": [
+      "environment or authentication correction unrelated to the bug",
+      "infrastructure recovery if the harness fails"
+    ],
+    "not_allowed": [
+      "debugging hints",
+      "pointing Devin toward files",
+      "suggesting implementation approaches",
+      "explaining test failures",
+      "telling Devin why a patch is wrong"
+    ],
+    "maximum_substantive_interventions": 0,
+    "logging": "Every allowed intervention is recorded with timestamp, reason, and operator action."
+  },
+  "limits": {
+    "session_timeout_seconds": 3600,
+    "retries": 0,
+    "parallel_cases": 1
+  },
+  "scoring": {
+    "task_success": "Hidden evaluator tests pass and public tests remain passing.",
+    "regressions": "Any unrelated test regression is recorded and makes regression_status=regression.",
+    "patch_scope": "Record changed files and added/deleted lines; compare with the reference only after the session is closed.",
+    "inconclusive": "Environment failure, timeout, or unavailable evaluator is not scored as an agent success."
+  },
+  "cli_capability_basis": "docs/devin-cli-integration.md"
+}
