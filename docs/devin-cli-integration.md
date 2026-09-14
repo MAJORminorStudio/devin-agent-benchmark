@@ -28,10 +28,17 @@ swe-2-medium
 swe-2-max
 ```
 
+The installed CLI labels all three SWE-2 entries `[Free]`, including both
+selected conditions. `devin auth status` reports a Devin Pro account. This is
+local CLI/account evidence, not an independently verified promotional-period
+or billing-contract guarantee; the runner therefore retains its explicit
+paid-confirmation safeguard.
+
 It also lists separate `fusion-*` model IDs, plus a `fusion` family. The frozen
-Experiment 001 configuration selects `swe-2-medium` and rejects any model ID
-beginning with `fusion-`. This is the only Fusion control exposed by the
-installed CLI; there is no separate `--fusion off` option in help.
+Experiment 001 selects `swe-2-medium` for condition M and `swe-2-max` for
+condition X, and rejects any model ID beginning with `fusion-`. This is the
+only Fusion control exposed by the installed CLI; there is no separate
+`--fusion off` option in help.
 
 ## Supported runner path
 
@@ -50,7 +57,9 @@ devin \
 
 The Phase 2 runner constructs this with an argument array and never uses shell
 evaluation. It defaults to a dry run and requires an explicit paid-invocation
-confirmation before execution.
+confirmation before execution. For frozen Experiment 001 runs, pass the
+run-specific `--run-id`; the runner derives the exact case and model from the
+frozen run manifest.
 
 `devin list --format json` is supported and can be captured before and after an
 invocation. `--export` captures the conversation. The CLI help does not promise
@@ -68,11 +77,14 @@ agent-session create or handoff command was exposed by help, so Experiment 001
 uses local mode with a deterministic sanitized checkout. The runner treats
 cloud handoff as a human checkpoint rather than scripting undocumented commands.
 
-The CLI has no documented GitHub repository/branch option. Deterministic source
-selection is therefore performed before invocation: the exporter creates a
-sanitized case checkout/branch, and the local path passed to Devin is that exact
-checkout. GitHub PR creation is not exposed by the inspected CLI help; PR URL
-capture remains optional and manual unless the session itself produces a URL.
+The CLI has no documented GitHub repository/branch requirement or option. Its
+positional workspace path and local `--print` mode operate directly on an
+isolated local case workspace, so GitHub is not required for Experiment 001.
+Deterministic source selection is performed before invocation: the exporter
+creates a fresh sanitized checkout, and the local path passed to Devin is that
+exact checkout. GitHub PR creation is not exposed by the inspected CLI help;
+PR URL capture remains optional and manual unless the session itself produces
+a URL.
 
 ## Usage and cost
 

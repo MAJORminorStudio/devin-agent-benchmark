@@ -73,15 +73,22 @@ belongs in a disposable, case-specific runner (for example a pinned Python
 container or virtual environment) and should be recorded with the result.
 This prevents a reproduction attempt from changing the host Python environment.
 
-## Phase 2 runner and intervention policy
+## Experiment 001 frozen runner and intervention policy
 
 The runner uses the installed local CLI's inspected flags: exact
-`--model swe-2-medium`, `--print`, `--prompt-file`, `--export`,
+`--model swe-2-medium` or `--model swe-2-max`, `--print`, `--prompt-file`, `--export`,
 `--permission-mode accept-edits`, and `--respect-workspace-trust false`.
 Fusion is locked out by model-ID validation because this CLI exposes no
 separate Fusion-off switch. The default runner operation writes a plan and
 does not call Devin; a real call requires both `--execute` and
-`--confirm-paid`.
+`--confirm-paid`. The CLI's model list currently labels both selected SWE-2
+models `[Free]`, but promotional duration and account-side billing terms are
+not independently verified.
+
+The CLI accepts an isolated local workspace as its positional path, so the
+unavailable private GitHub case repository is not required for Experiment 001.
+Each run uses a fresh local exporter output and a run-specific ID from the
+frozen interleaved order.
 
 Experiment 001 allows zero substantive human interventions. Only unrelated
 environment/authentication correction or harness recovery is permitted, and

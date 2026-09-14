@@ -21,6 +21,7 @@ from typing import Any, Dict, List, Optional, Sequence
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = REPO_ROOT / "manifests" / "experiment-001-config.json"
+DEFAULT_RUN_MANIFEST = REPO_ROOT / "manifests" / "experiment-001-runs.json"
 
 
 def die(message: str) -> None:
@@ -66,10 +67,12 @@ def check_workspace(workspace: Path) -> Dict[str, Any]:
     return case
 
 
-def validate_model(config: Dict[str, Any], model: str) -> None:
-    expected = config["agent"]["model"]
-    if model != expected:
-        die(f"model is frozen to {expected}; refusing {model}")
+def validate_model(config: Dict[str, Any], model: str, expected: Optional[str] = None) -> None:
+    frozen_models = {item["model"] for item in config.get("conditions", {}).values()}
+    if model not in frozen_models:
+        die(f"model is not one of the frozen Experiment 001 models: {model}")
+    if expected and model != expected:
+        die(f"run manifest freezes model to {expected}; refusing {model}")
     if model.lower().startswith("fusion") or "fusion" in model.lower():
         die("Fusion models are forbidden for Experiment 001")
 
@@ -110,7 +113,7 @@ def invocation_command(binary: str, model: str, prompt_file: Path, export_file: 
     ]
 
 
-def plan_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, output_dir: Path, binary: str, model: str) -> Dict[str, Any]:
+def plan_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, output_dir: Path, binary: str, model: str, run: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     prompt_file = workspace / "TASK.md"
     export_file = output_dir / "devin-session-export.json"
     return {
@@ -119,6 +122,8 @@ def plan_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, outp
         "experiment_id": config["experiment_id"],
         "experiment_case_id": case.get("experiment_case_id"),
         "case_id": case.get("case_id"),
+        "run_id": run.get("run_id") if run else None,
+        "condition": run.get("condition") if run else None,
         "workspace": str(workspace),
         "output_dir": str(output_dir),
         "cli_binary": binary,
@@ -143,7 +148,7 @@ def plan_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, outp
     }
 
 
-def execute_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, output_dir: Path, binary: str, model: str, timeout: int) -> Dict[str, Any]:
+def execute_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, output_dir: Path, binary: str, model: str, timeout: int, run: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     output_dir.mkdir(parents=True, exist_ok=True)
     prompt_file = workspace / "TASK.md"
     export_file = output_dir / "devin-session-export.json"
@@ -157,6 +162,9 @@ def execute_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, o
         "experiment_id": config["experiment_id"],
         "experiment_case_id": case.get("experiment_case_id"),
         "case_id": case.get("case_id"),
+        "run_id": run.get("run_id") if run else None,
+        "condition": run.get("condition") if run else None,
+        "effort_level": run.get("effort_level") if run else config.get("agent", {}).get("effort_level"),
         "agent": {
             "name": config["agent"]["name"],
             "configuration": config["configuration_version"],
@@ -170,12 +178,14 @@ def execute_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, o
         "started_at": started_at,
         "ended_at": ended_at,
         "elapsed_seconds": process["elapsed_seconds"],
+        "steps": None,
         "interventions": [],
         "patch": {"format": "unified-diff", "path": None, "sha256": None},
         "tests_before": {"status": "verified-in-phase-1", "source": "reproducibility.json"},
         "tests_after": {"status": "pending-post-session-evaluation"},
         "pass": None,
         "regression_status": "not-run",
+        "termination_reason": "timeout" if process["timed_out"] else ("completed" if process["returncode"] == 0 else "process-exit"),
         "evaluator_notes": "Runner capture only; post-session evaluator must be run separately.",
         "invocation": {"command": command, "returncode": process["returncode"], "timed_out": process["timed_out"], "stdout_stderr": process["output"], "export_path": str(export_file) if export_file.exists() else None},
         "session_inventory_before": before,
@@ -190,7 +200,10 @@ def execute_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, o
 def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
-    parser.add_argument("--case-id", required=True)
+    identifier = parser.add_mutually_exclusive_group(required=True)
+    identifier.add_argument("--run-id", help="frozen run ID, for example E001-C03-M")
+    identifier.add_argument("--case-id", help="legacy case-only dry-run mode")
+    parser.add_argument("--runs-manifest", type=Path, default=DEFAULT_RUN_MANIFEST)
     parser.add_argument("--workspace", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--devin-binary", default="devin")
@@ -202,25 +215,44 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if args.confirm_paid and not args.execute:
         die("--confirm-paid requires --execute")
     config = read_json(args.config)
+    run: Optional[Dict[str, Any]] = None
+    if args.run_id:
+        runs_manifest = read_json(args.runs_manifest)
+        matches = [item for item in runs_manifest.get("runs", []) if item.get("run_id") == args.run_id]
+        if len(matches) != 1:
+            die(f"frozen run ID not found or duplicated: {args.run_id}")
+        run = matches[0]
+        expected_case_id = run.get("case_id")
+        model = run.get("model")
+        if not isinstance(model, str) or not isinstance(expected_case_id, str):
+            die(f"invalid frozen run record: {args.run_id}")
+    else:
+        expected_case_id = args.case_id
+        model = args.model or config["agent"]["model"]
     case = check_workspace(args.workspace)
-    if case.get("case_id") != args.case_id:
-        die(f"workspace CASE.json is for {case.get('case_id')}, not {args.case_id}")
-    model = args.model or config["agent"]["model"]
-    validate_model(config, model)
+    if case.get("case_id") != expected_case_id:
+        die(f"workspace CASE.json is for {case.get('case_id')}, not {expected_case_id}")
+    if args.model and args.model != model:
+        die(f"model is frozen by the run manifest to {model}; refusing {args.model}")
+    validate_model(config, model, expected=model if run else None)
     workspace = args.workspace.expanduser().resolve()
     output_dir = args.output_dir.expanduser().resolve()
     if output_dir == workspace or workspace in output_dir.parents:
         die("runner output must not be inside the agent workspace")
+    if output_dir == REPO_ROOT:
+        die("runner output must not be the control repository root")
+    if output_dir.exists() and any(output_dir.iterdir()):
+        die(f"runner output must be empty/fresh: {output_dir}")
     if not args.execute:
         output_dir.mkdir(parents=True, exist_ok=True)
-        plan = plan_run(config, case, workspace, output_dir, args.devin_binary, model)
+        plan = plan_run(config, case, workspace, output_dir, args.devin_binary, model, run)
         plan_path = output_dir / "dry-run-plan.json"
         plan_path.write_text(json.dumps(plan, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         print(json.dumps(plan, indent=2))
         return 0
     if not args.confirm_paid:
         die("refusing paid Devin invocation without --confirm-paid")
-    result = execute_run(config, case, workspace, output_dir, args.devin_binary, model, args.timeout)
+    result = execute_run(config, case, workspace, output_dir, args.devin_binary, model, args.timeout, run)
     print(json.dumps(result, indent=2))
     return 0 if result["invocation"]["returncode"] == 0 else 1
 

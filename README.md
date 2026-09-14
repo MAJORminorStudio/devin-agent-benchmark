@@ -4,11 +4,11 @@ A small, reproducible harness for evaluating autonomous coding agents on real Py
 
 This repository is intentionally isolated from the Major Minor research infrastructure. It has no database, Obsidian, Supabase, pipeline, or production repository integration. BugsInPy is referenced as an external source checkout; its repository is not vendored here.
 
-## Phase 2 status
+## Experiment 001 freeze status
 
-The Phase 1 survey/reproducibility work and Phase 2 benchmark plumbing are
-complete. The Devin runner is dry-run by default; no Devin task has been
-started and no credits have been spent. See [docs/candidate-bugs.md](docs/candidate-bugs.md), [docs/methodology.md](docs/methodology.md), [docs/devin-cli-integration.md](docs/devin-cli-integration.md), and [reports/experiment-001-recommendation.md](reports/experiment-001-recommendation.md).
+The 5-case × 2-condition protocol is frozen. The Devin runner is dry-run by
+default; no Devin task has been started and no credits have been spent. See
+[docs/candidate-bugs.md](docs/candidate-bugs.md), [docs/methodology.md](docs/methodology.md), [docs/devin-cli-integration.md](docs/devin-cli-integration.md), and [docs/experiment-001-protocol.md](docs/experiment-001-protocol.md).
 
 ## Quick start
 
@@ -45,9 +45,9 @@ destination. A Devin plan can be inspected without invoking Devin:
 
 ```sh
 python3 scripts/devin_runner.py \
-  --case-id black-16 \
-  --workspace /tmp/devin-case-black-16 \
-  --output-dir results/runs/experiment-001/black-16
+  --run-id E001-C03-M \
+  --workspace /tmp/devin-case-E001-C03-M \
+  --output-dir results/runs/experiment-001/E001-C03-M
 ```
 
 The `--execute --confirm-paid` flags are both required for a real invocation.

@@ -3,6 +3,30 @@
   "schema_version": 1,
   "source_lock": "sources/bugsinpy.json",
   "ground_truth_policy": "This manifest is evaluator-only. Never copy it, the fixed tree, bug_patch.txt, bug_fixed.txt, or bug.info into an agent workspace.",
+  "protocol": {
+    "question": "How does SWE-2 reasoning effort affect autonomous repair of real OSS bugs with known ground truth?",
+    "design": "5 BugsInPy cases x 2 SWE-2 effort levels = 10 independent runs",
+    "experimental_unit": "Each case/condition combination is an independent run from a fresh sanitized export.",
+    "primary_outcome": "TASK_SUCCESS is 1 only when held-out evaluation confirms the target repair and required public/regression tests pass.",
+    "intervention_policy": "Zero substantive assistance; allowed infrastructure/authentication recovery must be logged.",
+    "analysis_policy": "Exploratory paired evaluation; n=5 and no statistical-significance claims."
+  },
+  "conditions": {
+    "M": {"label": "Medium", "model": "swe-2-medium", "model_family": "SWE-2", "effort_level": "medium"},
+    "X": {"label": "Max", "model": "swe-2-max", "model_family": "SWE-2", "effort_level": "max"}
+  },
+  "run_order": [
+    "E001-C03-M",
+    "E001-C01-X",
+    "E001-C05-M",
+    "E001-C02-X",
+    "E001-C04-M",
+    "E001-C03-X",
+    "E001-C01-M",
+    "E001-C05-X",
+    "E001-C02-M",
+    "E001-C04-X"
+  ],
   "cases": [
     {
       "case_id": "black-16",

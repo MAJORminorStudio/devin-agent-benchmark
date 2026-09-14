@@ -74,6 +74,14 @@ class Phase2UnitTests(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 devin_runner.check_workspace(workspace)
 
+    def test_frozen_run_manifest_has_balanced_interleaved_pairs(self):
+        manifest = json.loads((ROOT / "manifests" / "experiment-001-runs.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(manifest["runs"]), 10)
+        self.assertEqual(manifest["run_order"], [run["run_id"] for run in manifest["runs"]])
+        self.assertEqual([run["condition"] for run in manifest["runs"]], ["M", "X", "M", "X", "M", "X", "M", "X", "M", "X"])
+        for case_id in {run["case_id"] for run in manifest["runs"]}:
+            self.assertEqual({run["condition"] for run in manifest["runs"] if run["case_id"] == case_id}, {"M", "X"})
+
 
 if __name__ == "__main__":
     unittest.main()

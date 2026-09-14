@@ -1,0 +1,30 @@
+{
+  "experiment_id": "experiment-001",
+  "schema_version": 1,
+  "source_manifest": "manifests/experiment-001.json",
+  "freeze_status": "frozen-pending-execution",
+  "run_order": [
+    "E001-C03-M",
+    "E001-C01-X",
+    "E001-C05-M",
+    "E001-C02-X",
+    "E001-C04-M",
+    "E001-C03-X",
+    "E001-C01-M",
+    "E001-C05-X",
+    "E001-C02-M",
+    "E001-C04-X"
+  ],
+  "runs": [
+    {"run_id": "E001-C03-M", "experiment_case_id": "E001-C03", "case_id": "scrapy-3", "condition": "M", "model": "swe-2-medium", "effort_level": "medium", "status": "frozen-pending"},
+    {"run_id": "E001-C01-X", "experiment_case_id": "E001-C01", "case_id": "black-16", "condition": "X", "model": "swe-2-max", "effort_level": "max", "status": "frozen-pending"},
+    {"run_id": "E001-C05-M", "experiment_case_id": "E001-C05", "case_id": "tornado-13", "condition": "M", "model": "swe-2-medium", "effort_level": "medium", "status": "frozen-pending"},
+    {"run_id": "E001-C02-X", "experiment_case_id": "E001-C02", "case_id": "fastapi-3", "condition": "X", "model": "swe-2-max", "effort_level": "max", "status": "frozen-pending"},
+    {"run_id": "E001-C04-M", "experiment_case_id": "E001-C04", "case_id": "tqdm-5", "condition": "M", "model": "swe-2-medium", "effort_level": "medium", "status": "frozen-pending"},
+    {"run_id": "E001-C03-X", "experiment_case_id": "E001-C03", "case_id": "scrapy-3", "condition": "X", "model": "swe-2-max", "effort_level": "max", "status": "frozen-pending"},
+    {"run_id": "E001-C01-M", "experiment_case_id": "E001-C01", "case_id": "black-16", "condition": "M", "model": "swe-2-medium", "effort_level": "medium", "status": "frozen-pending"},
+    {"run_id": "E001-C05-X", "experiment_case_id": "E001-C05", "case_id": "tornado-13", "condition": "X", "model": "swe-2-max", "effort_level": "max", "status": "frozen-pending"},
+    {"run_id": "E001-C02-M", "experiment_case_id": "E001-C02", "case_id": "fastapi-3", "condition": "M", "model": "swe-2-medium", "effort_level": "medium", "status": "frozen-pending"},
+    {"run_id": "E001-C04-X", "experiment_case_id": "E001-C04", "case_id": "tqdm-5", "condition": "X", "model": "swe-2-max", "effort_level": "max", "status": "frozen-pending"}
+  ]
+}

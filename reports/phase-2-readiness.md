@@ -2,6 +2,10 @@
 
 Validated on 2026-09-14 without starting Devin or spending external credits.
 
+Experiment 001 is now frozen as five cases × two independent SWE-2 conditions:
+M=`swe-2-medium` and X=`swe-2-max`. The balanced interleaved ten-run order is
+stored in both experiment manifests.
+
 ## Built
 
 - `scripts/export_case.py` creates an agent-only workspace from a validated
@@ -14,9 +18,14 @@ Validated on 2026-09-14 without starting Devin or spending external credits.
   metrics after a session closes.
 - `scripts/smoke_test.py` exercises export, audit, dry-run planning, hidden
   test isolation, patch capture, and evaluation with a disposable toy case.
-- `manifests/experiment-001-config.json` freezes the case IDs, `swe-2-medium`,
-  Fusion exclusion, local/noninteractive mode, and zero substantive
-  intervention policy.
+- `manifests/experiment-001-config.json` freezes the case IDs,
+  `swe-2-medium`, `swe-2-max`, Fusion exclusion, local/noninteractive mode,
+  billing evidence, and zero substantive intervention policy.
+- `scripts/validate_experiment.py` validates all ten run records, condition
+  balance, prompt identity, fresh export identity, audits, model IDs, Fusion
+  exclusion, and an empty results root.
+- `scripts/analyze_results.py` prepares exploratory overall, paired,
+  case-level, and efficiency summaries without significance claims.
 
 ## Isolation validation
 
@@ -37,8 +46,14 @@ permission. No fallback public or personal repository was used.
 
 The smoke test passed with `devin_invoked: false`. The actual runner path is
 ready but must stop for human confirmation of subscription/credit budget. The
-installed CLI does not expose a general cloud task/handoff, stable session
-URL, usage/cost/ACU report, repository branch option, or PR creation flag;
-those remain manual/provider checkpoints. Before Experiment 001, resolve the
-private case-repository permission and decide how the case-specific legacy
-Python environments will be provisioned and recorded.
+CLI's model list labeled both selected SWE-2 models `[Free]`; the Devin account
+reported Pro, but promotional duration/quota/billing terms were not independently
+verified. The existing `--confirm-paid` safeguard remains mandatory.
+
+The installed CLI operates directly on isolated local workspaces, so the
+private GitHub case repository is not required for E001. It does not expose a
+general cloud task/handoff, stable session URL, usage/cost/ACU report,
+repository branch, or PR creation flag; those remain manual/provider
+checkpoints. Before Experiment 001, resolve the private case-repository
+permission if remote packaging is still desired, and decide how the
+case-specific legacy Python environments will be provisioned and recorded.

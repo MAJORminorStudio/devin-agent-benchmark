@@ -14,6 +14,17 @@
     "permission_mode": "accept-edits",
     "workspace_trust_override": false
   },
+  "conditions": {
+    "M": {"model": "swe-2-medium", "model_family": "SWE-2", "effort_level": "medium", "cli_price_label": "Free"},
+    "X": {"model": "swe-2-max", "model_family": "SWE-2", "effort_level": "max", "cli_price_label": "Free"}
+  },
+  "billing_evidence": {
+    "source": "devin models list on 2026-09-14",
+    "observed_label": "Both swe-2-medium and swe-2-max were displayed with [Free].",
+    "account_tier": "Devin Pro",
+    "interpretation": "CLI display evidence only; promotional period, plan terms, quota, and final account billing were not independently verified.",
+    "safeguard": "Retain --confirm-paid until the operator confirms the account-side cost treatment."
+  },
   "intervention_policy": {
     "default": "zero substantive human assistance",
     "allowed": [
