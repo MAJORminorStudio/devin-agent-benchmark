@@ -1,0 +1,11 @@
+run_id,case_id,condition,model,task_success,wall_time_seconds,steps,tool_calls,exec_calls,read_calls,search_calls,web_calls,edit_write_calls,source_edit_operations,source_edit_revision_evidence,test_attempts,test_passes,test_failures,tests_after_first_source_edit,post_edit_observable_calls,environment_dependency_calls,ordinary_shell_failures,rejected_tool_calls
+E002-C02-M,fastapi-3,M,swe-2-medium,1,299.33160504105035,35,30,19,3,1,6,1,1,0,2,1,1,0,2,8,5,0
+E002-C04-X,tqdm-5,X,swe-2-max,0,405.2900764589431,42,44,21,11,6,0,6,1,0,6,3,3,4,13,11,8,0
+E002-C01-M,black-16,M,swe-2-medium,1,366.2692733750446,47,41,34,6,0,0,1,4,1,14,9,5,10,19,8,11,0
+E002-C05-X,tornado-13,X,swe-2-max,1,326.4568180839997,36,30,20,6,1,0,3,3,1,9,4,5,6,10,3,6,0
+E002-C03-M,scrapy-3,M,swe-2-medium,1,817.8612904580077,62,59,48,4,0,5,2,2,1,7,4,3,3,17,11,10,0
+E002-C01-X,black-16,X,swe-2-max,1,399.8189669169951,36,42,27,9,0,0,6,1,0,3,1,2,2,3,11,8,0
+E002-C04-M,tqdm-5,M,swe-2-medium,1,157.31224350002594,22,14,12,1,0,0,1,1,0,3,2,1,2,4,3,2,0
+E002-C02-X,fastapi-3,X,swe-2-max,1,1137.7498878330225,69,71,38,11,2,11,7,1,0,5,2,3,5,16,14,10,0
+E002-C05-M,tornado-13,M,swe-2-medium,1,175.5345236660214,33,25,23,1,0,0,1,3,1,7,3,4,5,8,5,5,0
+E002-C03-X,scrapy-3,X,swe-2-max,1,1380.4637853329768,91,135,64,18,1,0,49,2,1,6,2,4,4,10,24,15,0

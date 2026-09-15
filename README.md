@@ -4,11 +4,26 @@ A small, reproducible harness for evaluating autonomous coding agents on real Py
 
 This repository is intentionally isolated from the Major Minor research infrastructure. It has no database, Obsidian, Supabase, pipeline, or production repository integration. BugsInPy is referenced as an external source checkout; its repository is not vendored here.
 
-## Experiment 001 freeze status
+## Published experiment results
 
-The 5-case × 2-condition protocol is frozen. The Devin runner is dry-run by
-default; no Devin task has been started and no credits have been spent. See
-[docs/candidate-bugs.md](docs/candidate-bugs.md), [docs/methodology.md](docs/methodology.md), [docs/devin-cli-integration.md](docs/devin-cli-integration.md), and [docs/experiment-001-protocol.md](docs/experiment-001-protocol.md).
+The five-case × two-condition protocol and its isolated execution design are
+documented and frozen. Experiment 001 is retained as invalid capability
+provenance because noninteractive permission gating produced empty patches;
+Experiment 002 is the completed autonomous result. The primary reports and
+sanitized public artifacts are linked here:
+
+- [Experiment 001 report](reports/experiment-001-results.md) — invalid capability comparison
+- [Experiment 002 report](reports/experiment-002-results.md) — completed 5×2 evaluation
+- [Experiment 002 forensic analysis](reports/experiment-002-forensic-analysis.md) — observable tool behavior, source-only patch metrics, and paired analysis
+- [Experiment 001 public artifacts](artifacts/experiment-001/README.md)
+- [Experiment 002 public artifacts](artifacts/experiment-002/README.md)
+
+The Devin runner remains dry-run by default. No Experiment 003 has been
+started. See [docs/candidate-bugs.md](docs/candidate-bugs.md),
+[docs/methodology.md](docs/methodology.md),
+[docs/devin-cli-integration.md](docs/devin-cli-integration.md), and
+[docs/experiment-002-protocol.md](docs/experiment-002-protocol.md) for the
+method and isolation boundary.
 
 ## Quick start
 
@@ -56,8 +71,7 @@ Do not use them until the human subscription/credit checkpoint is approved.
 The sanitized case workspaces are packaged separately from this control
 repository. The requested GitHub organization repository could not be created
 with the authenticated account because it lacks organization repository-create
-permission; the local package is retained at
-`/Volumes/Research/devin-agent-benchmark-cases` until that permission is
-available.
+permission; the case package is retained in a separate local external
+directory until that permission is available.
 
 The committed manifest contains reference commits and expected outcomes for reproduction. It must remain outside any future Devin workspace.

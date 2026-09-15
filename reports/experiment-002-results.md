@@ -4,6 +4,12 @@ Exploratory paired evaluation of five BugsInPy repairs under isolated Devin SWE-
 
 All 10 frozen runs completed in the requested order. Every session used the frozen disposable linux/arm64 Docker path with dangerous permission mode / effective Bypass, and every evaluator returned `OK`.
 
+Forensic follow-up: the patch counts below are preserved all-file workspace
+records and may include generated virtualenv/bytecode churn. See the
+[forensic analysis](experiment-002-forensic-analysis.md) and its
+source-only/tool-metric outputs for the separated source-diff and observable
+tool-behavior analysis.
+
 ## Condition summary
 
 | Condition | Solved | Total | Total wall (s) | Mean wall (s) | Median wall (s) | Mean steps | Prompt tokens | Completion tokens | Cached tokens |
