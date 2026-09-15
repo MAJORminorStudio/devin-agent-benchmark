@@ -1,0 +1,2 @@
+# Optional dependency used only by scripts/build_publication_assets.py.
+Pillow>=10.0

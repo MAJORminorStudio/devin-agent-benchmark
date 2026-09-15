@@ -1,0 +1,370 @@
+{
+  "schema_version": 1,
+  "project": {
+    "name": "Devin + SWE-2 Reasoning Effort Benchmark",
+    "repository": "https://github.com/MAJORminorStudio/devin-agent-benchmark",
+    "publisher": "MAJORminor Studio",
+    "publication_version": "1.0.0",
+    "publication_date": "2026-09-15"
+  },
+  "provenance": {
+    "publication_control_commit": "7e623d0bdb34baa3f6a44e5240028016e11bffe3",
+    "experiment_001_results": "results/experiment-001-summary.json",
+    "experiment_002_results": "results/experiment-002-summary.json",
+    "experiment_002_forensics": "results/experiment-002-forensics.json",
+    "bugsinpy_dataset": "sources/bugsinpy.json"
+  },
+  "research_questions": {
+    "primary": "How did SWE-2 Medium and SWE-2 Max compare on five real OSS repair tasks?",
+    "secondary": "How much can permission configuration affect observed autonomous-agent performance?"
+  },
+  "models": {
+    "M": "swe-2-medium",
+    "X": "swe-2-max"
+  },
+  "experiments": {
+    "experiment-001": {
+      "status": "invalid_capability_comparison",
+      "validity": "operational_provenance_only",
+      "cases": 5,
+      "runs": 10,
+      "medium_solved": 0,
+      "max_solved": 0,
+      "reason": "Noninteractive accept-edits permission gating rejected required tool calls and produced empty patches in all ten runs.",
+      "report": "reports/experiment-001-results.md",
+      "artifacts": "artifacts/experiment-001/README.md"
+    },
+    "experiment-002": {
+      "status": "completed_exploratory_pilot",
+      "validity": "autonomous_capability_result_under_isolated_configuration",
+      "control_commit": "25ebc43318d2628665c87a3d5c11b3b0371d4d4f",
+      "runs": 10,
+      "protocol": {
+        "permission_mode": "dangerous",
+        "effective_permission_mode": "Bypass",
+        "fusion": "disabled",
+        "container": "linux/arm64 disposable Docker; read-only root; cap-drop ALL; no-new-privileges; no Docker socket; no host/control-repo mounts",
+        "intervention_policy": "zero substantive assistance",
+        "retries": 0
+      },
+      "condition_metrics": {
+        "Medium": {
+          "model": "swe-2-medium",
+          "n": 5,
+          "solved": 5,
+          "wall_time_seconds": {
+            "total": 1816.309,
+            "mean": 363.262,
+            "median": 299.332
+          },
+          "steps": {
+            "total": 199,
+            "mean": 39.8,
+            "values_by_case": [
+              47,
+              35,
+              62,
+              22,
+              33
+            ]
+          },
+          "tool_calls": {
+            "total": 169,
+            "values_by_case": [
+              41,
+              30,
+              59,
+              14,
+              25
+            ]
+          },
+          "tokens": {
+            "prompt": 4120476,
+            "completion": 52313,
+            "cached": 3968909
+          },
+          "source_diff": {
+            "files_changed": 5,
+            "lines_added": 48,
+            "lines_deleted": 11
+          },
+          "workspace_change_record": {
+            "files_changed": 85,
+            "generated_or_environment_files": 80
+          },
+          "reported_cost": null,
+          "reported_acus": null
+        },
+        "Max": {
+          "model": "swe-2-max",
+          "n": 5,
+          "solved": 4,
+          "wall_time_seconds": {
+            "total": 3649.78,
+            "mean": 729.956,
+            "median": 405.29
+          },
+          "steps": {
+            "total": 274,
+            "mean": 54.8,
+            "values_by_case": [
+              36,
+              69,
+              91,
+              42,
+              36
+            ]
+          },
+          "tool_calls": {
+            "total": 322,
+            "values_by_case": [
+              42,
+              71,
+              135,
+              44,
+              30
+            ]
+          },
+          "tokens": {
+            "prompt": 11740951,
+            "completion": 164983,
+            "cached": 11408875
+          },
+          "source_diff": {
+            "files_changed": 5,
+            "lines_added": 42,
+            "lines_deleted": 10
+          },
+          "workspace_change_record": {
+            "files_changed": 3223,
+            "generated_or_environment_files": 3218
+          },
+          "reported_cost": null,
+          "reported_acus": null
+        }
+      },
+      "paired_outcomes": {
+        "both_succeeded": [
+          "black-16",
+          "fastapi-3",
+          "scrapy-3",
+          "tornado-13"
+        ],
+        "medium_only": [
+          "tqdm-5"
+        ],
+        "max_only": [],
+        "both_failed": []
+      },
+      "report": "reports/experiment-002-results.md",
+      "forensic_report": "reports/experiment-002-forensic-analysis.md",
+      "artifacts": "artifacts/experiment-002/README.md"
+    }
+  },
+  "cases": [
+    {
+      "case": "black-16",
+      "project": "black",
+      "bug_id": "16",
+      "difficulty": "medium",
+      "repository": "https://github.com/psf/black",
+      "buggy_commit": "fb34c9e19589d05f92084a28940837151251ebd6",
+      "fixed_commit": "42a3fe53319a8c02858c2a96989ed1339f84515a",
+      "prompt": "prompts/experiment-001/black-16.md",
+      "heldout_tests": [
+        "evaluation/experiment-001/black-16/test_heldout.py"
+      ],
+      "evaluator_metadata": "evaluation/experiment-001/black-16/metadata.json",
+      "medium_run": "E002-C01-M",
+      "max_run": "E002-C01-X"
+    },
+    {
+      "case": "fastapi-3",
+      "project": "fastapi",
+      "bug_id": "3",
+      "difficulty": "medium-high",
+      "repository": "https://github.com/tiangolo/fastapi",
+      "buggy_commit": "869c7389e22dc9ad659940fa271da76c4f3ba3b1",
+      "fixed_commit": "aea04ee32ee1942e6e1a904527bb8da6ba76abd9",
+      "prompt": "prompts/experiment-001/fastapi-3.md",
+      "heldout_tests": [
+        "evaluation/experiment-001/fastapi-3/test_heldout.py"
+      ],
+      "evaluator_metadata": "evaluation/experiment-001/fastapi-3/metadata.json",
+      "medium_run": "E002-C02-M",
+      "max_run": "E002-C02-X"
+    },
+    {
+      "case": "scrapy-3",
+      "project": "scrapy",
+      "bug_id": "3",
+      "difficulty": "medium",
+      "repository": "https://github.com/scrapy/scrapy",
+      "buggy_commit": "be2e910dd06ba4904e7b10eb5a7e3251e8dab099",
+      "fixed_commit": "66cbceeb0a9104fc0fa238898e38d0d9ce9cbcf6",
+      "prompt": "prompts/experiment-001/scrapy-3.md",
+      "heldout_tests": [
+        "evaluation/experiment-001/scrapy-3/test_heldout.py"
+      ],
+      "evaluator_metadata": "evaluation/experiment-001/scrapy-3/metadata.json",
+      "medium_run": "E002-C03-M",
+      "max_run": "E002-C03-X"
+    },
+    {
+      "case": "tqdm-5",
+      "project": "tqdm",
+      "bug_id": "5",
+      "difficulty": "medium",
+      "repository": "https://github.com/tqdm/tqdm",
+      "buggy_commit": "19b08ab34fdbfa0275bc5cb2430436c724c7e759",
+      "fixed_commit": "4f340697af69b71850aad496387c9c5aa1904136",
+      "prompt": "prompts/experiment-001/tqdm-5.md",
+      "heldout_tests": [
+        "evaluation/experiment-001/tqdm-5/test_heldout.py"
+      ],
+      "evaluator_metadata": "evaluation/experiment-001/tqdm-5/metadata.json",
+      "medium_run": "E002-C04-M",
+      "max_run": "E002-C04-X"
+    },
+    {
+      "case": "tornado-13",
+      "project": "tornado",
+      "bug_id": "13",
+      "difficulty": "medium-high",
+      "repository": "https://github.com/tornadoweb/tornado",
+      "buggy_commit": "d7d9c467cda38f4c9352172ba7411edc29a85196",
+      "fixed_commit": "34903f9e1a99441b2729bbe6f1d65d46cf352ea7",
+      "prompt": "prompts/experiment-001/tornado-13.md",
+      "heldout_tests": [
+        "evaluation/experiment-001/tornado-13/test_heldout.py"
+      ],
+      "evaluator_metadata": "evaluation/experiment-001/tornado-13/metadata.json",
+      "medium_run": "E002-C05-M",
+      "max_run": "E002-C05-X"
+    }
+  ],
+  "paired_results": [
+    {
+      "case": "black-16",
+      "medium_run": "E002-C01-M",
+      "max_run": "E002-C01-X",
+      "medium_success": true,
+      "max_success": true,
+      "outcome": "both succeeded",
+      "max_minus_medium_wall_seconds": 33.55,
+      "wall_ratio_max_over_medium": 1.091599,
+      "medium_steps": 47,
+      "max_steps": 36,
+      "medium_tool_calls": 41,
+      "max_tool_calls": 42,
+      "medium_source_added": 10,
+      "medium_source_deleted": 1,
+      "max_source_added": 10,
+      "max_source_deleted": 1,
+      "medium_generated_files": 12,
+      "max_generated_files": 1511
+    },
+    {
+      "case": "fastapi-3",
+      "medium_run": "E002-C02-M",
+      "max_run": "E002-C02-X",
+      "medium_success": true,
+      "max_success": true,
+      "outcome": "both succeeded",
+      "max_minus_medium_wall_seconds": 838.418,
+      "wall_ratio_max_over_medium": 3.800963,
+      "medium_steps": 35,
+      "max_steps": 69,
+      "medium_tool_calls": 30,
+      "max_tool_calls": 71,
+      "medium_source_added": 25,
+      "medium_source_deleted": 7,
+      "max_source_added": 25,
+      "max_source_deleted": 7,
+      "medium_generated_files": 1,
+      "max_generated_files": 0
+    },
+    {
+      "case": "scrapy-3",
+      "medium_run": "E002-C03-M",
+      "max_run": "E002-C03-X",
+      "medium_success": true,
+      "max_success": true,
+      "outcome": "both succeeded",
+      "max_minus_medium_wall_seconds": 562.603,
+      "wall_ratio_max_over_medium": 1.687896,
+      "medium_steps": 62,
+      "max_steps": 91,
+      "medium_tool_calls": 59,
+      "max_tool_calls": 135,
+      "medium_source_added": 6,
+      "medium_source_deleted": 2,
+      "max_source_added": 4,
+      "max_source_deleted": 1,
+      "medium_generated_files": 28,
+      "max_generated_files": 1662
+    },
+    {
+      "case": "tqdm-5",
+      "medium_run": "E002-C04-M",
+      "max_run": "E002-C04-X",
+      "medium_success": true,
+      "max_success": false,
+      "outcome": "Medium only",
+      "max_minus_medium_wall_seconds": 247.978,
+      "wall_ratio_max_over_medium": 2.576345,
+      "medium_steps": 22,
+      "max_steps": 42,
+      "medium_tool_calls": 14,
+      "max_tool_calls": 44,
+      "medium_source_added": 6,
+      "medium_source_deleted": 0,
+      "max_source_added": 2,
+      "max_source_deleted": 0,
+      "medium_generated_files": 9,
+      "max_generated_files": 10
+    },
+    {
+      "case": "tornado-13",
+      "medium_run": "E002-C05-M",
+      "max_run": "E002-C05-X",
+      "medium_success": true,
+      "max_success": true,
+      "outcome": "both succeeded",
+      "max_minus_medium_wall_seconds": 150.922,
+      "wall_ratio_max_over_medium": 1.859783,
+      "medium_steps": 33,
+      "max_steps": 36,
+      "medium_tool_calls": 25,
+      "max_tool_calls": 30,
+      "medium_source_added": 1,
+      "medium_source_deleted": 1,
+      "max_source_added": 1,
+      "max_source_deleted": 1,
+      "medium_generated_files": 30,
+      "max_generated_files": 35
+    }
+  ],
+  "limitations": [
+    "Five historical Python bugs and five paired cases only.",
+    "One agent product and one model family under one frozen task setup.",
+    "Exploratory pilot; no statistical superiority claim is made.",
+    "Monetary cost and ACU data were unavailable.",
+    "Public benchmark exposure and contamination cannot be ruled out absolutely."
+  ],
+  "reports": [
+    "README.md",
+    "reports/swe-2-medium-vs-max-research-report.md",
+    "reports/experiment-002-results.md",
+    "reports/experiment-002-forensic-analysis.md",
+    "reports/experiment-001-results.md"
+  ],
+  "artifact_roots": [
+    "artifacts/experiment-001/",
+    "artifacts/experiment-002/",
+    "manifests/experiment-001.json",
+    "manifests/experiment-002-config.json",
+    "manifests/experiment-002-runs.json",
+    "evaluation/experiment-001/"
+  ]
+}

@@ -1,0 +1,6 @@
+case,medium_run,max_run,medium_success,max_success,medium_wall_seconds,max_wall_seconds,wall_ratio_max_over_medium,medium_steps,max_steps,medium_tool_calls,max_tool_calls,medium_prompt_tokens,max_prompt_tokens,medium_completion_tokens,max_completion_tokens,medium_source_added,medium_source_deleted,max_source_added,max_source_deleted
+black-16,E002-C01-M,E002-C01-X,1,1,366.269,399.819,1.091599,47,36,41,42,903193,591544,10310,10720,10,1,10,1
+fastapi-3,E002-C02-M,E002-C02-X,1,1,299.332,1137.75,3.800963,35,69,30,71,599955,3504981,9374,60615,25,7,25,7
+scrapy-3,E002-C03-M,E002-C03-X,1,1,817.861,1380.464,1.687896,62,91,59,135,1960369,6046229,26800,73180,6,2,4,1
+tqdm-5,E002-C04-M,E002-C04-X,1,0,157.312,405.29,2.576345,22,42,14,44,220679,814278,2343,11151,6,0,2,0
+tornado-13,E002-C05-M,E002-C05-X,1,1,175.535,326.457,1.859783,33,36,25,30,436280,783919,3486,9317,1,1,1,1

@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: "Devin + SWE-2 Reasoning Effort Benchmark"
+message: "If this repository supports your work, please cite the public research artifact and identify the exact commit used."
+type: software
+authors:
+  - name: "MAJORminor Studio"
+version: "1.0.0"
+date-released: "2026-09-15"
+license: MIT
+repository-code: "https://github.com/MAJORminorStudio/devin-agent-benchmark"
+abstract: >-
+  An independent exploratory paired evaluation of Cognition's Devin agent on
+  five real Python bugs from BugsInPy, comparing SWE-2 Medium and SWE-2 Max
+  under isolated execution with hidden behavioral evaluation.
+keywords:
+  - software engineering agents
+  - program repair
+  - benchmark
+  - BugsInPy
+  - Devin
+  - SWE-2

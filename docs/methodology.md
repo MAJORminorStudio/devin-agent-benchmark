@@ -103,6 +103,23 @@ reference patch only through evaluator-side paths after the session is closed.
 The reference content is never copied into the agent workspace or result
 notes.
 
+## Public publication build
+
+The public-facing synthesis is derived from committed E001/E002 summaries and
+the E002 forensic record. Run
+`python3 scripts/build_publication_assets.py` to regenerate
+`results/publication-summary.json`,
+`results/publication-paired-results.csv`, and the figures under
+`assets/charts/`. This publication build does not read ignored raw run
+directories, invoke Devin, or change any experiment outcome. The standalone
+research report is
+[reports/swe-2-medium-vs-max-research-report.md](../reports/swe-2-medium-vs-max-research-report.md).
+
+Repository-original material is licensed under the root
+[LICENSE](../LICENSE). Third-party source, BugsInPy, historical patches, and
+provider materials remain subject to their own terms; see
+[THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
+
 ## Future results schema
 
 Future agent runs should append records shaped like:
