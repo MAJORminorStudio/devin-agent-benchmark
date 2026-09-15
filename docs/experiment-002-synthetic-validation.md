@@ -37,9 +37,9 @@ The run used:
 
 The Devin session completed with return code 0 in approximately 128.175
 seconds. Its export recorded session ID `daffy-abrosaurus` and 14 total
-steps. The export contained seven tool-call-bearing steps: repository
-exploration, three reads, two shell/test command invocations, an edit, and a
-post-edit test invocation. There were no rejected or canceled tool calls.
+steps. The export contained eight tool calls across six tool-call-bearing
+steps: repository exploration, three reads, three shell/test command
+invocations, and an edit. There were no rejected or canceled tool calls.
 
 The resulting patch was non-empty and changed only the synthetic source
 function. The public test passed after the edit, and the evaluator-side
