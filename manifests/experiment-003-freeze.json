@@ -60,9 +60,10 @@
   "run_order_manifest": "manifests/experiment-003-runs.json",
   "run_order_sha256": "1a76d9f48c1165c6a0f28f6eff1b8ae2fd97051f10a3761b70dfdedc16d1738f",
   "configuration_sha256": "f86ae47d5390f3260540a2812fb1ca109697f8d0761fd8e7be343a0cb8e8539d",
-  "workspace_auditor_sha256": "746ffa35e5bc5c04c999aa51b4c3d47b1783b4990daece51d99a78b74fcb33fb",
+  "workspace_auditor_sha256": "61515ef5fcf7c162a5fe8cbbf5beefbae2af3fe9136a9b7f863e0b779bb3aae2",
   "ground_truth_validator_sha256": "e19832137fa95b52ca62ce1a5c506a8ea77ffbd0770b11917700e9b387eee114",
   "container_runner_sha256": "b72163c3569699350707c27c8174e79e3e1d637db9c7cf6a0ec67dd6afb4a5da",
+  "evaluator_sha256": "0e3b38949820e3e4481cb86b0617edd21c3397660ad8412d1d71501c15db99b4",
   "evaluator_version": "experiment-003-private-validator-v1",
   "isolation_configuration_version": "experiment-002-config-v1"
 }

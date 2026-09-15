@@ -123,8 +123,16 @@ def export_workspace(private_root: Path, case_id: str, destination: Path, force:
         if not force:
             die(f"destination exists; use --force only for a named disposable workspace: {destination}")
         shutil.rmtree(destination)
+    baseline = destination.parent / f"{destination.name}.baseline"
+    if baseline.exists():
+        if not force:
+            die(f"baseline exists; use --force only for a named disposable workspace: {baseline}")
+        shutil.rmtree(baseline)
     shutil.copytree(source, destination, symlinks=True, ignore=shutil.ignore_patterns(".git", "__pycache__"))
-    (destination / "TASK.md").write_text(prompt.read_text(encoding="utf-8").rstrip() + "\n", encoding="utf-8")
+    shutil.copytree(source, baseline, symlinks=True, ignore=shutil.ignore_patterns(".git", "__pycache__"))
+    task_text = prompt.read_text(encoding="utf-8").rstrip() + "\n"
+    (destination / "TASK.md").write_text(task_text, encoding="utf-8")
+    (baseline / "TASK.md").write_text(task_text, encoding="utf-8")
     audit = audit_workspace(destination, private_root, case_id)
     audit_path = destination.parent / f"{destination.name}.leak-audit.json"
     audit_path.write_text(json.dumps(audit, indent=2, sort_keys=True) + "\n", encoding="utf-8")
