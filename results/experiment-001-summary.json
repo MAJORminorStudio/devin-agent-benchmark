@@ -1,0 +1,882 @@
+{
+  "analysis_type": "exploratory paired evaluation",
+  "case_level": [
+    {
+      "M": {
+        "elapsed_seconds": 38.028,
+        "evaluation_status": "OK",
+        "failure_classification": "no patch / premature completion",
+        "heldout": "fail",
+        "model": "swe-2-medium",
+        "pass": false,
+        "patch": {
+          "additions": 0,
+          "changed_files": [],
+          "deletions": 0,
+          "lines": 0,
+          "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C01-M/agent.patch",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "public": "fail",
+        "regression": "pass",
+        "run_id": "E001-C01-M",
+        "session_id": "veiled-condor",
+        "steps": 12,
+        "termination_reason": "completed",
+        "usage_cost": null,
+        "usage_tokens": {
+          "total_cached_tokens": 59975,
+          "total_completion_tokens": 768,
+          "total_prompt_tokens": 67205
+        }
+      },
+      "X": {
+        "elapsed_seconds": 50.86,
+        "evaluation_status": "OK",
+        "failure_classification": "no patch / premature completion",
+        "heldout": "fail",
+        "model": "swe-2-max",
+        "pass": false,
+        "patch": {
+          "additions": 0,
+          "changed_files": [],
+          "deletions": 0,
+          "lines": 0,
+          "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C01-X/agent.patch",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "public": "fail",
+        "regression": "pass",
+        "run_id": "E001-C01-X",
+        "session_id": "brash-decimal",
+        "steps": 13,
+        "termination_reason": "completed",
+        "usage_cost": null,
+        "usage_tokens": {
+          "total_cached_tokens": 81218,
+          "total_completion_tokens": 2363,
+          "total_prompt_tokens": 90039
+        }
+      },
+      "case_id": "black-16"
+    },
+    {
+      "M": {
+        "elapsed_seconds": 20.993,
+        "evaluation_status": "OK",
+        "failure_classification": "no patch / premature completion",
+        "heldout": "fail",
+        "model": "swe-2-medium",
+        "pass": false,
+        "patch": {
+          "additions": 0,
+          "changed_files": [],
+          "deletions": 0,
+          "lines": 0,
+          "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C02-M/agent.patch",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "public": "fail",
+        "regression": "pass",
+        "run_id": "E001-C02-M",
+        "session_id": "cautious-coriander",
+        "steps": 10,
+        "termination_reason": "completed",
+        "usage_cost": null,
+        "usage_tokens": {
+          "total_cached_tokens": 32807,
+          "total_completion_tokens": 328,
+          "total_prompt_tokens": 37681
+        }
+      },
+      "X": {
+        "elapsed_seconds": 17.656,
+        "evaluation_status": "OK",
+        "failure_classification": "no patch / premature completion",
+        "heldout": "fail",
+        "model": "swe-2-max",
+        "pass": false,
+        "patch": {
+          "additions": 0,
+          "changed_files": [],
+          "deletions": 0,
+          "lines": 0,
+          "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C02-X/agent.patch",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "public": "fail",
+        "regression": "pass",
+        "run_id": "E001-C02-X",
+        "session_id": "utopian-spruce",
+        "steps": 10,
+        "termination_reason": "completed",
+        "usage_cost": null,
+        "usage_tokens": {
+          "total_cached_tokens": 35914,
+          "total_completion_tokens": 660,
+          "total_prompt_tokens": 38892
+        }
+      },
+      "case_id": "fastapi-3"
+    },
+    {
+      "M": {
+        "elapsed_seconds": 27.138,
+        "evaluation_status": "OK",
+        "failure_classification": "no patch / premature completion",
+        "heldout": "fail",
+        "model": "swe-2-medium",
+        "pass": false,
+        "patch": {
+          "additions": 0,
+          "changed_files": [],
+          "deletions": 0,
+          "lines": 0,
+          "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C03-M/agent.patch",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "public": "fail",
+        "regression": "pass",
+        "run_id": "E001-C03-M",
+        "session_id": "torch-enthusiasm",
+        "steps": 10,
+        "termination_reason": "completed",
+        "usage_cost": null,
+        "usage_tokens": {
+          "total_cached_tokens": 31990,
+          "total_completion_tokens": 336,
+          "total_prompt_tokens": 37499
+        }
+      },
+      "X": {
+        "elapsed_seconds": 43.699,
+        "evaluation_status": "OK",
+        "failure_classification": "no patch / premature completion",
+        "heldout": "fail",
+        "model": "swe-2-max",
+        "pass": false,
+        "patch": {
+          "additions": 0,
+          "changed_files": [],
+          "deletions": 0,
+          "lines": 0,
+          "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C03-X/agent.patch",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "public": "fail",
+        "regression": "pass",
+        "run_id": "E001-C03-X",
+        "session_id": "sugar-fibre",
+        "steps": 11,
+        "termination_reason": "completed",
+        "usage_cost": null,
+        "usage_tokens": {
+          "total_cached_tokens": 43321,
+          "total_completion_tokens": 2008,
+          "total_prompt_tokens": 58561
+        }
+      },
+      "case_id": "scrapy-3"
+    },
+    {
+      "M": {
+        "elapsed_seconds": 13.878,
+        "evaluation_status": "OK",
+        "failure_classification": "no patch / premature completion",
+        "heldout": "fail",
+        "model": "swe-2-medium",
+        "pass": false,
+        "patch": {
+          "additions": 0,
+          "changed_files": [],
+          "deletions": 0,
+          "lines": 0,
+          "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C05-M/agent.patch",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "public": "fail",
+        "regression": "pass",
+        "run_id": "E001-C05-M",
+        "session_id": "viridian-porter",
+        "steps": 11,
+        "termination_reason": "completed",
+        "usage_cost": null,
+        "usage_tokens": {
+          "total_cached_tokens": 45690,
+          "total_completion_tokens": 272,
+          "total_prompt_tokens": 50595
+        }
+      },
+      "X": {
+        "elapsed_seconds": 36.799,
+        "evaluation_status": "OK",
+        "failure_classification": "no patch / premature completion",
+        "heldout": "fail",
+        "model": "swe-2-max",
+        "pass": false,
+        "patch": {
+          "additions": 0,
+          "changed_files": [],
+          "deletions": 0,
+          "lines": 0,
+          "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C05-X/agent.patch",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "public": "fail",
+        "regression": "pass",
+        "run_id": "E001-C05-X",
+        "session_id": "wistful-actress",
+        "steps": 13,
+        "termination_reason": "completed",
+        "usage_cost": null,
+        "usage_tokens": {
+          "total_cached_tokens": 83550,
+          "total_completion_tokens": 2275,
+          "total_prompt_tokens": 96040
+        }
+      },
+      "case_id": "tornado-13"
+    },
+    {
+      "M": {
+        "elapsed_seconds": 13.561,
+        "evaluation_status": "OK",
+        "failure_classification": "no patch / premature completion",
+        "heldout": "fail",
+        "model": "swe-2-medium",
+        "pass": false,
+        "patch": {
+          "additions": 0,
+          "changed_files": [],
+          "deletions": 0,
+          "lines": 0,
+          "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C04-M/agent.patch",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "public": "fail",
+        "regression": "pass",
+        "run_id": "E001-C04-M",
+        "session_id": "circular-atmosphere",
+        "steps": 12,
+        "termination_reason": "completed",
+        "usage_cost": null,
+        "usage_tokens": {
+          "total_cached_tokens": 56772,
+          "total_completion_tokens": 506,
+          "total_prompt_tokens": 64622
+        }
+      },
+      "X": {
+        "elapsed_seconds": 36.935,
+        "evaluation_status": "OK",
+        "failure_classification": "no patch / premature completion",
+        "heldout": "fail",
+        "model": "swe-2-max",
+        "pass": false,
+        "patch": {
+          "additions": 0,
+          "changed_files": [],
+          "deletions": 0,
+          "lines": 0,
+          "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C04-X/agent.patch",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "public": "fail",
+        "regression": "pass",
+        "run_id": "E001-C04-X",
+        "session_id": "desert-buckthorn",
+        "steps": 13,
+        "termination_reason": "completed",
+        "usage_cost": null,
+        "usage_tokens": {
+          "total_cached_tokens": 78532,
+          "total_completion_tokens": 2626,
+          "total_prompt_tokens": 84848
+        }
+      },
+      "case_id": "tqdm-5"
+    }
+  ],
+  "completed_runs": 10,
+  "experiment_id": "experiment-001",
+  "frozen_run_order": [
+    "E001-C03-M",
+    "E001-C01-X",
+    "E001-C05-M",
+    "E001-C02-X",
+    "E001-C04-M",
+    "E001-C03-X",
+    "E001-C01-M",
+    "E001-C05-X",
+    "E001-C02-M",
+    "E001-C04-X"
+  ],
+  "infrastructure_observations": {
+    "cli_permission_warning": "The CLI reported a rejected tool call in non-interactive AcceptEdits mode; no paid prompt or service failure was observed.",
+    "cli_permission_warning_runs": [
+      "E001-C03-M",
+      "E001-C01-X",
+      "E001-C05-M",
+      "E001-C02-X",
+      "E001-C04-M",
+      "E001-C03-X",
+      "E001-C01-M",
+      "E001-C05-X",
+      "E001-C02-M",
+      "E001-C04-X"
+    ],
+    "infrastructure_failures": [
+      {
+        "artifact": "results/runs/experiment-001/E001-C03-M/evaluation-result.infrastructure-error.json",
+        "classification": "pre-resume evaluator infrastructure error preserved as provenance; corrected evaluator result is OK and the Devin run was not rerun",
+        "run_id": "E001-C03-M"
+      }
+    ],
+    "protocol_deviations": []
+  },
+  "overall": {
+    "Max": {
+      "completed_records": 5,
+      "model": "swe-2-max",
+      "patch_size_lines": {
+        "mean": 0.0,
+        "median": 0.0,
+        "n": 5,
+        "total": 0.0
+      },
+      "solved": 0,
+      "steps": {
+        "mean": 12.0,
+        "median": 13.0,
+        "n": 5,
+        "total": 60.0
+      },
+      "total": 5,
+      "usage_cost": {
+        "mean": null,
+        "median": null,
+        "n": 0,
+        "total": 0
+      },
+      "usage_tokens": {
+        "total_cached_tokens": {
+          "mean": 64507.0,
+          "median": 78532.0,
+          "n": 5,
+          "total": 322535.0
+        },
+        "total_completion_tokens": {
+          "mean": 1986.4,
+          "median": 2275.0,
+          "n": 5,
+          "total": 9932.0
+        },
+        "total_prompt_tokens": {
+          "mean": 73676.0,
+          "median": 84848.0,
+          "n": 5,
+          "total": 368380.0
+        }
+      },
+      "wall_time_seconds": {
+        "mean": 37.1898,
+        "median": 36.935,
+        "n": 5,
+        "total": 185.94899999999998
+      }
+    },
+    "Medium": {
+      "completed_records": 5,
+      "model": "swe-2-medium",
+      "patch_size_lines": {
+        "mean": 0.0,
+        "median": 0.0,
+        "n": 5,
+        "total": 0.0
+      },
+      "solved": 0,
+      "steps": {
+        "mean": 11.0,
+        "median": 11.0,
+        "n": 5,
+        "total": 55.0
+      },
+      "total": 5,
+      "usage_cost": {
+        "mean": null,
+        "median": null,
+        "n": 0,
+        "total": 0
+      },
+      "usage_tokens": {
+        "total_cached_tokens": {
+          "mean": 45446.8,
+          "median": 45690.0,
+          "n": 5,
+          "total": 227234.0
+        },
+        "total_completion_tokens": {
+          "mean": 442.0,
+          "median": 336.0,
+          "n": 5,
+          "total": 2210.0
+        },
+        "total_prompt_tokens": {
+          "mean": 51520.4,
+          "median": 50595.0,
+          "n": 5,
+          "total": 257602.0
+        }
+      },
+      "wall_time_seconds": {
+        "mean": 22.7196,
+        "median": 20.993,
+        "n": 5,
+        "total": 113.598
+      }
+    }
+  },
+  "pair_analysis": [
+    {
+      "case_id": "black-16",
+      "diagnosis": "Both captured outputs inspected the external-symlink failure; neither completed a repair.",
+      "exploration": "Max recorded one more session step and 12.832 additional seconds.",
+      "final_outcome": "Both failed. Max did not improve the final outcome.",
+      "max_result": false,
+      "medium_result": false,
+      "patch_strategy": "Neither condition produced a patch.",
+      "verification_behavior": "Neither reached a passing public or held-out evaluation; both regression subsets passed."
+    },
+    {
+      "case_id": "fastapi-3",
+      "diagnosis": "Neither captured output demonstrated a completed diagnosis or implementation.",
+      "exploration": "Both recorded 10 session steps; Max completed 3.337 seconds sooner and emitted more completion tokens.",
+      "final_outcome": "Both failed. Increased effort did not change the outcome.",
+      "max_result": false,
+      "medium_result": false,
+      "patch_strategy": "Neither condition produced a patch.",
+      "verification_behavior": "Neither reached a passing public or held-out evaluation; both regression subsets passed."
+    },
+    {
+      "case_id": "scrapy-3",
+      "diagnosis": "Both inspected the redirect test and middleware; neither completed a repair.",
+      "exploration": "Max recorded one more session step and 16.561 additional seconds.",
+      "final_outcome": "Both failed. Max did not improve the final outcome.",
+      "max_result": false,
+      "medium_result": false,
+      "patch_strategy": "Neither condition produced a patch.",
+      "verification_behavior": "Neither reached a passing public or held-out evaluation; both regression subsets passed."
+    },
+    {
+      "case_id": "tornado-13",
+      "diagnosis": "Max articulated the response/request start-line mismatch; Medium left no comparable diagnostic statement in captured output.",
+      "exploration": "Max recorded two more session steps and 22.921 additional seconds.",
+      "final_outcome": "Both failed. The extra effort did not produce an implementation.",
+      "max_result": false,
+      "medium_result": false,
+      "patch_strategy": "Neither condition produced a patch.",
+      "verification_behavior": "Neither reached a passing public or held-out evaluation; both regression subsets passed."
+    },
+    {
+      "case_id": "tqdm-5",
+      "diagnosis": "Max articulated the likely disabled-state initialization issue; Medium left no comparable diagnostic statement in captured output.",
+      "exploration": "Max recorded one more session step and 23.374 additional seconds.",
+      "final_outcome": "Both failed. The extra effort did not produce an implementation.",
+      "max_result": false,
+      "medium_result": false,
+      "patch_strategy": "Neither condition produced a patch.",
+      "verification_behavior": "Neither reached a passing public or held-out evaluation; both regression subsets passed."
+    }
+  ],
+  "paired_outcomes": {
+    "black-16": "both failed",
+    "fastapi-3": "both failed",
+    "scrapy-3": "both failed",
+    "tornado-13": "both failed",
+    "tqdm-5": "both failed"
+  },
+  "reference_comparisons": {
+    "black-16": {
+      "agent_patch_changed_files": [],
+      "agent_patch_matches_reference_change": false,
+      "agent_reference_file_overlap": [],
+      "comparison_performed_after_both_conditions_closed": true,
+      "reference": {
+        "additions": 14,
+        "available": true,
+        "changed_files": [
+          "black.py"
+        ],
+        "deletions": 1,
+        "lines": 15,
+        "sha256": "f95265caa538393bc74fa781bea5dc259978676452357ef52984f098baef6ab6",
+        "source": "BugsInPy bug_patch.txt (evaluator-side only)"
+      }
+    },
+    "fastapi-3": {
+      "agent_patch_changed_files": [],
+      "agent_patch_matches_reference_change": false,
+      "agent_reference_file_overlap": [],
+      "comparison_performed_after_both_conditions_closed": true,
+      "reference": {
+        "additions": 25,
+        "available": true,
+        "changed_files": [
+          "fastapi/routing.py"
+        ],
+        "deletions": 7,
+        "lines": 32,
+        "sha256": "276e6818f4e92c4705096004d707adc89057ee272a2216ed782780431d01a486",
+        "source": "BugsInPy bug_patch.txt (evaluator-side only)"
+      }
+    },
+    "scrapy-3": {
+      "agent_patch_changed_files": [],
+      "agent_patch_matches_reference_change": false,
+      "agent_reference_file_overlap": [],
+      "comparison_performed_after_both_conditions_closed": true,
+      "reference": {
+        "additions": 5,
+        "available": true,
+        "changed_files": [
+          "scrapy/downloadermiddlewares/redirect.py"
+        ],
+        "deletions": 2,
+        "lines": 7,
+        "sha256": "0176cf6437822a350f09280f99bd805e9e1299d02310fd2b864e78b6e3583c1e",
+        "source": "BugsInPy bug_patch.txt (evaluator-side only)"
+      }
+    },
+    "tornado-13": {
+      "agent_patch_changed_files": [],
+      "agent_patch_matches_reference_change": false,
+      "agent_reference_file_overlap": [],
+      "comparison_performed_after_both_conditions_closed": true,
+      "reference": {
+        "additions": 4,
+        "available": true,
+        "changed_files": [
+          "tornado/http1connection.py",
+          "tornado/test/runtests.py"
+        ],
+        "deletions": 1,
+        "lines": 5,
+        "sha256": "3241c1d53958d0db3f0a7f9100852ef77c8c3c2a9fafcccdb01a3ba0cada7ef6",
+        "source": "BugsInPy bug_patch.txt (evaluator-side only)"
+      }
+    },
+    "tqdm-5": {
+      "agent_patch_changed_files": [],
+      "agent_patch_matches_reference_change": false,
+      "agent_reference_file_overlap": [],
+      "comparison_performed_after_both_conditions_closed": true,
+      "reference": {
+        "additions": 7,
+        "available": true,
+        "changed_files": [
+          "tqdm/_tqdm.py"
+        ],
+        "deletions": 6,
+        "lines": 13,
+        "sha256": "2adfd98f9ae7dc8194012a5a1b70089da6377fb9f29dfc3c265f9bf29860ddb5",
+        "source": "BugsInPy bug_patch.txt (evaluator-side only)"
+      }
+    }
+  },
+  "results_root": "results/runs/experiment-001",
+  "run_level": [
+    {
+      "case_id": "scrapy-3",
+      "condition": "M",
+      "elapsed_seconds": 27.138,
+      "failure_classification": "no patch / premature completion",
+      "heldout": "fail",
+      "model": "swe-2-medium",
+      "patch": {
+        "additions": 0,
+        "changed_files": [],
+        "deletions": 0,
+        "lines": 0,
+        "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C03-M/agent.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "public": "fail",
+      "regression": "pass",
+      "run_id": "E001-C03-M",
+      "session_id": "torch-enthusiasm",
+      "steps": 10,
+      "task_success": false,
+      "termination_reason": "completed",
+      "usage_cost": null,
+      "usage_tokens": {
+        "total_cached_tokens": 31990,
+        "total_completion_tokens": 336,
+        "total_prompt_tokens": 37499
+      }
+    },
+    {
+      "case_id": "black-16",
+      "condition": "X",
+      "elapsed_seconds": 50.86,
+      "failure_classification": "no patch / premature completion",
+      "heldout": "fail",
+      "model": "swe-2-max",
+      "patch": {
+        "additions": 0,
+        "changed_files": [],
+        "deletions": 0,
+        "lines": 0,
+        "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C01-X/agent.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "public": "fail",
+      "regression": "pass",
+      "run_id": "E001-C01-X",
+      "session_id": "brash-decimal",
+      "steps": 13,
+      "task_success": false,
+      "termination_reason": "completed",
+      "usage_cost": null,
+      "usage_tokens": {
+        "total_cached_tokens": 81218,
+        "total_completion_tokens": 2363,
+        "total_prompt_tokens": 90039
+      }
+    },
+    {
+      "case_id": "tornado-13",
+      "condition": "M",
+      "elapsed_seconds": 13.878,
+      "failure_classification": "no patch / premature completion",
+      "heldout": "fail",
+      "model": "swe-2-medium",
+      "patch": {
+        "additions": 0,
+        "changed_files": [],
+        "deletions": 0,
+        "lines": 0,
+        "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C05-M/agent.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "public": "fail",
+      "regression": "pass",
+      "run_id": "E001-C05-M",
+      "session_id": "viridian-porter",
+      "steps": 11,
+      "task_success": false,
+      "termination_reason": "completed",
+      "usage_cost": null,
+      "usage_tokens": {
+        "total_cached_tokens": 45690,
+        "total_completion_tokens": 272,
+        "total_prompt_tokens": 50595
+      }
+    },
+    {
+      "case_id": "fastapi-3",
+      "condition": "X",
+      "elapsed_seconds": 17.656,
+      "failure_classification": "no patch / premature completion",
+      "heldout": "fail",
+      "model": "swe-2-max",
+      "patch": {
+        "additions": 0,
+        "changed_files": [],
+        "deletions": 0,
+        "lines": 0,
+        "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C02-X/agent.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "public": "fail",
+      "regression": "pass",
+      "run_id": "E001-C02-X",
+      "session_id": "utopian-spruce",
+      "steps": 10,
+      "task_success": false,
+      "termination_reason": "completed",
+      "usage_cost": null,
+      "usage_tokens": {
+        "total_cached_tokens": 35914,
+        "total_completion_tokens": 660,
+        "total_prompt_tokens": 38892
+      }
+    },
+    {
+      "case_id": "tqdm-5",
+      "condition": "M",
+      "elapsed_seconds": 13.561,
+      "failure_classification": "no patch / premature completion",
+      "heldout": "fail",
+      "model": "swe-2-medium",
+      "patch": {
+        "additions": 0,
+        "changed_files": [],
+        "deletions": 0,
+        "lines": 0,
+        "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C04-M/agent.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "public": "fail",
+      "regression": "pass",
+      "run_id": "E001-C04-M",
+      "session_id": "circular-atmosphere",
+      "steps": 12,
+      "task_success": false,
+      "termination_reason": "completed",
+      "usage_cost": null,
+      "usage_tokens": {
+        "total_cached_tokens": 56772,
+        "total_completion_tokens": 506,
+        "total_prompt_tokens": 64622
+      }
+    },
+    {
+      "case_id": "scrapy-3",
+      "condition": "X",
+      "elapsed_seconds": 43.699,
+      "failure_classification": "no patch / premature completion",
+      "heldout": "fail",
+      "model": "swe-2-max",
+      "patch": {
+        "additions": 0,
+        "changed_files": [],
+        "deletions": 0,
+        "lines": 0,
+        "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C03-X/agent.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "public": "fail",
+      "regression": "pass",
+      "run_id": "E001-C03-X",
+      "session_id": "sugar-fibre",
+      "steps": 11,
+      "task_success": false,
+      "termination_reason": "completed",
+      "usage_cost": null,
+      "usage_tokens": {
+        "total_cached_tokens": 43321,
+        "total_completion_tokens": 2008,
+        "total_prompt_tokens": 58561
+      }
+    },
+    {
+      "case_id": "black-16",
+      "condition": "M",
+      "elapsed_seconds": 38.028,
+      "failure_classification": "no patch / premature completion",
+      "heldout": "fail",
+      "model": "swe-2-medium",
+      "patch": {
+        "additions": 0,
+        "changed_files": [],
+        "deletions": 0,
+        "lines": 0,
+        "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C01-M/agent.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "public": "fail",
+      "regression": "pass",
+      "run_id": "E001-C01-M",
+      "session_id": "veiled-condor",
+      "steps": 12,
+      "task_success": false,
+      "termination_reason": "completed",
+      "usage_cost": null,
+      "usage_tokens": {
+        "total_cached_tokens": 59975,
+        "total_completion_tokens": 768,
+        "total_prompt_tokens": 67205
+      }
+    },
+    {
+      "case_id": "tornado-13",
+      "condition": "X",
+      "elapsed_seconds": 36.799,
+      "failure_classification": "no patch / premature completion",
+      "heldout": "fail",
+      "model": "swe-2-max",
+      "patch": {
+        "additions": 0,
+        "changed_files": [],
+        "deletions": 0,
+        "lines": 0,
+        "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C05-X/agent.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "public": "fail",
+      "regression": "pass",
+      "run_id": "E001-C05-X",
+      "session_id": "wistful-actress",
+      "steps": 13,
+      "task_success": false,
+      "termination_reason": "completed",
+      "usage_cost": null,
+      "usage_tokens": {
+        "total_cached_tokens": 83550,
+        "total_completion_tokens": 2275,
+        "total_prompt_tokens": 96040
+      }
+    },
+    {
+      "case_id": "fastapi-3",
+      "condition": "M",
+      "elapsed_seconds": 20.993,
+      "failure_classification": "no patch / premature completion",
+      "heldout": "fail",
+      "model": "swe-2-medium",
+      "patch": {
+        "additions": 0,
+        "changed_files": [],
+        "deletions": 0,
+        "lines": 0,
+        "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C02-M/agent.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "public": "fail",
+      "regression": "pass",
+      "run_id": "E001-C02-M",
+      "session_id": "cautious-coriander",
+      "steps": 10,
+      "task_success": false,
+      "termination_reason": "completed",
+      "usage_cost": null,
+      "usage_tokens": {
+        "total_cached_tokens": 32807,
+        "total_completion_tokens": 328,
+        "total_prompt_tokens": 37681
+      }
+    },
+    {
+      "case_id": "tqdm-5",
+      "condition": "X",
+      "elapsed_seconds": 36.935,
+      "failure_classification": "no patch / premature completion",
+      "heldout": "fail",
+      "model": "swe-2-max",
+      "patch": {
+        "additions": 0,
+        "changed_files": [],
+        "deletions": 0,
+        "lines": 0,
+        "path": "/Volumes/Research/devin-agent-benchmark/results/runs/experiment-001/E001-C04-X/agent.patch",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "public": "fail",
+      "regression": "pass",
+      "run_id": "E001-C04-X",
+      "session_id": "desert-buckthorn",
+      "steps": 13,
+      "task_success": false,
+      "termination_reason": "completed",
+      "usage_cost": null,
+      "usage_tokens": {
+        "total_cached_tokens": 78532,
+        "total_completion_tokens": 2626,
+        "total_prompt_tokens": 84848
+      }
+    }
+  ],
+  "statistical_significance_claims": false,
+  "total_reported_cost": null,
+  "total_wall_time_seconds": 299.547
+}
