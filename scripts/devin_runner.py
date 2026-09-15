@@ -18,6 +18,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import evaluator_environment as evaluator_env  # noqa: E402
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = REPO_ROOT / "manifests" / "experiment-001-config.json"
@@ -151,7 +154,7 @@ def plan_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, outp
     }
 
 
-def execute_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, output_dir: Path, binary: str, model: str, timeout: int, run: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+def execute_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, output_dir: Path, binary: str, model: str, timeout: int, run: Optional[Dict[str, Any]] = None, evaluator_readiness: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     output_dir.mkdir(parents=True, exist_ok=True)
     prompt_file = workspace / "TASK.md"
     export_file = output_dir / "devin-session-export.json"
@@ -190,6 +193,7 @@ def execute_run(config: Dict[str, Any], case: Dict[str, Any], workspace: Path, o
         "regression_status": "not-run",
         "termination_reason": "timeout" if process["timed_out"] else ("completed" if process["returncode"] == 0 else "process-exit"),
         "evaluator_notes": "Runner capture only; post-session evaluator must be run separately.",
+        "evaluator_environment": evaluator_readiness,
         "invocation": {"command": command, "working_directory": str(workspace), "returncode": process["returncode"], "timed_out": process["timed_out"], "stdout_stderr": process["output"], "export_path": str(export_file) if export_file.exists() else None},
         "session_inventory_before": before,
         "session_inventory_after": after,
@@ -210,6 +214,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--workspace", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--devin-binary", default="devin")
+    parser.add_argument("--evaluator-env-root", type=Path, help="provisioned evaluator environment root; required for real frozen runs")
     parser.add_argument("--model")
     parser.add_argument("--timeout", type=int, default=3600)
     parser.add_argument("--execute", action="store_true", help="actually invoke Devin; requires --confirm-paid")
@@ -255,7 +260,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 0
     if not args.confirm_paid:
         die("refusing paid Devin invocation without --confirm-paid")
-    result = execute_run(config, case, workspace, output_dir, args.devin_binary, model, args.timeout, run)
+    if args.evaluator_env_root is None:
+        die("--evaluator-env-root is required before a real frozen invocation")
+    evaluator_readiness = evaluator_env.readiness(args.evaluator_env_root, expected_case_id)
+    if evaluator_readiness["status"] != "pass":
+        die("evaluator environment is not ready; refusing to launch Devin: " + "; ".join(evaluator_readiness["problems"]))
+    result = execute_run(config, case, workspace, output_dir, args.devin_binary, model, args.timeout, run, evaluator_readiness)
     print(json.dumps(result, indent=2))
     return 0 if result["invocation"]["returncode"] == 0 else 1
 

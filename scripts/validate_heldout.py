@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
 import time
 from pathlib import Path
@@ -18,6 +17,7 @@ from typing import Any, Dict, Optional, Sequence
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bugsinpy_harness as harness  # noqa: E402
+import evaluator_environment as evaluator_env  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -28,17 +28,6 @@ def read_json(path: Path) -> Dict[str, Any]:
     if not isinstance(value, dict):
         raise SystemExit("expected JSON object: %s" % path)
     return value
-
-
-def environment_for(workspace: Path, python_bin: Path) -> Dict[str, str]:
-    environment = os.environ.copy()
-    environment["PATH"] = str(python_bin.parent) + os.pathsep + environment.get("PATH", "")
-    existing = environment.get("PYTHONPATH")
-    paths = [str(workspace)]
-    if existing:
-        paths.append(existing)
-    environment["PYTHONPATH"] = os.pathsep.join(paths)
-    return environment
 
 
 def validate_case(
@@ -54,9 +43,9 @@ def validate_case(
     if metadata.get("case_id") != case_id:
         raise SystemExit("metadata case mismatch: %s" % metadata_path)
     heldout_dir = metadata_path.parent.resolve()
-    python_bin = env_root / case_id / "bin" / "python"
-    if not python_bin.is_file():
-        raise SystemExit("validation environment is missing: %s" % python_bin)
+    readiness = evaluator_env.readiness(env_root, case_id)
+    if readiness["status"] != "pass":
+        raise SystemExit("validation environment is not ready: " + "; ".join(readiness["problems"]))
     records: Dict[str, Any] = {
         "case_id": case_id,
         "validated_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -69,7 +58,7 @@ def validate_case(
         workspace = (phase1_root / case_id / "verification" / side).resolve()
         if not workspace.is_dir():
             raise SystemExit("verification workspace is missing: %s" % workspace)
-        environment = environment_for(workspace, python_bin)
+        environment = evaluator_env.process_environment(env_root, case_id, workspace=workspace)
         heldout = harness.execute_commands(
             metadata["heldout_commands"], heldout_dir, timeout, env=environment
         )

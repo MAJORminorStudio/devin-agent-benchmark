@@ -1,0 +1,988 @@
+{
+  "cases": [
+    {
+      "buggy_heldout_fails": true,
+      "buggy_public_fails": true,
+      "buggy_regression_passes": true,
+      "case_id": "black-16",
+      "commands": {
+        "heldout": [
+          "python -m unittest -q test_heldout"
+        ],
+        "public": [
+          "python -m unittest -q tests.test_black.BlackTestCase.test_symlink_out_of_root_directory"
+        ],
+        "regression": [
+          "python -m unittest -q tests.test_black.BlackTestCase.test_broken_symlink",
+          "python -m unittest -q tests.test_black.BlackTestCase.test_include_exclude"
+        ]
+      },
+      "environment": {
+        "case_id": "black-16",
+        "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16",
+        "frozen_command_tools": [
+          "python"
+        ],
+        "problems": [],
+        "python": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16/bin/python",
+        "record": {
+          "case_id": "black-16",
+          "commands": {
+            "freeze": [
+              "uv",
+              "pip",
+              "freeze",
+              "--python",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16/bin/python"
+            ],
+            "install": [
+              "uv",
+              "pip",
+              "install",
+              "--exact",
+              "--python",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16/bin/python",
+              "appdirs==1.4.3",
+              "attrs==19.3.0",
+              "click==7.0",
+              "pathspec==0.7.0",
+              "regex==2020.2.20",
+              "toml==0.10.0",
+              "typed-ast==1.4.0",
+              "pytest==5.4.3"
+            ],
+            "venv": [
+              "uv",
+              "venv",
+              "--no-project",
+              "--clear",
+              "--python",
+              "3.8",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16"
+            ]
+          },
+          "created_at_utc": "2026-09-15T00:23:06Z",
+          "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16",
+          "install": [
+            "appdirs==1.4.3",
+            "attrs==19.3.0",
+            "click==7.0",
+            "pathspec==0.7.0",
+            "regex==2020.2.20",
+            "toml==0.10.0",
+            "typed-ast==1.4.0",
+            "pytest==5.4.3"
+          ],
+          "outputs": {
+            "freeze": "Using Python 3.8.20 environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16\nappdirs==1.4.3\nattrs==19.3.0\nclick==7.0\nmore-itertools==10.5.0\npackaging==26.2\npathspec==0.7.0\npluggy==0.13.1\npy==1.11.0\npytest==5.4.3\nregex==2020.2.20\ntoml==0.10.0\ntyped-ast==1.4.0\nwcwidth==0.8.3\n",
+            "install": "Using Python 3.8.20 environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16\nResolved 13 packages in 215ms\nwarning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.\n         If the cache and target directories are on different filesystems, hardlinking may not be supported.\n         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.\nInstalled 13 packages in 59ms\n + appdirs==1.4.3\n + attrs==19.3.0\n + click==7.0\n + more-itertools==10.5.0\n + packaging==26.2\n + pathspec==0.7.0\n + pluggy==0.13.1\n + py==1.11.0\n + pytest==5.4.3\n + regex==2020.2.20\n + toml==0.10.0\n + typed-ast==1.4.0\n + wcwidth==0.8.3\n",
+            "venv": "Using CPython 3.8.20\nCreating virtual environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16\nActivate with: source /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16/bin/activate\n"
+          },
+          "python_version": "Python 3.8.20",
+          "record_version": 1,
+          "requested_python": "3.8",
+          "spec_sha256": "c7bccd20c7fee02285e31e65a48f436da4f5963a9e6fc79413b8a21f5ec792fe"
+        },
+        "record_path": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/black-16/.evaluator-environment.json",
+        "requested_python": "3.8",
+        "spec_sha256": "c7bccd20c7fee02285e31e65a48f436da4f5963a9e6fc79413b8a21f5ec792fe",
+        "status": "pass"
+      },
+      "fixed_heldout_passes": true,
+      "fixed_public_passes": true,
+      "fixed_regression_passes": true,
+      "sides": {
+        "buggy": {
+          "heldout": {
+            "commands": [
+              {
+                "command": "python -m unittest -q test_heldout",
+                "elapsed_seconds": 0.083,
+                "output": "======================================================================\nERROR: test_external_python_symlink_is_ignored (test_heldout.ExternalSymlinkBehaviorTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Volumes/Research/devin-agent-benchmark/evaluation/experiment-001/black-16/test_heldout.py\", line 26, in test_external_python_symlink_is_ignored\n    discovered = list(\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/black-16/verification/buggy/black.py\", line 2948, in gen_python_files_in_dir\n    normalized_path = \"/\" + child.resolve().relative_to(root).as_posix()\n  File \"/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/pathlib.py\", line 908, in relative_to\n    raise ValueError(\"{!r} does not start with {!r}\"\nValueError: '/private/var/folders/26/wh9xwr9n1_n2zbs83j99_nx40000gn/T/tmpzx2vqmwl/outside.py' does not start with '/private/var/folders/26/wh9xwr9n1_n2zbs83j99_nx40000gn/T/tmpzx2vqmwl/workspace'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+                "returncode": 1,
+                "status": "fail"
+              }
+            ],
+            "overall": "fail"
+          },
+          "public": {
+            "commands": [
+              {
+                "command": "python -m unittest -q tests.test_black.BlackTestCase.test_symlink_out_of_root_directory",
+                "elapsed_seconds": 0.086,
+                "output": "======================================================================\nERROR: test_symlink_out_of_root_directory (tests.test_black.BlackTestCase)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/black-16/verification/buggy/tests/test_black.py\", line 1183, in test_symlink_out_of_root_directory\n    list(black.gen_python_files_in_dir(path, root, include, exclude, report))\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/black-16/verification/buggy/black.py\", line 2948, in gen_python_files_in_dir\n    normalized_path = \"/\" + child.resolve().relative_to(root).as_posix()\n  File \"/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/pathlib.py\", line 908, in relative_to\n    raise ValueError(\"{!r} does not start with {!r}\"\nValueError: '/a/b/c' does not start with '/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/black-16/verification/buggy/tests'\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n",
+                "returncode": 1,
+                "status": "fail"
+              }
+            ],
+            "overall": "fail"
+          },
+          "regression": {
+            "commands": [
+              {
+                "command": "python -m unittest -q tests.test_black.BlackTestCase.test_broken_symlink",
+                "elapsed_seconds": 0.084,
+                "output": "----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "python -m unittest -q tests.test_black.BlackTestCase.test_include_exclude",
+                "elapsed_seconds": 0.083,
+                "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/black-16/verification/buggy"
+        },
+        "fixed": {
+          "heldout": {
+            "commands": [
+              {
+                "command": "python -m unittest -q test_heldout",
+                "elapsed_seconds": 0.081,
+                "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "public": {
+            "commands": [
+              {
+                "command": "python -m unittest -q tests.test_black.BlackTestCase.test_symlink_out_of_root_directory",
+                "elapsed_seconds": 0.083,
+                "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "regression": {
+            "commands": [
+              {
+                "command": "python -m unittest -q tests.test_black.BlackTestCase.test_broken_symlink",
+                "elapsed_seconds": 0.085,
+                "output": "----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "python -m unittest -q tests.test_black.BlackTestCase.test_include_exclude",
+                "elapsed_seconds": 0.085,
+                "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/black-16/verification/fixed"
+        }
+      },
+      "status": "pass",
+      "validated_at_utc": "2026-09-15T00:26:50Z"
+    },
+    {
+      "buggy_heldout_fails": true,
+      "buggy_public_fails": true,
+      "buggy_regression_passes": true,
+      "case_id": "fastapi-3",
+      "commands": {
+        "heldout": [
+          "pytest -q test_heldout.py"
+        ],
+        "public": [
+          "pytest tests/test_serialize_response_model.py::test_valid",
+          "pytest tests/test_serialize_response_model.py::test_coerce",
+          "pytest tests/test_serialize_response_model.py::test_validlist",
+          "pytest tests/test_serialize_response_model.py::test_validdict",
+          "pytest tests/test_serialize_response_model.py::test_valid_exclude_unset",
+          "pytest tests/test_serialize_response_model.py::test_coerce_exclude_unset",
+          "pytest tests/test_serialize_response_model.py::test_validlist_exclude_unset",
+          "pytest tests/test_serialize_response_model.py::test_validdict_exclude_unset"
+        ],
+        "regression": [
+          "pytest -q tests/test_response_model_invalid.py"
+        ]
+      },
+      "environment": {
+        "case_id": "fastapi-3",
+        "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3",
+        "frozen_command_tools": [
+          "pytest"
+        ],
+        "problems": [],
+        "python": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/bin/python",
+        "record": {
+          "case_id": "fastapi-3",
+          "commands": {
+            "freeze": [
+              "uv",
+              "pip",
+              "freeze",
+              "--python",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/bin/python"
+            ],
+            "install": [
+              "uv",
+              "pip",
+              "install",
+              "--exact",
+              "--python",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/bin/python",
+              "fastapi==0.55.1",
+              "pydantic==1.5.1",
+              "starlette==0.13.2",
+              "requests==2.23.0",
+              "pytest==5.4.3",
+              "typing-extensions==3.7.4.2",
+              "uvicorn==0.11.5"
+            ],
+            "venv": [
+              "uv",
+              "venv",
+              "--no-project",
+              "--clear",
+              "--python",
+              "3.8",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3"
+            ]
+          },
+          "created_at_utc": "2026-09-15T00:23:06Z",
+          "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3",
+          "install": [
+            "fastapi==0.55.1",
+            "pydantic==1.5.1",
+            "starlette==0.13.2",
+            "requests==2.23.0",
+            "pytest==5.4.3",
+            "typing-extensions==3.7.4.2",
+            "uvicorn==0.11.5"
+          ],
+          "outputs": {
+            "freeze": "Using Python 3.8.20 environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3\nattrs==25.3.0\ncertifi==2026.7.22\nchardet==3.0.4\nclick==7.1.2\nfastapi==0.55.1\nh11==0.9.0\nhttptools==0.1.2\nidna==2.10\nmore-itertools==10.5.0\npackaging==26.2\npluggy==0.13.1\npy==1.11.0\npydantic==1.5.1\npytest==5.4.3\nrequests==2.23.0\nstarlette==0.13.2\ntyping-extensions==3.7.4.2\nurllib3==1.25.11\nuvicorn==0.11.5\nuvloop==0.22.1\nwcwidth==0.8.3\nwebsockets==8.1\n",
+            "install": "Using Python 3.8.20 environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3\nResolved 22 packages in 168ms\nwarning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.\n         If the cache and target directories are on different filesystems, hardlinking may not be supported.\n         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.\nInstalled 22 packages in 288ms\n + attrs==25.3.0\n + certifi==2026.7.22\n + chardet==3.0.4\n + click==7.1.2\n + fastapi==0.55.1\n + h11==0.9.0\n + httptools==0.1.2\n + idna==2.10\n + more-itertools==10.5.0\n + packaging==26.2\n + pluggy==0.13.1\n + py==1.11.0\n + pydantic==1.5.1\n + pytest==5.4.3\n + requests==2.23.0\n + starlette==0.13.2\n + typing-extensions==3.7.4.2\n + urllib3==1.25.11\n + uvicorn==0.11.5\n + uvloop==0.22.1\n + wcwidth==0.8.3\n + websockets==8.1\n",
+            "venv": "Using CPython 3.8.20\nCreating virtual environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3\nActivate with: source /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/bin/activate\n"
+          },
+          "python_version": "Python 3.8.20",
+          "record_version": 1,
+          "requested_python": "3.8",
+          "spec_sha256": "e286432b4623b8af6acd790d98bea1f531454c01e15cd50224097910bb30669e"
+        },
+        "record_path": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/.evaluator-environment.json",
+        "requested_python": "3.8",
+        "spec_sha256": "e286432b4623b8af6acd790d98bea1f531454c01e15cd50224097910bb30669e",
+        "status": "pass"
+      },
+      "fixed_heldout_passes": true,
+      "fixed_public_passes": true,
+      "fixed_regression_passes": true,
+      "sides": {
+        "buggy": {
+          "heldout": {
+            "commands": [
+              {
+                "command": "pytest -q test_heldout.py",
+                "elapsed_seconds": 0.297,
+                "output": "FF                                                                       [100%]\n=================================== FAILURES ===================================\n______ test_nested_list_response_models_preserve_aliases_and_unset_fields ______\n\n    def test_nested_list_response_models_preserve_aliases_and_unset_fields():\n        client = TestClient(app)\n    \n>       list_response = client.get(\"/nested-list\")\n\ntest_heldout.py:31: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 2 validation errors for Entry\nE               response -> 0 -> 0 -> display_label\nE                 field required (type=value_error.missing)\nE               response -> 0 -> 1 -> display_label\nE                 field required (type=value_error.missing)\n\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/routing.py:81: ValidationError\n______ test_nested_map_response_models_preserve_aliases_and_unset_fields _______\n\n    def test_nested_map_response_models_preserve_aliases_and_unset_fields():\n        client = TestClient(app)\n    \n>       map_response = client.get(\"/nested-map\")\n\ntest_heldout.py:42: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n../../../../devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 2 validation errors for Entry\nE               response -> group -> 0 -> display_label\nE                 field required (type=value_error.missing)\nE               response -> group -> 1 -> display_label\nE                 field required (type=value_error.missing)\n\n../../../results/runs/phase-1/fastapi-3/verification/buggy/fastapi/routing.py:81: ValidationError\n=========================== short test summary info ============================\nFAILED test_heldout.py::test_nested_list_response_models_preserve_aliases_and_unset_fields\nFAILED test_heldout.py::test_nested_map_response_models_preserve_aliases_and_unset_fields\n2 failed in 0.19s\n",
+                "returncode": 1,
+                "status": "fail"
+              }
+            ],
+            "overall": "fail"
+          },
+          "public": {
+            "commands": [
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_valid",
+                "elapsed_seconds": 0.254,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/buggy\ncollected 1 item\n\ntests/test_serialize_response_model.py F                                 [100%]\n\n=================================== FAILURES ===================================\n__________________________________ test_valid __________________________________\n\n    def test_valid():\n>       response = client.get(\"/items/valid\")\n\ntests/test_serialize_response_model.py:90: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\nfastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\nfastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 1 validation error for Item\nE               response -> aliased_name\nE                 field required (type=value_error.missing)\n\nfastapi/routing.py:81: ValidationError\n=========================== short test summary info ============================\nFAILED tests/test_serialize_response_model.py::test_valid - pydantic.error_wr...\n============================== 1 failed in 0.14s ===============================\n",
+                "returncode": 1,
+                "status": "fail"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_coerce",
+                "elapsed_seconds": 0.254,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/buggy\ncollected 1 item\n\ntests/test_serialize_response_model.py F                                 [100%]\n\n=================================== FAILURES ===================================\n_________________________________ test_coerce __________________________________\n\n    def test_coerce():\n>       response = client.get(\"/items/coerce\")\n\ntests/test_serialize_response_model.py:96: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\nfastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\nfastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 1 validation error for Item\nE               response -> aliased_name\nE                 field required (type=value_error.missing)\n\nfastapi/routing.py:81: ValidationError\n=========================== short test summary info ============================\nFAILED tests/test_serialize_response_model.py::test_coerce - pydantic.error_w...\n============================== 1 failed in 0.14s ===============================\n",
+                "returncode": 1,
+                "status": "fail"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_validlist",
+                "elapsed_seconds": 0.257,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/buggy\ncollected 1 item\n\ntests/test_serialize_response_model.py F                                 [100%]\n\n=================================== FAILURES ===================================\n________________________________ test_validlist ________________________________\n\n    def test_validlist():\n>       response = client.get(\"/items/validlist\")\n\ntests/test_serialize_response_model.py:106: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\nfastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\nfastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 3 validation errors for Item\nE               response -> 0 -> aliased_name\nE                 field required (type=value_error.missing)\nE               response -> 1 -> aliased_name\nE                 field required (type=value_error.missing)\nE               response -> 2 -> aliased_name\nE                 field required (type=value_error.missing)\n\nfastapi/routing.py:81: ValidationError\n=========================== short test summary info ============================\nFAILED tests/test_serialize_response_model.py::test_validlist - pydantic.erro...\n============================== 1 failed in 0.14s ===============================\n",
+                "returncode": 1,
+                "status": "fail"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_validdict",
+                "elapsed_seconds": 0.258,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/buggy\ncollected 1 item\n\ntests/test_serialize_response_model.py F                                 [100%]\n\n=================================== FAILURES ===================================\n________________________________ test_validdict ________________________________\n\n    def test_validdict():\n>       response = client.get(\"/items/validdict\")\n\ntests/test_serialize_response_model.py:116: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\nfastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\nfastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 3 validation errors for Item\nE               response -> k1 -> aliased_name\nE                 field required (type=value_error.missing)\nE               response -> k2 -> aliased_name\nE                 field required (type=value_error.missing)\nE               response -> k3 -> aliased_name\nE                 field required (type=value_error.missing)\n\nfastapi/routing.py:81: ValidationError\n=========================== short test summary info ============================\nFAILED tests/test_serialize_response_model.py::test_validdict - pydantic.erro...\n============================== 1 failed in 0.14s ===============================\n",
+                "returncode": 1,
+                "status": "fail"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_valid_exclude_unset",
+                "elapsed_seconds": 0.253,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/buggy\ncollected 1 item\n\ntests/test_serialize_response_model.py F                                 [100%]\n\n=================================== FAILURES ===================================\n___________________________ test_valid_exclude_unset ___________________________\n\n    def test_valid_exclude_unset():\n>       response = client.get(\"/items/valid-exclude-unset\")\n\ntests/test_serialize_response_model.py:126: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\nfastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\nfastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 1 validation error for Item\nE               response -> aliased_name\nE                 field required (type=value_error.missing)\n\nfastapi/routing.py:81: ValidationError\n=========================== short test summary info ============================\nFAILED tests/test_serialize_response_model.py::test_valid_exclude_unset - pyd...\n============================== 1 failed in 0.14s ===============================\n",
+                "returncode": 1,
+                "status": "fail"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_coerce_exclude_unset",
+                "elapsed_seconds": 0.254,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/buggy\ncollected 1 item\n\ntests/test_serialize_response_model.py F                                 [100%]\n\n=================================== FAILURES ===================================\n__________________________ test_coerce_exclude_unset ___________________________\n\n    def test_coerce_exclude_unset():\n>       response = client.get(\"/items/coerce-exclude-unset\")\n\ntests/test_serialize_response_model.py:132: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\nfastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\nfastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 1 validation error for Item\nE               response -> aliased_name\nE                 field required (type=value_error.missing)\n\nfastapi/routing.py:81: ValidationError\n=========================== short test summary info ============================\nFAILED tests/test_serialize_response_model.py::test_coerce_exclude_unset - py...\n============================== 1 failed in 0.14s ===============================\n",
+                "returncode": 1,
+                "status": "fail"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_validlist_exclude_unset",
+                "elapsed_seconds": 0.255,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/buggy\ncollected 1 item\n\ntests/test_serialize_response_model.py F                                 [100%]\n\n=================================== FAILURES ===================================\n_________________________ test_validlist_exclude_unset _________________________\n\n    def test_validlist_exclude_unset():\n>       response = client.get(\"/items/validlist-exclude-unset\")\n\ntests/test_serialize_response_model.py:138: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\nfastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\nfastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 3 validation errors for Item\nE               response -> 0 -> aliased_name\nE                 field required (type=value_error.missing)\nE               response -> 1 -> aliased_name\nE                 field required (type=value_error.missing)\nE               response -> 2 -> aliased_name\nE                 field required (type=value_error.missing)\n\nfastapi/routing.py:81: ValidationError\n=========================== short test summary info ============================\nFAILED tests/test_serialize_response_model.py::test_validlist_exclude_unset\n============================== 1 failed in 0.14s ===============================\n",
+                "returncode": 1,
+                "status": "fail"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_validdict_exclude_unset",
+                "elapsed_seconds": 0.252,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/buggy\ncollected 1 item\n\ntests/test_serialize_response_model.py F                                 [100%]\n\n=================================== FAILURES ===================================\n_________________________ test_validdict_exclude_unset _________________________\n\n    def test_validdict_exclude_unset():\n>       response = client.get(\"/items/validdict-exclude-unset\")\n\ntests/test_serialize_response_model.py:148: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:543: in get\n    return self.request('GET', url, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:413: in request\n    return super().request(\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:530: in request\n    resp = self.send(prep, **send_kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/requests/sessions.py:643: in send\n    r = adapter.send(request, **kwargs)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:243: in send\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/testclient.py:240: in send\n    loop.run_until_complete(self.app(scope, receive, send))\n/Users/dippo/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/asyncio/base_events.py:616: in run_until_complete\n    return future.result()\nfastapi/applications.py:149: in __call__\n    await super().__call__(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/applications.py:102: in __call__\n    await self.middleware_stack(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:181: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/middleware/errors.py:159: in __call__\n    await self.app(scope, receive, _send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:82: in __call__\n    raise exc from None\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/exceptions.py:71: in __call__\n    await self.app(scope, receive, sender)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:550: in __call__\n    await route.handle(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:227: in handle\n    await self.app(scope, receive, send)\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/fastapi-3/lib/python3.8/site-packages/starlette/routing.py:41: in app\n    response = await func(request)\nfastapi/routing.py:155: in app\n    response_data = await serialize_response(\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    async def serialize_response(\n        *,\n        field: ModelField = None,\n        response_content: Any,\n        include: Union[SetIntStr, DictIntStrAny] = None,\n        exclude: Union[SetIntStr, DictIntStrAny] = set(),\n        by_alias: bool = True,\n        exclude_unset: bool = False,\n        is_coroutine: bool = True,\n    ) -> Any:\n        if field:\n            errors = []\n            if exclude_unset and isinstance(response_content, BaseModel):\n                if PYDANTIC_1:\n                    response_content = response_content.dict(exclude_unset=exclude_unset)\n                else:\n                    response_content = response_content.dict(\n                        skip_defaults=exclude_unset\n                    )  # pragma: nocover\n            if is_coroutine:\n                value, errors_ = field.validate(response_content, {}, loc=(\"response\",))\n            else:\n                value, errors_ = await run_in_threadpool(\n                    field.validate, response_content, {}, loc=(\"response\",)\n                )\n            if isinstance(errors_, ErrorWrapper):\n                errors.append(errors_)\n            elif isinstance(errors_, list):\n                errors.extend(errors_)\n            if errors:\n>               raise ValidationError(errors, field.type_)\nE               pydantic.error_wrappers.ValidationError: 3 validation errors for Item\nE               response -> k1 -> aliased_name\nE                 field required (type=value_error.missing)\nE               response -> k2 -> aliased_name\nE                 field required (type=value_error.missing)\nE               response -> k3 -> aliased_name\nE                 field required (type=value_error.missing)\n\nfastapi/routing.py:81: ValidationError\n=========================== short test summary info ============================\nFAILED tests/test_serialize_response_model.py::test_validdict_exclude_unset\n============================== 1 failed in 0.14s ===============================\n",
+                "returncode": 1,
+                "status": "fail"
+              }
+            ],
+            "overall": "fail"
+          },
+          "regression": {
+            "commands": [
+              {
+                "command": "pytest -q tests/test_response_model_invalid.py",
+                "elapsed_seconds": 0.147,
+                "output": "....                                                                     [100%]\n4 passed in 0.04s\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/buggy"
+        },
+        "fixed": {
+          "heldout": {
+            "commands": [
+              {
+                "command": "pytest -q test_heldout.py",
+                "elapsed_seconds": 0.173,
+                "output": "..                                                                       [100%]\n2 passed in 0.06s\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "public": {
+            "commands": [
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_valid",
+                "elapsed_seconds": 0.176,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/fixed\ncollected 1 item\n\ntests/test_serialize_response_model.py .                                 [100%]\n\n============================== 1 passed in 0.07s ===============================\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_coerce",
+                "elapsed_seconds": 0.176,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/fixed\ncollected 1 item\n\ntests/test_serialize_response_model.py .                                 [100%]\n\n============================== 1 passed in 0.07s ===============================\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_validlist",
+                "elapsed_seconds": 0.176,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/fixed\ncollected 1 item\n\ntests/test_serialize_response_model.py .                                 [100%]\n\n============================== 1 passed in 0.07s ===============================\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_validdict",
+                "elapsed_seconds": 0.176,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/fixed\ncollected 1 item\n\ntests/test_serialize_response_model.py .                                 [100%]\n\n============================== 1 passed in 0.07s ===============================\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_valid_exclude_unset",
+                "elapsed_seconds": 0.177,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/fixed\ncollected 1 item\n\ntests/test_serialize_response_model.py .                                 [100%]\n\n============================== 1 passed in 0.07s ===============================\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_coerce_exclude_unset",
+                "elapsed_seconds": 0.177,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/fixed\ncollected 1 item\n\ntests/test_serialize_response_model.py .                                 [100%]\n\n============================== 1 passed in 0.07s ===============================\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_validlist_exclude_unset",
+                "elapsed_seconds": 0.177,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/fixed\ncollected 1 item\n\ntests/test_serialize_response_model.py .                                 [100%]\n\n============================== 1 passed in 0.07s ===============================\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest tests/test_serialize_response_model.py::test_validdict_exclude_unset",
+                "elapsed_seconds": 0.179,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/fixed\ncollected 1 item\n\ntests/test_serialize_response_model.py .                                 [100%]\n\n============================== 1 passed in 0.07s ===============================\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "regression": {
+            "commands": [
+              {
+                "command": "pytest -q tests/test_response_model_invalid.py",
+                "elapsed_seconds": 0.145,
+                "output": "....                                                                     [100%]\n4 passed in 0.04s\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/fastapi-3/verification/fixed"
+        }
+      },
+      "status": "pass",
+      "validated_at_utc": "2026-09-15T00:26:51Z"
+    },
+    {
+      "buggy_heldout_fails": true,
+      "buggy_public_fails": true,
+      "buggy_regression_passes": true,
+      "case_id": "scrapy-3",
+      "commands": {
+        "heldout": [
+          "pytest -q test_heldout.py"
+        ],
+        "public": [
+          "python -m unittest -q tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest.test_redirect_302_relative"
+        ],
+        "regression": [
+          "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent",
+          "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location"
+        ]
+      },
+      "environment": {
+        "case_id": "scrapy-3",
+        "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3",
+        "frozen_command_tools": [
+          "python",
+          "pytest"
+        ],
+        "problems": [],
+        "python": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/bin/python",
+        "record": {
+          "case_id": "scrapy-3",
+          "commands": {
+            "freeze": [
+              "uv",
+              "pip",
+              "freeze",
+              "--python",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/bin/python"
+            ],
+            "install": [
+              "uv",
+              "pip",
+              "install",
+              "--exact",
+              "--python",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/bin/python",
+              "Scrapy==2.1.0",
+              "pytest==5.4.2",
+              "six==1.15.0",
+              "testfixtures==6.14.1"
+            ],
+            "venv": [
+              "uv",
+              "venv",
+              "--no-project",
+              "--clear",
+              "--python",
+              "3.8",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3"
+            ]
+          },
+          "created_at_utc": "2026-09-15T00:23:08Z",
+          "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3",
+          "install": [
+            "Scrapy==2.1.0",
+            "pytest==5.4.2",
+            "six==1.15.0",
+            "testfixtures==6.14.1"
+          ],
+          "outputs": {
+            "freeze": "Using Python 3.8.20 environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3\nattrs==25.3.0\nautomat==24.8.1\ncffi==1.17.1\nconstantly==23.10.4\ncryptography==47.0.0\ncssselect==1.2.0\nhyperlink==21.0.0\nidna==3.15\nincremental==24.11.0\njmespath==1.0.1\nlxml==6.1.3\nmore-itertools==10.5.0\npackaging==26.2\nparsel==1.9.1\npluggy==0.13.1\nprotego==0.3.1\npy==1.11.0\npycparser==2.23\npydispatcher==2.0.7\npyopenssl==26.2.0\npytest==5.4.2\nqueuelib==1.7.0\nscrapy==2.1.0\nservice-identity==26.1.0\nsetuptools==75.3.4\nsix==1.15.0\ntestfixtures==6.14.1\ntomli==2.4.1\ntwisted==25.5.0\ntyping-extensions==4.13.2\nw3lib==2.2.1\nwcwidth==0.8.3\nzope-interface==7.2\n",
+            "install": "Using Python 3.8.20 environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3\nResolved 33 packages in 271ms\nwarning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.\n         If the cache and target directories are on different filesystems, hardlinking may not be supported.\n         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.\nInstalled 33 packages in 1.15s\n + attrs==25.3.0\n + automat==24.8.1\n + cffi==1.17.1\n + constantly==23.10.4\n + cryptography==47.0.0\n + cssselect==1.2.0\n + hyperlink==21.0.0\n + idna==3.15\n + incremental==24.11.0\n + jmespath==1.0.1\n + lxml==6.1.3\n + more-itertools==10.5.0\n + packaging==26.2\n + parsel==1.9.1\n + pluggy==0.13.1\n + protego==0.3.1\n + py==1.11.0\n + pycparser==2.23\n + pydispatcher==2.0.7\n + pyopenssl==26.2.0\n + pytest==5.4.2\n + queuelib==1.7.0\n + scrapy==2.1.0\n + service-identity==26.1.0\n + setuptools==75.3.4\n + six==1.15.0\n + testfixtures==6.14.1\n + tomli==2.4.1\n + twisted==25.5.0\n + typing-extensions==4.13.2\n + w3lib==2.2.1\n + wcwidth==0.8.3\n + zope-interface==7.2\n",
+            "venv": "Using CPython 3.8.20\nCreating virtual environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3\nActivate with: source /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/bin/activate\n"
+          },
+          "python_version": "Python 3.8.20",
+          "record_version": 1,
+          "requested_python": "3.8",
+          "spec_sha256": "777f1d2dde8fce629a8e14c1cd41524d684d91f13e9f4aafe92b91ec051473c4"
+        },
+        "record_path": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/.evaluator-environment.json",
+        "requested_python": "3.8",
+        "spec_sha256": "777f1d2dde8fce629a8e14c1cd41524d684d91f13e9f4aafe92b91ec051473c4",
+        "status": "pass"
+      },
+      "fixed_heldout_passes": true,
+      "fixed_public_passes": true,
+      "fixed_regression_passes": true,
+      "sides": {
+        "buggy": {
+          "heldout": {
+            "commands": [
+              {
+                "command": "pytest -q test_heldout.py",
+                "elapsed_seconds": 0.21,
+                "output": "F                                                                        [100%]\n=================================== FAILURES ===================================\n_________ test_protocol_relative_redirect_uses_request_scheme_and_host _________\n\n    def test_protocol_relative_redirect_uses_request_scheme_and_host():\n        settings = Settings({\n            \"REDIRECT_ENABLED\": True,\n            \"REDIRECT_MAX_TIMES\": 20,\n            \"REDIRECT_PRIORITY_ADJUST\": 2,\n        })\n        middleware = RedirectMiddleware(settings)\n        request = Request(\"https://origin.example.test/start\", method=\"GET\")\n        response = Response(\n            request.url,\n            status=302,\n            headers={\"Location\": \"///cdn.example.test/next\"},\n        )\n    \n        redirected = middleware.process_response(request, response, Spider(\"heldout\"))\n    \n        assert redirected is not response\n>       assert redirected.url == \"https://cdn.example.test/next\"\nE       AssertionError: assert 'https://orig...ple.test/next' == 'https://cdn....ple.test/next'\nE         - https://cdn.example.test/next\nE         + https://origin.example.test/cdn.example.test/next\n\ntest_heldout.py:27: AssertionError\n=========================== short test summary info ============================\nFAILED test_heldout.py::test_protocol_relative_redirect_uses_request_scheme_and_host\n1 failed in 0.10s\n",
+                "returncode": 1,
+                "status": "fail"
+              }
+            ],
+            "overall": "fail"
+          },
+          "public": {
+            "commands": [
+              {
+                "command": "python -m unittest -q tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest.test_redirect_302_relative",
+                "elapsed_seconds": 0.214,
+                "output": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n  from cryptography import x509\n======================================================================\nFAIL: test_redirect_302_relative (tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/scrapy-3/verification/buggy/tests/test_downloadermiddleware_redirect.py\", line 118, in test_redirect_302_relative\n    self.assertEqual(req2.url, url3)\nAssertionError: 'http://www.example.com/i8n.example2.com/302' != 'http://i8n.example2.com/302'\n- http://www.example.com/i8n.example2.com/302\n?       ----------------\n+ http://i8n.example2.com/302\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.049s\n\nFAILED (failures=1)\n",
+                "returncode": 1,
+                "status": "fail"
+              }
+            ],
+            "overall": "fail"
+          },
+          "regression": {
+            "commands": [
+              {
+                "command": "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent",
+                "elapsed_seconds": 0.268,
+                "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\ntests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent\n  /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n    from cryptography import x509\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.15s\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location",
+                "elapsed_seconds": 0.268,
+                "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\ntests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location\n  /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n    from cryptography import x509\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.15s\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/scrapy-3/verification/buggy"
+        },
+        "fixed": {
+          "heldout": {
+            "commands": [
+              {
+                "command": "pytest -q test_heldout.py",
+                "elapsed_seconds": 0.199,
+                "output": ".                                                                        [100%]\n1 passed in 0.09s\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "public": {
+            "commands": [
+              {
+                "command": "python -m unittest -q tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest.test_redirect_302_relative",
+                "elapsed_seconds": 0.217,
+                "output": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n  from cryptography import x509\n----------------------------------------------------------------------\nRan 1 test in 0.048s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "regression": {
+            "commands": [
+              {
+                "command": "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent",
+                "elapsed_seconds": 0.266,
+                "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\ntests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent\n  /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n    from cryptography import x509\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.15s\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location",
+                "elapsed_seconds": 0.267,
+                "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\ntests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location\n  /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/scrapy-3/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n    from cryptography import x509\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.14s\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/scrapy-3/verification/fixed"
+        }
+      },
+      "status": "pass",
+      "validated_at_utc": "2026-09-15T00:26:55Z"
+    },
+    {
+      "buggy_heldout_fails": true,
+      "buggy_public_fails": true,
+      "buggy_regression_passes": true,
+      "case_id": "tqdm-5",
+      "commands": {
+        "heldout": [
+          "pytest -q test_heldout.py"
+        ],
+        "public": [
+          "python3 -m pytest tqdm/tests/tests_tqdm.py::test_bool"
+        ],
+        "regression": [
+          "pytest -q tqdm/tests/tests_tqdm.py::test_disable",
+          "pytest -q tqdm/tests/tests_tqdm.py::test_repr"
+        ]
+      },
+      "environment": {
+        "case_id": "tqdm-5",
+        "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5",
+        "frozen_command_tools": [
+          "python3",
+          "pytest"
+        ],
+        "problems": [],
+        "python": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/bin/python",
+        "record": {
+          "case_id": "tqdm-5",
+          "commands": {
+            "freeze": [
+              "uv",
+              "pip",
+              "freeze",
+              "--python",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/bin/python"
+            ],
+            "install": [
+              "uv",
+              "pip",
+              "install",
+              "--exact",
+              "--python",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/bin/python",
+              "pytest==5.4.3",
+              "nose==1.3.7",
+              "six==1.15.0"
+            ],
+            "venv": [
+              "uv",
+              "venv",
+              "--no-project",
+              "--clear",
+              "--python",
+              "3.8",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5"
+            ]
+          },
+          "created_at_utc": "2026-09-15T00:23:08Z",
+          "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5",
+          "install": [
+            "pytest==5.4.3",
+            "nose==1.3.7",
+            "six==1.15.0"
+          ],
+          "outputs": {
+            "freeze": "Using Python 3.8.20 environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5\nattrs==25.3.0\nmore-itertools==10.5.0\nnose==1.3.7\npackaging==26.2\npluggy==0.13.1\npy==1.11.0\npytest==5.4.3\nsix==1.15.0\nwcwidth==0.8.3\n",
+            "install": "Using Python 3.8.20 environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5\nResolved 9 packages in 149ms\nwarning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.\n         If the cache and target directories are on different filesystems, hardlinking may not be supported.\n         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.\nInstalled 9 packages in 90ms\n + attrs==25.3.0\n + more-itertools==10.5.0\n + nose==1.3.7\n + packaging==26.2\n + pluggy==0.13.1\n + py==1.11.0\n + pytest==5.4.3\n + six==1.15.0\n + wcwidth==0.8.3\n",
+            "venv": "Using CPython 3.8.20\nCreating virtual environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5\nActivate with: source /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/bin/activate\n"
+          },
+          "python_version": "Python 3.8.20",
+          "record_version": 1,
+          "requested_python": "3.8",
+          "spec_sha256": "a204d086427520fda10cac0af805a117490ca67acf572359d18e425bda734206"
+        },
+        "record_path": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/.evaluator-environment.json",
+        "requested_python": "3.8",
+        "spec_sha256": "a204d086427520fda10cac0af805a117490ca67acf572359d18e425bda734206",
+        "status": "pass"
+      },
+      "fixed_heldout_passes": true,
+      "fixed_public_passes": true,
+      "fixed_regression_passes": true,
+      "sides": {
+        "buggy": {
+          "heldout": {
+            "commands": [
+              {
+                "command": "pytest -q test_heldout.py",
+                "elapsed_seconds": 0.135,
+                "output": "F                                                                        [100%]\n=================================== FAILURES ===================================\n__________________ test_disabled_sized_iterable_retains_total __________________\n\n    def test_disabled_sized_iterable_retains_total():\n        progress = tqdm([\"a\", \"b\", \"c\"], disable=True, file=StringIO())\n        try:\n>           assert progress.total == 3\nE           AttributeError: 'tqdm' object has no attribute 'total'\n\ntest_heldout.py:11: AttributeError\n=========================== short test summary info ============================\nFAILED test_heldout.py::test_disabled_sized_iterable_retains_total - Attribut...\n1 failed in 0.04s\n",
+                "returncode": 1,
+                "status": "fail"
+              }
+            ],
+            "overall": "fail"
+          },
+          "public": {
+            "commands": [
+              {
+                "command": "python3 -m pytest tqdm/tests/tests_tqdm.py::test_bool",
+                "elapsed_seconds": 0.181,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tqdm-5/verification/buggy\ncollected 1 item\n\ntqdm/tests/tests_tqdm.py F                                               [100%]\n\n=================================== FAILURES ===================================\n__________________________________ test_bool ___________________________________\n\n    @with_setup(pretest, posttest)\n    def test_bool():\n        \"\"\"Test boolean cast\"\"\"\n        def internal(our_file, disable):\n            with tqdm(total=10, file=our_file, disable=disable) as t:\n                assert t\n            with tqdm(total=0, file=our_file, disable=disable) as t:\n                assert not t\n            with trange(10, file=our_file, disable=disable) as t:\n                assert t\n            with trange(0, file=our_file, disable=disable) as t:\n                assert not t\n            with tqdm([], file=our_file, disable=disable) as t:\n                assert not t\n            with tqdm([0], file=our_file, disable=disable) as t:\n                assert t\n            with tqdm(file=our_file, disable=disable) as t:\n                try:\n                    print(bool(t))\n                except TypeError:\n                    pass\n                else:\n                    raise TypeError(\n                        \"Expected tqdm() with neither total nor iterable to fail\")\n    \n        # test with and without disable\n        with closing(StringIO()) as our_file:\n            internal(our_file, False)\n>           internal(our_file, True)\n\ntqdm/tests/tests_tqdm.py:1591: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntqdm/tests/tests_tqdm.py:1568: in internal\n    assert t\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <[AttributeError(\"'tqdm' object has no attribute 'total'\") raised in repr()] tqdm object at 0x1094cb1f0>\n\n    def __len__(self):\n>       return self.total if self.iterable is None else \\\n            (self.iterable.shape[0] if hasattr(self.iterable, \"shape\")\n             else len(self.iterable) if hasattr(self.iterable, \"__len__\")\n             else getattr(self, \"total\", None))\nE       AttributeError: 'tqdm' object has no attribute 'total'\n\ntqdm/_tqdm.py:869: AttributeError\n=============================== warnings summary ===============================\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12\n  /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses\n    from imp import find_module, load_module, acquire_lock, release_lock\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n=========================== short test summary info ============================\nFAILED tqdm/tests/tests_tqdm.py::test_bool - AttributeError: 'tqdm' object ha...\n========================= 1 failed, 1 warning in 0.08s =========================\n",
+                "returncode": 1,
+                "status": "fail"
+              }
+            ],
+            "overall": "fail"
+          },
+          "regression": {
+            "commands": [
+              {
+                "command": "pytest -q tqdm/tests/tests_tqdm.py::test_disable",
+                "elapsed_seconds": 0.138,
+                "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12\n  /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses\n    from imp import find_module, load_module, acquire_lock, release_lock\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.03s\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest -q tqdm/tests/tests_tqdm.py::test_repr",
+                "elapsed_seconds": 0.145,
+                "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12\n  /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses\n    from imp import find_module, load_module, acquire_lock, release_lock\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.04s\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tqdm-5/verification/buggy"
+        },
+        "fixed": {
+          "heldout": {
+            "commands": [
+              {
+                "command": "pytest -q test_heldout.py",
+                "elapsed_seconds": 0.119,
+                "output": ".                                                                        [100%]\n1 passed in 0.02s\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "public": {
+            "commands": [
+              {
+                "command": "python3 -m pytest tqdm/tests/tests_tqdm.py::test_bool",
+                "elapsed_seconds": 0.141,
+                "output": "============================= test session starts ==============================\nplatform darwin -- Python 3.8.20, pytest-5.4.3, py-1.11.0, pluggy-0.13.1\nrootdir: /Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tqdm-5/verification/fixed\ncollected 1 item\n\ntqdm/tests/tests_tqdm.py .                                               [100%]\n\n=============================== warnings summary ===============================\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12\n  /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses\n    from imp import find_module, load_module, acquire_lock, release_lock\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n========================= 1 passed, 1 warning in 0.04s =========================\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "regression": {
+            "commands": [
+              {
+                "command": "pytest -q tqdm/tests/tests_tqdm.py::test_disable",
+                "elapsed_seconds": 0.138,
+                "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12\n  /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses\n    from imp import find_module, load_module, acquire_lock, release_lock\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.03s\n",
+                "returncode": 0,
+                "status": "pass"
+              },
+              {
+                "command": "pytest -q tqdm/tests/tests_tqdm.py::test_repr",
+                "elapsed_seconds": 0.14,
+                "output": ".                                                                        [100%]\n=============================== warnings summary ===============================\n/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12\n  /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tqdm-5/lib/python3.8/site-packages/nose/importer.py:12: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses\n    from imp import find_module, load_module, acquire_lock, release_lock\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n1 passed, 1 warning in 0.03s\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tqdm-5/verification/fixed"
+        }
+      },
+      "status": "pass",
+      "validated_at_utc": "2026-09-15T00:26:57Z"
+    },
+    {
+      "buggy_heldout_fails": true,
+      "buggy_public_fails": true,
+      "buggy_regression_passes": true,
+      "case_id": "tornado-13",
+      "commands": {
+        "heldout": [
+          "python -m unittest -q test_heldout"
+        ],
+        "public": [
+          "python -m unittest -q tornado.test.http1connection_test.HTTP1ConnectionTest.test_http10_no_content_length"
+        ],
+        "regression": [
+          "python -m unittest -q tornado.test.httputil_test"
+        ]
+      },
+      "environment": {
+        "case_id": "tornado-13",
+        "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tornado-13",
+        "frozen_command_tools": [
+          "python"
+        ],
+        "problems": [],
+        "python": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tornado-13/bin/python",
+        "record": {
+          "case_id": "tornado-13",
+          "commands": {
+            "freeze": [
+              "uv",
+              "pip",
+              "freeze",
+              "--python",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tornado-13/bin/python"
+            ],
+            "install": [
+              "uv",
+              "pip",
+              "install",
+              "--exact",
+              "--python",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tornado-13/bin/python"
+            ],
+            "venv": [
+              "uv",
+              "venv",
+              "--no-project",
+              "--clear",
+              "--python",
+              "3.9",
+              "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tornado-13"
+            ]
+          },
+          "created_at_utc": "2026-09-15T00:23:08Z",
+          "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tornado-13",
+          "install": [],
+          "outputs": {
+            "freeze": "Using Python 3.9.25 environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tornado-13\n",
+            "install": "(no third-party packages required)\n",
+            "venv": "Using CPython 3.9.25\nCreating virtual environment at: /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tornado-13\nActivate with: source /Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tornado-13/bin/activate\n"
+          },
+          "python_version": "Python 3.9.25",
+          "record_version": 1,
+          "requested_python": "3.9",
+          "spec_sha256": "59112b908d105fdc5122cc217efd6a939c57edff6016035153838ae1a35b84b4"
+        },
+        "record_path": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001/tornado-13/.evaluator-environment.json",
+        "requested_python": "3.9",
+        "spec_sha256": "59112b908d105fdc5122cc217efd6a939c57edff6016035153838ae1a35b84b4",
+        "status": "pass"
+      },
+      "fixed_heldout_passes": true,
+      "fixed_public_passes": true,
+      "fixed_regression_passes": true,
+      "sides": {
+        "buggy": {
+          "heldout": {
+            "commands": [
+              {
+                "command": "python -m unittest -q test_heldout",
+                "elapsed_seconds": 0.08,
+                "output": "======================================================================\nERROR: test_http10_bodyless_response_without_length_is_read (test_heldout.HTTP10ResponseBehaviorTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/testing.py\", line 132, in __call__\n    result = self.orig_method(*args, **kwargs)\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/testing.py\", line 523, in post_coroutine\n    return self.io_loop.run_sync(\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/ioloop.py\", line 453, in run_sync\n    return future_cell[0].result()\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1014, in run\n    yielded = self.gen.throw(*exc_info)\n  File \"/Users/dippo/.local/share/uv/python/cpython-3.9-macos-aarch64-none/lib/python3.9/types.py\", line 217, in throw\n    return self.__wrapped.throw(tp, *rest)\n  File \"/Volumes/Research/devin-agent-benchmark/evaluation/experiment-001/tornado-13/test_heldout.py\", line 59, in test_http10_bodyless_response_without_length_is_read\n    yield connection.read_response(Delegate())\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1008, in run\n    value = future.result()\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1017, in run\n    yielded = self.gen.send(value)\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/http1connection.py\", line 181, in _read_message\n    self._disconnect_on_finish = not self._can_keep_alive(\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/http1connection.py\", line 484, in _can_keep_alive\n    or start_line.method in (\"HEAD\", \"GET\")):\nAttributeError: 'ResponseStartLine' object has no attribute 'method'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+                "returncode": 1,
+                "status": "fail"
+              }
+            ],
+            "overall": "fail"
+          },
+          "public": {
+            "commands": [
+              {
+                "command": "python -m unittest -q tornado.test.http1connection_test.HTTP1ConnectionTest.test_http10_no_content_length",
+                "elapsed_seconds": 0.08,
+                "output": "======================================================================\nERROR: test_http10_no_content_length (tornado.test.http1connection_test.HTTP1ConnectionTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/testing.py\", line 132, in __call__\n    result = self.orig_method(*args, **kwargs)\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/testing.py\", line 523, in post_coroutine\n    return self.io_loop.run_sync(\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/ioloop.py\", line 453, in run_sync\n    return future_cell[0].result()\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1014, in run\n    yielded = self.gen.throw(*exc_info)\n  File \"/Users/dippo/.local/share/uv/python/cpython-3.9-macos-aarch64-none/lib/python3.9/types.py\", line 217, in throw\n    return self.__wrapped.throw(tp, *rest)\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/test/http1connection_test.py\", line 58, in test_http10_no_content_length\n    yield conn.read_response(Delegate())\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1008, in run\n    value = future.result()\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1017, in run\n    yielded = self.gen.send(value)\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/http1connection.py\", line 181, in _read_message\n    self._disconnect_on_finish = not self._can_keep_alive(\n  File \"/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/http1connection.py\", line 484, in _can_keep_alive\n    or start_line.method in (\"HEAD\", \"GET\")):\nAttributeError: 'ResponseStartLine' object has no attribute 'method'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+                "returncode": 1,
+                "status": "fail"
+              }
+            ],
+            "overall": "fail"
+          },
+          "regression": {
+            "commands": [
+              {
+                "command": "python -m unittest -q tornado.test.httputil_test",
+                "elapsed_seconds": 0.078,
+                "output": "----------------------------------------------------------------------\nRan 30 tests in 0.001s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/buggy"
+        },
+        "fixed": {
+          "heldout": {
+            "commands": [
+              {
+                "command": "python -m unittest -q test_heldout",
+                "elapsed_seconds": 0.08,
+                "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "public": {
+            "commands": [
+              {
+                "command": "python -m unittest -q tornado.test.http1connection_test.HTTP1ConnectionTest.test_http10_no_content_length",
+                "elapsed_seconds": 0.077,
+                "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "regression": {
+            "commands": [
+              {
+                "command": "python -m unittest -q tornado.test.httputil_test",
+                "elapsed_seconds": 0.079,
+                "output": "----------------------------------------------------------------------\nRan 30 tests in 0.001s\n\nOK\n",
+                "returncode": 0,
+                "status": "pass"
+              }
+            ],
+            "overall": "pass"
+          },
+          "workspace": "/Volumes/Research/devin-agent-benchmark/results/runs/phase-1/tornado-13/verification/fixed"
+        }
+      },
+      "status": "pass",
+      "validated_at_utc": "2026-09-15T00:26:59Z"
+    }
+  ],
+  "environment_root": "/Volumes/Research/devin-agent-benchmark-evaluator-envs/experiment-001",
+  "experiment_id": "experiment-001",
+  "status": "pass",
+  "validated_at_utc": "2026-09-15T00:26:59Z"
+}

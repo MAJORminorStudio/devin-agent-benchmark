@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 import sys
 sys.path.insert(0, str(ROOT / "scripts"))
 import devin_runner  # noqa: E402
+import evaluator_environment  # noqa: E402
 import export_case  # noqa: E402
 
 
@@ -100,6 +101,39 @@ class Phase2UnitTests(unittest.TestCase):
             )
             with self.assertRaises(SystemExit):
                 devin_runner.check_workspace(workspace)
+
+    def test_real_runner_fails_closed_when_evaluator_environment_is_missing(self):
+        config = ROOT / "manifests" / "experiment-001-config.json"
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            workspace = root / "workspace"
+            workspace.mkdir()
+            (workspace / "TASK.md").write_text("synthetic task\n", encoding="utf-8")
+            (workspace / "SETUP.md").write_text("synthetic setup\n", encoding="utf-8")
+            (workspace / "CASE.json").write_text(json.dumps({"case_id": "synthetic"}), encoding="utf-8")
+            (workspace.parent / "workspace.leak-audit.json").write_text(
+                json.dumps({"status": "pass", "destination": str(workspace.resolve())}), encoding="utf-8"
+            )
+            with self.assertRaises(SystemExit) as raised:
+                devin_runner.main([
+                    "--config", str(config),
+                    "--case-id", "synthetic",
+                    "--model", "swe-2-medium",
+                    "--workspace", str(workspace),
+                    "--output-dir", str(root / "output"),
+                    "--evaluator-env-root", str(root / "missing-envs"),
+                    "--execute", "--confirm-paid",
+                ])
+            self.assertIn("evaluator environment is not ready", str(raised.exception))
+
+    def test_evaluator_environment_does_not_inherit_host_python_paths(self):
+        with tempfile.TemporaryDirectory() as temp:
+            env = evaluator_environment.process_environment(
+                Path(temp), "scrapy-3", workspace=Path(temp) / "source",
+                base={"PATH": "/usr/bin", "PYTHONPATH": "/unrelated/host/path"},
+            )
+        self.assertEqual(env["PYTHONPATH"], str(Path(temp).resolve() / "source"))
+        self.assertEqual(env["PYTHONNOUSERSITE"], "1")
 
     def test_frozen_run_manifest_has_balanced_interleaved_pairs(self):
         manifest = json.loads((ROOT / "manifests" / "experiment-001-runs.json").read_text(encoding="utf-8"))

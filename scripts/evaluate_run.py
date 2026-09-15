@@ -21,6 +21,7 @@ from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bugsinpy_harness as harness  # noqa: E402
+import evaluator_environment as evaluator_env  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -163,7 +164,7 @@ def load_heldout_metadata(case: Mapping[str, Any], requested: Optional[Path]) ->
     return metadata
 
 
-def evaluator_environment(workspace: Path) -> Dict[str, str]:
+def host_evaluator_environment(workspace: Path) -> Dict[str, str]:
     environment = os.environ.copy()
     existing = environment.get("PYTHONPATH")
     paths = [str(workspace)]
@@ -234,6 +235,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--hidden-command", action="append", default=[])
     parser.add_argument("--heldout-metadata", type=Path)
     parser.add_argument("--reference-patch", type=Path)
+    parser.add_argument("--env-root", type=Path, help="provisioned evaluator environment root")
     parser.add_argument("--timeout", type=int, default=300)
     args = parser.parse_args(argv)
 
@@ -247,6 +249,20 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         die(f"workspace not found: {workspace}")
     if output_dir == workspace or workspace in output_dir.parents:
         die("evaluation output must not be inside the agent workspace")
+
+    evaluator_readiness: Optional[Dict[str, Any]] = None
+    if case.get("heldout_test_files"):
+        if args.env_root is None:
+            die("--env-root is required for frozen cases with held-out evaluation")
+        try:
+            evaluator_readiness = evaluator_env.require_ready(args.env_root, case["case_id"])
+        except RuntimeError as exc:
+            die(str(exc))
+        evaluation_environment = evaluator_env.process_environment(
+            args.env_root, case["case_id"], workspace=workspace
+        )
+    else:
+        evaluation_environment = host_evaluator_environment(workspace)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     runner_record_path = output_dir / "runner-result.json"
@@ -269,7 +285,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     patch_sha = hashlib.sha256(patch_text.encode("utf-8")).hexdigest()
     before_path = run_root / "reproducibility.json"
     tests_before = read_json(before_path) if before_path.is_file() else {"status": "not-recorded"}
-    tests_after = run_tests(case["test_command"], workspace, args.timeout)
+    tests_after = run_tests(case["test_command"], workspace, args.timeout, env=evaluation_environment)
 
     heldout_metadata = load_heldout_metadata(case, args.heldout_metadata)
     hidden_result: Dict[str, Any]
@@ -285,7 +301,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             args.hidden_command,
             hidden_workspace,
             args.timeout,
-            env=evaluator_environment(workspace),
+            env=evaluation_environment,
         )
     elif heldout_metadata is None:
         hidden_result = not_run_result("no held-out suite configured")
@@ -300,7 +316,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 [str(command) for command in heldout_metadata["heldout_commands"]],
                 hidden_workspace,
                 args.timeout,
-                env=evaluator_environment(workspace),
+                env=evaluation_environment,
             )
 
     regression_result: Dict[str, Any] = not_run_result("no regression suite configured")
@@ -309,7 +325,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         if not isinstance(regression_commands, list) or not all(isinstance(item, str) for item in regression_commands):
             regression_result = evaluator_error_result("regression command list is invalid")
         elif regression_commands:
-            regression_result = run_tests(regression_commands, workspace, args.timeout)
+            regression_result = run_tests(regression_commands, workspace, args.timeout, env=evaluation_environment)
 
     reference: Dict[str, Any] = {"reference_patch_checked_after_session": False}
     if args.reference_patch:
@@ -348,6 +364,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         "regression_status": score["regression_status"],
         "termination_reason": runner_record.get("termination_reason") or ("timeout" if runner_record.get("invocation", {}).get("timed_out") else None),
         "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace.",
+        "evaluator_environment": evaluator_readiness,
         "reference_comparison": reference,
     }
     result_path = output_dir / "evaluation-result.json"
