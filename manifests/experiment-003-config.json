@@ -1,0 +1,64 @@
+{
+  "experiment_id": "experiment-003",
+  "configuration_version": 1,
+  "status": "frozen-ready-for-launch",
+  "parent_experiment": "experiment-002",
+  "question": "Does the Medium-versus-Max reasoning-effort pattern observed on five historical BugsInPy repairs replicate on five newly constructed software defects that were withheld from Devin before execution?",
+  "secondary_questions": [
+    "Does additional reasoning effort improve behavioral repair success on the novel cases?",
+    "How do Medium and Max compare on wall time, observable steps, observable tool calls, prompt tokens, completion tokens, source patch size, and generated/environment workspace churn?",
+    "Do visible-test success and held-out behavioral success ever disagree?",
+    "Does the historical E002 pattern appear similar or different on the novel E003 set?"
+  ],
+  "cases": [
+    {"case_id": "E003-N01", "category": "filesystem/path semantics"},
+    {"case_id": "E003-N02", "category": "stateful/cache invalidation"},
+    {"case_id": "E003-N03", "category": "nested data transformation"},
+    {"case_id": "E003-N04", "category": "async/concurrency/lifecycle"},
+    {"case_id": "E003-N05", "category": "protocol/parser/state machine"}
+  ],
+  "conditions": {"M": "swe-2-medium", "X": "swe-2-max"},
+  "fusion": "disabled",
+  "runner_version": "experiment-003-container-runner-v1",
+  "container_image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+  "agent_network": "e002-internal",
+  "proxy_url": "http://egress-proxy:3128",
+  "intervention_policy": "zero substantive assistance; no retries for ordinary task failures",
+  "success_rule": "TASK_SUCCESS is 1 only when public, held-out behavioral, and regression suites all pass; evaluator infrastructure errors are recorded separately as EVALUATION_ERROR.",
+  "limits": {
+    "maximum_wall_time_seconds": 3600,
+    "session_termination": "terminate at 3600 seconds or when Devin exits; close the session before evaluator access",
+    "retries": 0,
+    "parallel_runs": 1,
+    "agent_step_limit": null,
+    "agent_token_limit": null,
+    "infrastructure_timeout_behavior": "classify a watchdog/service timeout as infrastructure only when the harness or service is at fault; an agent that reaches the limit is an agent outcome"
+  },
+  "capture": [
+    "Devin configuration and model",
+    "byte-identical task prompt and hash",
+    "UTC start/end and elapsed wall time",
+    "observable steps, tool calls, prompt tokens, completion tokens, usage, cost, and ACUs when available",
+    "stdout, stderr, session export, termination reason",
+    "final filesystem patch and source/generated workspace churn",
+    "public, held-out, and regression evaluator results",
+    "intervention count and evaluator notes"
+  ],
+  "isolation": {
+    "execution": "disposable E002 Docker path",
+    "platform": "linux/arm64",
+    "permission_mode": "dangerous",
+    "effective_permission_mode": "Bypass",
+    "root_filesystem": "read-only",
+    "capabilities": "all dropped",
+    "no_new_privileges": true,
+    "docker_socket": false,
+    "host_or_control_repository_mount": false,
+    "workspace": "one sanitized buggy workspace, read-write",
+    "credentials": "minimum Devin credential file only, read-only",
+    "network": "E002 internal network and restricted Devin-service proxy; no dependency installation during agent session",
+    "evaluator": "outside the container and unavailable until the session is closed"
+  },
+  "novelty_boundary": "The E003 benchmark instances, defect implementations, prompts, reference fixes, and held-out behavioral evaluations were newly constructed for this experiment and withheld from Devin until the protocol was frozen and execution began. Training-data absence is not claimed.",
+  "embargo": "Private case source, fixed source, reference patches, held-out tests, and solution metadata remain outside the public repository until all ten E003 runs are closed."
+}
