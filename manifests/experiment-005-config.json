@@ -1,0 +1,55 @@
+{
+  "experiment_id": "experiment-005",
+  "configuration_version": 1,
+  "status": "frozen-ready-for-launch",
+  "parent_experiment": "experiment-003",
+  "question": "How do SWE-2 Medium and Max compare when newly constructed, withheld software-repair tasks are intentionally pushed beyond the difficulty of the earlier benchmark cases?",
+  "secondary_questions": [
+    "Does additional reasoning effort improve complete behavioral repair on the stress-test cases?",
+    "Do visible-test success and held-out behavioral success disagree more often when the cases require cross-module reasoning?",
+    "How do Medium and Max compare on wall time, observable steps, tool calls, tokens, patch breadth, and workspace churn?"
+  ],
+  "cases": [
+    {"case_id": "E005-H01", "category": "dependency graph and transitive cache invalidation"},
+    {"case_id": "E005-H02", "category": "asynchronous cancellation and worker lifecycle consistency"},
+    {"case_id": "E005-H03", "category": "incremental framed-protocol parsing and recovery state machine"},
+    {"case_id": "E005-H04", "category": "transactional multi-stage operation and compensation ordering"},
+    {"case_id": "E005-H05", "category": "event subscription lifecycle and reentrant dispatch"}
+  ],
+  "conditions": {"M": "swe-2-medium", "X": "swe-2-max"},
+  "fusion": "disabled",
+  "intervention_policy": "zero substantive human or Codex assistance; no retries for ordinary agent failures",
+  "success_rule": "TASK_SUCCESS is 1 only when public, held-out behavioral, and regression suites all pass; evaluator infrastructure errors are recorded separately as EVALUATION_ERROR.",
+  "limits": {
+    "maximum_wall_time_seconds": 5400,
+    "session_termination": "terminate at 5400 seconds or when Devin exits; close the session before evaluator access",
+    "retries": 0,
+    "parallel_runs": 1,
+    "agent_step_limit": null,
+    "agent_token_limit": null,
+    "infrastructure_timeout_behavior": "classify a watchdog or service timeout as infrastructure only when the harness or service is at fault; an agent that reaches the limit is an agent outcome"
+  },
+  "capture": [
+    "model, reasoning effort, configuration, and byte-identical task prompt hash",
+    "UTC start/end, elapsed wall time, observable steps, tool calls, prompt/completion tokens, usage, cost, and ACUs when available",
+    "stdout, stderr, session export, termination reason, final filesystem patch, and source/generated workspace churn",
+    "public, held-out, and regression evaluator results, intervention count, and evaluator notes"
+  ],
+  "isolation": {
+    "execution": "same frozen isolated Devin architecture used for E002/E003; no shared infrastructure changes",
+    "platform": "linux/arm64",
+    "permission_mode": "dangerous",
+    "effective_permission_mode": "Bypass",
+    "root_filesystem": "read-only",
+    "capabilities": "all dropped",
+    "no_new_privileges": true,
+    "docker_socket": false,
+    "host_or_control_repository_mount": false,
+    "workspace": "one fresh sanitized buggy workspace, read-write",
+    "credentials": "minimum Devin credential file only, read-only",
+    "network": "existing E002 internal network and restricted Devin-service proxy; no dependency installation during agent session",
+    "evaluator": "outside the container and unavailable until the session is closed"
+  },
+  "novelty_boundary": "The five E005 benchmark instances, defect implementations, prompts, reference fixes, and held-out evaluations were newly constructed for this experiment and withheld from Devin until execution. Training-data absence is not claimed.",
+  "embargo": "Private buggy/fixed trees, reference patches, held-out tests, evaluator metadata, construction notes, and solution-bearing validation remain local until all ten E005 runs close."
+}
