@@ -6,6 +6,8 @@ Experiment 002 compares SWE-2 Medium and SWE-2 Max with identical tasks,
 fresh sanitized workspaces, hidden evaluator tests, and zero substantive
 intervention.
 
+**Publication:** [v1.0.0 — first public research release](https://github.com/MAJORminorStudio/devin-agent-benchmark/releases/tag/v1.0.0)
+
 ## Key result
 
 | Metric | SWE-2 Medium | SWE-2 Max |
