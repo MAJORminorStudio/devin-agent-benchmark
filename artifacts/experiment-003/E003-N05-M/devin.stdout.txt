@@ -1,0 +1,10 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as 0xdippo@gmail.com.
+
+You're all set. Run [1mdevin[0m to get started.
+The bug is visible: on `BEGIN` while a transaction is in progress, the parser ignores the new `BEGIN` instead of discarding the stale transaction. Let me reproduce first.Reproduced: the stale `old` transaction absorbs the new transaction's fields and commits. Fix — a new `BEGIN` should always start a fresh transaction, discarding the incomplete one:Fixed. The test failed before (emitting `{"id": "old", ...}`) and passes now.
+
+**Root cause:** In `_consume`, a `BEGIN` line was only honored when no transaction was in progress, so a mid-transaction `BEGIN` was silently dropped — subsequent `FIELD` lines polluted the stale transaction and `COMMIT` emitted it.
+
+**Fix** in [transactions.py:17-19](file:///workspace/src/line_protocol/transactions.py): `BEGIN` now unconditionally starts a fresh transaction, discarding any incomplete one — i.e., recovery to the newest valid transaction. Fragmented input was already handled by the newline buffering in `feed`, and normal record emission is unchanged.

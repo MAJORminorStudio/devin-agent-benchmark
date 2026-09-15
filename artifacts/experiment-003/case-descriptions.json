@@ -1,0 +1,7 @@
+{
+  "E003-N01": "Filesystem discovery must respect project boundaries when links point outside the root.",
+  "E003-N02": "Tag-filtered catalogue views must be invalidated after record removal.",
+  "E003-N03": "Nested record export must recursively convert values in supported containers.",
+  "E003-N04": "Async session close must await worker cleanup and remain idempotent.",
+  "E003-N05": "A line protocol parser must recover when a newer transaction begins before the previous one completes."
+}

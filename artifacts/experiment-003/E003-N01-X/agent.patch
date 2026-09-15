@@ -1,0 +1,11 @@
+--- a/src/asset_index/discovery.py
++++ b/src/asset_index/discovery.py
+@@ -7,7 +7,7 @@
+     found: list[str] = []
+     for candidate in sorted(base.rglob("*.py")):
+         resolved = candidate.resolve()
+-        if not str(resolved).startswith(str(base)):
++        if not resolved.is_relative_to(base):
+             continue
+         if resolved.is_file():
+             found.append(candidate.relative_to(base).as_posix())

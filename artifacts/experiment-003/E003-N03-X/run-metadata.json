@@ -1,0 +1,53 @@
+{
+  "acus": null,
+  "case_id": "E003-N03",
+  "condition": "X",
+  "cost": null,
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-003",
+  "interventions": 0,
+  "metrics": {
+    "steps": 16,
+    "tokens": {
+      "cached": 118345,
+      "completion": 1749,
+      "prompt": 125911
+    },
+    "tool_calls": 13
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "files_changed": [
+      "src/record_export/convert.py"
+    ],
+    "generated_or_environment_files": [],
+    "lines_added": 1,
+    "lines_deleted": 1,
+    "sha256": "64bb843132d17f15a68ffab4528471f5fcc0754ccb696cc23cd258cc84f14698",
+    "source_files_changed": [
+      "src/record_export/convert.py"
+    ]
+  },
+  "prompt_sha256": "29d9b0526162e16eb0dbd9f9118220d33abbd32f4c3d44399276f3e1040cdd1e",
+  "reference_comparison": {
+    "matches_human_reference_patch": true,
+    "performed_after_pair_closure": true,
+    "reference_patch_sha256": "64bb843132d17f15a68ffab4528471f5fcc0754ccb696cc23cd258cc84f14698"
+  },
+  "run_id": "E003-N03-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning and private paths are omitted.",
+  "session_id": "carbonated-finch",
+  "termination_reason": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-15T22:00:42.734717+00:00",
+    "started_at_utc": "2026-09-15T21:58:49.232792+00:00",
+    "wall_time_seconds": 113.50124324997887
+  }
+}

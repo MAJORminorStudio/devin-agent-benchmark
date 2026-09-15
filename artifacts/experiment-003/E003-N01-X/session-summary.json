@@ -1,0 +1,19 @@
+{
+  "final_metrics": {
+    "cached": 101669,
+    "completion": 1858,
+    "prompt": 108522
+  },
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "excited-headlight",
+  "steps": 15,
+  "tool_calls": 9,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 5,
+    "read": 3
+  }
+}

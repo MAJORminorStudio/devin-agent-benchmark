@@ -1,0 +1,19 @@
+{
+  "final_metrics": {
+    "cached": 114077,
+    "completion": 1601,
+    "prompt": 121566
+  },
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "sapphire-haddock",
+  "steps": 16,
+  "tool_calls": 10,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 6,
+    "read": 3
+  }
+}

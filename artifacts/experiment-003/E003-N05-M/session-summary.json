@@ -1,0 +1,19 @@
+{
+  "final_metrics": {
+    "cached": 84264,
+    "completion": 914,
+    "prompt": 94163
+  },
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "legendary-sole",
+  "steps": 14,
+  "tool_calls": 9,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 4,
+    "read": 4
+  }
+}

@@ -1,0 +1,10 @@
+--- a/src/catalog/store.py
++++ b/src/catalog/store.py
+@@ -14,6 +14,7 @@
+
+     def discard(self, record_id: str) -> None:
+         self._records.pop(record_id, None)
++        self._tag_cache.clear()
+
+     def ids_for_tag(self, tag: str) -> tuple[str, ...]:
+         cached = self._tag_cache.get(tag)

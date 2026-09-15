@@ -1,0 +1,53 @@
+{
+  "acus": null,
+  "case_id": "E003-N03",
+  "condition": "M",
+  "cost": null,
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-003",
+  "interventions": 0,
+  "metrics": {
+    "steps": 15,
+    "tokens": {
+      "cached": 100161,
+      "completion": 875,
+      "prompt": 106432
+    },
+    "tool_calls": 9
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "files_changed": [
+      "src/record_export/convert.py"
+    ],
+    "generated_or_environment_files": [],
+    "lines_added": 3,
+    "lines_deleted": 1,
+    "sha256": "a00cb21dc048cf141b550bc9dbd4acbd4b063a8e3ec95f3b846212c01578866f",
+    "source_files_changed": [
+      "src/record_export/convert.py"
+    ]
+  },
+  "prompt_sha256": "29d9b0526162e16eb0dbd9f9118220d33abbd32f4c3d44399276f3e1040cdd1e",
+  "reference_comparison": {
+    "matches_human_reference_patch": false,
+    "performed_after_pair_closure": true,
+    "reference_patch_sha256": "64bb843132d17f15a68ffab4528471f5fcc0754ccb696cc23cd258cc84f14698"
+  },
+  "run_id": "E003-N03-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning and private paths are omitted.",
+  "session_id": "alive-steed",
+  "termination_reason": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-15T21:50:21.809197+00:00",
+    "started_at_utc": "2026-09-15T21:48:37.954225+00:00",
+    "wall_time_seconds": 103.8541400419781
+  }
+}

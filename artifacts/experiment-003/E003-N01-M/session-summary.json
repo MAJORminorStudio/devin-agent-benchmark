@@ -1,0 +1,19 @@
+{
+  "final_metrics": {
+    "cached": 124298,
+    "completion": 1104,
+    "prompt": 132479
+  },
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "absorbed-beaufort",
+  "steps": 17,
+  "tool_calls": 10,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 7,
+    "read": 2
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "final_metrics": {
+    "cached": 144258,
+    "completion": 8459,
+    "prompt": 156732
+  },
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "brick-spear",
+  "steps": 16,
+  "tool_calls": 13,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 6,
+    "read": 6
+  }
+}

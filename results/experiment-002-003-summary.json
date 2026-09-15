@@ -1,0 +1,230 @@
+{
+  "analysis_type": "descriptive combined E002 plus E003 analysis",
+  "combined_paired_outcomes": {
+    "Max-only": 0,
+    "Medium-only": 1,
+    "both fail": 0,
+    "both success": 9
+  },
+  "combined_resource_totals": {
+    "M": {
+      "cached_tokens": 4491788.0,
+      "completion_tokens": 57600.0,
+      "prompt_tokens": 4681222.0,
+      "runs": 10,
+      "total_steps": 276.0,
+      "total_tool_calls": 216.0,
+      "total_wall_time_seconds": 2315.2196160819067
+    },
+    "X": {
+      "cached_tokens": 11993319.0,
+      "completion_tokens": 180018.0,
+      "prompt_tokens": 12366076.0,
+      "runs": 10,
+      "total_steps": 352.0,
+      "total_tool_calls": 382.0,
+      "total_wall_time_seconds": 4334.2595996659675
+    }
+  },
+  "combined_successes": {
+    "Max": 9,
+    "Medium": 10
+  },
+  "combined_unique_cases": 10,
+  "e002_historical": {
+    "max_successes": 4,
+    "medium_successes": 5,
+    "paired_outcomes": {
+      "Max-only": 0,
+      "Medium-only": 1,
+      "both fail": 0,
+      "both success": 4
+    },
+    "unique_cases": 5
+  },
+  "e003_novel": {
+    "max_successes": 5,
+    "medium_successes": 5,
+    "paired_outcomes": {
+      "Max-only": 0,
+      "Medium-only": 0,
+      "both fail": 0,
+      "both success": 5
+    },
+    "unique_cases": 5
+  },
+  "historical_resource_summary": {
+    "M": {
+      "mean_steps": 39.8,
+      "mean_wall_time_seconds": 363.262,
+      "median_wall_time_seconds": 299.332,
+      "runs": 5,
+      "solved": 5,
+      "tokens": {
+        "cached": 3968909,
+        "completion": 52313,
+        "prompt": 4120476
+      },
+      "total_changed_files": 85,
+      "total_source_additions": 48,
+      "total_source_deletions": 11,
+      "total_source_edit_operations": 11,
+      "total_steps": 199,
+      "total_tool_calls": 169,
+      "total_wall_time_seconds": 1816.309
+    },
+    "X": {
+      "mean_steps": 54.8,
+      "mean_wall_time_seconds": 729.956,
+      "median_wall_time_seconds": 405.29,
+      "runs": 5,
+      "solved": 4,
+      "tokens": {
+        "cached": 11408875,
+        "completion": 164983,
+        "prompt": 11740951
+      },
+      "total_changed_files": 3223,
+      "total_source_additions": 42,
+      "total_source_deletions": 10,
+      "total_source_edit_operations": 8,
+      "total_steps": 274,
+      "total_tool_calls": 322,
+      "total_wall_time_seconds": 3649.78
+    }
+  },
+  "interpretation": "E003 produced a mixed descriptive comparison with E002: E002 had one Medium-only outcome, while E003 had five both-success outcomes. No causal or statistical-significance claim is made.",
+  "novel_resource_summary": {
+    "M": {
+      "acus": null,
+      "cost": null,
+      "generated_or_environment_files_changed": 0,
+      "patch": {
+        "files_changed": {
+          "mean": 1.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 5.0
+        },
+        "lines_added": {
+          "mean": 1.8,
+          "median": 1.0,
+          "n": 5,
+          "total": 9.0
+        },
+        "lines_deleted": {
+          "mean": 1.8,
+          "median": 1.0,
+          "n": 5,
+          "total": 9.0
+        }
+      },
+      "runs": 5,
+      "steps": {
+        "mean": 15.4,
+        "median": 15.0,
+        "n": 5,
+        "total": 77.0
+      },
+      "successes": 5,
+      "tokens": {
+        "cached": {
+          "mean": 104575.8,
+          "median": 100161.0,
+          "n": 5,
+          "total": 522879.0
+        },
+        "completion": {
+          "mean": 1057.4,
+          "median": 914.0,
+          "n": 5,
+          "total": 5287.0
+        },
+        "prompt": {
+          "mean": 112149.2,
+          "median": 106432.0,
+          "n": 5,
+          "total": 560746.0
+        }
+      },
+      "tool_calls": {
+        "mean": 9.4,
+        "median": 9.0,
+        "n": 5,
+        "total": 47.0
+      },
+      "wall_time_seconds": {
+        "mean": 99.7821232163813,
+        "median": 103.72602279100101,
+        "n": 5,
+        "total": 498.9106160819065
+      }
+    },
+    "X": {
+      "acus": null,
+      "cost": null,
+      "generated_or_environment_files_changed": 0,
+      "patch": {
+        "files_changed": {
+          "mean": 1.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 5.0
+        },
+        "lines_added": {
+          "mean": 2.6,
+          "median": 1.0,
+          "n": 5,
+          "total": 13.0
+        },
+        "lines_deleted": {
+          "mean": 2.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 10.0
+        }
+      },
+      "runs": 5,
+      "steps": {
+        "mean": 15.6,
+        "median": 16.0,
+        "n": 5,
+        "total": 78.0
+      },
+      "successes": 5,
+      "tokens": {
+        "cached": {
+          "mean": 116888.8,
+          "median": 118345.0,
+          "n": 5,
+          "total": 584444.0
+        },
+        "completion": {
+          "mean": 3007.0,
+          "median": 1858.0,
+          "n": 5,
+          "total": 15035.0
+        },
+        "prompt": {
+          "mean": 125025.0,
+          "median": 125911.0,
+          "n": 5,
+          "total": 625125.0
+        }
+      },
+      "tool_calls": {
+        "mean": 12.0,
+        "median": 13.0,
+        "n": 5,
+        "total": 60.0
+      },
+      "wall_time_seconds": {
+        "mean": 136.89591993319337,
+        "median": 113.50124324997887,
+        "n": 5,
+        "total": 684.4795996659668
+      }
+    }
+  },
+  "schema_version": 1
+}

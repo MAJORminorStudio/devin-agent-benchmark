@@ -1,0 +1,763 @@
+{
+  "analysis_type": "deterministic paired pilot analysis",
+  "case_set": [
+    {
+      "case_id": "E003-N01",
+      "category": "filesystem/path semantics"
+    },
+    {
+      "case_id": "E003-N02",
+      "category": "stateful/cache invalidation"
+    },
+    {
+      "case_id": "E003-N03",
+      "category": "nested data transformation"
+    },
+    {
+      "case_id": "E003-N04",
+      "category": "async/concurrency/lifecycle"
+    },
+    {
+      "case_id": "E003-N05",
+      "category": "protocol/parser/state machine"
+    }
+  ],
+  "condition_summary": {
+    "M": {
+      "acus": null,
+      "cost": null,
+      "generated_or_environment_files_changed": 0,
+      "patch": {
+        "files_changed": {
+          "mean": 1.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 5.0
+        },
+        "lines_added": {
+          "mean": 1.8,
+          "median": 1.0,
+          "n": 5,
+          "total": 9.0
+        },
+        "lines_deleted": {
+          "mean": 1.8,
+          "median": 1.0,
+          "n": 5,
+          "total": 9.0
+        }
+      },
+      "runs": 5,
+      "steps": {
+        "mean": 15.4,
+        "median": 15.0,
+        "n": 5,
+        "total": 77.0
+      },
+      "successes": 5,
+      "tokens": {
+        "cached": {
+          "mean": 104575.8,
+          "median": 100161.0,
+          "n": 5,
+          "total": 522879.0
+        },
+        "completion": {
+          "mean": 1057.4,
+          "median": 914.0,
+          "n": 5,
+          "total": 5287.0
+        },
+        "prompt": {
+          "mean": 112149.2,
+          "median": 106432.0,
+          "n": 5,
+          "total": 560746.0
+        }
+      },
+      "tool_calls": {
+        "mean": 9.4,
+        "median": 9.0,
+        "n": 5,
+        "total": 47.0
+      },
+      "wall_time_seconds": {
+        "mean": 99.7821232163813,
+        "median": 103.72602279100101,
+        "n": 5,
+        "total": 498.9106160819065
+      }
+    },
+    "X": {
+      "acus": null,
+      "cost": null,
+      "generated_or_environment_files_changed": 0,
+      "patch": {
+        "files_changed": {
+          "mean": 1.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 5.0
+        },
+        "lines_added": {
+          "mean": 2.6,
+          "median": 1.0,
+          "n": 5,
+          "total": 13.0
+        },
+        "lines_deleted": {
+          "mean": 2.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 10.0
+        }
+      },
+      "runs": 5,
+      "steps": {
+        "mean": 15.6,
+        "median": 16.0,
+        "n": 5,
+        "total": 78.0
+      },
+      "successes": 5,
+      "tokens": {
+        "cached": {
+          "mean": 116888.8,
+          "median": 118345.0,
+          "n": 5,
+          "total": 584444.0
+        },
+        "completion": {
+          "mean": 3007.0,
+          "median": 1858.0,
+          "n": 5,
+          "total": 15035.0
+        },
+        "prompt": {
+          "mean": 125025.0,
+          "median": 125911.0,
+          "n": 5,
+          "total": 625125.0
+        }
+      },
+      "tool_calls": {
+        "mean": 12.0,
+        "median": 13.0,
+        "n": 5,
+        "total": 60.0
+      },
+      "wall_time_seconds": {
+        "mean": 136.89591993319337,
+        "median": 113.50124324997887,
+        "n": 5,
+        "total": 684.4795996659668
+      }
+    }
+  },
+  "control_commit": "6e94f6702601a0d0a3f52667e3e9dceb4817c70c",
+  "experiment_id": "experiment-003",
+  "freeze_manifest_sha256": "92c7e98c9f4b603954abf1cd6d581dc5909425f94471211a6a7f1f9e14426232",
+  "frozen_run_order": [
+    "E003-N01-X",
+    "E003-N03-M",
+    "E003-N02-X",
+    "E003-N04-X",
+    "E003-N05-X",
+    "E003-N03-X",
+    "E003-N05-M",
+    "E003-N02-M",
+    "E003-N04-M",
+    "E003-N01-M"
+  ],
+  "infrastructure_incidents": [],
+  "limitations": [
+    "Five paired cases are descriptive and do not support statistical-significance claims.",
+    "Only observable steps/tool calls/tokens are reported; hidden reasoning is not inferred.",
+    "Cost and ACUs were not exposed by the captured interface."
+  ],
+  "paired_outcomes": {
+    "Max-only": 0,
+    "Medium-only": 0,
+    "both fail": 0,
+    "both success": 5
+  },
+  "pairs": [
+    {
+      "case_id": "E003-N01",
+      "max_minus_medium": {
+        "completion_tokens": 754,
+        "prompt_tokens": -23957,
+        "source_patch_lines": 0,
+        "steps": -2,
+        "tool_calls": -1,
+        "wall_time_seconds": 21.36236375104636
+      },
+      "max_run": "E003-N01-X",
+      "max_steps_higher": false,
+      "max_success": true,
+      "max_tool_calls_higher": false,
+      "max_wall_time_higher": true,
+      "medium_run": "E003-N01-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "source_patch_same": true,
+      "visible_heldout_disagreement": false
+    },
+    {
+      "case_id": "E003-N02",
+      "max_minus_medium": {
+        "completion_tokens": 316,
+        "prompt_tokens": 1917,
+        "source_patch_lines": 0,
+        "steps": 0,
+        "tool_calls": 3,
+        "wall_time_seconds": 1.867712749983184
+      },
+      "max_run": "E003-N02-X",
+      "max_steps_higher": false,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E003-N02-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "source_patch_same": true,
+      "visible_heldout_disagreement": false
+    },
+    {
+      "case_id": "E003-N03",
+      "max_minus_medium": {
+        "completion_tokens": 874,
+        "prompt_tokens": 19479,
+        "source_patch_lines": -2,
+        "steps": 1,
+        "tool_calls": 4,
+        "wall_time_seconds": 9.647103208000772
+      },
+      "max_run": "E003-N03-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E003-N03-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "source_patch_same": false,
+      "visible_heldout_disagreement": false
+    },
+    {
+      "case_id": "E003-N04",
+      "max_minus_medium": {
+        "completion_tokens": 6858,
+        "prompt_tokens": 35166,
+        "source_patch_lines": 7,
+        "steps": 0,
+        "tool_calls": 3,
+        "wall_time_seconds": 132.16265437507536
+      },
+      "max_run": "E003-N04-X",
+      "max_steps_higher": false,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E003-N04-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "source_patch_same": false,
+      "visible_heldout_disagreement": false
+    },
+    {
+      "case_id": "E003-N05",
+      "max_minus_medium": {
+        "completion_tokens": 946,
+        "prompt_tokens": 31774,
+        "source_patch_lines": 0,
+        "steps": 2,
+        "tool_calls": 4,
+        "wall_time_seconds": 20.529149499954656
+      },
+      "max_run": "E003-N05-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E003-N05-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "source_patch_same": true,
+      "visible_heldout_disagreement": false
+    }
+  ],
+  "protocol": {
+    "fusion": "disabled",
+    "interventions": "zero substantive assistance; no retries for ordinary task failures",
+    "models": {
+      "M": "swe-2-medium",
+      "X": "swe-2-max"
+    },
+    "retries": 0,
+    "success_rule": "TASK_SUCCESS is 1 only when public, held-out behavioral, and regression suites all pass; evaluator infrastructure errors are recorded separately as EVALUATION_ERROR.",
+    "timeout_seconds": 3600
+  },
+  "protocol_deviations": [],
+  "question": "Does the Medium-versus-Max reasoning-effort pattern observed on five historical BugsInPy repairs replicate on five newly constructed software defects that were withheld from Devin before execution?",
+  "reference_comparison": {
+    "patch_identity_is_not_required_for_success": true,
+    "performed_after_pair_closure": true
+  },
+  "runs": [
+    {
+      "case_id": "E003-N01",
+      "condition": "X",
+      "evaluation_status": "OK",
+      "files_changed": [
+        "src/asset_index/discovery.py"
+      ],
+      "generated_or_environment_files": [],
+      "heldout": "pass",
+      "intervention_count": 0,
+      "lines_added": 1,
+      "lines_deleted": 1,
+      "matches_human_reference_patch": true,
+      "model": "swe-2-max",
+      "patch_bytes": 423,
+      "patch_sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a",
+      "public": "pass",
+      "reference_patch_sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a",
+      "regression": "pass",
+      "returncode": 0,
+      "run_id": "E003-N01-X",
+      "run_index": 1,
+      "session_id": "excited-headlight",
+      "source_files_changed": [
+        "src/asset_index/discovery.py"
+      ],
+      "steps": 15,
+      "task_success": true,
+      "termination_reason": "completed",
+      "tokens": {
+        "cached": 101669,
+        "completion": 1858,
+        "prompt": 108522
+      },
+      "tool_calls": 9,
+      "tool_calls_by_function": {
+        "edit": 1,
+        "exec": 5,
+        "read": 3
+      },
+      "usage_acus": null,
+      "usage_cost": null,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 125.08838654204737
+    },
+    {
+      "case_id": "E003-N03",
+      "condition": "M",
+      "evaluation_status": "OK",
+      "files_changed": [
+        "src/record_export/convert.py"
+      ],
+      "generated_or_environment_files": [],
+      "heldout": "pass",
+      "intervention_count": 0,
+      "lines_added": 3,
+      "lines_deleted": 1,
+      "matches_human_reference_patch": false,
+      "model": "swe-2-medium",
+      "patch_bytes": 402,
+      "patch_sha256": "a00cb21dc048cf141b550bc9dbd4acbd4b063a8e3ec95f3b846212c01578866f",
+      "public": "pass",
+      "reference_patch_sha256": "64bb843132d17f15a68ffab4528471f5fcc0754ccb696cc23cd258cc84f14698",
+      "regression": "pass",
+      "returncode": 0,
+      "run_id": "E003-N03-M",
+      "run_index": 2,
+      "session_id": "alive-steed",
+      "source_files_changed": [
+        "src/record_export/convert.py"
+      ],
+      "steps": 15,
+      "task_success": true,
+      "termination_reason": "completed",
+      "tokens": {
+        "cached": 100161,
+        "completion": 875,
+        "prompt": 106432
+      },
+      "tool_calls": 9,
+      "tool_calls_by_function": {
+        "edit": 1,
+        "exec": 5,
+        "read": 3
+      },
+      "usage_acus": null,
+      "usage_cost": null,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 103.8541400419781
+    },
+    {
+      "case_id": "E003-N02",
+      "condition": "X",
+      "evaluation_status": "OK",
+      "files_changed": [
+        "src/catalog/store.py"
+      ],
+      "generated_or_environment_files": [],
+      "heldout": "pass",
+      "intervention_count": 0,
+      "lines_added": 1,
+      "lines_deleted": 0,
+      "matches_human_reference_patch": true,
+      "model": "swe-2-max",
+      "patch_bytes": 301,
+      "patch_sha256": "76d6b3a602a4f76bce2518a169ea8723d08a1301b09c25eb74a94258cc02568f",
+      "public": "pass",
+      "reference_patch_sha256": "76d6b3a602a4f76bce2518a169ea8723d08a1301b09c25eb74a94258cc02568f",
+      "regression": "pass",
+      "returncode": 0,
+      "run_id": "E003-N02-X",
+      "run_index": 3,
+      "session_id": "discreet-wing",
+      "source_files_changed": [
+        "src/catalog/store.py"
+      ],
+      "steps": 15,
+      "task_success": true,
+      "termination_reason": "completed",
+      "tokens": {
+        "cached": 101497,
+        "completion": 1109,
+        "prompt": 108023
+      },
+      "tool_calls": 12,
+      "tool_calls_by_function": {
+        "edit": 1,
+        "exec": 5,
+        "read": 6
+      },
+      "usage_acus": null,
+      "usage_cost": null,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 92.47625145793427
+    },
+    {
+      "case_id": "E003-N04",
+      "condition": "X",
+      "evaluation_status": "OK",
+      "files_changed": [
+        "src/event_stream/session.py"
+      ],
+      "generated_or_environment_files": [],
+      "heldout": "pass",
+      "intervention_count": 0,
+      "lines_added": 9,
+      "lines_deleted": 6,
+      "matches_human_reference_patch": false,
+      "model": "swe-2-max",
+      "patch_bytes": 612,
+      "patch_sha256": "41eeb48e4952be5a01e095a35f9af144d5a042a126d5b9e209bc947930ee1d6f",
+      "public": "pass",
+      "reference_patch_sha256": "756929f1a4a1e13ac6a4ba55e2ec6333c01e82fdeeee519e2e6a5e8c08f11d7e",
+      "regression": "pass",
+      "returncode": 0,
+      "run_id": "E003-N04-X",
+      "run_index": 4,
+      "session_id": "brick-spear",
+      "source_files_changed": [
+        "src/event_stream/session.py"
+      ],
+      "steps": 16,
+      "task_success": true,
+      "termination_reason": "completed",
+      "tokens": {
+        "cached": 144258,
+        "completion": 8459,
+        "prompt": 156732
+      },
+      "tool_calls": 13,
+      "tool_calls_by_function": {
+        "edit": 1,
+        "exec": 6,
+        "read": 6
+      },
+      "usage_acus": null,
+      "usage_cost": null,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 241.7782146660611
+    },
+    {
+      "case_id": "E003-N05",
+      "condition": "X",
+      "evaluation_status": "OK",
+      "files_changed": [
+        "src/line_protocol/transactions.py"
+      ],
+      "generated_or_environment_files": [],
+      "heldout": "pass",
+      "intervention_count": 0,
+      "lines_added": 1,
+      "lines_deleted": 2,
+      "matches_human_reference_patch": true,
+      "model": "swe-2-max",
+      "patch_bytes": 518,
+      "patch_sha256": "139b52e072dc6134ef26b66877423efd7d6b4be491d10745ce60381d045a03ec",
+      "public": "pass",
+      "reference_patch_sha256": "139b52e072dc6134ef26b66877423efd7d6b4be491d10745ce60381d045a03ec",
+      "regression": "pass",
+      "returncode": 0,
+      "run_id": "E003-N05-X",
+      "run_index": 5,
+      "session_id": "insidious-almanac",
+      "source_files_changed": [
+        "src/line_protocol/transactions.py"
+      ],
+      "steps": 16,
+      "task_success": true,
+      "termination_reason": "completed",
+      "tokens": {
+        "cached": 118675,
+        "completion": 1860,
+        "prompt": 125937
+      },
+      "tool_calls": 13,
+      "tool_calls_by_function": {
+        "edit": 1,
+        "exec": 6,
+        "read": 6
+      },
+      "usage_acus": null,
+      "usage_cost": null,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 111.6355037499452
+    },
+    {
+      "case_id": "E003-N03",
+      "condition": "X",
+      "evaluation_status": "OK",
+      "files_changed": [
+        "src/record_export/convert.py"
+      ],
+      "generated_or_environment_files": [],
+      "heldout": "pass",
+      "intervention_count": 0,
+      "lines_added": 1,
+      "lines_deleted": 1,
+      "matches_human_reference_patch": true,
+      "model": "swe-2-max",
+      "patch_bytes": 378,
+      "patch_sha256": "64bb843132d17f15a68ffab4528471f5fcc0754ccb696cc23cd258cc84f14698",
+      "public": "pass",
+      "reference_patch_sha256": "64bb843132d17f15a68ffab4528471f5fcc0754ccb696cc23cd258cc84f14698",
+      "regression": "pass",
+      "returncode": 0,
+      "run_id": "E003-N03-X",
+      "run_index": 6,
+      "session_id": "carbonated-finch",
+      "source_files_changed": [
+        "src/record_export/convert.py"
+      ],
+      "steps": 16,
+      "task_success": true,
+      "termination_reason": "completed",
+      "tokens": {
+        "cached": 118345,
+        "completion": 1749,
+        "prompt": 125911
+      },
+      "tool_calls": 13,
+      "tool_calls_by_function": {
+        "edit": 1,
+        "exec": 6,
+        "read": 6
+      },
+      "usage_acus": null,
+      "usage_cost": null,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 113.50124324997887
+    },
+    {
+      "case_id": "E003-N05",
+      "condition": "M",
+      "evaluation_status": "OK",
+      "files_changed": [
+        "src/line_protocol/transactions.py"
+      ],
+      "generated_or_environment_files": [],
+      "heldout": "pass",
+      "intervention_count": 0,
+      "lines_added": 1,
+      "lines_deleted": 2,
+      "matches_human_reference_patch": true,
+      "model": "swe-2-medium",
+      "patch_bytes": 518,
+      "patch_sha256": "139b52e072dc6134ef26b66877423efd7d6b4be491d10745ce60381d045a03ec",
+      "public": "pass",
+      "reference_patch_sha256": "139b52e072dc6134ef26b66877423efd7d6b4be491d10745ce60381d045a03ec",
+      "regression": "pass",
+      "returncode": 0,
+      "run_id": "E003-N05-M",
+      "run_index": 7,
+      "session_id": "legendary-sole",
+      "source_files_changed": [
+        "src/line_protocol/transactions.py"
+      ],
+      "steps": 14,
+      "task_success": true,
+      "termination_reason": "completed",
+      "tokens": {
+        "cached": 84264,
+        "completion": 914,
+        "prompt": 94163
+      },
+      "tool_calls": 9,
+      "tool_calls_by_function": {
+        "edit": 1,
+        "exec": 4,
+        "read": 4
+      },
+      "usage_acus": null,
+      "usage_cost": null,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 91.10635424999055
+    },
+    {
+      "case_id": "E003-N02",
+      "condition": "M",
+      "evaluation_status": "OK",
+      "files_changed": [
+        "src/catalog/store.py"
+      ],
+      "generated_or_environment_files": [],
+      "heldout": "pass",
+      "intervention_count": 0,
+      "lines_added": 1,
+      "lines_deleted": 0,
+      "matches_human_reference_patch": true,
+      "model": "swe-2-medium",
+      "patch_bytes": 301,
+      "patch_sha256": "76d6b3a602a4f76bce2518a169ea8723d08a1301b09c25eb74a94258cc02568f",
+      "public": "pass",
+      "reference_patch_sha256": "76d6b3a602a4f76bce2518a169ea8723d08a1301b09c25eb74a94258cc02568f",
+      "regression": "pass",
+      "returncode": 0,
+      "run_id": "E003-N02-M",
+      "run_index": 8,
+      "session_id": "marred-alpaca",
+      "source_files_changed": [
+        "src/catalog/store.py"
+      ],
+      "steps": 15,
+      "task_success": true,
+      "termination_reason": "completed",
+      "tokens": {
+        "cached": 100079,
+        "completion": 793,
+        "prompt": 106106
+      },
+      "tool_calls": 9,
+      "tool_calls_by_function": {
+        "edit": 1,
+        "exec": 5,
+        "read": 3
+      },
+      "usage_acus": null,
+      "usage_cost": null,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 90.60853870795108
+    },
+    {
+      "case_id": "E003-N04",
+      "condition": "M",
+      "evaluation_status": "OK",
+      "files_changed": [
+        "src/event_stream/session.py"
+      ],
+      "generated_or_environment_files": [],
+      "heldout": "pass",
+      "intervention_count": 0,
+      "lines_added": 3,
+      "lines_deleted": 5,
+      "matches_human_reference_patch": false,
+      "model": "swe-2-medium",
+      "patch_bytes": 409,
+      "patch_sha256": "e640697658d44430d3898dd7d55b4bba709148d9085f302b7424704d444b50b7",
+      "public": "pass",
+      "reference_patch_sha256": "756929f1a4a1e13ac6a4ba55e2ec6333c01e82fdeeee519e2e6a5e8c08f11d7e",
+      "regression": "pass",
+      "returncode": 0,
+      "run_id": "E003-N04-M",
+      "run_index": 9,
+      "session_id": "sapphire-haddock",
+      "source_files_changed": [
+        "src/event_stream/session.py"
+      ],
+      "steps": 16,
+      "task_success": true,
+      "termination_reason": "completed",
+      "tokens": {
+        "cached": 114077,
+        "completion": 1601,
+        "prompt": 121566
+      },
+      "tool_calls": 10,
+      "tool_calls_by_function": {
+        "edit": 1,
+        "exec": 6,
+        "read": 3
+      },
+      "usage_acus": null,
+      "usage_cost": null,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 109.61556029098574
+    },
+    {
+      "case_id": "E003-N01",
+      "condition": "M",
+      "evaluation_status": "OK",
+      "files_changed": [
+        "src/asset_index/discovery.py"
+      ],
+      "generated_or_environment_files": [],
+      "heldout": "pass",
+      "intervention_count": 0,
+      "lines_added": 1,
+      "lines_deleted": 1,
+      "matches_human_reference_patch": true,
+      "model": "swe-2-medium",
+      "patch_bytes": 423,
+      "patch_sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a",
+      "public": "pass",
+      "reference_patch_sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a",
+      "regression": "pass",
+      "returncode": 0,
+      "run_id": "E003-N01-M",
+      "run_index": 10,
+      "session_id": "absorbed-beaufort",
+      "source_files_changed": [
+        "src/asset_index/discovery.py"
+      ],
+      "steps": 17,
+      "task_success": true,
+      "termination_reason": "completed",
+      "tokens": {
+        "cached": 124298,
+        "completion": 1104,
+        "prompt": 132479
+      },
+      "tool_calls": 10,
+      "tool_calls_by_function": {
+        "edit": 1,
+        "exec": 7,
+        "read": 2
+      },
+      "usage_acus": null,
+      "usage_cost": null,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 103.72602279100101
+    }
+  ],
+  "runs_completed": 10,
+  "schema_version": 1,
+  "visible_heldout_disagreements": []
+}

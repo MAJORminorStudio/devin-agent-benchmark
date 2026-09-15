@@ -1,0 +1,53 @@
+{
+  "acus": null,
+  "case_id": "E003-N04",
+  "condition": "M",
+  "cost": null,
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-003",
+  "interventions": 0,
+  "metrics": {
+    "steps": 16,
+    "tokens": {
+      "cached": 114077,
+      "completion": 1601,
+      "prompt": 121566
+    },
+    "tool_calls": 10
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "files_changed": [
+      "src/event_stream/session.py"
+    ],
+    "generated_or_environment_files": [],
+    "lines_added": 3,
+    "lines_deleted": 5,
+    "sha256": "e640697658d44430d3898dd7d55b4bba709148d9085f302b7424704d444b50b7",
+    "source_files_changed": [
+      "src/event_stream/session.py"
+    ]
+  },
+  "prompt_sha256": "f2b3cfbc14119a1e16549bfaaad807edd74b420dcf9f04466b791fd3494bd479",
+  "reference_comparison": {
+    "matches_human_reference_patch": false,
+    "performed_after_pair_closure": true,
+    "reference_patch_sha256": "756929f1a4a1e13ac6a4ba55e2ec6333c01e82fdeeee519e2e6a5e8c08f11d7e"
+  },
+  "run_id": "E003-N04-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning and private paths are omitted.",
+  "session_id": "sapphire-haddock",
+  "termination_reason": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-15T22:06:16.319723+00:00",
+    "started_at_utc": "2026-09-15T22:04:26.703418+00:00",
+    "wall_time_seconds": 109.61556029098574
+  }
+}

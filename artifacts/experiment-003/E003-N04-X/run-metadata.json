@@ -1,0 +1,53 @@
+{
+  "acus": null,
+  "case_id": "E003-N04",
+  "condition": "X",
+  "cost": null,
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-003",
+  "interventions": 0,
+  "metrics": {
+    "steps": 16,
+    "tokens": {
+      "cached": 144258,
+      "completion": 8459,
+      "prompt": 156732
+    },
+    "tool_calls": 13
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "files_changed": [
+      "src/event_stream/session.py"
+    ],
+    "generated_or_environment_files": [],
+    "lines_added": 9,
+    "lines_deleted": 6,
+    "sha256": "41eeb48e4952be5a01e095a35f9af144d5a042a126d5b9e209bc947930ee1d6f",
+    "source_files_changed": [
+      "src/event_stream/session.py"
+    ]
+  },
+  "prompt_sha256": "f2b3cfbc14119a1e16549bfaaad807edd74b420dcf9f04466b791fd3494bd479",
+  "reference_comparison": {
+    "matches_human_reference_patch": false,
+    "performed_after_pair_closure": true,
+    "reference_patch_sha256": "756929f1a4a1e13ac6a4ba55e2ec6333c01e82fdeeee519e2e6a5e8c08f11d7e"
+  },
+  "run_id": "E003-N04-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning and private paths are omitted.",
+  "session_id": "brick-spear",
+  "termination_reason": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-15T21:56:26.964298+00:00",
+    "started_at_utc": "2026-09-15T21:52:25.190820+00:00",
+    "wall_time_seconds": 241.7782146660611
+  }
+}

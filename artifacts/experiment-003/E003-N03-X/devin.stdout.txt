@@ -1,0 +1,14 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as 0xdippo@gmail.com.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the repository structure.The bug is visible already: at line 43-44, tuples are returned unconverted, so nested dataclasses inside a tuple stay as dataclass instances. Let me reproduce with the test suite first.Failure reproduced — tuple elements are returned unconverted. The fix mirrors the `list` branch, converting each item while keeping the tuple shape.Test passes. Quick sanity check that nested containers propagate options correctly (aliases/omit_none inside tuple items, tuples in dicts):Fixed. The bug was in `to_plain` at `src/record_export/convert.py:43` — the `tuple` branch returned the value as-is, skipping conversion of its elements (unlike the `Mapping` and `list` branches, which recurse).
+
+**Change:** `return value` → `return tuple(to_plain(item, aliases=aliases, omit_none=omit_none) for item in value)`
+
+This preserves the container's tuple shape while converting nested dataclasses, and keeps the `aliases`/`omit_none` options propagating through nested containers. Verified:
+
+- Test fails before the fix (`Line(...)` objects left in the tuple), passes after.
+- `omit_none=True` drops `note`, `aliases=False` uses field names — both work inside tuples and dicts.
+- No API change, no new dependencies.

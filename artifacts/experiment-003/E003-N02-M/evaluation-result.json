@@ -1,0 +1,67 @@
+{
+  "case_id": "E003-N02",
+  "changed_files": [
+    "src/catalog/store.py"
+  ],
+  "evaluated_at_utc": "2026-09-15T22:04:16.198819+00:00",
+  "evaluation_status": "OK",
+  "evaluation_version": 1,
+  "experiment_id": "experiment-003",
+  "heldout": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E003-N02",
+      "-p",
+      "test_behavior.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_discard_invalidates_each_warmed_tag_view (test_behavior.CatalogBehaviorTests.test_discard_invalidates_each_warmed_tag_view) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "metadata_project": "catalog-service",
+  "patch": {
+    "additions": 1,
+    "deletions": 0,
+    "sha256": "76d6b3a602a4f76bce2518a169ea8723d08a1301b09c25eb74a94258cc02568f"
+  },
+  "public": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_discard_updates_a_warmed_tag_lookup (test_store.CatalogTests.test_discard_updates_a_warmed_tag_lookup) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "reference_patch_compared": false,
+  "regression": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E003-N02",
+      "-p",
+      "test_regression.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_empty_and_sorted_queries_are_stable (test_regression.CatalogRegressionTests.test_empty_and_sorted_queries_are_stable) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "task_success": true
+}

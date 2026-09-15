@@ -1,0 +1,15 @@
+--- a/src/event_stream/session.py
++++ b/src/event_stream/session.py
+@@ -32,9 +32,7 @@
+             self.cleanup_count += 1
+
+     async def close(self) -> None:
+-        if self._closed:
+-            return
+         self._closed = True
+-        if self._task is None:
+-            return
+-        self._task.cancel()
++        self._stop.set()
++        if self._task is not None:
++            await self._task

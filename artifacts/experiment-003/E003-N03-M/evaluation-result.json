@@ -1,0 +1,67 @@
+{
+  "case_id": "E003-N03",
+  "changed_files": [
+    "src/record_export/convert.py"
+  ],
+  "evaluated_at_utc": "2026-09-15T21:50:26.344638+00:00",
+  "evaluation_status": "OK",
+  "evaluation_version": 1,
+  "experiment_id": "experiment-003",
+  "heldout": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E003-N03",
+      "-p",
+      "test_behavior.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_nested_mixed_containers_are_plain_and_keep_shape (test_behavior.ConversionBehaviorTests.test_nested_mixed_containers_are_plain_and_keep_shape) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "metadata_project": "record-exporter",
+  "patch": {
+    "additions": 3,
+    "deletions": 1,
+    "sha256": "a00cb21dc048cf141b550bc9dbd4acbd4b063a8e3ec95f3b846212c01578866f"
+  },
+  "public": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_nested_lines_keep_their_container_shape (test_convert.ConversionTests.test_nested_lines_keep_their_container_shape) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "reference_patch_compared": false,
+  "regression": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E003-N03",
+      "-p",
+      "test_regression.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_scalars_and_alias_free_mappings_are_unchanged (test_regression.ConversionRegressionTests.test_scalars_and_alias_free_mappings_are_unchanged) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "task_success": true
+}

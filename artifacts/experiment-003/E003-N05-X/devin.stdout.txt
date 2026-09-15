@@ -1,0 +1,12 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as 0xdippo@gmail.com.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the repository structure.The bug is visible already: in `_consume`, a `BEGIN` line is ignored when `self._current` is not `None`, so a new transaction never supersedes an incomplete one — fields then merge into the stale record. Let me reproduce it with the test suite.Reproduced: the emitted record has `id: "old"` but contains the new transaction's field. The fix is to let `BEGIN` always start a fresh transaction, discarding an incomplete one.Test passes. Quick sanity check on fragmented input and normal emission:Done. The fix was a one-line change in `_consume`: the `BEGIN` handler only started a transaction when none was in progress, so a `BEGIN` arriving mid-transaction was silently dropped — subsequent `FIELD` lines then merged into the stale record and committed under the wrong id. Removing the `self._current is None` guard makes every `BEGIN` discard any incomplete transaction and start fresh, which is exactly the "recover to the newest valid transaction" behavior the test expects. [transactions.py:17-19](file:///workspace/src/line_protocol/transactions.py)
+
+Verification:
+- Before: `test_new_transaction_replaces_an_incomplete_one` failed with `{'id': 'old', 'fields': {'status': 'ready'}}` — the new field leaked into the old record.
+- After: the public test passes, plus ad-hoc checks confirmed fragmented feeds, back-to-back overlapping `BEGIN`s, and normal multi-transaction emission all behave correctly.
+
+No API changes, no dependencies.
