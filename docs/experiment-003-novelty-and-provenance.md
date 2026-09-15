@@ -23,6 +23,12 @@ held-out test, task prompt, or solution metadata.
 
 Until all ten E003 runs are closed, do not publish the private case trees,
 fixed trees, reference patches, held-out tests, or solution-bearing metadata.
-After closure, publish sanitized evidence only after a separate security and
-leak review. The frozen protocol itself is safe to publish because it records
-the design boundary and hashes, not the solutions.
+That embargo ended after the tenth run closed. Following a separate security
+and leak review, the public package now includes the E003 case trees, visible
+tests, held-out behavior tests, regression tests, reference patches, and safe
+case manifests under `artifacts/experiment-003/cases/`. Raw session exports,
+credentials, hidden reasoning, and private environment dumps remain excluded.
+
+The v2 publication report combines E002 and E003 descriptively while keeping
+their historical-versus-novel provenance separate. It makes no claim that the
+novel cases were absent from training data.

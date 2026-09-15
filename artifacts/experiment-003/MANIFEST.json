@@ -3,7 +3,30 @@
   "experiment_id": "experiment-003",
   "freeze_manifest_sha256": "92c7e98c9f4b603954abf1cd6d581dc5909425f94471211a6a7f1f9e14426232",
   "novelty": "newly constructed and withheld cases; no training-data absence claim",
+  "public_case_bundle": {
+    "cases": [
+      "E003-N01",
+      "E003-N02",
+      "E003-N03",
+      "E003-N04",
+      "E003-N05"
+    ],
+    "contents": [
+      "buggy source",
+      "fixed source",
+      "visible tests",
+      "held-out behavior tests",
+      "regression tests",
+      "reference patches",
+      "safe case manifests"
+    ],
+    "credentials_and_private_paths": "excluded",
+    "hidden_reasoning": "excluded",
+    "raw_session_exports": "excluded",
+    "root": "artifacts/experiment-003/cases/"
+  },
   "publication_note": "Sanitized evidence only. Raw session exports and private evaluator source remain outside the public repository.",
+  "publication_status": "expanded-after-all-ten-runs-closed",
   "runs": [
     {
       "case_id": "E003-N01",

@@ -46,6 +46,10 @@ class PublicationAssetTests(unittest.TestCase):
             "steps-by-case.png",
             "source-vs-workspace-churn.png",
             "tqdm-case-study.png",
+            "v2-paired-wall-time.png",
+            "v2-success-by-dataset.png",
+            "v2-resource-use.png",
+            "v2-tqdm-heldout.png",
         }
         self.assertEqual({path.name for path in CHARTS.glob("*.png")}, names)
         for name in names:

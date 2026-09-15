@@ -13,8 +13,13 @@ by default.
   overview across E001 and E002
 - [Paired publication CSV](publication-paired-results.csv) — case-level
   Medium/Max comparison
+- [V2 publication summary](publication-summary-v2.json) — ten-case historical
+  plus novel machine-readable result ledger
+- [V2 paired CSV](publication-paired-results-v2.csv) — all twenty valid runs,
+  with historical/novel provenance
 
 Rebuild the publication derivatives with
 `python3 scripts/build_publication_assets.py`. It reads only committed summary
 and forensic data, does not invoke Devin, and makes no statistical-significance
-claims for n=5.
+claims. The v2 bundle is rebuilt with `python3 scripts/build_v2_publication.py`
+from the closed E003 staging area and committed E002/E003 summaries.

@@ -1,7 +1,87 @@
 {
-  "E003-N01": "Filesystem discovery must respect project boundaries when links point outside the root.",
-  "E003-N02": "Tag-filtered catalogue views must be invalidated after record removal.",
-  "E003-N03": "Nested record export must recursively convert values in supported containers.",
-  "E003-N04": "Async session close must await worker cleanup and remain idempotent.",
-  "E003-N05": "A line protocol parser must recover when a newer transaction begins before the previous one completes."
+  "E003-N01": {
+    "buggy_tree": "artifacts/experiment-003/cases/E003-N01/buggy/",
+    "case_id": "E003-N01",
+    "category": "filesystem/path semantics",
+    "commands": {
+      "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+      "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+      "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+    },
+    "description": "Filesystem discovery must respect project boundaries when links point outside the root.",
+    "fixed_tree": "artifacts/experiment-003/cases/E003-N01/fixed/",
+    "heldout_tests": "artifacts/experiment-003/cases/E003-N01/evaluator/test_behavior.py",
+    "project": "asset-indexer",
+    "public_tests": "artifacts/experiment-003/cases/E003-N01/buggy/tests/",
+    "reference_patch": "artifacts/experiment-003/cases/E003-N01/reference.patch",
+    "regression_tests": "artifacts/experiment-003/cases/E003-N01/evaluator/test_regression.py"
+  },
+  "E003-N02": {
+    "buggy_tree": "artifacts/experiment-003/cases/E003-N02/buggy/",
+    "case_id": "E003-N02",
+    "category": "stateful/cache invalidation",
+    "commands": {
+      "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+      "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+      "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+    },
+    "description": "Tag-filtered catalogue views must be invalidated after record removal.",
+    "fixed_tree": "artifacts/experiment-003/cases/E003-N02/fixed/",
+    "heldout_tests": "artifacts/experiment-003/cases/E003-N02/evaluator/test_behavior.py",
+    "project": "catalog-service",
+    "public_tests": "artifacts/experiment-003/cases/E003-N02/buggy/tests/",
+    "reference_patch": "artifacts/experiment-003/cases/E003-N02/reference.patch",
+    "regression_tests": "artifacts/experiment-003/cases/E003-N02/evaluator/test_regression.py"
+  },
+  "E003-N03": {
+    "buggy_tree": "artifacts/experiment-003/cases/E003-N03/buggy/",
+    "case_id": "E003-N03",
+    "category": "nested data transformation",
+    "commands": {
+      "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+      "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+      "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+    },
+    "description": "Nested record export must recursively convert values in supported containers.",
+    "fixed_tree": "artifacts/experiment-003/cases/E003-N03/fixed/",
+    "heldout_tests": "artifacts/experiment-003/cases/E003-N03/evaluator/test_behavior.py",
+    "project": "record-exporter",
+    "public_tests": "artifacts/experiment-003/cases/E003-N03/buggy/tests/",
+    "reference_patch": "artifacts/experiment-003/cases/E003-N03/reference.patch",
+    "regression_tests": "artifacts/experiment-003/cases/E003-N03/evaluator/test_regression.py"
+  },
+  "E003-N04": {
+    "buggy_tree": "artifacts/experiment-003/cases/E003-N04/buggy/",
+    "case_id": "E003-N04",
+    "category": "async/concurrency/lifecycle",
+    "commands": {
+      "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+      "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+      "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+    },
+    "description": "Async session close must await worker cleanup and remain idempotent.",
+    "fixed_tree": "artifacts/experiment-003/cases/E003-N04/fixed/",
+    "heldout_tests": "artifacts/experiment-003/cases/E003-N04/evaluator/test_behavior.py",
+    "project": "event-stream",
+    "public_tests": "artifacts/experiment-003/cases/E003-N04/buggy/tests/",
+    "reference_patch": "artifacts/experiment-003/cases/E003-N04/reference.patch",
+    "regression_tests": "artifacts/experiment-003/cases/E003-N04/evaluator/test_regression.py"
+  },
+  "E003-N05": {
+    "buggy_tree": "artifacts/experiment-003/cases/E003-N05/buggy/",
+    "case_id": "E003-N05",
+    "category": "protocol/parser/state machine",
+    "commands": {
+      "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+      "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+      "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+    },
+    "description": "A line protocol parser must recover when a newer transaction begins before the previous one completes.",
+    "fixed_tree": "artifacts/experiment-003/cases/E003-N05/fixed/",
+    "heldout_tests": "artifacts/experiment-003/cases/E003-N05/evaluator/test_behavior.py",
+    "project": "line-protocol",
+    "public_tests": "artifacts/experiment-003/cases/E003-N05/buggy/tests/",
+    "reference_patch": "artifacts/experiment-003/cases/E003-N05/reference.patch",
+    "regression_tests": "artifacts/experiment-003/cases/E003-N05/evaluator/test_regression.py"
+  }
 }

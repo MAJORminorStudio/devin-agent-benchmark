@@ -6,7 +6,18 @@ Experiment 002 compares SWE-2 Medium and SWE-2 Max with identical tasks,
 fresh sanitized workspaces, hidden evaluator tests, and zero substantive
 intervention.
 
-**Publication:** [v1.0.0 — first public research release](https://github.com/MAJORminorStudio/devin-agent-benchmark/releases/tag/v1.0.0)
+**Publications:** [v2.0.0 — ten-case paired pilot](https://github.com/MAJORminorStudio/devin-agent-benchmark/releases/tag/v2.0.0) · [v1.0.0 — first public research release](https://github.com/MAJORminorStudio/devin-agent-benchmark/releases/tag/v1.0.0)
+
+## V2 study
+
+The completed v2 study combines five historical BugsInPy cases from E002 with
+five newly constructed, withheld cases from E003: **10 unique bugs and 20
+valid paired runs**. Medium scored **10/10** and Max **9/10**. E003 itself was
+a 5/5 versus 5/5 tie; the only correctness disagreement was the historical
+`tqdm-5` case. Max used more wall time in all ten pairs. See the [v2 research
+report](reports/devin-swe2-reasoning-effort-v2.md), [v2 data](results/publication-summary-v2.json),
+[paired CSV](results/publication-paired-results-v2.csv), and [public E003
+evidence](artifacts/experiment-003/README.md).
 
 ## Key result
 
@@ -37,7 +48,8 @@ Devin, SWE-2, or reasoning effort.
 
 Four pairs succeeded under both conditions. One pair was Medium-only; no pair
 was Max-only or failed under both conditions. See the
-[standalone research report](reports/swe-2-medium-vs-max-research-report.md)
+[standalone historical report](reports/swe-2-medium-vs-max-research-report.md)
+and [complete v2 report](reports/devin-swe2-reasoning-effort-v2.md)
 for the complete case analysis and charts.
 
 ## The disagreement: tqdm-5
@@ -141,5 +153,5 @@ that the observed resource differences will generalize.
 
 Experiment 001 is retained as invalid capability-comparison provenance.
 Experiment 002 is complete and publication-ready as an exploratory paired
-pilot. Experiment 003 has not started. See [CITATION.cff](CITATION.cff) and
+pilot. Experiment 003 is complete as the novel half of the v2 study. See [CITATION.cff](CITATION.cff) and
 [third-party notices](THIRD_PARTY_NOTICES.md) for reuse boundaries.

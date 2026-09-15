@@ -1,0 +1,15 @@
+{
+  "case_id": "E003-N02",
+  "category": "stateful/cache invalidation",
+  "commands": {
+    "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+    "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+    "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+  },
+  "description": "Tag-filtered catalogue views must be invalidated after record removal.",
+  "expected_fixed_behavior": "public, held-out, and regression tests pass on the fixed source tree",
+  "experiment_id": "experiment-003",
+  "project_name": "catalog-service",
+  "release_note": "The source, tests, and reference patch were embargoed until all ten E003 runs closed.",
+  "schema_version": 1
+}
