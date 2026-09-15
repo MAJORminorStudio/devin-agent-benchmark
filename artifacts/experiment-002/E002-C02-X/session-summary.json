@@ -1,0 +1,50 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": "experiment-002",
+    "effective_permission_mode": "Bypass",
+    "fusion_enabled": false,
+    "model": "swe-2-max",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "permission_mode": "dangerous",
+    "provider_metrics": {
+      "total_cached_tokens": 3400046,
+      "total_completion_tokens": 60615,
+      "total_prompt_tokens": 3504981,
+      "total_steps": 69
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 3400046,
+    "total_completion_tokens": 60615,
+    "total_prompt_tokens": 3504981,
+    "total_steps": 69
+  },
+  "first_step_timestamp": "2026-09-15T02:50:50.652893594+00:00",
+  "last_step_timestamp": "2026-09-15T03:08:35.232832878+00:00",
+  "model": "swe-2-max",
+  "patch_empty": false,
+  "patch_sha256": "3747195a3cd9e36b1d4fdbb65b444d8a6901a5e02dd6e40f5bff0724574aaba9",
+  "permission_warning": null,
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "ionian-wallaby",
+  "source_step_counts": {
+    "agent": 62,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 71,
+  "tool_calls_by_function": {
+    "edit": 6,
+    "exec": 38,
+    "grep": 2,
+    "read": 11,
+    "todo_write": 2,
+    "web_search": 6,
+    "webfetch": 5,
+    "write": 1
+  },
+  "total_steps": 69
+}

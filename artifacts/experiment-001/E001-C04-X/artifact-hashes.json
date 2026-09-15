@@ -1,0 +1,76 @@
+{
+  "excluded_local_artifacts": [
+    {
+      "artifact_class": "raw runner/evaluator/session/output metadata",
+      "public_replacement": "run-metadata.json, evaluation-result.json, tool-timeline.json, session-summary.json, stdout.txt, stderr.txt",
+      "reason": "Unchanged files contain machine-specific host paths and execution metadata; sanitized derivatives are published."
+    }
+  ],
+  "published_artifacts": {
+    "agent.patch": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "devin-session-export.sanitized.json": {
+      "bytes": 70077,
+      "sha256": "8b87443946170d1afc92516bc5d987180f6f512993da6d54ee75ef6ffd9b81fd"
+    },
+    "evaluation-result.json": {
+      "bytes": 16159,
+      "sha256": "36c19cef8e49ca41d39e5ea86e336a910a27f74d64188e974ec3e6b9a1876e6e"
+    },
+    "prompt.md": {
+      "bytes": 215,
+      "sha256": "03df8b7685d38a3fefe570641ab3173dd33ed83ea5739de9263629bade5aabd6"
+    },
+    "run-metadata.json": {
+      "bytes": 2833,
+      "sha256": "adfc108184ec5a832adb0ccc288a1baabe3d9721e216345f8f7e399ac0c76a3b"
+    },
+    "session-summary.json": {
+      "bytes": 1646,
+      "sha256": "a2d85f107c0d406d04a7713922f5e6b680e1bd0a807b94b2ab18242924c94932"
+    },
+    "source-diff-stat.json": {
+      "bytes": 416,
+      "sha256": "5c526d68afba8cd28a53f1374b3b5185ddc6e64926dd4c96be356e9af9c02776"
+    },
+    "stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.txt": {
+      "bytes": 794,
+      "sha256": "fb1fa7c656bf72162968ccb9fc4f69f0981dd1e5479ad5ca7654e5b7198a208e"
+    },
+    "tool-timeline.json": {
+      "bytes": 20088,
+      "sha256": "c335617861339d16dcb41f85ac8a3490b88c4fdd053f77611dbb34dda1d36c36"
+    },
+    "workspace-change-summary.json": {
+      "bytes": 366,
+      "sha256": "f2b85d3561e8ad7b50e150f6c1caca679e6fb1387d892482ecc6e713732189fb"
+    }
+  },
+  "raw_local_artifacts": {
+    "agent.patch": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "devin-session-export.json": {
+      "bytes": 91808,
+      "sha256": "9eb1e275e114813ecad6c8e8fecbee1f01ecd7c435bd6965059aad801a0fe544"
+    },
+    "evaluation-result.json": {
+      "bytes": 17241,
+      "sha256": "81ffaea361bcfdca622d9a1f05ff15183e75a051c6e8e49e1c4cba00e378045d"
+    },
+    "runner-result.json": {
+      "bytes": 6978,
+      "sha256": "4be22f9523f833213f00a537966bfafc421dbc0f4f89dd7f485c4692b6c8ff5a"
+    }
+  },
+  "run_id": "E001-C04-X",
+  "sanitization": "Only high-confidence secrets and machine-specific/private paths were redacted; benchmark source, commands, tool behavior, failures, patches, and outcomes were retained.",
+  "schema_version": 1
+}

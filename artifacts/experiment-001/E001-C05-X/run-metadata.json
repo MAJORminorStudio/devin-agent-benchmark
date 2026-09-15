@@ -1,0 +1,102 @@
+{
+  "case": {
+    "bug_id": "13",
+    "case_id": "tornado-13",
+    "original_repository": "https://github.com/tornadoweb/tornado",
+    "project": "tornado",
+    "source": "BugsInPy"
+  },
+  "condition": "X",
+  "effort_level": "max",
+  "empty_patch_proof": {
+    "changed_files": [],
+    "line_counts": {
+      "additions": 0,
+      "deletions": 0
+    },
+    "patch_byte_length": 0,
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluator": {
+    "heldout": "fail",
+    "public": "fail",
+    "regression": "clean",
+    "status": "OK",
+    "task_success": false
+  },
+  "experiment_case_id": "E001-C05",
+  "experiment_id": "experiment-001",
+  "frozen_prompt": "# Tornado 13\n\nTornado's HTTP/1.x connection handling makes an incorrect keep-alive decision\nfor a response without an explicit content length. Reproduce the failure with\nthe provided HTTP connection test, diagnose the protocol-state handling,\nimplement a focused fix, and run the relevant tests.\n",
+  "interventions": [],
+  "model": "swe-2-max",
+  "patch_proof": {
+    "changed_files": [],
+    "line_counts": {
+      "additions": 0,
+      "deletions": 0
+    },
+    "patch_byte_length": 0,
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "permission_warning": "warning: rejected a tool call that requires confirmation. Running in non-interactive mode. Use --permission-mode dangerous to auto-approve all tools.",
+  "prompt_sha256": "8b467d9f21cdbb6fc6478b933998fc55197b555b76ce28d6bd9ff69b5db5ee8f",
+  "rejected_tool_calls": [
+    {
+      "arguments": {
+        "path": "/agent-workspace/tornado/httputil.py",
+        "pattern": "ResponseStartLine|RequestStartLine|def parse_response_start_line|def parse_request_start_line"
+      },
+      "attempted_operation": "repository inspection",
+      "function_name": "grep",
+      "rejection_message": "Tool call canceled because another tool call (id=exec_8) was rejected",
+      "requested_category": "repository/source inspection",
+      "status": "canceled_after_rejection",
+      "step_id": 13,
+      "tool_call_id": "grep_7"
+    },
+    {
+      "arguments": {
+        "command": "cd /agent-workspace && git log --oneline -5 2>/dev/null | head; python --version; python3 --version; which python python3"
+      },
+      "attempted_operation": "dependency/environment inspection",
+      "function_name": "exec",
+      "rejection_message": "Tool execution was rejected by the user",
+      "requested_category": "shell execution",
+      "status": "rejected",
+      "step_id": 13,
+      "tool_call_id": "exec_8"
+    }
+  ],
+  "run_id": "E001-C05-X",
+  "runner": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "command": [
+      "devin",
+      "--model",
+      "swe-2-max",
+      "--print",
+      "--prompt-file",
+      "/agent-workspace/TASK.md",
+      "--export",
+      "/benchmark/results/runs/experiment-001/E001-C05-X/devin-session-export.json",
+      "--permission-mode",
+      "accept-edits",
+      "--respect-workspace-trust",
+      "false"
+    ],
+    "effective_permission_mode": null,
+    "fusion_enabled": false,
+    "permission_mode": "accept-edits",
+    "returncode": 0,
+    "timed_out": false,
+    "working_directory": "/agent-workspace"
+  },
+  "schema_version": 1,
+  "session_id": "wistful-actress",
+  "termination_reason": "completed",
+  "timing": {
+    "elapsed_seconds": 36.799,
+    "ended_at": "2026-09-15T00:36:42Z",
+    "started_at": "2026-09-15T00:36:05Z"
+  }
+}

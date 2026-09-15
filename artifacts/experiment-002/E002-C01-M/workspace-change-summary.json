@@ -1,0 +1,26 @@
+{
+  "baseline_entry_count": 125,
+  "classification_counts": {
+    "generated_or_environment": 12,
+    "source": 1
+  },
+  "generated_or_environment_files": [
+    "__pycache__/black.cpython-311.pyc",
+    "blib2to3/__pycache__/__init__.cpython-311.pyc",
+    "blib2to3/__pycache__/pygram.cpython-311.pyc",
+    "blib2to3/__pycache__/pytree.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/__init__.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/driver.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/grammar.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/parse.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/pgen.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/token.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/tokenize.cpython-311.pyc",
+    "tests/__pycache__/test_black.cpython-311.pyc"
+  ],
+  "note": "Counts are based on the preserved final patch/file-change record. Full workspace trees and dependency environments are not published.",
+  "observed_changed_entry_count": 13,
+  "source_files": [
+    "black.py"
+  ]
+}

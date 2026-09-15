@@ -1,0 +1,53 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": 1,
+    "fusion_enabled": false,
+    "model": "swe-2-medium",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "subscription_or_usage": {
+      "amount": null,
+      "available": false,
+      "currency": null
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 45690,
+    "total_completion_tokens": 272,
+    "total_prompt_tokens": 50595,
+    "total_steps": 11
+  },
+  "first_step_timestamp": "2026-09-15T00:32:36.229140+00:00",
+  "last_step_timestamp": "2026-09-15T00:32:49.623306+00:00",
+  "model": "swe-2-medium",
+  "patch_empty": true,
+  "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "permission_warning": "warning: rejected a tool call that requires confirmation. Running in non-interactive mode. Use --permission-mode dangerous to auto-approve all tools.",
+  "rejected_tool_calls": [
+    {
+      "arguments": {
+        "command": "python -m unittest -q tornado.test.http1connection_test.HTTP1ConnectionTest.test_http10_no_content_length 2>&1 | tail -20"
+      },
+      "attempted_operation": "target test execution",
+      "function_name": "exec",
+      "rejection_message": "Tool execution was rejected by the user",
+      "requested_category": "shell execution",
+      "status": "rejected",
+      "step_id": 11,
+      "tool_call_id": "exec_3"
+    }
+  ],
+  "schema_version": 1,
+  "session_id": "viridian-porter",
+  "source_step_counts": {
+    "agent": 4,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 4,
+  "tool_calls_by_function": {
+    "exec": 4
+  },
+  "total_steps": 11
+}

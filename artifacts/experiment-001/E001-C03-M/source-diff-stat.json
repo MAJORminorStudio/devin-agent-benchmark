@@ -1,0 +1,16 @@
+{
+  "changed_files": [],
+  "evaluator_task_success": false,
+  "generated_or_environment_files": [],
+  "line_counts": {
+    "additions": 0,
+    "deletions": 0
+  },
+  "patch_byte_length": 0,
+  "patch_is_empty": true,
+  "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "reference_comparison": {
+    "reference_patch_checked_after_session": false
+  },
+  "source_files_changed": []
+}

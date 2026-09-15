@@ -1,0 +1,20 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as 0xdippo@gmail.com.
+
+You're all set. Run [1mdevin[0m to get started.
+The test expects `gen_python_files_in_dir` to skip symlinks that resolve outside `root`, but raise `ValueError` for non-symlinks. Let me reproduce:No network access — I'll create minimal stubs for the missing deps so the test can run. First check what `Report` and module-level usage needs:Now I'll create minimal dependency stubs (no network/pip available) so the test can run:Bug reproduced. Now the fix — catch `ValueError` and ignore the child only when it's a symlink:The regression test passes. `test_broken_symlink` needs real click; let me try apt for real deps instead of stubs:I'll upgrade the `CliRunner` stub to actually invoke `black.main` so related tests can run:Both pass. Run the rest of the directory/include/exclude related tests:Let me try the full test file as a sanity check (many tests exercise only `black`'s internals, not click):Many failures — likely environmental (Python 3.11 vs expected 3.8, stubbed click). Let me confirm by comparing against the unfixed baseline:The stderr redirect missed — unittest writes to stderr. Let me redo the baseline/fixed comparison properly:Identical failure sets before and after — the only change is the regression test now passing. The 34 remaining failures are pre-existing environment issues (this old blib2to3 on Python 3.11 produces different formatting output; real deps aren't installable offline).
+
+Final state of the fix:Done. Summary:
+
+**Bug**: In `gen_python_files_in_dir` (black.py:2947), `child.resolve().relative_to(root)` raised `ValueError` whenever a directory entry resolved outside the root being processed — crashing directory traversal when it contained a symlink pointing outside the project.
+
+**Fix**: Wrapped the path normalization in a `try/except ValueError`. If the entry is a symlink, it's reported via `report.path_ignored` and skipped; otherwise the error is re-raised (matching upstream behavior — a non-symlink resolving outside root is a genuine anomaly).
+
+[black.py:2947-2957](file:///workspace/black.py)
+
+**Verification**: Since the environment lacks pip/network, I created minimal stubs for `click`, `attr`, `appdirs`, `toml` in `/tmp/stubs` to run the suite:
+
+- `test_symlink_out_of_root_directory` — **passes** (previously errored with `ValueError`)
+- Related tests all pass: `test_broken_symlink`, `test_include_exclude`, `test_empty_include`, `test_empty_exclude`, `test_invalid_include_exclude`, `test_write_cache_creates_directory_if_needed`
+- Full suite: 68 tests, 34 failures **identical before and after the fix** — all pre-existing environment issues (this old `blib2to3` grammar parses differently under Python 3.11 vs the pinned 3.8.3); the only delta is the fixed regression test.

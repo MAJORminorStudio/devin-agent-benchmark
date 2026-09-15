@@ -1,0 +1,45 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": "experiment-002",
+    "effective_permission_mode": "Bypass",
+    "fusion_enabled": false,
+    "model": "swe-2-medium",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "permission_mode": "dangerous",
+    "provider_metrics": {
+      "total_cached_tokens": 422145,
+      "total_completion_tokens": 3486,
+      "total_prompt_tokens": 436280,
+      "total_steps": 33
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 422145,
+    "total_completion_tokens": 3486,
+    "total_prompt_tokens": 436280,
+    "total_steps": 33
+  },
+  "first_step_timestamp": "2026-09-15T03:09:55.994611222+00:00",
+  "last_step_timestamp": "2026-09-15T03:11:42.779814674+00:00",
+  "model": "swe-2-medium",
+  "patch_empty": false,
+  "patch_sha256": "6972874bf7cf7317f900c823ace3fc839ee42c16b653fdfe23bef698eb5579b5",
+  "permission_warning": null,
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "shadowed-wedge",
+  "source_step_counts": {
+    "agent": 26,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 25,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 23,
+    "read": 1
+  },
+  "total_steps": 33
+}

@@ -1,0 +1,48 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": "experiment-002",
+    "effective_permission_mode": "Bypass",
+    "fusion_enabled": false,
+    "model": "swe-2-max",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "permission_mode": "dangerous",
+    "provider_metrics": {
+      "total_cached_tokens": 5910875,
+      "total_completion_tokens": 73180,
+      "total_prompt_tokens": 6046229,
+      "total_steps": 91
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 5910875,
+    "total_completion_tokens": 73180,
+    "total_prompt_tokens": 6046229,
+    "total_steps": 91
+  },
+  "first_step_timestamp": "2026-09-15T03:12:56.486723388+00:00",
+  "last_step_timestamp": "2026-09-15T03:34:46.158836842+00:00",
+  "model": "swe-2-max",
+  "patch_empty": false,
+  "patch_sha256": "0e92366995587c2a7a2b2f430ceeeca355c63b9b68dc399db4ccce09e8323184",
+  "permission_warning": null,
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "relieved-wish",
+  "source_step_counts": {
+    "agent": 84,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 135,
+  "tool_calls_by_function": {
+    "edit": 4,
+    "exec": 64,
+    "grep": 1,
+    "read": 18,
+    "todo_write": 3,
+    "write": 45
+  },
+  "total_steps": 91
+}

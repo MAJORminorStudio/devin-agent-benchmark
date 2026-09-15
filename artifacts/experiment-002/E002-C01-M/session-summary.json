@@ -1,0 +1,45 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": "experiment-002",
+    "effective_permission_mode": "Bypass",
+    "fusion_enabled": false,
+    "model": "swe-2-medium",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "permission_mode": "dangerous",
+    "provider_metrics": {
+      "total_cached_tokens": 873193,
+      "total_completion_tokens": 10310,
+      "total_prompt_tokens": 903193,
+      "total_steps": 47
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 873193,
+    "total_completion_tokens": 10310,
+    "total_prompt_tokens": 903193,
+    "total_steps": 47
+  },
+  "first_step_timestamp": "2026-09-15T02:15:49.886160177+00:00",
+  "last_step_timestamp": "2026-09-15T02:20:47.261227968+00:00",
+  "model": "swe-2-medium",
+  "patch_empty": false,
+  "patch_sha256": "821655e93e617df5b527fca8218b264093bdcb6e1c56f70dc8017d8a6d0bc270",
+  "permission_warning": null,
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "electric-afternoon",
+  "source_step_counts": {
+    "agent": 40,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 41,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 34,
+    "read": 6
+  },
+  "total_steps": 47
+}

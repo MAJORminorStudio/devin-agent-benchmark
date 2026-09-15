@@ -1,0 +1,23 @@
+{
+  "changed_files": [
+    "fastapi/__pycache__/routing.cpython-311.pyc",
+    "fastapi/routing.py"
+  ],
+  "evaluator_task_success": true,
+  "generated_or_environment_files": [
+    "fastapi/__pycache__/routing.cpython-311.pyc"
+  ],
+  "line_counts": {
+    "additions": 26,
+    "deletions": 7
+  },
+  "patch_byte_length": 1612,
+  "patch_is_empty": false,
+  "patch_sha256": "a6980526a0cfd2e87d467d9ca3da2c571e151be8763ed115e001a0bb67cd5a25",
+  "reference_comparison": {
+    "reference_patch_checked_after_session": false
+  },
+  "source_files_changed": [
+    "fastapi/routing.py"
+  ]
+}

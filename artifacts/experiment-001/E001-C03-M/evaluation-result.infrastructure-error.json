@@ -1,0 +1,141 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": 1,
+    "fusion_enabled": false,
+    "model": "swe-2-medium",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "subscription_or_usage": {
+      "amount": null,
+      "available": false,
+      "currency": null
+    }
+  },
+  "case_id": "scrapy-3",
+  "condition": "M",
+  "effort_level": "medium",
+  "elapsed_seconds": 27.138,
+  "ended_at": "2026-09-15T00:01:51Z",
+  "evaluation_status": "OK",
+  "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace.",
+  "experiment_case_id": "E001-C03",
+  "experiment_id": "experiment-001",
+  "heldout_tests": {
+    "commands": [
+      {
+        "command": "pytest -q test_heldout.py",
+        "elapsed_seconds": 0.017,
+        "output": "/bin/sh: pytest: command not found\n",
+        "returncode": 127,
+        "status": "fail"
+      }
+    ],
+    "overall": "fail"
+  },
+  "hidden_tests": {
+    "commands": [
+      {
+        "command": "pytest -q test_heldout.py",
+        "elapsed_seconds": 0.017,
+        "output": "/bin/sh: pytest: command not found\n",
+        "returncode": 127,
+        "status": "fail"
+      }
+    ],
+    "overall": "fail"
+  },
+  "interventions": [],
+  "pass": false,
+  "patch": {
+    "changed_files": [],
+    "format": "unified-diff",
+    "line_counts": {
+      "additions": 0,
+      "deletions": 0
+    },
+    "path": "/benchmark/results/runs/experiment-001/E001-C03-M/agent.patch",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prompt": "# Scrapy 3\n\nScrapy's redirect middleware mishandles a relative redirect response in the\ndownloader path. Reproduce the failure with the provided redirect test,\ndiagnose the URL/header handling, implement a focused fix that preserves\nnormal redirects, and run the relevant tests.\n",
+  "reference_comparison": {
+    "reference_patch_checked_after_session": false
+  },
+  "regression_status": "regression",
+  "regression_tests": {
+    "commands": [
+      {
+        "command": "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent",
+        "elapsed_seconds": 0.015,
+        "output": "/bin/sh: pytest: command not found\n",
+        "returncode": 127,
+        "status": "fail"
+      },
+      {
+        "command": "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location",
+        "elapsed_seconds": 0.015,
+        "output": "/bin/sh: pytest: command not found\n",
+        "returncode": 127,
+        "status": "fail"
+      }
+    ],
+    "overall": "fail"
+  },
+  "run_id": "E001-C03-M",
+  "started_at": "2026-09-15T00:01:24Z",
+  "steps": null,
+  "task_success": false,
+  "termination_reason": "completed",
+  "tests_after": {
+    "commands": [
+      {
+        "command": "python -m unittest -q tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest.test_redirect_302_relative",
+        "elapsed_seconds": 0.071,
+        "output": "======================================================================\nERROR: tests (unittest.loader._FailedTest.tests)\n----------------------------------------------------------------------\nImportError: Failed to import test module: tests\nTraceback (most recent call last):\n  File \"/python-runtime/lib/python3.11/unittest/loader.py\", line 162, in loadTestsFromName\n    module = __import__(module_name)\n             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/agent-workspace/tests/__init__.py\", line 43, in <module>\n    import six\nModuleNotFoundError: No module named 'six'\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (errors=1)\n",
+        "returncode": 1,
+        "status": "fail"
+      }
+    ],
+    "overall": "fail"
+  },
+  "tests_before": {
+    "buggy_matches_expected": true,
+    "case_id": "scrapy-3",
+    "expected": {
+      "buggy": "fail",
+      "fixed": "pass"
+    },
+    "fixed_matches_expected": true,
+    "reproducible": true,
+    "sides": {
+      "buggy": {
+        "commands": [
+          {
+            "command": "python -m unittest -q tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest.test_redirect_302_relative",
+            "elapsed_seconds": 0.524,
+            "output": "/tmp/benchmark-env/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n  from cryptography import x509\n======================================================================\nFAIL: test_redirect_302_relative (tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/benchmark/results/runs/phase-1/scrapy-3/verification/buggy/tests/test_downloadermiddleware_redirect.py\", line 118, in test_redirect_302_relative\n    self.assertEqual(req2.url, url3)\nAssertionError: 'http://www.example.com/i8n.example2.com/302' != 'http://i8n.example2.com/302'\n- http://www.example.com/i8n.example2.com/302\n?       ----------------\n+ http://i8n.example2.com/302\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.176s\n\nFAILED (failures=1)\n",
+            "returncode": 1,
+            "status": "fail"
+          }
+        ],
+        "overall": "fail"
+      },
+      "fixed": {
+        "commands": [
+          {
+            "command": "python -m unittest -q tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest.test_redirect_302_relative",
+            "elapsed_seconds": 0.247,
+            "output": "/tmp/benchmark-env/lib/python3.8/site-packages/OpenSSL/SSL.py:16: CryptographyDeprecationWarning: Python 3.8 is no longer supported by the Python core team and support for it is deprecated in cryptography. The next release of cryptography will remove support for Python 3.8.\n  from cryptography import x509\n----------------------------------------------------------------------\nRan 1 test in 0.066s\n\nOK\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      }
+    },
+    "test_command": [
+      "python -m unittest -q tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest.test_redirect_302_relative"
+    ],
+    "verified_at_utc": "2026-09-14T21:51:47Z"
+  }
+}

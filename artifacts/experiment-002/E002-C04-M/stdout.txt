@@ -1,0 +1,14 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as 0xdippo@gmail.com.
+
+You're all set. Run [1mdevin[0m to get started.
+Reproduced: `tqdm(total=10, disable=True)` raises `AttributeError` because the early-return disable branch never sets `self.total`. Fixing by computing total the same way as the normal path.No pytest/nose/pip available. I'll run `test_bool` directly with a minimal `nose` shim.Done. Summary:
+
+**Failure**: `tqdm(total=10, disable=True)` raised `AttributeError: 'tqdm' object has no attribute 'total'` when `bool(t)`/`len(t)` was called.
+
+**Diagnosis**: In `tqdm.__init__`, the `disable` early-return branch (`_tqdm.py:751`) set `iterable`, `n`, etc. but never initialized `self.total`. `__len__` reads `self.total` when `self.iterable` is `None`, so it crashed for `tqdm(total=N, disable=True)`.
+
+**Fix**: Compute `total` in the disabled branch the same way as the normal path — infer `len(iterable)` when `total` is not given — and assign `self.total` before returning. [_tqdm.py:751-763](file:///workspace/tqdm/_tqdm.py)
+
+**Verification**: `test_bool` passes (run directly with a `nose` shim since pytest/nose aren't installed), plus manual checks: `tqdm(total=10/0)`, `trange(10)`, `tqdm([])`, `tqdm([0])` all report correct truthiness with `disable=True`, and `tqdm()` with neither total nor iterable still raises `TypeError`.

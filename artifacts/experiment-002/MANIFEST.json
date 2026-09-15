@@ -1,0 +1,571 @@
+{
+  "container_image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+  "experiment_id": "experiment-002",
+  "generated_at_utc": "2026-09-15T11:22:22.523415+00:00",
+  "proxy_image": "e002-egress-proxy@sha256:adb28774da6dcb69e90bc670bc8942fccc86bf7656b6ce33c7dc2a09c8ccc395",
+  "publication_policy": "Sanitized public derivatives of E001/E002 evidence; no credentials or private machine metadata.",
+  "runs": [
+    {
+      "case_id": "fastapi-3",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 1612,
+          "sha256": "a6980526a0cfd2e87d467d9ca3da2c571e151be8763ed115e001a0bb67cd5a25"
+        },
+        "artifact-hashes.json": {
+          "bytes": 4021,
+          "sha256": "b71f49019b523950837930b6b70b123278629f3c16d585a92946c1c50be85b76"
+        },
+        "devin-session-export.sanitized.json": {
+          "bytes": 143782,
+          "sha256": "4e8f92f6a5d7c69c83035a1c812949b7ff7e138fb14e83e907b1c85b5cf7d326"
+        },
+        "evaluation-result.json": {
+          "bytes": 57927,
+          "sha256": "96bc8d0afa98c9eea6b4209341d88512b412b9399049cad705366a2c5e15ba66"
+        },
+        "prompt.md": {
+          "bytes": 328,
+          "sha256": "b098b5779f11c98fdec3478cd166e40ec178266196577e96ec93ef134de6aef9"
+        },
+        "run-metadata.json": {
+          "bytes": 4021,
+          "sha256": "cb6fa2959e53fc93a586037986c859b4731e6c6c64f538b9f8e50072756e878f"
+        },
+        "session-summary.json": {
+          "bytes": 1363,
+          "sha256": "ed3c62531f4c16c8e0ee9b33f67ff13787fda0e774a1d65976211ef71097ba23"
+        },
+        "source-diff-stat.json": {
+          "bytes": 580,
+          "sha256": "6de6b1fbf73e02885e8c328317c9ebe56e9fc599b778dac255d7b71ced47dd1a"
+        },
+        "stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.txt": {
+          "bytes": 2559,
+          "sha256": "93e6dcb3a7edf572645839d93b8b5e1e2521090a6e2d40bd9d06d14e6ce03d49"
+        },
+        "tool-timeline.json": {
+          "bytes": 75669,
+          "sha256": "88c6b83552b6e22cc6c07258477cd97e0e264d4e4472d691600eefdfd0012e49"
+        },
+        "workspace-change-summary.json": {
+          "bytes": 446,
+          "sha256": "c88609354b6c5c8c24e5962e18ee8590676c8493432f8393eab01df6ff83860a"
+        }
+      },
+      "run_id": "E002-C02-M"
+    },
+    {
+      "case_id": "tqdm-5",
+      "condition": "X",
+      "model": "swe-2-max",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 825,
+          "sha256": "134e4f61496f1d027cbe42059944a6b1733d841e345a3e93e39968d8d747be21"
+        },
+        "artifact-hashes.json": {
+          "bytes": 4308,
+          "sha256": "45f26d7efb1a7cdde9f25d829746f864a14794f356d73608befc1ed229d3847f"
+        },
+        "devin-session-export.sanitized.json": {
+          "bytes": 132217,
+          "sha256": "e07e549026a8df42fbf2491f9d4db355e7abf6e6bf64ffb50089eaf935b96400"
+        },
+        "evaluation-result.json": {
+          "bytes": 14776,
+          "sha256": "d58f32c78aeb05b88bef4e2cc62e03d18412b29a660261fff26515d427b57bc3"
+        },
+        "prompt.md": {
+          "bytes": 215,
+          "sha256": "03df8b7685d38a3fefe570641ab3173dd33ed83ea5739de9263629bade5aabd6"
+        },
+        "run-metadata.json": {
+          "bytes": 4357,
+          "sha256": "2db8faf8e98fec1e7ec91a2720769a04eba5f40721d9b57063bb5c084d3cf55e"
+        },
+        "session-summary.json": {
+          "bytes": 1231,
+          "sha256": "8156cb7571eac9dafbe5dcd307620a1ee08cfa2e32b8d03d27b39419525d1718"
+        },
+        "source-diff-stat.json": {
+          "bytes": 1484,
+          "sha256": "e3c53e86c3147b972b160fecc15218bea9f331da8f9260308cf60402855cc6b9"
+        },
+        "stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.txt": {
+          "bytes": 4251,
+          "sha256": "3e4ab6f17e1d58575a52a45c5d285b4b0e99dab94acccfeec62f594a59c84f24"
+        },
+        "tool-timeline.json": {
+          "bytes": 79070,
+          "sha256": "29fbfe0b2942e38e0ed9d6d010612ad1e2f1db53810675342d8fa37435c84e8e"
+        },
+        "workspace-change-summary.json": {
+          "bytes": 899,
+          "sha256": "e14a9efa51ed869cd8c3f79027dda871e18b7bb0897fe475ed8b4339a343cf4f"
+        }
+      },
+      "run_id": "E002-C04-X"
+    },
+    {
+      "case_id": "black-16",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 1409,
+          "sha256": "821655e93e617df5b527fca8218b264093bdcb6e1c56f70dc8017d8a6d0bc270"
+        },
+        "artifact-hashes.json": {
+          "bytes": 4310,
+          "sha256": "02a7e99a5e9ef2956076fee2d37926dcac1fc5a9c57a7d8d6e4fdb40eb949561"
+        },
+        "devin-session-export.sanitized.json": {
+          "bytes": 163639,
+          "sha256": "13fa9e0725df3bcfd4bd12005bde4a385099d1d7da6b079a5906cf346e4e4e21"
+        },
+        "evaluation-result.json": {
+          "bytes": 9731,
+          "sha256": "c14419b3b450e16c684058a3bcfb3d8f256451963007b5a763e0a5d0aea389c8"
+        },
+        "prompt.md": {
+          "bytes": 368,
+          "sha256": "1efdce3494db5391a7c4d7a0ea505b38d07e10c72952f84c35cbc0c35b92c2f0"
+        },
+        "run-metadata.json": {
+          "bytes": 4667,
+          "sha256": "9a67d7833c606155fcaf443397504d5503dc84dd43c51b2c42945c3f6861d19d"
+        },
+        "session-summary.json": {
+          "bytes": 1208,
+          "sha256": "e8f8f8fd276d0be1deb5e7a8c61c24f8183b50d39eede01e8e1a5112ad186a5b"
+        },
+        "source-diff-stat.json": {
+          "bytes": 1754,
+          "sha256": "c31061ef9e1b7b4a69c8e1155e66543c51c336017da9c5be8f111181648e1641"
+        },
+        "stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.txt": {
+          "bytes": 2830,
+          "sha256": "1ebe509d6b1408ab0abb1f176233534d284c1b3d3a1cb64c5f365e9a9f462fb1"
+        },
+        "tool-timeline.json": {
+          "bytes": 90653,
+          "sha256": "bc5940bb1d95950c9d49711dadd73b7cbf85225532c303bb16e52e2d0bbc2e49"
+        },
+        "workspace-change-summary.json": {
+          "bytes": 1035,
+          "sha256": "b006e8be2eead2e9de358c2a8cab6cd6097d1bc736ba574ba610cf3b177919cc"
+        }
+      },
+      "run_id": "E002-C01-M"
+    },
+    {
+      "case_id": "tornado-13",
+      "condition": "X",
+      "model": "swe-2-max",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 2480,
+          "sha256": "918158b21c59961b6dd27f1cc4bcd257de38557ef8ec6adf45387c49fbb1eb03"
+        },
+        "artifact-hashes.json": {
+          "bytes": 4312,
+          "sha256": "a6ec3c2fb693f9559fd78b563994ee6a8145c8cd868f7cbe941ee9fcbd809646"
+        },
+        "devin-session-export.sanitized.json": {
+          "bytes": 152383,
+          "sha256": "e5ccb05fc5fee1ae943ba67ee2f45390a480067c360ab49e1ef248aa5fc3eff2"
+        },
+        "evaluation-result.json": {
+          "bytes": 10729,
+          "sha256": "e28b8c04248bf419253614d636d8603efaea890730bf66de5ec83f7c9149b85d"
+        },
+        "prompt.md": {
+          "bytes": 296,
+          "sha256": "8b467d9f21cdbb6fc6478b933998fc55197b555b76ce28d6bd9ff69b5db5ee8f"
+        },
+        "run-metadata.json": {
+          "bytes": 5921,
+          "sha256": "28e7d51cd1f98ff01e00b239cafff8d2b2792a138dffba038d57ef06f4afc568"
+        },
+        "session-summary.json": {
+          "bytes": 1212,
+          "sha256": "ae50706eedd2bb3a9c52885902aab688b83f88efcef4f720d18dd861e3e6282d"
+        },
+        "source-diff-stat.json": {
+          "bytes": 4316,
+          "sha256": "20e644c7c934393f2b8e4266f1a84af9c81d587fc44551a1373b920e54b40ded"
+        },
+        "stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.txt": {
+          "bytes": 4563,
+          "sha256": "19b15da1c8d527b9eca95384ed34c562e1cb4ede285211905dbc96910d68d3af"
+        },
+        "tool-timeline.json": {
+          "bytes": 73760,
+          "sha256": "648f216b4e99784a9aa81529d3b3f3b4c6426025b292edab0a56d3da19b5fac6"
+        },
+        "workspace-change-summary.json": {
+          "bytes": 2316,
+          "sha256": "5c47a7228d5ba52086b949f9c7eb6a244835f8cbdfd86839e1c4bc7055fc6a10"
+        }
+      },
+      "run_id": "E002-C05-X"
+    },
+    {
+      "case_id": "scrapy-3",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 2523,
+          "sha256": "5f2065c0e38b075a1878c45b44283503b96da74536a95ebb5526d8c0ea819122"
+        },
+        "artifact-hashes.json": {
+          "bytes": 4313,
+          "sha256": "2a4db4a9ad1019d8cff110eaac3bb4a68d1b1ac770af4f16e9a01dddd00554f3"
+        },
+        "devin-session-export.sanitized.json": {
+          "bytes": 257938,
+          "sha256": "da19cc3b810dc14761324e16d6f46a135aa733af00c894e1e20dc11be85fe710"
+        },
+        "evaluation-result.json": {
+          "bytes": 13130,
+          "sha256": "2b586a2231c56ea2764570eb4de86ae6029863436cf19733eed12e63d628fe03"
+        },
+        "prompt.md": {
+          "bytes": 279,
+          "sha256": "7b7dd4ef2a2b81f6a93bb31b9a46fd34308256fc29a78371efd7ae3792ecc1d0"
+        },
+        "run-metadata.json": {
+          "bytes": 5641,
+          "sha256": "1045ebfe5309bbe883d333a933e60d775ed2f0c78691981b54cd9bfe0c3610d6"
+        },
+        "session-summary.json": {
+          "bytes": 1245,
+          "sha256": "15c6ea22008c2b5397a2964306a9f65d1b88019c674b2b51f66047566f81206c"
+        },
+        "source-diff-stat.json": {
+          "bytes": 3820,
+          "sha256": "82ee8ea6c560a1f2d7f8489aead00d40f02797b653a9640bb872dcbfa6341e73"
+        },
+        "stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.txt": {
+          "bytes": 4499,
+          "sha256": "e9bae1ea5eef3efc4a9ec87e637b5c3d975ca6c7f0e8746a30563d7e06840874"
+        },
+        "tool-timeline.json": {
+          "bytes": 182456,
+          "sha256": "217fa4e93708ee680f9a32d74dd369986617a3d9cc450ed47f4a1f92620bf49d"
+        },
+        "workspace-change-summary.json": {
+          "bytes": 2068,
+          "sha256": "c4f7ef03475e11722aa269554f1a546bad3c90ca232eac7faa43b8345a7e4484"
+        }
+      },
+      "run_id": "E002-C03-M"
+    },
+    {
+      "case_id": "black-16",
+      "condition": "X",
+      "model": "swe-2-max",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 139518,
+          "sha256": "51fec1f580065c1c76e23006eb2d6803418c2f0f20500fbb571c13b3d6cb97fa"
+        },
+        "artifact-hashes.json": {
+          "bytes": 4323,
+          "sha256": "7e93b5b08811e18e433c40b99ef37cbd58e580dafacb373b439f335806731c9d"
+        },
+        "devin-session-export.sanitized.json": {
+          "bytes": 129779,
+          "sha256": "ea3d46d923d4ed6e14c9277cf9d3201a76b8cfb9bdd02901974a4f122bb8bc17"
+        },
+        "evaluation-result.json": {
+          "bytes": 146313,
+          "sha256": "c2e4eb5018c1ddc51f115c5b77a107290884f3661929b4f96f6fdf181509f4b4"
+        },
+        "prompt.md": {
+          "bytes": 368,
+          "sha256": "1efdce3494db5391a7c4d7a0ea505b38d07e10c72952f84c35cbc0c35b92c2f0"
+        },
+        "run-metadata.json": {
+          "bytes": 141243,
+          "sha256": "6bf471929e225510a68ceaeab41a5b5cfcb684a1291bb1a7578748a1af3cd4ca"
+        },
+        "session-summary.json": {
+          "bytes": 1213,
+          "sha256": "42a43b578957f5a4e573185dea5ff9fe644654d469f426d96fd817d881f33be2"
+        },
+        "source-diff-stat.json": {
+          "bytes": 268934,
+          "sha256": "8de9bed32e0481f5bad7ae28fd0328b8688dcf71e48d50f0106399874cb677b3"
+        },
+        "stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.txt": {
+          "bytes": 2251,
+          "sha256": "700dfa0b63820a2238a7cf9af977bfbe1bf7451d8ff57d5e2cd62422f6d53ea8"
+        },
+        "tool-timeline.json": {
+          "bytes": 78598,
+          "sha256": "3e7efb2c04e090eea9a214372394197b925972df8fccb163d496c91edea2c84e"
+        },
+        "workspace-change-summary.json": {
+          "bytes": 134627,
+          "sha256": "e95b5d4f66bbccbaae718a52799c80f19e84f7655de752859650fb1eb1da232e"
+        }
+      },
+      "run_id": "E002-C01-X"
+    },
+    {
+      "case_id": "tqdm-5",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 937,
+          "sha256": "917b7bcc147712d6243df7ee7475f59cf882b991ab5d23e2f50dbf50a4cd1d0e"
+        },
+        "artifact-hashes.json": {
+          "bytes": 4307,
+          "sha256": "46163eb6c72319bedc21591c62c6c83c6c0bd88898cee84abfdc0b4749180cc5"
+        },
+        "devin-session-export.sanitized.json": {
+          "bytes": 80263,
+          "sha256": "5d22d9cafc9bbee7a812ab50882113d5a343e68d555172949bdc3e42dfb00aac"
+        },
+        "evaluation-result.json": {
+          "bytes": 13256,
+          "sha256": "5c517e8f274a0befc028be4b58fed4a78a931ca65e8c229d506f2e9a1c915bcc"
+        },
+        "prompt.md": {
+          "bytes": 215,
+          "sha256": "03df8b7685d38a3fefe570641ab3173dd33ed83ea5739de9263629bade5aabd6"
+        },
+        "run-metadata.json": {
+          "bytes": 4303,
+          "sha256": "0b9478fd4fafeb94c3e61bf1c0ce54b629c75440a3f3881cec5d2fa22883f14d"
+        },
+        "session-summary.json": {
+          "bytes": 1205,
+          "sha256": "ab4bf05319fffb0a35e0027c31bb980e18093c4cbcfb12703495736c4aadd2a4"
+        },
+        "source-diff-stat.json": {
+          "bytes": 1359,
+          "sha256": "09eaefe05f139df423f99e3dd296f56efaf58dd0d1b2e842c2e28318a4f2f0a4"
+        },
+        "stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.txt": {
+          "bytes": 1354,
+          "sha256": "2886e3f189ed2e9fae891c75d1f301d9dd04b922c3a076067d4f6208d9122353"
+        },
+        "tool-timeline.json": {
+          "bytes": 28503,
+          "sha256": "9d84306f5e8c46d4cb4765e838da1def25c302d2f875199c8f84d9b0a7a6c92c"
+        },
+        "workspace-change-summary.json": {
+          "bytes": 836,
+          "sha256": "036e89487ceba8f991d2f9f2672975cd406594e89b4064331b519876e349e705"
+        }
+      },
+      "run_id": "E002-C04-M"
+    },
+    {
+      "case_id": "fastapi-3",
+      "condition": "X",
+      "model": "swe-2-max",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 1629,
+          "sha256": "3747195a3cd9e36b1d4fdbb65b444d8a6901a5e02dd6e40f5bff0724574aaba9"
+        },
+        "artifact-hashes.json": {
+          "bytes": 4311,
+          "sha256": "8cf559e0e9530cdfb724638b4d715521ec45be5ecfec0a8acbe15e6b99d20fa1"
+        },
+        "devin-session-export.sanitized.json": {
+          "bytes": 354910,
+          "sha256": "9d50ade78d2799672e8492c8a99f043a2c74897a1a4e156a53d8975dfb215047"
+        },
+        "evaluation-result.json": {
+          "bytes": 57763,
+          "sha256": "84a4f0344a6ba89aa4f2b669c35afd2237b56356119d112a0b1799c6c4488ab0"
+        },
+        "prompt.md": {
+          "bytes": 328,
+          "sha256": "b098b5779f11c98fdec3478cd166e40ec178266196577e96ec93ef134de6aef9"
+        },
+        "run-metadata.json": {
+          "bytes": 3964,
+          "sha256": "34842cc02146acf01c38578703fdc0495ea6f8bb31afa9028f9523b830fdd41a"
+        },
+        "session-summary.json": {
+          "bytes": 1295,
+          "sha256": "cd9ad9c3673b7fd37229b8286241e16043f8c11d0a19aae2bf86ece065c9c8bb"
+        },
+        "source-diff-stat.json": {
+          "bytes": 476,
+          "sha256": "c58a50f1d109aa7b7ab00c56b33727e51549ffc241ed1a10df012a27c4dad153"
+        },
+        "stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.txt": {
+          "bytes": 6230,
+          "sha256": "6f5adcd34e204ee57810ffdd35bb8aa2941ecc4a340f72858311a89bdbf6b503"
+        },
+        "tool-timeline.json": {
+          "bytes": 229693,
+          "sha256": "d7ceb77e09ce225125c1e660b8e23d910f94dcd58daaf8ff5d83302eea08b927"
+        },
+        "workspace-change-summary.json": {
+          "bytes": 393,
+          "sha256": "fc99a5b4cbce4616ae289de9db41b9de667bb72df561e693117fdf2904a7e616"
+        }
+      },
+      "run_id": "E002-C02-X"
+    },
+    {
+      "case_id": "tornado-13",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 2196,
+          "sha256": "6972874bf7cf7317f900c823ace3fc839ee42c16b653fdfe23bef698eb5579b5"
+        },
+        "artifact-hashes.json": {
+          "bytes": 4312,
+          "sha256": "72e46a51af4ea7ccc894d19eab7617ca535a4c7c81408ecdfcc7d47fa0240356"
+        },
+        "devin-session-export.sanitized.json": {
+          "bytes": 103257,
+          "sha256": "cc78f819d4f4fa398b06656b05ee208e1f4ecedd633d6f24d47085e44be9d45b"
+        },
+        "evaluation-result.json": {
+          "bytes": 10456,
+          "sha256": "7ee662c5268466b98f96e3107582692fd2e73a7857d6bdae1d7765f70f7d9634"
+        },
+        "prompt.md": {
+          "bytes": 296,
+          "sha256": "8b467d9f21cdbb6fc6478b933998fc55197b555b76ce28d6bd9ff69b5db5ee8f"
+        },
+        "run-metadata.json": {
+          "bytes": 5650,
+          "sha256": "a9f745e88f14400807de47f723cc7cf0e27e8a88fabe19349a932e1056ad3c42"
+        },
+        "session-summary.json": {
+          "bytes": 1202,
+          "sha256": "ed2e73047120a6c1118a6a234c8557a947a8e72a47826e39a7b5e59391f952c9"
+        },
+        "source-diff-stat.json": {
+          "bytes": 3778,
+          "sha256": "765fb38b08aa7f1f8e27ba1c5c4a594235552671e6f1bdddd0ebf8f226339c07"
+        },
+        "stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.txt": {
+          "bytes": 1680,
+          "sha256": "dc52ca63a25e77b061336fbcbcebd165014b7ca04af1307bfb6e779f866e5188"
+        },
+        "tool-timeline.json": {
+          "bytes": 47764,
+          "sha256": "cd8f3cb243148fdbee6e84ff1cdd235dedb3ecd6b3db9d59f2273cbb0bdf67a8"
+        },
+        "workspace-change-summary.json": {
+          "bytes": 2047,
+          "sha256": "6d41e016bfdc19e490425fa0b456942ec812a17e82e73752a59bcfab5178cd15"
+        }
+      },
+      "run_id": "E002-C05-M"
+    },
+    {
+      "case_id": "scrapy-3",
+      "condition": "X",
+      "model": "swe-2-max",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 150133,
+          "sha256": "0e92366995587c2a7a2b2f430ceeeca355c63b9b68dc399db4ccce09e8323184"
+        },
+        "artifact-hashes.json": {
+          "bytes": 4325,
+          "sha256": "d589722bc8b1913dda69d8c486349244559f11dabaa475f1e42d09ba51b95640"
+        },
+        "devin-session-export.sanitized.json": {
+          "bytes": 491255,
+          "sha256": "3d969ad969a0161def59d7835d3fd687d1bb6dfdccc983016ad316ead6a49db2"
+        },
+        "evaluation-result.json": {
+          "bytes": 159238,
+          "sha256": "e7e5fcc67e7efb0c822b3eee43d35124463ffdc840451d815233c85b883a80d9"
+        },
+        "prompt.md": {
+          "bytes": 279,
+          "sha256": "7b7dd4ef2a2b81f6a93bb31b9a46fd34308256fc29a78371efd7ae3792ecc1d0"
+        },
+        "run-metadata.json": {
+          "bytes": 151749,
+          "sha256": "ad24f5e6bd14c17c9bf49ab1841b4cb6d3036fe61e28b93c51268dc1138d2fc7"
+        },
+        "session-summary.json": {
+          "bytes": 1256,
+          "sha256": "e146fe63bd0bc9fabd9438eb99e6afa6f5558384eabab33a2aab7d41c50e3d48"
+        },
+        "source-diff-stat.json": {
+          "bytes": 289508,
+          "sha256": "ebe25ac97c162cd264b621120d9489c37e8ccc97466ab55bf623d2585febe362"
+        },
+        "stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout.txt": {
+          "bytes": 7346,
+          "sha256": "93c8ed7febef927c7006d5b3aed12319ec07ec7c33d9598b44c040beb41dac9d"
+        },
+        "tool-timeline.json": {
+          "bytes": 388268,
+          "sha256": "784c67ff64307dabb88bfb34ac1c2967933f8eb8617bef5b3cb66eddda8eb2a4"
+        },
+        "workspace-change-summary.json": {
+          "bytes": 144914,
+          "sha256": "aed7a5115aa7c931811090c4b9a241f466c04d9d7ed062beb3c62a02f2b7943c"
+        }
+      },
+      "run_id": "E002-C03-X"
+    }
+  ],
+  "schema_version": 1,
+  "status": "completed"
+}

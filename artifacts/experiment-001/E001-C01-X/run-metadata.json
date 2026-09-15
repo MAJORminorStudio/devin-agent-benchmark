@@ -1,0 +1,89 @@
+{
+  "case": {
+    "bug_id": "16",
+    "case_id": "black-16",
+    "original_repository": "https://github.com/psf/black",
+    "project": "black",
+    "source": "BugsInPy"
+  },
+  "condition": "X",
+  "effort_level": "max",
+  "empty_patch_proof": {
+    "changed_files": [],
+    "line_counts": {
+      "additions": 0,
+      "deletions": 0
+    },
+    "patch_byte_length": 0,
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluator": {
+    "heldout": "fail",
+    "public": "fail",
+    "regression": "clean",
+    "status": "OK",
+    "task_success": false
+  },
+  "experiment_case_id": "E001-C01",
+  "experiment_id": "experiment-001",
+  "frozen_prompt": "# Black 16\n\nBlack's directory processing behaves incorrectly when a directory contains a\nsymbolic link that resolves outside the directory being processed. Reproduce\nthe failure with the provided regression test, diagnose the cause, implement a\nfocused fix, and run the relevant tests. Keep the change limited to the bug\nand avoid unrelated formatting or refactoring.\n",
+  "interventions": [],
+  "model": "swe-2-max",
+  "patch_proof": {
+    "changed_files": [],
+    "line_counts": {
+      "additions": 0,
+      "deletions": 0
+    },
+    "patch_byte_length": 0,
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "permission_warning": "warning: rejected a tool call that requires confirmation. Running in non-interactive mode. Use --permission-mode dangerous to auto-approve all tools.",
+  "prompt_sha256": "1efdce3494db5391a7c4d7a0ea505b38d07e10c72952f84c35cbc0c35b92c2f0",
+  "rejected_tool_calls": [
+    {
+      "arguments": {
+        "command": "cd /agent-workspace && python --version && python -m unittest -q tests.test_black.BlackTestCase.test_symlink_out_of_root_directory 2>&1 | tail -20"
+      },
+      "attempted_operation": "dependency/environment inspection",
+      "function_name": "exec",
+      "rejection_message": "Tool execution was rejected by the user",
+      "requested_category": "shell execution",
+      "status": "rejected",
+      "step_id": 13,
+      "tool_call_id": "exec_10"
+    }
+  ],
+  "run_id": "E001-C01-X",
+  "runner": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "command": [
+      "devin",
+      "--model",
+      "swe-2-max",
+      "--print",
+      "--prompt-file",
+      "/agent-workspace/TASK.md",
+      "--export",
+      "/benchmark/results/runs/experiment-001/E001-C01-X/devin-session-export.json",
+      "--permission-mode",
+      "accept-edits",
+      "--respect-workspace-trust",
+      "false"
+    ],
+    "effective_permission_mode": null,
+    "fusion_enabled": false,
+    "permission_mode": "accept-edits",
+    "returncode": 0,
+    "timed_out": false,
+    "working_directory": "/agent-workspace"
+  },
+  "schema_version": 1,
+  "session_id": "brash-decimal",
+  "termination_reason": "completed",
+  "timing": {
+    "elapsed_seconds": 50.86,
+    "ended_at": "2026-09-15T00:31:31Z",
+    "started_at": "2026-09-15T00:30:40Z"
+  }
+}

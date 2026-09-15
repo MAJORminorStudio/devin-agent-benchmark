@@ -1,0 +1,45 @@
+{
+  "changed_files": [
+    "__pycache__/black.cpython-311.pyc",
+    "black.py",
+    "blib2to3/__pycache__/__init__.cpython-311.pyc",
+    "blib2to3/__pycache__/pygram.cpython-311.pyc",
+    "blib2to3/__pycache__/pytree.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/__init__.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/driver.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/grammar.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/parse.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/pgen.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/token.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/tokenize.cpython-311.pyc",
+    "tests/__pycache__/test_black.cpython-311.pyc"
+  ],
+  "evaluator_task_success": true,
+  "generated_or_environment_files": [
+    "__pycache__/black.cpython-311.pyc",
+    "blib2to3/__pycache__/__init__.cpython-311.pyc",
+    "blib2to3/__pycache__/pygram.cpython-311.pyc",
+    "blib2to3/__pycache__/pytree.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/__init__.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/driver.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/grammar.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/parse.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/pgen.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/token.cpython-311.pyc",
+    "blib2to3/pgen2/__pycache__/tokenize.cpython-311.pyc",
+    "tests/__pycache__/test_black.cpython-311.pyc"
+  ],
+  "line_counts": {
+    "additions": 22,
+    "deletions": 1
+  },
+  "patch_byte_length": 1409,
+  "patch_is_empty": false,
+  "patch_sha256": "821655e93e617df5b527fca8218b264093bdcb6e1c56f70dc8017d8a6d0bc270",
+  "reference_comparison": {
+    "reference_patch_checked_after_session": false
+  },
+  "source_files_changed": [
+    "black.py"
+  ]
+}

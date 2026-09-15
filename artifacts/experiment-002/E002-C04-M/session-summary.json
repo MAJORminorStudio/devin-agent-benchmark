@@ -1,0 +1,45 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": "experiment-002",
+    "effective_permission_mode": "Bypass",
+    "fusion_enabled": false,
+    "model": "swe-2-medium",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "permission_mode": "dangerous",
+    "provider_metrics": {
+      "total_cached_tokens": 208403,
+      "total_completion_tokens": 2343,
+      "total_prompt_tokens": 220679,
+      "total_steps": 22
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 208403,
+    "total_completion_tokens": 2343,
+    "total_prompt_tokens": 220679,
+    "total_steps": 22
+  },
+  "first_step_timestamp": "2026-09-15T02:48:05.790916545+00:00",
+  "last_step_timestamp": "2026-09-15T02:49:33.640623419+00:00",
+  "model": "swe-2-medium",
+  "patch_empty": false,
+  "patch_sha256": "917b7bcc147712d6243df7ee7475f59cf882b991ab5d23e2f50dbf50a4cd1d0e",
+  "permission_warning": null,
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "bronze-experience",
+  "source_step_counts": {
+    "agent": 15,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 14,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 12,
+    "read": 1
+  },
+  "total_steps": 22
+}

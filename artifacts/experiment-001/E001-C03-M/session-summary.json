@@ -1,0 +1,54 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": 1,
+    "fusion_enabled": false,
+    "model": "swe-2-medium",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "subscription_or_usage": {
+      "amount": null,
+      "available": false,
+      "currency": null
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 31990,
+    "total_completion_tokens": 336,
+    "total_prompt_tokens": 37499,
+    "total_steps": 10
+  },
+  "first_step_timestamp": "2026-09-15T00:01:24.911633+00:00",
+  "last_step_timestamp": "2026-09-15T00:01:49.382075+00:00",
+  "model": "swe-2-medium",
+  "patch_empty": true,
+  "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "permission_warning": "warning: rejected a tool call that requires confirmation. Running in non-interactive mode. Use --permission-mode dangerous to auto-approve all tools.",
+  "rejected_tool_calls": [
+    {
+      "arguments": {
+        "command": "cd /agent-workspace && python -m unittest -q tests.test_downloadermiddleware_redirect.RedirectMiddlewareTest.test_redirect_302_relative 2>&1 | tail -20"
+      },
+      "attempted_operation": "target test execution",
+      "function_name": "exec",
+      "rejection_message": "Tool execution was rejected by the user",
+      "requested_category": "shell execution",
+      "status": "rejected",
+      "step_id": 10,
+      "tool_call_id": "exec_4"
+    }
+  ],
+  "schema_version": 1,
+  "session_id": "torch-enthusiasm",
+  "source_step_counts": {
+    "agent": 3,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 5,
+  "tool_calls_by_function": {
+    "exec": 3,
+    "read": 2
+  },
+  "total_steps": 10
+}

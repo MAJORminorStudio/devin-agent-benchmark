@@ -1,0 +1,89 @@
+{
+  "case": {
+    "bug_id": "3",
+    "case_id": "fastapi-3",
+    "original_repository": "https://github.com/tiangolo/fastapi",
+    "project": "fastapi",
+    "source": "BugsInPy"
+  },
+  "condition": "M",
+  "effort_level": "medium",
+  "empty_patch_proof": {
+    "changed_files": [],
+    "line_counts": {
+      "additions": 0,
+      "deletions": 0
+    },
+    "patch_byte_length": 0,
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "evaluator": {
+    "heldout": "fail",
+    "public": "fail",
+    "regression": "clean",
+    "status": "OK",
+    "task_success": false
+  },
+  "experiment_case_id": "E001-C02",
+  "experiment_id": "experiment-001",
+  "frozen_prompt": "# FastAPI 3\n\nFastAPI response-model serialization mishandles nested response content when\nunset fields and model aliases are involved. Reproduce the failing\nserialization tests, trace the behavior through response validation/encoding,\nimplement a focused fix, and run the relevant tests without changing\nunrelated API behavior.\n",
+  "interventions": [],
+  "model": "swe-2-medium",
+  "patch_proof": {
+    "changed_files": [],
+    "line_counts": {
+      "additions": 0,
+      "deletions": 0
+    },
+    "patch_byte_length": 0,
+    "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "permission_warning": "warning: rejected a tool call that requires confirmation. Running in non-interactive mode. Use --permission-mode dangerous to auto-approve all tools.",
+  "prompt_sha256": "b098b5779f11c98fdec3478cd166e40ec178266196577e96ec93ef134de6aef9",
+  "rejected_tool_calls": [
+    {
+      "arguments": {
+        "command": "cd /agent-workspace && python --version && pip show fastapi pydantic 2>/dev/null | grep -E 'Name|Version'"
+      },
+      "attempted_operation": "dependency/environment inspection",
+      "function_name": "exec",
+      "rejection_message": "Tool execution was rejected by the user",
+      "requested_category": "shell execution",
+      "status": "rejected",
+      "step_id": 10,
+      "tool_call_id": "exec_4"
+    }
+  ],
+  "run_id": "E001-C02-M",
+  "runner": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "command": [
+      "devin",
+      "--model",
+      "swe-2-medium",
+      "--print",
+      "--prompt-file",
+      "/agent-workspace/TASK.md",
+      "--export",
+      "/benchmark/results/runs/experiment-001/E001-C02-M/devin-session-export.json",
+      "--permission-mode",
+      "accept-edits",
+      "--respect-workspace-trust",
+      "false"
+    ],
+    "effective_permission_mode": null,
+    "fusion_enabled": false,
+    "permission_mode": "accept-edits",
+    "returncode": 0,
+    "timed_out": false,
+    "working_directory": "/agent-workspace"
+  },
+  "schema_version": 1,
+  "session_id": "cautious-coriander",
+  "termination_reason": "completed",
+  "timing": {
+    "elapsed_seconds": 20.993,
+    "ended_at": "2026-09-15T00:37:22Z",
+    "started_at": "2026-09-15T00:37:00Z"
+  }
+}

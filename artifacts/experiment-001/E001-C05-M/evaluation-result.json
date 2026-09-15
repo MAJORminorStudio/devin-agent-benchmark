@@ -1,0 +1,188 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": 1,
+    "fusion_enabled": false,
+    "model": "swe-2-medium",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "subscription_or_usage": {
+      "amount": null,
+      "available": false,
+      "currency": null
+    }
+  },
+  "case_id": "tornado-13",
+  "condition": "M",
+  "effort_level": "medium",
+  "elapsed_seconds": 13.878,
+  "ended_at": "2026-09-15T00:32:49Z",
+  "evaluation_status": "OK",
+  "evaluator_environment": {
+    "case_id": "tornado-13",
+    "environment_root": "/evaluator-env/tornado-13",
+    "frozen_command_tools": [
+      "python"
+    ],
+    "problems": [],
+    "python": "/evaluator-env/tornado-13/bin/python",
+    "record": {
+      "case_id": "tornado-13",
+      "commands": {
+        "freeze": [
+          "uv",
+          "pip",
+          "freeze",
+          "--python",
+          "/evaluator-env/tornado-13/bin/python"
+        ],
+        "install": [
+          "uv",
+          "pip",
+          "install",
+          "--exact",
+          "--python",
+          "/evaluator-env/tornado-13/bin/python"
+        ],
+        "venv": [
+          "uv",
+          "venv",
+          "--no-project",
+          "--clear",
+          "--python",
+          "3.9",
+          "/evaluator-env/tornado-13"
+        ]
+      },
+      "created_at_utc": "2026-09-15T00:23:08Z",
+      "environment_root": "/evaluator-env/tornado-13",
+      "install": [],
+      "outputs": {
+        "freeze": "Using Python 3.9.25 environment at: /evaluator-env/tornado-13\n",
+        "install": "(no third-party packages required)\n",
+        "venv": "Using CPython 3.9.25\nCreating virtual environment at: /evaluator-env/tornado-13\nActivate with: source /evaluator-env/tornado-13/bin/activate\n"
+      },
+      "python_version": "Python 3.9.25",
+      "record_version": 1,
+      "requested_python": "3.9",
+      "spec_sha256": "59112b908d105fdc5122cc217efd6a939c57edff6016035153838ae1a35b84b4"
+    },
+    "record_path": "/evaluator-env/tornado-13/.evaluator-environment.json",
+    "requested_python": "3.9",
+    "spec_sha256": "59112b908d105fdc5122cc217efd6a939c57edff6016035153838ae1a35b84b4",
+    "status": "pass"
+  },
+  "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace.",
+  "experiment_case_id": "E001-C05",
+  "experiment_id": "experiment-001",
+  "heldout_tests": {
+    "commands": [
+      {
+        "command": "python -m unittest -q test_heldout",
+        "elapsed_seconds": 0.088,
+        "output": "======================================================================\nERROR: test_http10_bodyless_response_without_length_is_read (test_heldout.HTTP10ResponseBehaviorTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/agent-workspace/tornado/testing.py\", line 132, in __call__\n    result = self.orig_method(*args, **kwargs)\n  File \"/agent-workspace/tornado/testing.py\", line 523, in post_coroutine\n    return self.io_loop.run_sync(\n  File \"/agent-workspace/tornado/ioloop.py\", line 453, in run_sync\n    return future_cell[0].result()\n  File \"/agent-workspace/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/agent-workspace/tornado/gen.py\", line 1014, in run\n    yielded = self.gen.throw(*exc_info)\n  File \"/user/.local/share/uv/python/cpython-3.9-macos-aarch64-none/lib/python3.9/types.py\", line 217, in throw\n    return self.__wrapped.throw(tp, *rest)\n  File \"/benchmark/evaluation/experiment-001/tornado-13/test_heldout.py\", line 59, in test_http10_bodyless_response_without_length_is_read\n    yield connection.read_response(Delegate())\n  File \"/agent-workspace/tornado/gen.py\", line 1008, in run\n    value = future.result()\n  File \"/agent-workspace/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/agent-workspace/tornado/gen.py\", line 1017, in run\n    yielded = self.gen.send(value)\n  File \"/agent-workspace/tornado/http1connection.py\", line 181, in _read_message\n    self._disconnect_on_finish = not self._can_keep_alive(\n  File \"/agent-workspace/tornado/http1connection.py\", line 484, in _can_keep_alive\n    or start_line.method in (\"HEAD\", \"GET\")):\nAttributeError: 'ResponseStartLine' object has no attribute 'method'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+        "returncode": 1,
+        "status": "fail"
+      }
+    ],
+    "overall": "fail"
+  },
+  "hidden_tests": {
+    "commands": [
+      {
+        "command": "python -m unittest -q test_heldout",
+        "elapsed_seconds": 0.088,
+        "output": "======================================================================\nERROR: test_http10_bodyless_response_without_length_is_read (test_heldout.HTTP10ResponseBehaviorTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/agent-workspace/tornado/testing.py\", line 132, in __call__\n    result = self.orig_method(*args, **kwargs)\n  File \"/agent-workspace/tornado/testing.py\", line 523, in post_coroutine\n    return self.io_loop.run_sync(\n  File \"/agent-workspace/tornado/ioloop.py\", line 453, in run_sync\n    return future_cell[0].result()\n  File \"/agent-workspace/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/agent-workspace/tornado/gen.py\", line 1014, in run\n    yielded = self.gen.throw(*exc_info)\n  File \"/user/.local/share/uv/python/cpython-3.9-macos-aarch64-none/lib/python3.9/types.py\", line 217, in throw\n    return self.__wrapped.throw(tp, *rest)\n  File \"/benchmark/evaluation/experiment-001/tornado-13/test_heldout.py\", line 59, in test_http10_bodyless_response_without_length_is_read\n    yield connection.read_response(Delegate())\n  File \"/agent-workspace/tornado/gen.py\", line 1008, in run\n    value = future.result()\n  File \"/agent-workspace/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/agent-workspace/tornado/gen.py\", line 1017, in run\n    yielded = self.gen.send(value)\n  File \"/agent-workspace/tornado/http1connection.py\", line 181, in _read_message\n    self._disconnect_on_finish = not self._can_keep_alive(\n  File \"/agent-workspace/tornado/http1connection.py\", line 484, in _can_keep_alive\n    or start_line.method in (\"HEAD\", \"GET\")):\nAttributeError: 'ResponseStartLine' object has no attribute 'method'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+        "returncode": 1,
+        "status": "fail"
+      }
+    ],
+    "overall": "fail"
+  },
+  "interventions": [],
+  "pass": false,
+  "patch": {
+    "changed_files": [],
+    "format": "unified-diff",
+    "line_counts": {
+      "additions": 0,
+      "deletions": 0
+    },
+    "path": "/benchmark/results/runs/experiment-001/E001-C05-M/agent.patch",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "prompt": "# Tornado 13\n\nTornado's HTTP/1.x connection handling makes an incorrect keep-alive decision\nfor a response without an explicit content length. Reproduce the failure with\nthe provided HTTP connection test, diagnose the protocol-state handling,\nimplement a focused fix, and run the relevant tests.\n",
+  "reference_comparison": {
+    "reference_patch_checked_after_session": false
+  },
+  "regression_status": "clean",
+  "regression_tests": {
+    "commands": [
+      {
+        "command": "python -m unittest -q tornado.test.httputil_test",
+        "elapsed_seconds": 0.09,
+        "output": "----------------------------------------------------------------------\nRan 30 tests in 0.001s\n\nOK\n",
+        "returncode": 0,
+        "status": "pass"
+      }
+    ],
+    "overall": "pass"
+  },
+  "run_id": "E001-C05-M",
+  "started_at": "2026-09-15T00:32:35Z",
+  "steps": null,
+  "task_success": false,
+  "termination_reason": "completed",
+  "tests_after": {
+    "commands": [
+      {
+        "command": "python -m unittest -q tornado.test.http1connection_test.HTTP1ConnectionTest.test_http10_no_content_length",
+        "elapsed_seconds": 0.118,
+        "output": "======================================================================\nERROR: test_http10_no_content_length (tornado.test.http1connection_test.HTTP1ConnectionTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/agent-workspace/tornado/testing.py\", line 132, in __call__\n    result = self.orig_method(*args, **kwargs)\n  File \"/agent-workspace/tornado/testing.py\", line 523, in post_coroutine\n    return self.io_loop.run_sync(\n  File \"/agent-workspace/tornado/ioloop.py\", line 453, in run_sync\n    return future_cell[0].result()\n  File \"/agent-workspace/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/agent-workspace/tornado/gen.py\", line 1014, in run\n    yielded = self.gen.throw(*exc_info)\n  File \"/user/.local/share/uv/python/cpython-3.9-macos-aarch64-none/lib/python3.9/types.py\", line 217, in throw\n    return self.__wrapped.throw(tp, *rest)\n  File \"/agent-workspace/tornado/test/http1connection_test.py\", line 58, in test_http10_no_content_length\n    yield conn.read_response(Delegate())\n  File \"/agent-workspace/tornado/gen.py\", line 1008, in run\n    value = future.result()\n  File \"/agent-workspace/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/agent-workspace/tornado/gen.py\", line 1017, in run\n    yielded = self.gen.send(value)\n  File \"/agent-workspace/tornado/http1connection.py\", line 181, in _read_message\n    self._disconnect_on_finish = not self._can_keep_alive(\n  File \"/agent-workspace/tornado/http1connection.py\", line 484, in _can_keep_alive\n    or start_line.method in (\"HEAD\", \"GET\")):\nAttributeError: 'ResponseStartLine' object has no attribute 'method'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+        "returncode": 1,
+        "status": "fail"
+      }
+    ],
+    "overall": "fail"
+  },
+  "tests_before": {
+    "buggy_matches_expected": true,
+    "case_id": "tornado-13",
+    "expected": {
+      "buggy": "fail",
+      "fixed": "pass"
+    },
+    "fixed_matches_expected": true,
+    "reproducible": true,
+    "sides": {
+      "buggy": {
+        "commands": [
+          {
+            "command": "python -m unittest -q tornado.test.http1connection_test.HTTP1ConnectionTest.test_http10_no_content_length",
+            "elapsed_seconds": 0.243,
+            "output": "======================================================================\nERROR: test_http10_no_content_length (tornado.test.http1connection_test.HTTP1ConnectionTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/testing.py\", line 132, in __call__\n    result = self.orig_method(*args, **kwargs)\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/testing.py\", line 523, in post_coroutine\n    return self.io_loop.run_sync(\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/ioloop.py\", line 453, in run_sync\n    return future_cell[0].result()\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1014, in run\n    yielded = self.gen.throw(*exc_info)\n  File \"/user/.local/share/uv/python/cpython-3.9.25-macos-aarch64-none/lib/python3.9/types.py\", line 217, in throw\n    return self.__wrapped.throw(tp, *rest)\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/test/http1connection_test.py\", line 58, in test_http10_no_content_length\n    yield conn.read_response(Delegate())\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1008, in run\n    value = future.result()\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1017, in run\n    yielded = self.gen.send(value)\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/http1connection.py\", line 181, in _read_message\n    self._disconnect_on_finish = not self._can_keep_alive(\n  File \"/benchmark/results/runs/phase-1/tornado-13/verification/buggy/tornado/http1connection.py\", line 484, in _can_keep_alive\n    or start_line.method in (\"HEAD\", \"GET\")):\nAttributeError: 'ResponseStartLine' object has no attribute 'method'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+            "returncode": 1,
+            "status": "fail"
+          }
+        ],
+        "overall": "fail"
+      },
+      "fixed": {
+        "commands": [
+          {
+            "command": "python -m unittest -q tornado.test.http1connection_test.HTTP1ConnectionTest.test_http10_no_content_length",
+            "elapsed_seconds": 0.111,
+            "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      }
+    },
+    "test_command": [
+      "python -m unittest -q tornado.test.http1connection_test.HTTP1ConnectionTest.test_http10_no_content_length"
+    ],
+    "verified_at_utc": "2026-09-14T21:50:18Z"
+  }
+}
