@@ -1,0 +1,60 @@
+{
+  "case_id": "E004-N04",
+  "changed_files": [
+    "src/signalhub/subscriptions.py"
+  ],
+  "evaluated_at_utc": "2026-09-15T23:58:29.512759+00:00",
+  "evaluation_status": "OK",
+  "evaluation_version": 1,
+  "experiment_id": "experiment-004",
+  "heldout": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E004-N04",
+      "-p",
+      "test_behavior.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass"
+  },
+  "patch": {
+    "additions": 1,
+    "deletions": 1,
+    "sha256": "bf76442b4d08c1bef4791e0fc134b792731f5fbd32b1a512f3299a5e6902d0e1"
+  },
+  "public": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass"
+  },
+  "reference_patch_compared": true,
+  "regression": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E004-N04",
+      "-p",
+      "test_regression.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass"
+  },
+  "task_success": true
+}

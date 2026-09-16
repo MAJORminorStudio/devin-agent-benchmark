@@ -1,0 +1,53 @@
+{
+  "experiment_id": "experiment-002",
+  "configuration_version": 1,
+  "parent_experiment": "experiment-001",
+  "frozen_at": "2026-09-15",
+  "freeze_status": "frozen-ready-for-launch",
+  "question": "Does Devin solve the same five real BugsInPy bugs when autonomous tool use is enabled inside a disposable isolated execution environment?",
+  "agent": {
+    "name": "Devin",
+    "cli_version": "3000.10.21 (611c1cba)",
+    "model_family": "SWE-2",
+    "permission_mode": "dangerous",
+    "effective_permission_mode": "Bypass",
+    "fusion": "disabled",
+    "operating_mode": "local Docker Linux/arm64 container",
+    "container_image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "proxy_image": "e002-egress-proxy:1@sha256:adb28774da6dcb69e90bc670bc8942fccc86bf7656b6ce33c7dc2a09c8ccc395",
+    "platform": "linux/arm64",
+    "workspace_mount": "single sanitized workspace, read-write",
+    "artifact_mount": "fresh output directory, read-write",
+    "credential_mount": "one read-only Devin credentials.toml file",
+    "host_home_mount": false,
+    "control_repository_mount": false,
+    "docker_socket_mount": false,
+    "privileged": false,
+    "network": {
+      "agent_network": "e002-internal",
+      "egress_proxy": "http://egress-proxy:3128",
+      "allowlist": ["api.devin.ai", "app.devin.ai", "server.codeium.com"],
+      "dependency_installation_inside_agent": false
+    }
+  },
+  "inherited_from_e001": {
+    "cases": ["black-16", "fastapi-3", "scrapy-3", "tqdm-5", "tornado-13"],
+    "prompts": "prompts/experiment-001/*.md, byte identity verified before each run",
+    "heldout_tests": "evaluation/experiment-001/<case>/test_heldout.py",
+    "regression_suites": "evaluation/experiment-001/<case>/metadata.json",
+    "task_success_definition": "held-out target tests pass, required public tests pass, and no disqualifying regression",
+    "intervention_policy": "zero substantive assistance",
+    "conditions": {"M": "swe-2-medium", "X": "swe-2-max"}
+  },
+  "changes_from_e001": [
+    "Use dangerous/Bypass so all required Devin tools auto-approve in noninteractive mode.",
+    "Run inside disposable Linux/arm64 Docker containers on Docker Desktop.",
+    "Expose only the sanitized workspace, fresh artifacts directory, and one read-only Devin credential file.",
+    "Use an internal agent network plus allowlisted egress proxy for Devin service communication."
+  ],
+  "billing": {
+    "requires_runner_confirmation": ["--execute", "--confirm-paid"],
+    "unexpected_charge_policy": "stop before accepting any charge"
+  },
+  "limits": {"session_timeout_seconds": 3600, "retries": 0, "parallel_cases": 1}
+}

@@ -1,0 +1,13 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The bug: `ProtocolError` events report `wire_size=0`, so bytes consumed by malformed frames are never returned to the flow window — the window drains until valid commands hit backpressure. I'll fix the decoder to report the actual consumed bytes.Fixed. The decoder emitted `ProtocolError` events with `wire_size=0`, so `ProtocolSession.receive` never credited the consumed bytes back to the `FlowWindow`. Each malformed frame permanently drained the window until valid commands were rejected with `backpressure`.
+
+Changes in `src/wire_relay/framing.py`:
+
+- `frame-too-large` errors now report `wire_size=HEADER` (the 4 bytes actually consumed before resync).
+- `invalid-payload` errors now report `wire_size=HEADER + length` (the full bad frame consumed).
+
+Frame order, fragmentation handling, router dispatch, and close semantics are untouched. Test suite passes.

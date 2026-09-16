@@ -1,0 +1,23 @@
+{
+  "final_metrics": {
+    "cached": 1694674,
+    "completion": 24998,
+    "prompt": 1749247
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "oval-ocelot",
+  "steps": 53,
+  "tool_calls": 52,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 18,
+    "grep": 4,
+    "read": 15,
+    "web_search": 3,
+    "webfetch": 11
+  }
+}

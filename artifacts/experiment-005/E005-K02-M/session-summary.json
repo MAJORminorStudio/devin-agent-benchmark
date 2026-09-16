@@ -1,0 +1,27 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 1282624,
+    "total_completion_tokens": 6693,
+    "total_prompt_tokens": 1306855,
+    "total_steps": 54
+  },
+  "first_observable_timestamp": "2026-09-16T03:07:27.868796798+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T03:10:15.750378084+00:00",
+  "model": "swe-2-medium",
+  "observable_steps": 48,
+  "patch_sha256": "8de8d046231c631d1229852bf52f0dee64f78fbf5f07bbea53e3fb647826f5e0",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "mesquite-trail",
+  "steps": 54,
+  "tool_calls": 49,
+  "tool_calls_by_function": {
+    "edit": 3,
+    "exec": 36,
+    "get_output": 1,
+    "grep": 2,
+    "read": 7
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "case": {
+    "bug_id": null,
+    "case_id": "work-queue",
+    "project": "E006 synthetic work-queue"
+  },
+  "condition": "X",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_case_id": "E006-H02",
+  "experiment_id": "experiment-006",
+  "failure_forensics": null,
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "cpus": 4,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed_to_agent": false,
+    "evaluator_started_after_container_closed": true,
+    "fusion": "disabled",
+    "image": "devin-e006:3000.10.21-r7@sha256:7557a0bc640492d8f77f271ebafc6402733fa0ba843c344f74ab613b94416699",
+    "memory": "4g",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "pids_limit": 512,
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 17,
+    "tokens": {
+      "cached": 256886,
+      "completion": 26742,
+      "prompt": 291431
+    },
+    "tool_calls": 18,
+    "tool_calls_by_function": {
+      "edit": 3,
+      "exec": 5,
+      "read": 9,
+      "write": 1
+    }
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "bytes": 2849,
+    "files_changed": [
+      "src/work_queue/__pycache__/engine.cpython-38.pyc",
+      "src/work_queue/engine.py"
+    ],
+    "generated_or_environment_files": [
+      "src/work_queue/__pycache__/engine.cpython-38.pyc"
+    ],
+    "lines_added": 25,
+    "lines_deleted": 12,
+    "sha256": "06d9e301aa7a45e10eb6e9449aeb931b63b80d54631d299f46bcc6064df89de2",
+    "source_files_changed": [
+      "src/work_queue/engine.py"
+    ]
+  },
+  "prompt_sha256": "a0ca878941de1f1a69c892d3391fd4834dba0acbe1b5c2f980e4f4e44395edb1",
+  "provenance": "newly-constructed-withheld",
+  "retries": 0,
+  "run_id": "E006-H02-X",
+  "run_index": 4,
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, raw machine paths, and full workspaces are excluded.",
+  "session_id": "snowy-scissor",
+  "termination": {
+    "reason": "completed",
+    "runner_returncode": 0,
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T16:32:51.123501+00:00",
+    "started_at_utc": "2026-09-16T16:19:41.709687+00:00",
+    "wall_time_seconds": 789.4168522499967
+  },
+  "workspace_churn": {
+    "changed_files": 2,
+    "generated_or_environment_files": 1,
+    "source_files": 1
+  }
+}

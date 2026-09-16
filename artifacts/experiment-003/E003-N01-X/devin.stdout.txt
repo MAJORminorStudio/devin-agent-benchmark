@@ -1,0 +1,13 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the repository structure.The bug is visible already: `discover_python_files` checks containment with `str(resolved).startswith(str(base))`, so a sibling like `project-cache` passes the prefix check. Let me reproduce it with the test suite first.Reproduced — the symlinked `generated.py` resolving into sibling `project-cache/` passes the string-prefix check. The fix is to use a real path containment check instead of `startswith`.Fixed and verified.
+
+**Root cause:** `discover_python_files` used `str(resolved).startswith(str(base))` for the project-boundary check in `src/asset_index/discovery.py`. A symlink inside the project pointing at the sibling directory `project-cache/` resolved to `/tmp/.../project-cache/generated.py`, which string-prefix-matches `/tmp/.../project` — so it was indexed.
+
+**Before:** test failed — returned `['generated.py', 'main.py']` instead of `['main.py']`.
+**After:** test passes.
+
+**Fix (one line):** replaced the string prefix test with `resolved.is_relative_to(base)`, a path-component-wise containment check. Both paths are already resolved, so it's exact; file symlinks pointing *inside* the project are still kept, and in-project files are unaffected. `is_relative_to` needs Python 3.9+, and the module already uses 3.10+ syntax (`str | Path`). No API or dependency changes.

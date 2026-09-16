@@ -1,0 +1,21 @@
+{
+  "byte_counts": {
+    "added_bytes": 1738,
+    "deleted_bytes": 1867
+  },
+  "changed_files": [
+    "src/feature_plan/resolver.py",
+    "src/feature_plan/service.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 5,
+    "deletions": 8
+  },
+  "sha256": "0857469b7b76e45cb3668c0f3811cb672b865eee5482ea1a4f160180cf2884cc",
+  "source_files_changed": [
+    "src/feature_plan/resolver.py",
+    "src/feature_plan/service.py"
+  ],
+  "workspace_churn_files": 2
+}

@@ -1,0 +1,81 @@
+{
+  "case_id": "E005-H02",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-005",
+  "failure_summary": "Held-out behavior failed because cancellation was recorded as terminal but the CancelledError was not retained as the job's error provenance; public and regression suites passed.",
+  "heldout": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-H02",
+          "-p",
+          "test_behavior.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.072,
+        "returncode": 1,
+        "status": "fail",
+        "timed_out": false
+      }
+    ],
+    "overall": "fail"
+  },
+  "patch": {
+    "additions": 7,
+    "changed_files": [
+      "src/work_queue/executor.py"
+    ],
+    "deletions": 1,
+    "sha256": "5c551c21d5e2b579effb7f2154a507e6c19013301487e9ba3a6d08df83c2d41e"
+  },
+  "public": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "elapsed_seconds": 0.063,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "regression": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-H02",
+          "-p",
+          "test_regression.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.061,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "run_id": "E005-H02-X",
+  "schema_version": 1,
+  "task_success": false
+}

@@ -1,0 +1,15 @@
+--- a/src/taskqueue/resources.py
++++ b/src/taskqueue/resources.py
+@@ -45,8 +45,10 @@
+ 
+     def _return(self, worker: Worker) -> None:
+         self._in_use.discard(worker.worker_id)
+-        if worker.healthy:
+-            self._available.append(worker)
++        if not worker.healthy:
++            worker = Worker(self._next_id)
++            self._next_id += 1
++        self._available.append(worker)
+ 
+     def available(self) -> int:
+         return len(self._available)

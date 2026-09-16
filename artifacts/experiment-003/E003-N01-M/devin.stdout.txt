@@ -1,0 +1,12 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+Bug reproduced — `generated.py` from the sibling `project-cache` dir passes the `startswith` check since `"…/project-cache/…"` shares the `"…/project"` string prefix. Fixing with a proper path containment check:Fixed. The bug was in [discovery.py:10](file:///workspace/src/asset_index/discovery.py): `str(resolved).startswith(str(base))` is a string-prefix check, so a file resolving to `/tmp/.../project-cache/generated.py` was treated as inside `/tmp/.../project`. Replaced it with `Path.is_relative_to`, which compares path components rather than characters.
+
+Verification:
+- Before: `test_files_outside_project_are_not_indexed` failed — `generated.py` (outside via symlink) was indexed.
+- After: test passes; ordinary in-project files like `main.py` are still discovered.
+
+Note pytest isn't installed here, so I ran the suite via `PYTHONPATH=src python3 -m unittest discover -s tests`.

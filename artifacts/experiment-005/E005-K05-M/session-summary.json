@@ -1,0 +1,25 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 229969,
+    "total_completion_tokens": 3353,
+    "total_prompt_tokens": 250038,
+    "total_steps": 22
+  },
+  "first_observable_timestamp": "2026-09-16T01:43:53.333419547+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T01:45:10.134442305+00:00",
+  "model": "swe-2-medium",
+  "observable_steps": 16,
+  "patch_sha256": "8768dcc885489b2cb270605ad2833378f0da5ba875ded0a35fd07b34b9e84b7f",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "polite-factory",
+  "steps": 22,
+  "tool_calls": 18,
+  "tool_calls_by_function": {
+    "edit": 2,
+    "exec": 11,
+    "read": 5
+  }
+}

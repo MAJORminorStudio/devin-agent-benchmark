@@ -1,0 +1,10 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The bug is in `CompensationLog.rollback`: it runs compensations in registration order, but a saga must undo steps in reverse. When the outbox publish fails, `inventory.release` runs first while the order is still "pending", and `release` refuses to release a non-cancelled order — so nothing gets rolled back.Fixed. The bug was in `CompensationLog.rollback` at [transaction.py:13-15](file:///workspace/src/order_flow/transaction.py) — it ran compensations in registration order (FIFO) instead of reverse order (LIFO).
+
+When `outbox.publish` failed, rollback executed `inventory.release` first while the order was still `"pending"`. `Inventory.release` refuses to release stock for a non-cancelled order and raised `InventoryError`, so the order was never cancelled and the payment authorization was never voided.
+
+Now rollback runs in reverse: `orders.cancel` → `billing.void` → `inventory.release` (which lazily reads the order status and sees `"cancelled"`). The success path and declined-payment behavior are unchanged — the test suite passes.

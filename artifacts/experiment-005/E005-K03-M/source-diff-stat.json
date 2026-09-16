@@ -1,0 +1,19 @@
+{
+  "byte_counts": {
+    "added_bytes": 10083,
+    "deleted_bytes": 9621
+  },
+  "changed_files": [
+    "tornado/platform/asyncio.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 8,
+    "deletions": 0
+  },
+  "sha256": "1bd305f79188a1f696ad88002dd2547e02c9c03be7db0bfa2c66f44335bdd12c",
+  "source_files_changed": [
+    "tornado/platform/asyncio.py"
+  ],
+  "workspace_churn_files": 1
+}

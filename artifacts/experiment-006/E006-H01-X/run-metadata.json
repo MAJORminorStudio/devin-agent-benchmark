@@ -1,0 +1,97 @@
+{
+  "case": {
+    "bug_id": null,
+    "case_id": "feature-store",
+    "project": "E006 synthetic feature-store"
+  },
+  "condition": "X",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_case_id": "E006-H01",
+  "experiment_id": "experiment-006",
+  "failure_forensics": null,
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "cpus": 4,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed_to_agent": false,
+    "evaluator_started_after_container_closed": true,
+    "fusion": "disabled",
+    "image": "devin-e006:3000.10.21-r7@sha256:7557a0bc640492d8f77f271ebafc6402733fa0ba843c344f74ab613b94416699",
+    "memory": "4g",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "pids_limit": 512,
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 18,
+    "tokens": {
+      "cached": 203449,
+      "completion": 12431,
+      "prompt": 227234
+    },
+    "tool_calls": 19,
+    "tool_calls_by_function": {
+      "edit": 2,
+      "exec": 7,
+      "read": 9,
+      "write": 1
+    }
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "bytes": 1864,
+    "files_changed": [
+      "src/feature_store/__pycache__/cache.cpython-38.pyc",
+      "src/feature_store/__pycache__/resolver.cpython-38.pyc",
+      "src/feature_store/cache.py",
+      "src/feature_store/resolver.py"
+    ],
+    "generated_or_environment_files": [
+      "src/feature_store/__pycache__/cache.cpython-38.pyc",
+      "src/feature_store/__pycache__/resolver.cpython-38.pyc"
+    ],
+    "lines_added": 13,
+    "lines_deleted": 8,
+    "sha256": "3dbf93025111308038a59dca1d01d108ef6f5e2c9cbfefa1ab0beb829678b032",
+    "source_files_changed": [
+      "src/feature_store/cache.py",
+      "src/feature_store/resolver.py"
+    ]
+  },
+  "prompt_sha256": "68782aa92078dab734092e25acfc61532e916169be6708c50dbe32756d69e608",
+  "provenance": "newly-constructed-withheld",
+  "retries": 0,
+  "run_id": "E006-H01-X",
+  "run_index": 7,
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, raw machine paths, and full workspaces are excluded.",
+  "session_id": "turquoise-verdict",
+  "termination": {
+    "reason": "completed",
+    "runner_returncode": 0,
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T16:50:36.034545+00:00",
+    "started_at_utc": "2026-09-16T16:43:46.451478+00:00",
+    "wall_time_seconds": 409.5821003339952
+  },
+  "workspace_churn": {
+    "changed_files": 4,
+    "generated_or_environment_files": 2,
+    "source_files": 2
+  }
+}

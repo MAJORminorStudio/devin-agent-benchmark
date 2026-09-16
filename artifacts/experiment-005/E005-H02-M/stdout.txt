@@ -1,0 +1,14 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The bug is in the executor: `asyncio.CancelledError` is a `BaseException`, so it bypasses `except Exception`, leaving the record in RUNNING. I'll handle it explicitly.Fixed. The bug: `asyncio.CancelledError` inherits from `BaseException`, so it slipped past the executor's `except Exception` handler — the worker slot was released in `finally` but the job record stayed `RUNNING`.
+
+Change in `src/work_queue/executor.py:17-19`: catch `CancelledError` explicitly, mark the record `CANCELLED` via `complete`, then re-raise so the task still reports as cancelled. Success/failure paths are untouched.
+
+Test passes (note: `python` isn't on this PATH, used `python3`):
+
+```
+test_cancelling_a_running_job_releases_it_as_cancelled ... ok
+```

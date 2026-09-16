@@ -1,0 +1,92 @@
+{
+  "case": {
+    "bug_id": null,
+    "case_id": "profile-runtime",
+    "project": "E006 synthetic profile-runtime"
+  },
+  "condition": "X",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_case_id": "E006-H05",
+  "experiment_id": "experiment-006",
+  "failure_forensics": null,
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "cpus": 4,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed_to_agent": false,
+    "evaluator_started_after_container_closed": true,
+    "fusion": "disabled",
+    "image": "devin-e006:3000.10.21-r7@sha256:7557a0bc640492d8f77f271ebafc6402733fa0ba843c344f74ab613b94416699",
+    "memory": "4g",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "pids_limit": 512,
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 14,
+    "tokens": {
+      "cached": 90311,
+      "completion": 2023,
+      "prompt": 98109
+    },
+    "tool_calls": 13,
+    "tool_calls_by_function": {
+      "edit": 1,
+      "exec": 3,
+      "read": 9
+    }
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "bytes": 579,
+    "files_changed": [
+      "src/profile_runtime/__pycache__/cache.cpython-38.pyc",
+      "src/profile_runtime/cache.py"
+    ],
+    "generated_or_environment_files": [
+      "src/profile_runtime/__pycache__/cache.cpython-38.pyc"
+    ],
+    "lines_added": 4,
+    "lines_deleted": 2,
+    "sha256": "b2795eedbbae4428392036c4a9f75daf152d55e46227e4a20c0c1af116adcdba",
+    "source_files_changed": [
+      "src/profile_runtime/cache.py"
+    ]
+  },
+  "prompt_sha256": "3f620340f0ede03388af1305922ed10b50eafb521d963cd62ad20ec52a05340a",
+  "provenance": "newly-constructed-withheld",
+  "retries": 0,
+  "run_id": "E006-H05-X",
+  "run_index": 8,
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, raw machine paths, and full workspaces are excluded.",
+  "session_id": "diligent-hardcover",
+  "termination": {
+    "reason": "completed",
+    "runner_returncode": 0,
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T16:53:02.276893+00:00",
+    "started_at_utc": "2026-09-16T16:50:47.599682+00:00",
+    "wall_time_seconds": 134.67686433391646
+  },
+  "workspace_churn": {
+    "changed_files": 2,
+    "generated_or_environment_files": 1,
+    "source_files": 1
+  }
+}

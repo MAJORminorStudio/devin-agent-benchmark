@@ -1,0 +1,67 @@
+{
+  "case_id": "E003-N04",
+  "changed_files": [
+    "src/event_stream/session.py"
+  ],
+  "evaluated_at_utc": "2026-09-15T21:56:31.755195+00:00",
+  "evaluation_status": "OK",
+  "evaluation_version": 1,
+  "experiment_id": "experiment-003",
+  "heldout": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E003-N04",
+      "-p",
+      "test_behavior.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_close_is_idempotent_and_waits_for_cleanup (test_behavior.SessionBehaviorTests.test_close_is_idempotent_and_waits_for_cleanup) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+    "stdout": ""
+  },
+  "metadata_project": "event-stream",
+  "patch": {
+    "additions": 9,
+    "deletions": 6,
+    "sha256": "41eeb48e4952be5a01e095a35f9af144d5a042a126d5b9e209bc947930ee1d6f"
+  },
+  "public": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_close_waits_for_worker_cleanup (test_session.SessionTests.test_close_waits_for_worker_cleanup) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "reference_patch_compared": false,
+  "regression": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E003-N04",
+      "-p",
+      "test_regression.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_close_before_start_is_safe (test_regression.SessionRegressionTests.test_close_before_start_is_safe) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "task_success": true
+}

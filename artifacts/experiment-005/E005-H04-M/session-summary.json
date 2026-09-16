@@ -1,0 +1,25 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 94784,
+    "total_completion_tokens": 1089,
+    "total_prompt_tokens": 100776,
+    "total_steps": 14
+  },
+  "first_observable_timestamp": "2026-09-16T03:25:04.137306176+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T03:25:18.951784794+00:00",
+  "model": "swe-2-medium",
+  "observable_steps": 8,
+  "patch_sha256": "50e657161f7392b006ee0feeec2513c09b282f97d0cf00240487fd2dc7fe1f57",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "pastoral-sunshine",
+  "steps": 14,
+  "tool_calls": 12,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 3,
+    "read": 8
+  }
+}

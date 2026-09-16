@@ -1,0 +1,42 @@
+{
+  "baseline_entry_count": 473,
+  "classification_counts": {
+    "generated_or_environment": 28,
+    "source": 1
+  },
+  "generated_or_environment_files": [
+    "scrapy/__pycache__/__init__.cpython-311.pyc",
+    "scrapy/__pycache__/_monkeypatches.cpython-311.pyc",
+    "scrapy/__pycache__/exceptions.cpython-311.pyc",
+    "scrapy/__pycache__/link.cpython-311.pyc",
+    "scrapy/downloadermiddlewares/__pycache__/__init__.cpython-311.pyc",
+    "scrapy/downloadermiddlewares/__pycache__/redirect.cpython-311.pyc",
+    "scrapy/http/__pycache__/__init__.cpython-311.pyc",
+    "scrapy/http/__pycache__/common.cpython-311.pyc",
+    "scrapy/http/__pycache__/headers.cpython-311.pyc",
+    "scrapy/http/request/__pycache__/__init__.cpython-311.pyc",
+    "scrapy/http/request/__pycache__/form.cpython-311.pyc",
+    "scrapy/http/request/__pycache__/json_request.cpython-311.pyc",
+    "scrapy/http/request/__pycache__/rpc.cpython-311.pyc",
+    "scrapy/http/response/__pycache__/__init__.cpython-311.pyc",
+    "scrapy/http/response/__pycache__/html.cpython-311.pyc",
+    "scrapy/http/response/__pycache__/text.cpython-311.pyc",
+    "scrapy/http/response/__pycache__/xml.cpython-311.pyc",
+    "scrapy/utils/__pycache__/__init__.cpython-311.pyc",
+    "scrapy/utils/__pycache__/curl.cpython-311.pyc",
+    "scrapy/utils/__pycache__/datatypes.cpython-311.pyc",
+    "scrapy/utils/__pycache__/decorators.cpython-311.pyc",
+    "scrapy/utils/__pycache__/deprecate.cpython-311.pyc",
+    "scrapy/utils/__pycache__/python.cpython-311.pyc",
+    "scrapy/utils/__pycache__/response.cpython-311.pyc",
+    "scrapy/utils/__pycache__/trackref.cpython-311.pyc",
+    "scrapy/utils/__pycache__/url.cpython-311.pyc",
+    "tests/__pycache__/__init__.cpython-311.pyc",
+    "tests/__pycache__/test_downloadermiddleware_redirect.cpython-311.pyc"
+  ],
+  "note": "Counts are based on the preserved final patch/file-change record. Full workspace trees and dependency environments are not published.",
+  "observed_changed_entry_count": 29,
+  "source_files": [
+    "scrapy/downloadermiddlewares/redirect.py"
+  ]
+}

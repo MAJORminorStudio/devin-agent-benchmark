@@ -1,0 +1,113 @@
+{
+  "excluded_local_artifacts": [
+    {
+      "artifact_class": "raw runner/evaluator/session/output metadata",
+      "public_replacement": "run-metadata.json, evaluation-result.json, tool-timeline.json, session-summary.json, stdout.txt, stderr.txt",
+      "reason": "Unchanged files contain machine-specific host paths and execution metadata; sanitized derivatives are published."
+    },
+    {
+      "artifact_class": "full agent workspace and baseline/generated dependency trees",
+      "public_replacement": "agent.patch, source-diff-stat.json, workspace-change-summary.json, sanitized session export",
+      "reason": "Contains excessive generated dependency/bytecode data and machine-specific paths; not needed to reconstruct the experiment."
+    }
+  ],
+  "published_artifacts": {
+    "agent.patch": {
+      "bytes": 2196,
+      "sha256": "6972874bf7cf7317f900c823ace3fc839ee42c16b653fdfe23bef698eb5579b5"
+    },
+    "devin-session-export.sanitized.json": {
+      "bytes": 103257,
+      "sha256": "cc78f819d4f4fa398b06656b05ee208e1f4ecedd633d6f24d47085e44be9d45b"
+    },
+    "evaluation-result.json": {
+      "bytes": 10456,
+      "sha256": "7ee662c5268466b98f96e3107582692fd2e73a7857d6bdae1d7765f70f7d9634"
+    },
+    "prompt.md": {
+      "bytes": 296,
+      "sha256": "8b467d9f21cdbb6fc6478b933998fc55197b555b76ce28d6bd9ff69b5db5ee8f"
+    },
+    "run-metadata.json": {
+      "bytes": 5650,
+      "sha256": "a9f745e88f14400807de47f723cc7cf0e27e8a88fabe19349a932e1056ad3c42"
+    },
+    "session-summary.json": {
+      "bytes": 1202,
+      "sha256": "ed2e73047120a6c1118a6a234c8557a947a8e72a47826e39a7b5e59391f952c9"
+    },
+    "source-diff-stat.json": {
+      "bytes": 3778,
+      "sha256": "765fb38b08aa7f1f8e27ba1c5c4a594235552671e6f1bdddd0ebf8f226339c07"
+    },
+    "stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.txt": {
+      "bytes": 1680,
+      "sha256": "dc52ca63a25e77b061336fbcbcebd165014b7ca04af1307bfb6e779f866e5188"
+    },
+    "tool-timeline.json": {
+      "bytes": 47764,
+      "sha256": "cd8f3cb243148fdbee6e84ff1cdd235dedb3ecd6b3db9d59f2273cbb0bdf67a8"
+    },
+    "workspace-change-summary.json": {
+      "bytes": 2047,
+      "sha256": "6d41e016bfdc19e490425fa0b456942ec812a17e82e73752a59bcfab5178cd15"
+    }
+  },
+  "raw_local_artifacts": {
+    "agent-workspace.baseline.json": {
+      "bytes": 10162,
+      "sha256": "a26a98343086d2023a7d836e70198f9d0ffb798eb49d7b2e46355f804731a3ce"
+    },
+    "agent-workspace.export.json": {
+      "bytes": 856,
+      "sha256": "088a906a99cfc4e738dec847bf0bb1beb8765ab5fdc1871ea62329acd7891690"
+    },
+    "agent-workspace.leak-audit.json": {
+      "bytes": 438,
+      "sha256": "97373491d4de2732021e793e93aafad4e14f0bad52c9c46c3396c6013bee3c0e"
+    },
+    "agent.patch": {
+      "bytes": 2196,
+      "sha256": "6972874bf7cf7317f900c823ace3fc839ee42c16b653fdfe23bef698eb5579b5"
+    },
+    "container-run-result.json": {
+      "bytes": 3581,
+      "sha256": "1bc1259bd66f0b47e1adfb080284a505b2c8fa29d516574e730db654d1162744"
+    },
+    "devin-session-export.json": {
+      "bytes": 123331,
+      "sha256": "b4ebeaadbb6ac866887bc90422e70fa0b361c338bdd65b7aa37d90ba5850d902"
+    },
+    "devin.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "devin.stdout.txt": {
+      "bytes": 1680,
+      "sha256": "dc52ca63a25e77b061336fbcbcebd165014b7ca04af1307bfb6e779f866e5188"
+    },
+    "evaluation-result.json": {
+      "bytes": 11382,
+      "sha256": "f0002e85ec079cc4b260fdf697d35065584a7b93e631d00f751cc197da4bb8a3"
+    },
+    "runner-adapter.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "runner-adapter.stdout.txt": {
+      "bytes": 3581,
+      "sha256": "1bc1259bd66f0b47e1adfb080284a505b2c8fa29d516574e730db654d1162744"
+    },
+    "runner-result.json": {
+      "bytes": 3580,
+      "sha256": "dcff99a3694b8b8c5be3d5a35c270eee415dd924a33e16eb2a262885ee3b7660"
+    }
+  },
+  "run_id": "E002-C05-M",
+  "sanitization": "Only high-confidence secrets and machine-specific/private paths were redacted; benchmark source, commands, tool behavior, failures, patches, and outcomes were retained.",
+  "schema_version": 1
+}

@@ -1,0 +1,23 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace structure.I found the issue. Both reuse checks only track shallow revisions:
+
+- `FeatureBuilder.build` keys the published plan on `graph.version(name)` — the plan's own version only, ignoring dependency updates (`service.py:26-29`).
+- `PlanResolver.resolve` builds its cache key from `name` plus **direct** dependencies only, so a change two levels down never invalidates the entry (`resolver.py:17-20`).
+
+The graph already exposes `revisions_for(name)`, which returns versions for `name` plus its full transitive dependency chain — clearly the intended fix. I'll wire both reuse checks to it.Test passes. Let me sanity-check the preserved behaviors: reuse identity, unrelated-definition isolation, deeper invalidation, and error paths.That assertion was flawed — `build`'s own reuse path short-circuits before the resolver runs, so no cache hit is recorded (which is correct). Let me exercise the resolver cache properly: after a mid-level change, resolving `app` should still hit the cached `leaf` resolution.All checks pass. Final verification of the changed files and the test suite:Done. The staleness came from both reuse checks keying on shallow revision data:
+
+- `FeatureBuilder.build` compared only `graph.version(name)` — the plan's own version — so a leaf change never invalidated a published plan. It now compares the full revision map from `graph.revisions_for(name)` (`service.py:26-31`).
+- `PlanResolver.resolve` built its cache key from `name` plus direct dependencies, so a cached intermediate like `service` went stale when `leaf` changed. It now keys on the same transitive revision map (`resolver.py:17`).
+
+`revisions_for` already existed on the graph and returns versions for a definition plus its entire transitive dependency chain, so both layers now invalidate on any upstream change while still reusing identical plans (same object, cache hits preserved).
+
+Verified:
+- Test suite passes (`test_published_plan_reflects_a_changed_leaf`)
+- Reuse intact: repeat `build` returns the same `PublishedPlan`; unrelated updates don't invalidate; resolver cache still hits for unchanged subtrees
+- Errors intact: duplicate register, unknown update/build, missing dependencies → `DependencyError`; bad templates still raise `KeyError`; public API unchanged
+
+One side effect worth noting: a dependency cycle introduced via `update` now raises `DependencyError("dependency cycle")` from `revisions_for` instead of a `RecursionError` — still a `DependencyError`, just surfaced earlier.

@@ -1,0 +1,23 @@
+{
+  "case_id": "E006-H01",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-006",
+  "failure_forensics": "Regression cycle rejection remained a RecursionError instead of the required ValueError; public and held-out behavior passed.",
+  "heldout": {
+    "status": "pass"
+  },
+  "matches_human_reference_patch": false,
+  "public": {
+    "returncodes": [
+      0
+    ],
+    "status": "pass"
+  },
+  "reference_patch_compared": true,
+  "regression": {
+    "status": "fail"
+  },
+  "run_id": "E006-H01-M",
+  "schema_version": 1,
+  "task_success": false
+}

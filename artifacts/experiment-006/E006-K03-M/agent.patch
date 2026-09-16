@@ -1,0 +1,21 @@
+--- a/black.py
++++ b/black.py
+@@ -892,6 +892,18 @@
+             }:
+                 return NO
+ 
++        elif prevp.type == token.RIGHTSHIFT:
++            if prevp.parent and (
++                prevp.parent.type == syms.print_stmt
++                or (
++                    prevp.parent.type == syms.shift_expr
++                    and isinstance(prevp.prev_sibling, Leaf)
++                    and prevp.prev_sibling.type == token.NAME
++                    and prevp.prev_sibling.value == 'print'
++                )
++            ):
++                return NO
++
+         elif prevp.type == token.COLON:
+             if prevp.parent and prevp.parent.type in {syms.subscript, syms.sliceop}:
+                 return NO

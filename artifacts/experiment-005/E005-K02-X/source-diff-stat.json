@@ -1,0 +1,19 @@
+{
+  "byte_counts": {
+    "added_bytes": 40340,
+    "deleted_bytes": 40207
+  },
+  "changed_files": [
+    "luigi/scheduler.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 5,
+    "deletions": 0
+  },
+  "sha256": "d4e6591c4abe8c2fae09ea6ee9322849d4704fd6d16b04a2460348ff1160ec89",
+  "source_files_changed": [
+    "luigi/scheduler.py"
+  ],
+  "workspace_churn_files": 1
+}

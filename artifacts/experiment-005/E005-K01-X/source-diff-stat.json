@@ -1,0 +1,25 @@
+{
+  "byte_counts": {
+    "added_bytes": 92859,
+    "deleted_bytes": 85838
+  },
+  "changed_files": [
+    "fastapi/applications.py",
+    "fastapi/encoders.py",
+    "fastapi/openapi/utils.py",
+    "fastapi/routing.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 144,
+    "deletions": 15
+  },
+  "sha256": "7d8b18e8c67ca572b8931b43527ac65ba83bb794970603d37be256be85ffbbf4",
+  "source_files_changed": [
+    "fastapi/applications.py",
+    "fastapi/encoders.py",
+    "fastapi/openapi/utils.py",
+    "fastapi/routing.py"
+  ],
+  "workspace_churn_files": 4
+}

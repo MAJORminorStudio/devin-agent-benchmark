@@ -1,0 +1,146 @@
+{
+  "case": {
+    "bug_id": "6",
+    "case_id": "black-6",
+    "project": "black"
+  },
+  "condition": "X",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_case_id": "E006-K01",
+  "experiment_id": "experiment-006",
+  "failure_forensics": null,
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "cpus": 4,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed_to_agent": false,
+    "evaluator_started_after_container_closed": true,
+    "fusion": "disabled",
+    "image": "devin-e006:3000.10.21-r7@sha256:7557a0bc640492d8f77f271ebafc6402733fa0ba843c344f74ab613b94416699",
+    "memory": "4g",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "pids_limit": 512,
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 69,
+    "tokens": {
+      "cached": 4011582,
+      "completion": 66196,
+      "prompt": 4173900
+    },
+    "tool_calls": 80,
+    "tool_calls_by_function": {
+      "edit": 13,
+      "exec": 44,
+      "read": 18,
+      "todo_write": 2,
+      "webfetch": 3
+    }
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "bytes": 9908,
+    "files_changed": [
+      ".pytest_cache/.gitignore",
+      ".pytest_cache/README.md",
+      ".pytest_cache/v/cache/lastfailed",
+      ".pytest_cache/v/cache/nodeids",
+      ".pytest_cache/v/cache/stepwise",
+      "__pycache__/black.cpython-38.pyc",
+      "__pycache__/blackd.cpython-38.pyc",
+      "black.py",
+      "blib2to3/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/__pycache__/pygram.cpython-38.pyc",
+      "blib2to3/__pycache__/pytree.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/driver.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/grammar.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/parse.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/pgen.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/token.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/tokenize.cpython-38.pyc",
+      "blib2to3/pgen2/driver.py",
+      "blib2to3/pgen2/grammar.py",
+      "blib2to3/pgen2/grammar.pyi",
+      "blib2to3/pgen2/tokenize.py",
+      "blib2to3/pgen2/tokenize.pyi",
+      "blib2to3/pygram.py",
+      "blib2to3/pygram.pyi",
+      "tests/__pycache__/test_black.cpython-38-PYTEST.pyc",
+      "tests/data/async_as_identifier.py",
+      "tests/data/python37.py"
+    ],
+    "generated_or_environment_files": [
+      ".pytest_cache/.gitignore",
+      ".pytest_cache/README.md",
+      ".pytest_cache/v/cache/lastfailed",
+      ".pytest_cache/v/cache/nodeids",
+      ".pytest_cache/v/cache/stepwise",
+      "__pycache__/black.cpython-38.pyc",
+      "__pycache__/blackd.cpython-38.pyc",
+      "blib2to3/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/__pycache__/pygram.cpython-38.pyc",
+      "blib2to3/__pycache__/pytree.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/driver.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/grammar.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/parse.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/pgen.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/token.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/tokenize.cpython-38.pyc",
+      "tests/__pycache__/test_black.cpython-38-PYTEST.pyc"
+    ],
+    "lines_added": 73,
+    "lines_deleted": 20,
+    "sha256": "99b19774b6ab01393f658e24895f673f95667ea9032190af183cb42dae7f71da",
+    "source_files_changed": [
+      "black.py",
+      "blib2to3/pgen2/driver.py",
+      "blib2to3/pgen2/grammar.py",
+      "blib2to3/pgen2/grammar.pyi",
+      "blib2to3/pgen2/tokenize.py",
+      "blib2to3/pgen2/tokenize.pyi",
+      "blib2to3/pygram.py",
+      "blib2to3/pygram.pyi",
+      "tests/data/async_as_identifier.py",
+      "tests/data/python37.py"
+    ]
+  },
+  "prompt_sha256": "3d725880dcb7f233ee3ed60fcab2744dcc0200fb81d537ce4971fba7cd868781",
+  "provenance": "historical-public",
+  "retries": 0,
+  "run_id": "E006-K01-X",
+  "run_index": 19,
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, raw machine paths, and full workspaces are excluded.",
+  "session_id": "shocking-ricotta",
+  "termination": {
+    "reason": "completed",
+    "runner_returncode": 0,
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T18:47:37.828751+00:00",
+    "started_at_utc": "2026-09-16T18:17:32.364282+00:00",
+    "wall_time_seconds": 1805.4598848749883
+  },
+  "workspace_churn": {
+    "changed_files": 28,
+    "generated_or_environment_files": 18,
+    "source_files": 10
+  }
+}

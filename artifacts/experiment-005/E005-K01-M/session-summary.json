@@ -1,0 +1,29 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 5767754,
+    "total_completion_tokens": 22481,
+    "total_prompt_tokens": 5919779,
+    "total_steps": 81
+  },
+  "first_observable_timestamp": "2026-09-16T01:55:57.544323924+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T02:07:34.204003052+00:00",
+  "model": "swe-2-medium",
+  "observable_steps": 75,
+  "patch_sha256": "ba0351317e0531e4ef8abc11829b19b63640062e7f94f9d89eec7c135d9956ff",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "trail-study",
+  "steps": 81,
+  "tool_calls": 132,
+  "tool_calls_by_function": {
+    "edit": 26,
+    "exec": 28,
+    "find_file_by_name": 4,
+    "grep": 19,
+    "read": 26,
+    "web_search": 22,
+    "webfetch": 7
+  }
+}

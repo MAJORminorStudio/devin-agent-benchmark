@@ -1,0 +1,30 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace to understand the codebase structure.Let me read the rest of the file, especially `_can_keep_alive` and `_read_body`.Now let me look at the `ResponseStartLine`/`RequestStartLine` definitions in httputil to see what attributes exist.Now let me reproduce the failure. The test reads an `HTTP/1.0` response with no `Content-Length` — in `_can_keep_alive` (line 484), the elif branch evaluates `start_line.method`, but a `ResponseStartLine` namedtuple only has `version`, `code`, `reason` — no `method`. Let me confirm by running the test.This codebase targets Python 3.7 but only 3.11 is installed. Let me check for other Python installations or environment managers.Only Python 3.11 is available and the codebase targets 3.7. Let me check for pip/ensurepip and see what compatibility shims I'd need to run the test locally.Tornado 4.4-dev era. Rather than modify the repo for Python 3.11 compat, I'll use a `sitecustomize.py` shim via PYTHONPATH. Let me check what the default IOLoop is in this version and any other compat issues.Default IOLoop is epoll-based and `Future` is Tornado's own — asyncio isn't in the test path. Let me create a compat shim and try running the test.Bug reproduced: `AttributeError: 'ResponseStartLine' object has no attribute 'method'`. 
+
+**Diagnosis:** In `_can_keep_alive` [http1connection.py:474-486](file:///workspace/tornado/http1connection.py), when the client reads an `HTTP/1.0` response with no `Content-Length` and no chunked `Transfer-Encoding`, the elif condition falls through to `start_line.method`. But on the client side `start_line` is a `ResponseStartLine(version, code, reason)` — the `method` attribute only exists on `RequestStartLine` (server side). HEAD/GET requests have an implicit empty body so they can keep-alive on 1.0; a response without length framing cannot.
+
+The upstream fix uses `getattr` so the method check only applies to request start lines:Test passes. Now let me run the full test module plus related HTTP tests to check for regressions.All 31 tests pass. Let me run the httpserver tests too since they exercise `_can_keep_alive` on the server side with `RequestStartLine`.Many failures — likely environment-related, not my change. Let me check the failure types and verify against a baseline (git stash).These look like pre-existing Python 3.11 incompatibilities (SSLv3, ExpectLog timing, etc.), not related to my change. Let me confirm by running the same suite on the unmodified baseline.No git repo. I'll manually revert, run baseline, then re-apply.Identical 26 failures on the unmodified baseline — pre-existing environment issues. Let me verify the failure sets match exactly, then re-apply my fix.Fix re-applied. Final verification — run the case test command and the related modules:All done. Here's a summary of the work:
+
+## Bug
+`HTTP1Connection._can_keep_alive` crashed with `AttributeError: 'ResponseStartLine' object has no attribute 'method'` when a client read an **HTTP/1.0** response with no `Content-Length`. In the elif branch, `start_line.method` is only valid for `RequestStartLine` (server side); a response start line is `ResponseStartLine(version, code, reason)`.
+
+## Reproduction
+The environment only has Python 3.11 while this is a 3.7-era checkout, so I ran tests with a `sitecustomize` shim (`collections.abc` aliases) via `PYTHONPATH` — no repo files touched. The provided test reproduced the crash:
+
+```
+File ".../http1connection.py", line 484, in _can_keep_alive
+    or start_line.method in ("HEAD", "GET")):
+AttributeError: 'ResponseStartLine' object has no attribute 'method'
+```
+
+## Fix
+[http1connection.py:482-486](file:///workspace/tornado/http1connection.py) — replaced `start_line.method` with `getattr(start_line, 'method', None)`, matching upstream. For an HTTP/1.0 response without length framing the method check now evaluates to `None`, so `_can_keep_alive` returns `False` → `_disconnect_on_finish = True`, and the client correctly treats the body as read-until-close then disconnects. Server-side behavior (RequestStartLine has `method`) is unchanged.
+
+## Tests
+- `test_http10_no_content_length`: **PASS**
+- Full `http1connection_test` + `httputil_test`: 31 tests, **all pass**
+- `httpserver_test`: 26 errors, byte-for-byte identical before and after the fix — pre-existing Python 3.11 environment incompatibilities (SSLv3/ExpectLog/timeouts), unrelated to this change.

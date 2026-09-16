@@ -1,0 +1,11 @@
+--- a/src/record_export/convert.py
++++ b/src/record_export/convert.py
+@@ -41,5 +41,7 @@
+     if isinstance(value, list):
+         return [to_plain(item, aliases=aliases, omit_none=omit_none) for item in value]
+     if isinstance(value, tuple):
+-        return value
++        return tuple(
++            to_plain(item, aliases=aliases, omit_none=omit_none) for item in value
++        )
+     return value

@@ -1,0 +1,121 @@
+{
+  "case": {
+    "bug_id": "23",
+    "case_id": "black-23",
+    "project": "black"
+  },
+  "condition": "X",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_case_id": "E006-K03",
+  "experiment_id": "experiment-006",
+  "failure_forensics": null,
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "cpus": 4,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed_to_agent": false,
+    "evaluator_started_after_container_closed": true,
+    "fusion": "disabled",
+    "image": "devin-e006:3000.10.21-r7@sha256:7557a0bc640492d8f77f271ebafc6402733fa0ba843c344f74ab613b94416699",
+    "memory": "4g",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "pids_limit": 512,
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 53,
+    "tokens": {
+      "cached": 1694674,
+      "completion": 24998,
+      "prompt": 1749247
+    },
+    "tool_calls": 52,
+    "tool_calls_by_function": {
+      "edit": 1,
+      "exec": 18,
+      "grep": 4,
+      "read": 15,
+      "web_search": 3,
+      "webfetch": 11
+    }
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "bytes": 513,
+    "files_changed": [
+      "__pycache__/black.cpython-38.pyc",
+      "black.py",
+      "blib2to3/Grammar3.8.3.final.0.pickle",
+      "blib2to3/PatternGrammar3.8.3.final.0.pickle",
+      "blib2to3/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/__pycache__/pygram.cpython-38.pyc",
+      "blib2to3/__pycache__/pytree.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/driver.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/grammar.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/parse.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/pgen.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/token.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/tokenize.cpython-38.pyc",
+      "tests/__pycache__/test_black.cpython-38.pyc"
+    ],
+    "generated_or_environment_files": [
+      "__pycache__/black.cpython-38.pyc",
+      "blib2to3/Grammar3.8.3.final.0.pickle",
+      "blib2to3/PatternGrammar3.8.3.final.0.pickle",
+      "blib2to3/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/__pycache__/pygram.cpython-38.pyc",
+      "blib2to3/__pycache__/pytree.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/driver.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/grammar.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/parse.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/pgen.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/token.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/tokenize.cpython-38.pyc",
+      "tests/__pycache__/test_black.cpython-38.pyc"
+    ],
+    "lines_added": 11,
+    "lines_deleted": 0,
+    "sha256": "c8ea65f2ede06201ceb7a718a21b869e03515740c823e6e5a5f964a860bcac92",
+    "source_files_changed": [
+      "black.py"
+    ]
+  },
+  "prompt_sha256": "a4c4029243b3d1d5b4e93ecd542087c8b3d89781400a3192d4a853406a3cfd0a",
+  "provenance": "historical-public",
+  "retries": 0,
+  "run_id": "E006-K03-X",
+  "run_index": 16,
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, raw machine paths, and full workspaces are excluded.",
+  "session_id": "oval-ocelot",
+  "termination": {
+    "reason": "completed",
+    "runner_returncode": 0,
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T17:51:47.824026+00:00",
+    "started_at_utc": "2026-09-16T17:38:56.645853+00:00",
+    "wall_time_seconds": 771.1954051249195
+  },
+  "workspace_churn": {
+    "changed_files": 15,
+    "generated_or_environment_files": 14,
+    "source_files": 1
+  }
+}

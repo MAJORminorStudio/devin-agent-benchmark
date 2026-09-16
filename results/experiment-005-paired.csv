@@ -1,0 +1,11 @@
+case_id,provenance,medium_run,max_run,medium_success,max_success,outcome,wall_time_delta_seconds,steps_delta,tool_calls_delta,prompt_tokens_delta,completion_tokens_delta,cached_tokens_delta,same_source_patch,visible_heldout_disagreement
+E005-H01,newly-constructed-withheld,E005-H01-M,E005-H01-X,1,1,both success,90.108298,3,6,4848,67,-8192,1,0
+E005-H02,newly-constructed-withheld,E005-H02-M,E005-H02-X,0,0,both fail,334.064317,4,6,15761,155,15744,0,1
+E005-H03,newly-constructed-withheld,E005-H03-M,E005-H03-X,1,0,Medium-only,135.637734,4,6,9568,75,12864,0,0
+E005-H04,newly-constructed-withheld,E005-H04-M,E005-H04-X,1,1,both success,31.984711,2,4,2146,69,1984,1,0
+E005-H05,newly-constructed-withheld,E005-H05-M,E005-H05-X,0,0,both fail,154.006192,3,12,7419,281,6375,0,1
+E005-K01,historical-public,E005-K01-M,E005-K01-X,1,1,both success,181.320802,0,-31,4771,-80,6901,0,0
+E005-K02,historical-public,E005-K02-M,E005-K02-X,1,0,Medium-only,333.440364,2,5,31377,239,30876,0,1
+E005-K03,historical-public,E005-K03-M,E005-K03-X,1,1,both success,420.648406,22,29,30548,529,30528,0,0
+E005-K04,historical-public,E005-K04-M,E005-K04-X,0,1,Max-only,578.499179,37,41,53832,698,53578,0,0
+E005-K05,historical-public,E005-K05-M,E005-K05-X,1,1,both success,263.614982,24,27,19637,444,20268,0,0

@@ -1,0 +1,1443 @@
+{
+  "analysis_type": "descriptive balanced paired execution analysis",
+  "condition_summary": {
+    "M": {
+      "cached_tokens": {
+        "mean": 307956.5,
+        "median": 92154.0,
+        "n": 10,
+        "total": 3079565.0
+      },
+      "completion_tokens": {
+        "mean": 4790.1,
+        "median": 1562.5,
+        "n": 10,
+        "total": 47901.0
+      },
+      "failure_count": 3,
+      "generated_or_environment_files_changed": 285,
+      "lines_added": {
+        "mean": 12.2,
+        "median": 6.0,
+        "n": 10,
+        "total": 122.0
+      },
+      "lines_deleted": {
+        "mean": 4.6,
+        "median": 2.5,
+        "n": 10,
+        "total": 46.0
+      },
+      "prompt_tokens": {
+        "mean": 349072.1,
+        "median": 103982.0,
+        "n": 10,
+        "total": 3490721.0
+      },
+      "runs": 10,
+      "source_files_changed": {
+        "mean": 2.2,
+        "median": 1.0,
+        "n": 10,
+        "total": 22.0
+      },
+      "steps": {
+        "mean": 22.3,
+        "median": 14.5,
+        "n": 10,
+        "total": 223.0
+      },
+      "success_rate": 0.7,
+      "successes": 7,
+      "timeouts": 0,
+      "tool_calls": {
+        "mean": 20.8,
+        "median": 11.5,
+        "n": 10,
+        "total": 208.0
+      },
+      "wall_time_seconds": {
+        "mean": 440.66887477911075,
+        "median": 118.17491741705453,
+        "n": 10,
+        "total": 4406.688747791108
+      },
+      "workspace_churn_files": {
+        "mean": 30.7,
+        "median": 12.0,
+        "n": 10,
+        "total": 307.0
+      }
+    },
+    "X": {
+      "cached_tokens": {
+        "mean": 1316381.6,
+        "median": 247397.0,
+        "n": 10,
+        "total": 13163816.0
+      },
+      "completion_tokens": {
+        "mean": 24289.9,
+        "median": 22258.5,
+        "n": 10,
+        "total": 242899.0
+      },
+      "failure_count": 1,
+      "generated_or_environment_files_changed": 289,
+      "lines_added": {
+        "mean": 17.3,
+        "median": 10.0,
+        "n": 10,
+        "total": 173.0
+      },
+      "lines_deleted": {
+        "mean": 6.4,
+        "median": 4.5,
+        "n": 10,
+        "total": 64.0
+      },
+      "prompt_tokens": {
+        "mean": 1368398.1,
+        "median": 279008.5,
+        "n": 10,
+        "total": 13683981.0
+      },
+      "runs": 10,
+      "source_files_changed": {
+        "mean": 2.2,
+        "median": 1.0,
+        "n": 10,
+        "total": 22.0
+      },
+      "steps": {
+        "mean": 36.0,
+        "median": 18.0,
+        "n": 10,
+        "total": 360.0
+      },
+      "success_rate": 0.9,
+      "successes": 9,
+      "timeouts": 0,
+      "tool_calls": {
+        "mean": 36.9,
+        "median": 18.5,
+        "n": 10,
+        "total": 369.0
+      },
+      "wall_time_seconds": {
+        "mean": 718.9877785374644,
+        "median": 667.7272179584252,
+        "n": 10,
+        "total": 7189.877785374643
+      },
+      "workspace_churn_files": {
+        "mean": 31.1,
+        "median": 9.5,
+        "n": 10,
+        "total": 311.0
+      }
+    }
+  },
+  "configuration_sha256": "d8add5f6d9de64b010f5f2c8cb191a1c5ab269e8a70d8a8ad3b1b29c909154b9",
+  "control_commit": "2dc707f83bb370d594633332da19d59031bd7dd7",
+  "counts": {
+    "completed_records": 20,
+    "historical_runs": 10,
+    "max_runs": 10,
+    "medium_runs": 10,
+    "runs": 20,
+    "unique_cases": 10,
+    "withheld_runs": 10
+  },
+  "cumulative_primary": {
+    "Max": 23,
+    "Medium": 24,
+    "denominator": 30,
+    "pair_denominator": 30,
+    "pair_outcomes": {
+      "Max-only": 3,
+      "Medium-only": 4,
+      "both fail": 3,
+      "both success": 20
+    }
+  },
+  "difficulty_comparison": {
+    "hard_e005": {
+      "M": {
+        "runs": 10,
+        "source_patch": {
+          "additions": {
+            "mean": 18.3,
+            "median": 4.5,
+            "n": 10,
+            "total": 183
+          },
+          "deletions": {
+            "mean": 3.5,
+            "median": 1.0,
+            "n": 10,
+            "total": 35
+          },
+          "files_changed": {
+            "mean": 1.9,
+            "median": 2.0,
+            "n": 10,
+            "total": 19
+          }
+        },
+        "steps": {
+          "mean": 28,
+          "median": 18.0,
+          "n": 10,
+          "total": 280
+        },
+        "success_rate": 0.7,
+        "successes": 7,
+        "tokens": {
+          "cached_tokens": {
+            "mean": 31094.3,
+            "median": 17610.0,
+            "n": 10,
+            "total": 310943
+          },
+          "completion_tokens": {
+            "mean": 287.1,
+            "median": 255.0,
+            "n": 10,
+            "total": 2871
+          },
+          "prompt_tokens": {
+            "mean": 31903.1,
+            "median": 18108.0,
+            "n": 10,
+            "total": 319031
+          }
+        },
+        "tool_calls": {
+          "mean": 29.3,
+          "median": 14.5,
+          "n": 10,
+          "total": 293
+        },
+        "wall_time_seconds": {
+          "mean": 186.05215993340826,
+          "median": 117.74408158351434,
+          "n": 10,
+          "total": 1860.5215993340826
+        },
+        "workspace_churn": {
+          "changed_files": {
+            "mean": 1.9,
+            "median": 2.0,
+            "n": 10,
+            "total": 19
+          },
+          "generated_or_environment_files_total": 0,
+          "runs_with_generated_or_environment_files": 0
+        }
+      },
+      "X": {
+        "runs": 10,
+        "source_patch": {
+          "additions": {
+            "mean": 22.1,
+            "median": 8.5,
+            "n": 10,
+            "total": 221
+          },
+          "deletions": {
+            "mean": 4.2,
+            "median": 3.0,
+            "n": 10,
+            "total": 42
+          },
+          "files_changed": {
+            "mean": 2,
+            "median": 2.0,
+            "n": 10,
+            "total": 20
+          }
+        },
+        "steps": {
+          "mean": 38.1,
+          "median": 31.5,
+          "n": 10,
+          "total": 381
+        },
+        "success_rate": 0.6,
+        "successes": 6,
+        "tokens": {
+          "cached_tokens": {
+            "mean": 48186.9,
+            "median": 35424.0,
+            "n": 10,
+            "total": 481869
+          },
+          "completion_tokens": {
+            "mean": 534.8,
+            "median": 457.0,
+            "n": 10,
+            "total": 5348
+          },
+          "prompt_tokens": {
+            "mean": 49893.8,
+            "median": 35619.5,
+            "n": 10,
+            "total": 498938
+          }
+        },
+        "tool_calls": {
+          "mean": 39.8,
+          "median": 32.0,
+          "n": 10,
+          "total": 398
+        },
+        "wall_time_seconds": {
+          "mean": 438.38465854150706,
+          "median": 409.52627831249265,
+          "n": 10,
+          "total": 4383.846585415071
+        },
+        "workspace_churn": {
+          "changed_files": {
+            "mean": 2,
+            "median": 2.0,
+            "n": 10,
+            "total": 20
+          },
+          "generated_or_environment_files_total": 0,
+          "runs_with_generated_or_environment_files": 0
+        }
+      }
+    },
+    "moderate_e002_plus_e004": {
+      "M": {
+        "runs": 10,
+        "steps": {
+          "mean": 28.0,
+          "median": 20.0,
+          "n": 10,
+          "total": 280.0
+        },
+        "success_rate": 1.0,
+        "successes": 10,
+        "tokens": {
+          "cached": {
+            "mean": 455700.5,
+            "median": 177993.5,
+            "n": 10,
+            "total": 4557005.0
+          },
+          "completion": {
+            "mean": 5820.2,
+            "median": 1830.0,
+            "n": 10,
+            "total": 58202.0
+          },
+          "prompt": {
+            "mean": 477335.3,
+            "median": 189655.5,
+            "n": 10,
+            "total": 4773353.0
+          }
+        },
+        "tool_calls": {
+          "mean": 23.0,
+          "median": 15.5,
+          "n": 10,
+          "total": 230.0
+        },
+        "wall_time_seconds": {
+          "mean": 222.8798234625944,
+          "median": 123.96559891702515,
+          "n": 10,
+          "total": 2228.798234625944
+        }
+      },
+      "X": {
+        "runs": 10,
+        "steps": {
+          "mean": 36.2,
+          "median": 28.0,
+          "n": 10,
+          "total": 362.0
+        },
+        "success_rate": 0.8,
+        "successes": 8,
+        "tokens": {
+          "cached": {
+            "mean": 1220042.7,
+            "median": 388154.5,
+            "n": 10,
+            "total": 12200427.0
+          },
+          "completion": {
+            "mean": 18563.5,
+            "median": 7744.5,
+            "n": 10,
+            "total": 185635.0
+          },
+          "prompt": {
+            "mean": 1259829.5,
+            "median": 409019.0,
+            "n": 10,
+            "total": 12598295.0
+          }
+        },
+        "tool_calls": {
+          "mean": 43.7,
+          "median": 28.5,
+          "n": 10,
+          "total": 437.0
+        },
+        "wall_time_seconds": {
+          "mean": 429.48272957500023,
+          "median": 250.7784359794776,
+          "n": 10,
+          "total": 4294.827295750002
+        }
+      }
+    },
+    "very_hard_e006": {
+      "M": {
+        "cached_tokens": {
+          "mean": 307956.5,
+          "median": 92154.0,
+          "n": 10,
+          "total": 3079565.0
+        },
+        "completion_tokens": {
+          "mean": 4790.1,
+          "median": 1562.5,
+          "n": 10,
+          "total": 47901.0
+        },
+        "failure_count": 3,
+        "generated_or_environment_files_changed": 285,
+        "lines_added": {
+          "mean": 12.2,
+          "median": 6.0,
+          "n": 10,
+          "total": 122.0
+        },
+        "lines_deleted": {
+          "mean": 4.6,
+          "median": 2.5,
+          "n": 10,
+          "total": 46.0
+        },
+        "prompt_tokens": {
+          "mean": 349072.1,
+          "median": 103982.0,
+          "n": 10,
+          "total": 3490721.0
+        },
+        "runs": 10,
+        "source_files_changed": {
+          "mean": 2.2,
+          "median": 1.0,
+          "n": 10,
+          "total": 22.0
+        },
+        "steps": {
+          "mean": 22.3,
+          "median": 14.5,
+          "n": 10,
+          "total": 223.0
+        },
+        "success_rate": 0.7,
+        "successes": 7,
+        "timeouts": 0,
+        "tool_calls": {
+          "mean": 20.8,
+          "median": 11.5,
+          "n": 10,
+          "total": 208.0
+        },
+        "wall_time_seconds": {
+          "mean": 440.66887477911075,
+          "median": 118.17491741705453,
+          "n": 10,
+          "total": 4406.688747791108
+        },
+        "workspace_churn_files": {
+          "mean": 30.7,
+          "median": 12.0,
+          "n": 10,
+          "total": 307.0
+        }
+      },
+      "X": {
+        "cached_tokens": {
+          "mean": 1316381.6,
+          "median": 247397.0,
+          "n": 10,
+          "total": 13163816.0
+        },
+        "completion_tokens": {
+          "mean": 24289.9,
+          "median": 22258.5,
+          "n": 10,
+          "total": 242899.0
+        },
+        "failure_count": 1,
+        "generated_or_environment_files_changed": 289,
+        "lines_added": {
+          "mean": 17.3,
+          "median": 10.0,
+          "n": 10,
+          "total": 173.0
+        },
+        "lines_deleted": {
+          "mean": 6.4,
+          "median": 4.5,
+          "n": 10,
+          "total": 64.0
+        },
+        "prompt_tokens": {
+          "mean": 1368398.1,
+          "median": 279008.5,
+          "n": 10,
+          "total": 13683981.0
+        },
+        "runs": 10,
+        "source_files_changed": {
+          "mean": 2.2,
+          "median": 1.0,
+          "n": 10,
+          "total": 22.0
+        },
+        "steps": {
+          "mean": 36.0,
+          "median": 18.0,
+          "n": 10,
+          "total": 360.0
+        },
+        "success_rate": 0.9,
+        "successes": 9,
+        "timeouts": 0,
+        "tool_calls": {
+          "mean": 36.9,
+          "median": 18.5,
+          "n": 10,
+          "total": 369.0
+        },
+        "wall_time_seconds": {
+          "mean": 718.9877785374644,
+          "median": 667.7272179584252,
+          "n": 10,
+          "total": 7189.877785374643
+        },
+        "workspace_churn_files": {
+          "mean": 31.1,
+          "median": 9.5,
+          "n": 10,
+          "total": 311.0
+        }
+      }
+    }
+  },
+  "experiment_id": "experiment-006",
+  "failure_forensics": {
+    "E006-H01-M": "Regression cycle rejection remained a RecursionError instead of the required ValueError; public and held-out behavior passed.",
+    "E006-H03-M": "Held-out oversized-frame recovery did not resynchronize before the later valid command, producing repeated frame-too-large errors instead of the required acknowledgement; public and regression passed.",
+    "E006-H04-M": "Held-out stable dispatch membership failed: a listener closed during dispatch was skipped instead of receiving the current event; public and regression passed.",
+    "E006-H04-X": "Held-out stable dispatch membership failed: a listener closed during dispatch was skipped instead of receiving the current event; public and regression passed."
+  },
+  "freeze_manifest_sha256": "1fed8dab0a0c1a626fdce06d76109f8cf087f81b1e32c78bc1d9ca8f151f7c6c",
+  "historical_vs_withheld": {
+    "historical-public": {
+      "M": {
+        "cached_tokens": {
+          "mean": 547360.6,
+          "median": 504091.0,
+          "n": 5,
+          "total": 2736803.0
+        },
+        "completion_tokens": {
+          "mean": 8263.6,
+          "median": 8069.0,
+          "n": 5,
+          "total": 41318.0
+        },
+        "failure_count": 0,
+        "generated_or_environment_files_changed": 278,
+        "lines_added": {
+          "mean": 18.0,
+          "median": 7.0,
+          "n": 5,
+          "total": 90.0
+        },
+        "lines_deleted": {
+          "mean": 5.8,
+          "median": 5.0,
+          "n": 5,
+          "total": 29.0
+        },
+        "prompt_tokens": {
+          "mean": 617357.6,
+          "median": 534463.0,
+          "n": 5,
+          "total": 3086788.0
+        },
+        "runs": 5,
+        "source_files_changed": {
+          "mean": 3.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 15.0
+        },
+        "steps": {
+          "mean": 31.8,
+          "median": 31.0,
+          "n": 5,
+          "total": 159.0
+        },
+        "success_rate": 1.0,
+        "successes": 5,
+        "timeouts": 0,
+        "tool_calls": {
+          "mean": 31.0,
+          "median": 26.0,
+          "n": 5,
+          "total": 155.0
+        },
+        "wall_time_seconds": {
+          "mean": 772.8255859082099,
+          "median": 366.9991151250433,
+          "n": 5,
+          "total": 3864.1279295410495
+        },
+        "workspace_churn_files": {
+          "mean": 58.6,
+          "median": 23.0,
+          "n": 5,
+          "total": 293.0
+        }
+      },
+      "X": {
+        "cached_tokens": {
+          "mean": 2455060.4,
+          "median": 2511811.0,
+          "n": 5,
+          "total": 12275302.0
+        },
+        "completion_tokens": {
+          "mean": 35277.8,
+          "median": 32090.0,
+          "n": 5,
+          "total": 176389.0
+        },
+        "failure_count": 0,
+        "generated_or_environment_files_changed": 282,
+        "lines_added": {
+          "mean": 20.4,
+          "median": 9.0,
+          "n": 5,
+          "total": 102.0
+        },
+        "lines_deleted": {
+          "mean": 7.2,
+          "median": 6.0,
+          "n": 5,
+          "total": 36.0
+        },
+        "prompt_tokens": {
+          "mean": 2537948.6,
+          "median": 2575863.0,
+          "n": 5,
+          "total": 12689743.0
+        },
+        "runs": 5,
+        "source_files_changed": {
+          "mean": 3.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 15.0
+        },
+        "steps": {
+          "mean": 55.8,
+          "median": 67.0,
+          "n": 5,
+          "total": 279.0
+        },
+        "success_rate": 1.0,
+        "successes": 5,
+        "timeouts": 0,
+        "tool_calls": {
+          "mean": 57.2,
+          "median": 70.0,
+          "n": 5,
+          "total": 286.0
+        },
+        "wall_time_seconds": {
+          "mean": 1012.203257766366,
+          "median": 941.2282746660057,
+          "n": 5,
+          "total": 5061.01628883183
+        },
+        "workspace_churn_files": {
+          "mean": 59.4,
+          "median": 25.0,
+          "n": 5,
+          "total": 297.0
+        }
+      }
+    },
+    "newly-constructed-withheld": {
+      "M": {
+        "cached_tokens": {
+          "mean": 68552.4,
+          "median": 61031.0,
+          "n": 5,
+          "total": 342762.0
+        },
+        "completion_tokens": {
+          "mean": 1316.6,
+          "median": 1362.0,
+          "n": 5,
+          "total": 6583.0
+        },
+        "failure_count": 3,
+        "generated_or_environment_files_changed": 7,
+        "lines_added": {
+          "mean": 6.4,
+          "median": 5.0,
+          "n": 5,
+          "total": 32.0
+        },
+        "lines_deleted": {
+          "mean": 3.4,
+          "median": 2.0,
+          "n": 5,
+          "total": 17.0
+        },
+        "prompt_tokens": {
+          "mean": 80786.6,
+          "median": 69060.0,
+          "n": 5,
+          "total": 403933.0
+        },
+        "runs": 5,
+        "source_files_changed": {
+          "mean": 1.4,
+          "median": 1.0,
+          "n": 5,
+          "total": 7.0
+        },
+        "steps": {
+          "mean": 12.8,
+          "median": 12.0,
+          "n": 5,
+          "total": 64.0
+        },
+        "success_rate": 0.4,
+        "successes": 2,
+        "timeouts": 0,
+        "tool_calls": {
+          "mean": 10.6,
+          "median": 10.0,
+          "n": 5,
+          "total": 53.0
+        },
+        "wall_time_seconds": {
+          "mean": 108.51216365001164,
+          "median": 107.88311537494883,
+          "n": 5,
+          "total": 542.5608182500582
+        },
+        "workspace_churn_files": {
+          "mean": 2.8,
+          "median": 2.0,
+          "n": 5,
+          "total": 14.0
+        }
+      },
+      "X": {
+        "cached_tokens": {
+          "mean": 177702.8,
+          "median": 203449.0,
+          "n": 5,
+          "total": 888514.0
+        },
+        "completion_tokens": {
+          "mean": 13302.0,
+          "median": 12431.0,
+          "n": 5,
+          "total": 66510.0
+        },
+        "failure_count": 1,
+        "generated_or_environment_files_changed": 7,
+        "lines_added": {
+          "mean": 14.2,
+          "median": 13.0,
+          "n": 5,
+          "total": 71.0
+        },
+        "lines_deleted": {
+          "mean": 5.6,
+          "median": 3.0,
+          "n": 5,
+          "total": 28.0
+        },
+        "prompt_tokens": {
+          "mean": 198847.6,
+          "median": 227234.0,
+          "n": 5,
+          "total": 994238.0
+        },
+        "runs": 5,
+        "source_files_changed": {
+          "mean": 1.4,
+          "median": 1.0,
+          "n": 5,
+          "total": 7.0
+        },
+        "steps": {
+          "mean": 16.2,
+          "median": 17.0,
+          "n": 5,
+          "total": 81.0
+        },
+        "success_rate": 0.8,
+        "successes": 4,
+        "timeouts": 0,
+        "tool_calls": {
+          "mean": 16.6,
+          "median": 18.0,
+          "n": 5,
+          "total": 83.0
+        },
+        "wall_time_seconds": {
+          "mean": 425.77229930856265,
+          "median": 409.5821003339952,
+          "n": 5,
+          "total": 2128.8614965428133
+        },
+        "workspace_churn_files": {
+          "mean": 2.8,
+          "median": 2.0,
+          "n": 5,
+          "total": 14.0
+        }
+      }
+    }
+  },
+  "infrastructure": {
+    "evaluator_status": {
+      "OK": 20
+    },
+    "image": "devin-e006:3000.10.21-r7@sha256:7557a0bc640492d8f77f271ebafc6402733fa0ba843c344f74ab613b94416699",
+    "image_id": "sha256:7557a0bc640492d8f77f271ebafc6402733fa0ba843c344f74ab613b94416699",
+    "infrastructure_incidents": [],
+    "limits": {
+      "agent_step_limit": null,
+      "agent_token_limit": null,
+      "capabilities": "all dropped",
+      "control_repository_mount": false,
+      "cpus": 4,
+      "credentials": "one minimum read-only Devin credentials.toml file",
+      "dependency_installation_during_agent_session": false,
+      "direct_internet": false,
+      "docker_socket_mount": false,
+      "egress_proxy": "http://egress-proxy:3128",
+      "evaluator_visibility": "evaluator and fixed/reference material remain outside the container until session close",
+      "host_home_mount": false,
+      "maximum_wall_time_seconds": 7200,
+      "memory": "4g",
+      "network": "e002-internal",
+      "no_new_privileges": true,
+      "parallel_runs": 1,
+      "pids_limit": 512,
+      "retries": 0,
+      "root_filesystem": "read-only",
+      "session_termination": "terminate at 7200 seconds or when the agent exits; close the session before evaluator access",
+      "workspace": "one fresh sanitized buggy workspace, read-write"
+    },
+    "network": "e002-internal",
+    "ordinary_retries": 0,
+    "platform": "linux/arm64",
+    "preflight": "pass",
+    "prelaunch_setup_incidents": 1,
+    "proxy": "http://egress-proxy:3128",
+    "substantive_interventions": 0,
+    "termination": {
+      "completed": 20
+    },
+    "timeouts": 0
+  },
+  "interpretation": {
+    "dominant_failures": "Failures were concentrated in hidden behavioral contracts: H04 stable dispatch membership failed for both conditions, H03 oversized-frame recovery failed for Medium, and H01 cycle-error regression failed for Medium.",
+    "h03": "H03 was Medium-hard but Max-solvable: Medium failed held-out behavior and Max passed; H04 was harder in practice because both conditions failed held-out behavior.",
+    "historical_withheld_divergence": "Historical K cases were 5/5 for both conditions; withheld H cases were 2/5 Medium and 4/5 Max, a marked provenance-associated divergence.",
+    "k05": "K05 was easy in practice: both Medium and Max passed all suites, although Max used substantially more steps/tokens.",
+    "max_unique_value": "Max produced two unique repairs and no Medium-only repairs, with 9/10 versus 7/10 overall; this is positive descriptive evidence of unique frontier value in this sample, not causal proof.",
+    "medium_unique_value": "Medium produced no unique repairs in E006.",
+    "resource_pattern": "Max increased mean wall time, steps, tools, and all captured token categories; longer Max trajectories sometimes accompanied success, but resource scale did not guarantee success (H04-X failed).",
+    "solve_rate_decline": "Medium declined from 10/10 moderate to 7/10 hard and remained 7/10 in E006; Max declined from 8/10 moderate to 6/10 hard but rose to 9/10 in E006, so there was no monotonic decline across the final tier.",
+    "very_hard_qualification": "E006 empirically separates from the moderate comparator through lower Medium completion, one both-fail pair, four withheld failures, and much longer historical trajectories. It was not uniformly harder than E005 on every metric: E006 Medium matched E005 at 7/10 while Max improved from 6/10 to 9/10."
+  },
+  "max_medium_mean_ratios": {
+    "cached_tokens": 4.274569947378932,
+    "completion_tokens": 5.070854470679109,
+    "prompt_tokens": 3.9201016065162473,
+    "source_files_changed": 1.0,
+    "steps": 1.6143497757847534,
+    "tool_calls": 1.7740384615384615,
+    "wall_time_seconds": 1.6315828498163467
+  },
+  "paired_outcomes": {
+    "Max-only": 2,
+    "both fail": 1,
+    "both success": 7
+  },
+  "pairs": [
+    {
+      "cached_tokens_delta_max_minus_medium": 119358,
+      "case_id": "feature-store",
+      "completion_tokens_delta_max_minus_medium": 11069,
+      "experiment_case_id": "E006-H01",
+      "max_completion_tokens_higher": true,
+      "max_prompt_tokens_higher": true,
+      "max_run": "E006-H01-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E006-H01-M",
+      "medium_success": false,
+      "outcome": "Max-only",
+      "prompt_tokens_delta_max_minus_medium": 126844,
+      "provenance": "newly-constructed-withheld",
+      "source_patch_lines_delta_max_minus_medium": 14,
+      "source_patch_same": false,
+      "steps_delta_max_minus_medium": 4,
+      "tool_calls_delta_max_minus_medium": 7,
+      "visible_heldout_disagreement": false,
+      "wall_time_delta_max_minus_medium": 301.69898495904636
+    },
+    {
+      "cached_tokens_delta_max_minus_medium": 165054,
+      "case_id": "work-queue",
+      "completion_tokens_delta_max_minus_medium": 25066,
+      "experiment_case_id": "E006-H02",
+      "max_completion_tokens_higher": true,
+      "max_prompt_tokens_higher": true,
+      "max_run": "E006-H02-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E006-H02-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "prompt_tokens_delta_max_minus_medium": 191466,
+      "provenance": "newly-constructed-withheld",
+      "source_patch_lines_delta_max_minus_medium": 13,
+      "source_patch_same": false,
+      "steps_delta_max_minus_medium": 3,
+      "tool_calls_delta_max_minus_medium": 7,
+      "visible_heldout_disagreement": false,
+      "wall_time_delta_max_minus_medium": 673.0049922079779
+    },
+    {
+      "cached_tokens_delta_max_minus_medium": 184352,
+      "case_id": "wire-relay",
+      "completion_tokens_delta_max_minus_medium": 18070,
+      "experiment_case_id": "E006-H03",
+      "max_completion_tokens_higher": true,
+      "max_prompt_tokens_higher": true,
+      "max_run": "E006-H03-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E006-H03-M",
+      "medium_success": false,
+      "outcome": "Max-only",
+      "prompt_tokens_delta_max_minus_medium": 197526,
+      "provenance": "newly-constructed-withheld",
+      "source_patch_lines_delta_max_minus_medium": 20,
+      "source_patch_same": false,
+      "steps_delta_max_minus_medium": 6,
+      "tool_calls_delta_max_minus_medium": 8,
+      "visible_heldout_disagreement": true,
+      "wall_time_delta_max_minus_medium": 444.3210559998406
+    },
+    {
+      "cached_tokens_delta_max_minus_medium": 38929,
+      "case_id": "account-ledger",
+      "completion_tokens_delta_max_minus_medium": 4450,
+      "experiment_case_id": "E006-H04",
+      "max_completion_tokens_higher": true,
+      "max_prompt_tokens_higher": true,
+      "max_run": "E006-H04-X",
+      "max_steps_higher": true,
+      "max_success": false,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E006-H04-M",
+      "medium_success": false,
+      "outcome": "both fail",
+      "prompt_tokens_delta_max_minus_medium": 42980,
+      "provenance": "newly-constructed-withheld",
+      "source_patch_lines_delta_max_minus_medium": 1,
+      "source_patch_same": false,
+      "steps_delta_max_minus_medium": 2,
+      "tool_calls_delta_max_minus_medium": 5,
+      "visible_heldout_disagreement": true,
+      "wall_time_delta_max_minus_medium": 125.8691778749926
+    },
+    {
+      "cached_tokens_delta_max_minus_medium": 38059,
+      "case_id": "profile-runtime",
+      "completion_tokens_delta_max_minus_medium": 1272,
+      "experiment_case_id": "E006-H05",
+      "max_completion_tokens_higher": true,
+      "max_prompt_tokens_higher": true,
+      "max_run": "E006-H05-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E006-H05-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "prompt_tokens_delta_max_minus_medium": 31489,
+      "provenance": "newly-constructed-withheld",
+      "source_patch_lines_delta_max_minus_medium": 2,
+      "source_patch_same": false,
+      "steps_delta_max_minus_medium": 2,
+      "tool_calls_delta_max_minus_medium": 3,
+      "visible_heldout_disagreement": false,
+      "wall_time_delta_max_minus_medium": 41.40646725089755
+    },
+    {
+      "cached_tokens_delta_max_minus_medium": 2811259,
+      "case_id": "black-6",
+      "completion_tokens_delta_max_minus_medium": 47883,
+      "experiment_case_id": "E006-K01",
+      "max_completion_tokens_higher": true,
+      "max_prompt_tokens_higher": true,
+      "max_run": "E006-K01-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E006-K01-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "prompt_tokens_delta_max_minus_medium": 2921736,
+      "provenance": "historical-public",
+      "source_patch_lines_delta_max_minus_medium": 11,
+      "source_patch_same": false,
+      "steps_delta_max_minus_medium": 29,
+      "tool_calls_delta_max_minus_medium": 22,
+      "visible_heldout_disagreement": false,
+      "wall_time_delta_max_minus_medium": 1238.4572036670288
+    },
+    {
+      "cached_tokens_delta_max_minus_medium": 80045,
+      "case_id": "PySnooper-1",
+      "completion_tokens_delta_max_minus_medium": 2682,
+      "experiment_case_id": "E006-K02",
+      "max_completion_tokens_higher": true,
+      "max_prompt_tokens_higher": true,
+      "max_run": "E006-K02-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E006-K02-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "prompt_tokens_delta_max_minus_medium": 80689,
+      "provenance": "historical-public",
+      "source_patch_lines_delta_max_minus_medium": 0,
+      "source_patch_same": true,
+      "steps_delta_max_minus_medium": 2,
+      "tool_calls_delta_max_minus_medium": 7,
+      "visible_heldout_disagreement": false,
+      "wall_time_delta_max_minus_medium": 72.3675200829748
+    },
+    {
+      "cached_tokens_delta_max_minus_medium": 1133266,
+      "case_id": "black-23",
+      "completion_tokens_delta_max_minus_medium": 16929,
+      "experiment_case_id": "E006-K03",
+      "max_completion_tokens_higher": true,
+      "max_prompt_tokens_higher": true,
+      "max_run": "E006-K03-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": false,
+      "medium_run": "E006-K03-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "prompt_tokens_delta_max_minus_medium": 961132,
+      "provenance": "historical-public",
+      "source_patch_lines_delta_max_minus_medium": -1,
+      "source_patch_same": false,
+      "steps_delta_max_minus_medium": 8,
+      "tool_calls_delta_max_minus_medium": 13,
+      "visible_heldout_disagreement": false,
+      "wall_time_delta_max_minus_medium": -1828.1500080000842
+    },
+    {
+      "cached_tokens_delta_max_minus_medium": 2133306,
+      "case_id": "thefuck-17",
+      "completion_tokens_delta_max_minus_medium": 27593,
+      "experiment_case_id": "E006-K04",
+      "max_completion_tokens_higher": true,
+      "max_prompt_tokens_higher": true,
+      "max_run": "E006-K04-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E006-K04-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "prompt_tokens_delta_max_minus_medium": 2171391,
+      "provenance": "historical-public",
+      "source_patch_lines_delta_max_minus_medium": 6,
+      "source_patch_same": false,
+      "steps_delta_max_minus_medium": 39,
+      "tool_calls_delta_max_minus_medium": 45,
+      "visible_heldout_disagreement": false,
+      "wall_time_delta_max_minus_medium": 715.4405885409797
+    },
+    {
+      "cached_tokens_delta_max_minus_medium": 3380623,
+      "case_id": "tqdm-2",
+      "completion_tokens_delta_max_minus_medium": 39984,
+      "experiment_case_id": "E006-K05",
+      "max_completion_tokens_higher": true,
+      "max_prompt_tokens_higher": true,
+      "max_run": "E006-K05-X",
+      "max_steps_higher": true,
+      "max_success": true,
+      "max_tool_calls_higher": true,
+      "max_wall_time_higher": true,
+      "medium_run": "E006-K05-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "prompt_tokens_delta_max_minus_medium": 3468007,
+      "provenance": "historical-public",
+      "source_patch_lines_delta_max_minus_medium": 3,
+      "source_patch_same": false,
+      "steps_delta_max_minus_medium": 42,
+      "tool_calls_delta_max_minus_medium": 44,
+      "visible_heldout_disagreement": false,
+      "wall_time_delta_max_minus_medium": 998.7730549998814
+    }
+  ],
+  "provenance_summary": {
+    "historical-public": {
+      "M": {
+        "cached_tokens": {
+          "mean": 547360.6,
+          "median": 504091.0,
+          "n": 5,
+          "total": 2736803.0
+        },
+        "completion_tokens": {
+          "mean": 8263.6,
+          "median": 8069.0,
+          "n": 5,
+          "total": 41318.0
+        },
+        "failure_count": 0,
+        "generated_or_environment_files_changed": 278,
+        "lines_added": {
+          "mean": 18.0,
+          "median": 7.0,
+          "n": 5,
+          "total": 90.0
+        },
+        "lines_deleted": {
+          "mean": 5.8,
+          "median": 5.0,
+          "n": 5,
+          "total": 29.0
+        },
+        "prompt_tokens": {
+          "mean": 617357.6,
+          "median": 534463.0,
+          "n": 5,
+          "total": 3086788.0
+        },
+        "runs": 5,
+        "source_files_changed": {
+          "mean": 3.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 15.0
+        },
+        "steps": {
+          "mean": 31.8,
+          "median": 31.0,
+          "n": 5,
+          "total": 159.0
+        },
+        "success_rate": 1.0,
+        "successes": 5,
+        "timeouts": 0,
+        "tool_calls": {
+          "mean": 31.0,
+          "median": 26.0,
+          "n": 5,
+          "total": 155.0
+        },
+        "wall_time_seconds": {
+          "mean": 772.8255859082099,
+          "median": 366.9991151250433,
+          "n": 5,
+          "total": 3864.1279295410495
+        },
+        "workspace_churn_files": {
+          "mean": 58.6,
+          "median": 23.0,
+          "n": 5,
+          "total": 293.0
+        }
+      },
+      "X": {
+        "cached_tokens": {
+          "mean": 2455060.4,
+          "median": 2511811.0,
+          "n": 5,
+          "total": 12275302.0
+        },
+        "completion_tokens": {
+          "mean": 35277.8,
+          "median": 32090.0,
+          "n": 5,
+          "total": 176389.0
+        },
+        "failure_count": 0,
+        "generated_or_environment_files_changed": 282,
+        "lines_added": {
+          "mean": 20.4,
+          "median": 9.0,
+          "n": 5,
+          "total": 102.0
+        },
+        "lines_deleted": {
+          "mean": 7.2,
+          "median": 6.0,
+          "n": 5,
+          "total": 36.0
+        },
+        "prompt_tokens": {
+          "mean": 2537948.6,
+          "median": 2575863.0,
+          "n": 5,
+          "total": 12689743.0
+        },
+        "runs": 5,
+        "source_files_changed": {
+          "mean": 3.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 15.0
+        },
+        "steps": {
+          "mean": 55.8,
+          "median": 67.0,
+          "n": 5,
+          "total": 279.0
+        },
+        "success_rate": 1.0,
+        "successes": 5,
+        "timeouts": 0,
+        "tool_calls": {
+          "mean": 57.2,
+          "median": 70.0,
+          "n": 5,
+          "total": 286.0
+        },
+        "wall_time_seconds": {
+          "mean": 1012.203257766366,
+          "median": 941.2282746660057,
+          "n": 5,
+          "total": 5061.01628883183
+        },
+        "workspace_churn_files": {
+          "mean": 59.4,
+          "median": 25.0,
+          "n": 5,
+          "total": 297.0
+        }
+      }
+    },
+    "newly-constructed-withheld": {
+      "M": {
+        "cached_tokens": {
+          "mean": 68552.4,
+          "median": 61031.0,
+          "n": 5,
+          "total": 342762.0
+        },
+        "completion_tokens": {
+          "mean": 1316.6,
+          "median": 1362.0,
+          "n": 5,
+          "total": 6583.0
+        },
+        "failure_count": 3,
+        "generated_or_environment_files_changed": 7,
+        "lines_added": {
+          "mean": 6.4,
+          "median": 5.0,
+          "n": 5,
+          "total": 32.0
+        },
+        "lines_deleted": {
+          "mean": 3.4,
+          "median": 2.0,
+          "n": 5,
+          "total": 17.0
+        },
+        "prompt_tokens": {
+          "mean": 80786.6,
+          "median": 69060.0,
+          "n": 5,
+          "total": 403933.0
+        },
+        "runs": 5,
+        "source_files_changed": {
+          "mean": 1.4,
+          "median": 1.0,
+          "n": 5,
+          "total": 7.0
+        },
+        "steps": {
+          "mean": 12.8,
+          "median": 12.0,
+          "n": 5,
+          "total": 64.0
+        },
+        "success_rate": 0.4,
+        "successes": 2,
+        "timeouts": 0,
+        "tool_calls": {
+          "mean": 10.6,
+          "median": 10.0,
+          "n": 5,
+          "total": 53.0
+        },
+        "wall_time_seconds": {
+          "mean": 108.51216365001164,
+          "median": 107.88311537494883,
+          "n": 5,
+          "total": 542.5608182500582
+        },
+        "workspace_churn_files": {
+          "mean": 2.8,
+          "median": 2.0,
+          "n": 5,
+          "total": 14.0
+        }
+      },
+      "X": {
+        "cached_tokens": {
+          "mean": 177702.8,
+          "median": 203449.0,
+          "n": 5,
+          "total": 888514.0
+        },
+        "completion_tokens": {
+          "mean": 13302.0,
+          "median": 12431.0,
+          "n": 5,
+          "total": 66510.0
+        },
+        "failure_count": 1,
+        "generated_or_environment_files_changed": 7,
+        "lines_added": {
+          "mean": 14.2,
+          "median": 13.0,
+          "n": 5,
+          "total": 71.0
+        },
+        "lines_deleted": {
+          "mean": 5.6,
+          "median": 3.0,
+          "n": 5,
+          "total": 28.0
+        },
+        "prompt_tokens": {
+          "mean": 198847.6,
+          "median": 227234.0,
+          "n": 5,
+          "total": 994238.0
+        },
+        "runs": 5,
+        "source_files_changed": {
+          "mean": 1.4,
+          "median": 1.0,
+          "n": 5,
+          "total": 7.0
+        },
+        "steps": {
+          "mean": 16.2,
+          "median": 17.0,
+          "n": 5,
+          "total": 81.0
+        },
+        "success_rate": 0.8,
+        "successes": 4,
+        "timeouts": 0,
+        "tool_calls": {
+          "mean": 16.6,
+          "median": 18.0,
+          "n": 5,
+          "total": 83.0
+        },
+        "wall_time_seconds": {
+          "mean": 425.77229930856265,
+          "median": 409.5821003339952,
+          "n": 5,
+          "total": 2128.8614965428133
+        },
+        "workspace_churn_files": {
+          "mean": 2.8,
+          "median": 2.0,
+          "n": 5,
+          "total": 14.0
+        }
+      }
+    }
+  },
+  "publication_artifacts": {
+    "artifacts": "artifacts/experiment-006/",
+    "combined_report": "reports/experiment-002-004-005-006-combined-analysis.md",
+    "ledger": "results/experiment-006-ledger.json",
+    "paired_csv": "results/experiment-006-paired.csv",
+    "report": "reports/experiment-006-results.md",
+    "summary": "results/experiment-006-summary.json"
+  },
+  "run_order_sha256": "326e8a2fd202fa712d532d5ea84f35d4178d1cfbf602aa045d4a649d6a83817c",
+  "schema_version": 1,
+  "tier": "VERY-HARD capability-frontier",
+  "tier_summary": {
+    "HARD (E005)": {
+      "Max": 6,
+      "Medium": 7,
+      "denominator": 10
+    },
+    "MODERATE (E002 + E004)": {
+      "Max": 8,
+      "Medium": 10,
+      "denominator": 10
+    },
+    "VERY-HARD (E006)": {
+      "Max": 9,
+      "Medium": 7,
+      "denominator": 10
+    }
+  },
+  "validation_pending": false
+}

@@ -1,0 +1,67 @@
+{
+  "case_id": "E003-N05",
+  "changed_files": [
+    "src/line_protocol/transactions.py"
+  ],
+  "evaluated_at_utc": "2026-09-15T21:58:37.501167+00:00",
+  "evaluation_status": "OK",
+  "evaluation_version": 1,
+  "experiment_id": "experiment-003",
+  "heldout": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E003-N05",
+      "-p",
+      "test_behavior.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_fragmentation_and_duplicate_commit_do_not_corrupt_state (test_behavior.TransactionBehaviorTests.test_fragmentation_and_duplicate_commit_do_not_corrupt_state) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "metadata_project": "line-protocol",
+  "patch": {
+    "additions": 1,
+    "deletions": 2,
+    "sha256": "139b52e072dc6134ef26b66877423efd7d6b4be491d10745ce60381d045a03ec"
+  },
+  "public": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_new_transaction_replaces_an_incomplete_one (test_transactions.TransactionTests.test_new_transaction_replaces_an_incomplete_one) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "reference_patch_compared": false,
+  "regression": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E003-N05",
+      "-p",
+      "test_regression.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_malformed_lines_are_ignored_between_valid_records (test_regression.TransactionRegressionTests.test_malformed_lines_are_ignored_between_valid_records) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+    "stdout": ""
+  },
+  "task_success": true
+}

@@ -1,0 +1,26 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 282560,
+    "total_completion_tokens": 6136,
+    "total_prompt_tokens": 306079,
+    "total_steps": 23
+  },
+  "first_observable_timestamp": "2026-09-16T03:52:02.390200134+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T03:53:24.122993463+00:00",
+  "model": "swe-2-medium",
+  "observable_steps": 17,
+  "patch_sha256": "1bd305f79188a1f696ad88002dd2547e02c9c03be7db0bfa2c66f44335bdd12c",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "petite-crater",
+  "steps": 23,
+  "tool_calls": 17,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 12,
+    "read": 2,
+    "webfetch": 2
+  }
+}

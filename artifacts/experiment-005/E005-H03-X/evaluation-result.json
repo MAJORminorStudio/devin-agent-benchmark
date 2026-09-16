@@ -1,0 +1,82 @@
+{
+  "case_id": "E005-H03",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-005",
+  "failure_summary": "Regression failed because the attempted oversized-frame recovery skipped the following valid frame when the declared oversized payload bytes were not present; public and held-out suites passed.",
+  "heldout": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-H03",
+          "-p",
+          "test_behavior.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.063,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "patch": {
+    "additions": 10,
+    "changed_files": [
+      "src/wire_relay/framing.py",
+      "src/wire_relay/session.py"
+    ],
+    "deletions": 4,
+    "sha256": "c0d7c29c8140076451efa5a739b3c27cef439894d2e4a04aa5626007d3210227"
+  },
+  "public": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "elapsed_seconds": 0.041,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "regression": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-H03",
+          "-p",
+          "test_regression.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.044,
+        "returncode": 1,
+        "status": "fail",
+        "timed_out": false
+      }
+    ],
+    "overall": "fail"
+  },
+  "run_id": "E005-H03-X",
+  "schema_version": 1,
+  "task_success": false
+}

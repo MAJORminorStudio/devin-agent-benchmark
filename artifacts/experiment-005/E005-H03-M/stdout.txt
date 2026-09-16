@@ -1,0 +1,18 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+Found two bugs: the decoder clears its buffer on a bad payload (dropping coalesced frames after it), and the session never leaves `RECOVERING`, so every later valid message gets `recovery-required`. Fixing both.Fixed. Two bugs were compounding:
+
+1. **`framing.py`** — on an `invalid-payload` error the decoder called `self._buffer.clear()`, discarding any bytes already fed after the bad frame. Removed the clear so following frames in coalesced input are still parsed.
+2. **`session.py`** — after a `FrameError` the session entered `RECOVERING` and never left, so every subsequent valid `Message` was answered with `recovery-required`. Now a valid message transitions the session back to `READY` and is dispatched normally (a `FrameError` still sets `RECOVERING` and emits the error response; `CLOSED` behavior is untouched).
+
+Test passes:
+
+```
+test_invalid_frame_is_reported_without_losing_following_command ... ok
+Ran 1 test in 0.000s — OK
+```
+
+Note: `python` isn't on PATH here, so I ran it with `python3` — same command otherwise.

@@ -1,0 +1,21 @@
+{
+  "byte_counts": {
+    "added_bytes": 176647,
+    "deleted_bytes": 176555
+  },
+  "changed_files": [
+    "tornado/web.py",
+    "tornado/websocket.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 4,
+    "deletions": 0
+  },
+  "sha256": "bee13c162100aa94f5d780bb97a2d2c5212b0b1da2e12f777a50dbe0137db161",
+  "source_files_changed": [
+    "tornado/web.py",
+    "tornado/websocket.py"
+  ],
+  "workspace_churn_files": 2
+}

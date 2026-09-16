@@ -1,0 +1,30 @@
+{
+  "generated_or_environment_examples": [
+    ".pytest_cache/.gitignore",
+    ".pytest_cache/README.md",
+    ".pytest_cache/v/cache/lastfailed",
+    ".pytest_cache/v/cache/nodeids",
+    ".pytest_cache/v/cache/stepwise",
+    "tests/__pycache__/__init__.cpython-37.pyc",
+    "tests/__pycache__/conftest.cpython-37-PYTEST.pyc",
+    "tests/__pycache__/test_conf.cpython-37-PYTEST.pyc",
+    "tests/__pycache__/test_corrector.cpython-37-PYTEST.pyc",
+    "tests/__pycache__/test_logs.cpython-37-PYTEST.pyc",
+    "tests/__pycache__/test_readme.cpython-37-PYTEST.pyc",
+    "tests/__pycache__/test_types.cpython-37-PYTEST.pyc",
+    "tests/__pycache__/test_ui.cpython-37-PYTEST.pyc",
+    "tests/__pycache__/test_utils.cpython-37-PYTEST.pyc",
+    "tests/__pycache__/utils.cpython-37.pyc",
+    "tests/rules/__pycache__/__init__.cpython-37.pyc",
+    "tests/rules/__pycache__/test_apt_get.cpython-37-PYTEST.pyc",
+    "tests/rules/__pycache__/test_apt_get_search.cpython-37-PYTEST.pyc",
+    "tests/rules/__pycache__/test_apt_invalid_operation.cpython-37-PYTEST.pyc",
+    "tests/rules/__pycache__/test_brew_install.cpython-37-PYTEST.pyc"
+  ],
+  "generated_or_environment_files_count": 200,
+  "note": "Full workspaces and dependency environments are not published.",
+  "observed_changed_entry_count": 201,
+  "source_files": [
+    "thefuck/shells/bash.py"
+  ]
+}

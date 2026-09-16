@@ -1,0 +1,75 @@
+{
+  "case_id": "E005-K03",
+  "condition": "X",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 56896,
+    "completion": 801,
+    "prompt": 57123,
+    "steps": 45,
+    "tool_calls": 46
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 58021,
+      "deleted_bytes": 57263
+    },
+    "changed_files": [
+      "tornado/ioloop.py",
+      "tornado/platform/asyncio.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 16,
+      "deletions": 2
+    },
+    "sha256": "3c66ec89962cc37f578bddbdff45740b725123e81d09727030d03f60fc7362d6",
+    "source_files_changed": [
+      "tornado/ioloop.py",
+      "tornado/platform/asyncio.py"
+    ],
+    "workspace_churn_files": 2
+  },
+  "prompt_sha256": "299f94c0da2286f18b285b3c26a78cbdd4b9dccf64d55a575571b1279914b4c8",
+  "provenance": "historical-public",
+  "retries": 0,
+  "run_id": "E005-K03-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "shining-radio",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T03:21:22.539435+00:00",
+    "started_at_utc": "2026-09-16T03:11:52.991875+00:00",
+    "wall_time_seconds": 569.5430964579573
+  }
+}

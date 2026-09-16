@@ -1,0 +1,20 @@
+{
+  "changed_files": [
+    "fastapi/routing.py"
+  ],
+  "evaluator_task_success": true,
+  "generated_or_environment_files": [],
+  "line_counts": {
+    "additions": 25,
+    "deletions": 7
+  },
+  "patch_byte_length": 1629,
+  "patch_is_empty": false,
+  "patch_sha256": "3747195a3cd9e36b1d4fdbb65b444d8a6901a5e02dd6e40f5bff0724574aaba9",
+  "reference_comparison": {
+    "reference_patch_checked_after_session": false
+  },
+  "source_files_changed": [
+    "fastapi/routing.py"
+  ]
+}

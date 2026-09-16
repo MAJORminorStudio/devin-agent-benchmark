@@ -1,0 +1,20 @@
+{
+  "final_metrics": {
+    "cached": 90311,
+    "completion": 2023,
+    "prompt": 98109
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "diligent-hardcover",
+  "steps": 14,
+  "tool_calls": 13,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 3,
+    "read": 9
+  }
+}

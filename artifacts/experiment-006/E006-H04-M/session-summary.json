@@ -1,0 +1,20 @@
+{
+  "final_metrics": {
+    "cached": 61031,
+    "completion": 1345,
+    "prompt": 67898
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "corner-scarer",
+  "steps": 12,
+  "tool_calls": 10,
+  "tool_calls_by_function": {
+    "edit": 2,
+    "exec": 2,
+    "read": 6
+  }
+}

@@ -1,0 +1,19 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+No network — I'll create a `mock` shim using `unittest.mock`. Checking test helpers' imports:Confirmed. Now the fix — matching upstream luigi behavior: add the `prune_on_get_work` config parameter, prune at the start of `get_work` when enabled, and enable it for local schedulers.Both tests pass. Checking for regressions in related scheduler tests:Pre-existing failures unrelated to the change. Checking the `server_test` error:Fixed. The `prune_on_get_work` scheduler option had been lost, so external dependencies couldn't be re-evaluated while a workflow was still running.
+
+Changes:
+
+- `luigi/scheduler.py` — restored the `prune_on_get_work` BoolParameter (default `False`) on the `scheduler` config, and `CentralPlannerScheduler.get_work()` now calls `self.prune()` when it's enabled. Pruning on `get_work` lets tasks whose retry/remove timers expired be reconsidered as workers keep polling.
+- `luigi/interface.py` — `create_local_scheduler()` again passes `prune_on_get_work=True`, since the local scheduler has no periodic pruner (unlike `luigid`, which prunes every 60s via a `PeriodicCallback`). Central schedulers are unaffected: the flag defaults to `False` there and ordinary dependency scheduling is unchanged.
+
+Verification (no test deps were installed, so I ran `unittest` with a small `unittest.mock`/tornado/nose shim on `PYTHONPATH`):
+
+- `test/worker_external_task_test.py` — was failing with `UnknownParameterException: ... unknown parameter prune_on_get_work`; now both tests pass, including `test_external_dependency_completes_later` (external dep retried and workflow completes).
+- `test/central_planner_test.py` — 67 tests pass.
+- `test/scheduler_test.py` — passes.
+
+Note: `worker_test.DynamicDependenciesWithMultipleWorkersTest` fails identically with the fix reverted (pre-existing py3.11/environment issue, no `pip`/network to install real deps), and `server_test` can't run without real tornado — both unrelated to this change.

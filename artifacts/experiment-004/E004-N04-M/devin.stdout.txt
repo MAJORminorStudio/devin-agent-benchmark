@@ -1,0 +1,10 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as [redacted].
+
+You're all set. Run [1mdevin[0m to get started.
+The bug is visible already: `SubscriptionList.__iter__` iterates the live list, so when a callback mutates it mid-delivery, indices shift and the next subscriber is skipped. Let me confirm by running the tests.Reproduced. The fix: iterate a snapshot of the subscription list so mutations during delivery don't shift indices. `remove` already sets `active = False`, and `publish` skips inactive subs — so removed subscribers still won't be called, while remaining ones aren't skipped.Fixed. All 5 tests pass.
+
+**Root cause:** `SubscriptionList.__iter__` returned a live iterator over `self._items`. When a callback unsubscribed during `publish`, the list shrank mid-iteration and the index advanced past the next subscriber — so `second` never ran.
+
+**Fix:** `__iter__` now iterates a snapshot (`iter(list(self._items))`) in [subscriptions.py:28-29](file:///workspace/src/signalhub/subscriptions.py). This composes correctly with the existing `active` flag: `remove` marks the subscription inactive, and `EventHub.publish` already skips inactive entries, so a subscription removed mid-delivery won't be called again — while subscribers added during delivery simply join the next cycle, matching the delivery semantics in `docs/delivery.md`.

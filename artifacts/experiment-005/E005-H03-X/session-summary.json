@@ -1,0 +1,25 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 191232,
+    "total_completion_tokens": 9630,
+    "total_prompt_tokens": 206472,
+    "total_steps": 18
+  },
+  "first_observable_timestamp": "2026-09-16T03:03:38.250168303+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T03:06:14.327590458+00:00",
+  "model": "swe-2-max",
+  "observable_steps": 12,
+  "patch_sha256": "c0d7c29c8140076451efa5a739b3c27cef439894d2e4a04aa5626007d3210227",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "flannel-geology",
+  "steps": 18,
+  "tool_calls": 16,
+  "tool_calls_by_function": {
+    "edit": 3,
+    "exec": 7,
+    "read": 6
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "final_metrics": {
+    "cached": 106048,
+    "completion": 1204,
+    "prompt": 125364
+  },
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "tame-cricket",
+  "steps": 16,
+  "tool_calls": 8,
+  "tool_calls_by_function": {}
+}

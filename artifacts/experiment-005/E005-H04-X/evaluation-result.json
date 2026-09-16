@@ -1,0 +1,81 @@
+{
+  "case_id": "E005-H04",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-005",
+  "failure_summary": null,
+  "heldout": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-H04",
+          "-p",
+          "test_behavior.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.07,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "patch": {
+    "additions": 1,
+    "changed_files": [
+      "src/order_flow/transaction.py"
+    ],
+    "deletions": 1,
+    "sha256": "50e657161f7392b006ee0feeec2513c09b282f97d0cf00240487fd2dc7fe1f57"
+  },
+  "public": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "elapsed_seconds": 0.042,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "regression": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-H04",
+          "-p",
+          "test_regression.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.04,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "run_id": "E005-H04-X",
+  "schema_version": 1,
+  "task_success": true
+}

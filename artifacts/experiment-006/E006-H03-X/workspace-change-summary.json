@@ -1,0 +1,11 @@
+{
+  "generated_or_environment_examples": [
+    "src/wire_relay/__pycache__/framing.cpython-38.pyc"
+  ],
+  "generated_or_environment_files_count": 1,
+  "note": "Full workspaces and dependency environments are not published.",
+  "observed_changed_entry_count": 2,
+  "source_files": [
+    "src/wire_relay/framing.py"
+  ]
+}

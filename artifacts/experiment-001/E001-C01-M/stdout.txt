@@ -1,0 +1,2 @@
+The bug is clear: `child.resolve().relative_to(root)` raises `ValueError` when a symlink points outside the root. Let me reproduce it first.warning: rejected a tool call that requires confirmation. Running in non-interactive mode. Use --permission-mode dangerous to auto-approve all tools.
+

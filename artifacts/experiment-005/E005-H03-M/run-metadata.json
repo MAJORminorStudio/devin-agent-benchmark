@@ -1,0 +1,75 @@
+{
+  "case_id": "E005-H03",
+  "condition": "M",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 11968,
+    "completion": 229,
+    "prompt": 15506,
+    "steps": 14,
+    "tool_calls": 10
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 3024,
+      "deleted_bytes": 3150
+    },
+    "changed_files": [
+      "src/wire_relay/framing.py",
+      "src/wire_relay/session.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 2,
+      "deletions": 4
+    },
+    "sha256": "257d4e97425953e49123bf6e2012b07e20c6ca033220729b148d598a4e6b1f9b",
+    "source_files_changed": [
+      "src/wire_relay/framing.py",
+      "src/wire_relay/session.py"
+    ],
+    "workspace_churn_files": 2
+  },
+  "prompt_sha256": "cb515641dff9ccc69ad8cc58046fb036e58b71b6f476f1a610d06e81cc73289b",
+  "provenance": "newly-constructed-withheld",
+  "retries": 0,
+  "run_id": "E005-H03-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "respected-fahrenheit",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T03:11:51.931529+00:00",
+    "started_at_utc": "2026-09-16T03:10:21.502500+00:00",
+    "wall_time_seconds": 90.42784245801158
+  }
+}

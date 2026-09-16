@@ -1,0 +1,21 @@
+experiment,tier,provenance,case_id,medium_run_id,max_run_id,medium_TASK_SUCCESS,max_TASK_SUCCESS,paired_classification,medium_wall_seconds,max_wall_seconds,wall_delta_max_minus_medium,steps_delta_max_minus_medium,tools_delta_max_minus_medium,prompt_delta_max_minus_medium,completion_delta_max_minus_medium,cached_delta_max_minus_medium,same_patch
+E004,moderate,newly-constructed-withheld,E004-N01,E004-N01-M,E004-N01-X,True,True,both success,74.31168004195206,105.5202006669715,31.208520625019446,1,4,21035,1249,38528,False
+E004,moderate,newly-constructed-withheld,E004-N02,E004-N02-M,E004-N02-X,True,True,both success,84.61937408300582,103.59436245809775,18.974988375091925,2,12,44924,1628,25984,False
+E004,moderate,newly-constructed-withheld,E004-N03,E004-N03-M,E004-N03-X,True,False,Medium-only,81.42096691695042,119.36251529096626,37.94154837401584,1,9,32370,2825,27776,False
+E004,moderate,newly-constructed-withheld,E004-N04,E004-N04-M,E004-N04-X,True,True,both success,90.61919783405028,175.0998719589552,84.48067412490491,4,19,101130,4968,103296,False
+E004,moderate,newly-constructed-withheld,E004-N05,E004-N05-M,E004-N05-X,True,True,both success,81.51801574998535,141.47034537501168,59.95232962502632,-1,10,5008,4093,7872,True
+E005,hard,newly-constructed-withheld,E005-H01,E005-H01-M,E005-H01-X,True,True,both success,81.59428570896853,171.70258341706358,90.10829770809505,3,6,4848,67,-8192,True
+E005,hard,newly-constructed-withheld,E005-H02,E005-H02-M,E005-H02-X,False,False,both fail,74.66823312500492,408.73255062499084,334.0643174999859,4,6,15761,155,15744,False
+E005,hard,newly-constructed-withheld,E005-H03,E005-H03-M,E005-H03-X,True,False,Medium-only,90.42784245801158,226.06557695800439,135.6377344999928,4,6,9568,75,12864,False
+E005,hard,newly-constructed-withheld,E005-H04,E005-H04-M,E005-H04-X,True,True,both success,81.61153829097748,113.59624950005673,31.98471120907925,2,4,2146,69,1984,True
+E005,hard,newly-constructed-withheld,E005-H05,E005-H05-M,E005-H05-X,False,False,both fail,81.55256687500514,235.5587586669717,154.00619179196656,3,12,7419,281,6375,False
+E005,hard,historical-public,E005-K01,E005-K01-M,E005-K01-X,True,True,both success,771.6972634169506,953.0180655829608,181.32080216601025,0,-31,4771,-80,6901,False
+E005,hard,historical-public,E005-K02,E005-K02-M,E005-K02-X,True,False,Medium-only,238.30983433302026,571.7501981660025,333.44036383298226,2,5,31377,239,30876,False
+E005,hard,historical-public,E005-K03,E005-K03-M,E005-K03-X,True,True,both success,148.89469066704623,569.5430964579573,420.64840579091106,22,29,30548,529,30528,False
+E005,hard,historical-public,E005-K04,E005-K04-M,E005-K04-X,False,True,Max-only,145.0603207090171,723.5595000410685,578.4991793320514,37,41,53832,698,53578,False
+E005,hard,historical-public,E005-K05,E005-K05-M,E005-K05-X,True,True,both success,146.70502375008073,410.32000599999446,263.61498224991374,24,27,19637,444,20268,False
+E002,moderate,historical-public,black-16,E002-C01-M,E002-C01-X,True,True,both success,366.269,399.819,33.55000000000001,-11,1,-311649,410,-306228,False
+E002,moderate,historical-public,fastapi-3,E002-C02-M,E002-C02-X,True,True,both success,299.332,1137.75,838.418,34,41,2905026,51241,2831079,False
+E002,moderate,historical-public,scrapy-3,E002-C03-M,E002-C03-X,True,True,both success,817.861,1380.464,562.603,29,76,4085860,46380,4014674,False
+E002,moderate,historical-public,tornado-13,E002-C05-M,E002-C05-X,True,True,both success,175.535,326.457,150.922,3,5,347639,5831,334188,False
+E002,moderate,historical-public,tqdm-5,E002-C04-M,E002-C04-X,True,False,Medium-only,157.312,405.29,247.978,20,30,593599,8808,566253,False

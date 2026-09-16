@@ -1,0 +1,105 @@
+{
+  "excluded_local_artifacts": [
+    {
+      "artifact_class": "raw runner/evaluator/session/output metadata",
+      "public_replacement": "run-metadata.json, evaluation-result.json, tool-timeline.json, session-summary.json, stdout.txt, stderr.txt",
+      "reason": "Unchanged files contain machine-specific host paths and execution metadata; sanitized derivatives are published."
+    },
+    {
+      "artifact_class": "full agent workspace and baseline/generated dependency trees",
+      "public_replacement": "agent.patch, source-diff-stat.json, workspace-change-summary.json, sanitized session export",
+      "reason": "Contains excessive generated dependency/bytecode data and machine-specific paths; not needed to reconstruct the experiment."
+    }
+  ],
+  "published_artifacts": {
+    "agent.patch": {
+      "bytes": 1612,
+      "sha256": "a6980526a0cfd2e87d467d9ca3da2c571e151be8763ed115e001a0bb67cd5a25"
+    },
+    "devin-session-export.sanitized.json": {
+      "bytes": 143782,
+      "sha256": "4e8f92f6a5d7c69c83035a1c812949b7ff7e138fb14e83e907b1c85b5cf7d326"
+    },
+    "evaluation-result.json": {
+      "bytes": 57927,
+      "sha256": "96bc8d0afa98c9eea6b4209341d88512b412b9399049cad705366a2c5e15ba66"
+    },
+    "prompt.md": {
+      "bytes": 328,
+      "sha256": "b098b5779f11c98fdec3478cd166e40ec178266196577e96ec93ef134de6aef9"
+    },
+    "run-metadata.json": {
+      "bytes": 4021,
+      "sha256": "cb6fa2959e53fc93a586037986c859b4731e6c6c64f538b9f8e50072756e878f"
+    },
+    "session-summary.json": {
+      "bytes": 1363,
+      "sha256": "ed3c62531f4c16c8e0ee9b33f67ff13787fda0e774a1d65976211ef71097ba23"
+    },
+    "source-diff-stat.json": {
+      "bytes": 580,
+      "sha256": "6de6b1fbf73e02885e8c328317c9ebe56e9fc599b778dac255d7b71ced47dd1a"
+    },
+    "stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.txt": {
+      "bytes": 2559,
+      "sha256": "93e6dcb3a7edf572645839d93b8b5e1e2521090a6e2d40bd9d06d14e6ce03d49"
+    },
+    "tool-timeline.json": {
+      "bytes": 75669,
+      "sha256": "88c6b83552b6e22cc6c07258477cd97e0e264d4e4472d691600eefdfd0012e49"
+    },
+    "workspace-change-summary.json": {
+      "bytes": 446,
+      "sha256": "c88609354b6c5c8c24e5962e18ee8590676c8493432f8393eab01df6ff83860a"
+    }
+  },
+  "raw_local_artifacts": {
+    "agent-workspace.baseline.json": {
+      "bytes": 34832,
+      "sha256": "71b003f52e1a1f6c0425e58f8cac7d794c992ac16c1b23789c9b086f584002fa"
+    },
+    "agent-workspace.export.json": {
+      "bytes": 854,
+      "sha256": "17d3e2eb37124d3b55acb54e603246d57f2c682536ffb83056d6ee8f106807a1"
+    },
+    "agent-workspace.leak-audit.json": {
+      "bytes": 437,
+      "sha256": "03775446388b664e223bc0502dcc891c8bd3e1c7f9f5d17c5dc7137666c56d0f"
+    },
+    "agent.patch": {
+      "bytes": 1612,
+      "sha256": "a6980526a0cfd2e87d467d9ca3da2c571e151be8763ed115e001a0bb67cd5a25"
+    },
+    "container-run-result.json": {
+      "bytes": 3582,
+      "sha256": "6c92f56ae8ca3f282f9fe0325283063775dd4a55e62b8fe90c33ecc9529f2766"
+    },
+    "devin-session-export.json": {
+      "bytes": 163817,
+      "sha256": "5139837e77fd4789436c2566dafe049d736b450f5236d1738b400d378559906d"
+    },
+    "devin.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "devin.stdout.txt": {
+      "bytes": 2559,
+      "sha256": "93e6dcb3a7edf572645839d93b8b5e1e2521090a6e2d40bd9d06d14e6ce03d49"
+    },
+    "evaluation-result.json": {
+      "bytes": 60342,
+      "sha256": "3df5767df0102cb1d067586e3ef72ee7e13e9d4958cb9a077e94a15316822d94"
+    },
+    "runner-result.json": {
+      "bytes": 3719,
+      "sha256": "89be34162e5a33af77001317c3531385cddd878ba1be7ca091efcd0b7cea53b8"
+    }
+  },
+  "run_id": "E002-C02-M",
+  "sanitization": "Only high-confidence secrets and machine-specific/private paths were redacted; benchmark source, commands, tool behavior, failures, patches, and outcomes were retained.",
+  "schema_version": 1
+}

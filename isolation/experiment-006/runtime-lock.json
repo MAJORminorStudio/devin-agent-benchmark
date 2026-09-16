@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "base_image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+  "build_definition": "isolation/experiment-006/Dockerfile",
+  "build_timestamp_utc": "2026-09-16T14:45:19Z",
+  "devin_cli_version": "3000.10.21 (611c1cba)",
+  "platform": "linux/arm64",
+  "compatibility_libraries": {
+    "libffi": "libffi.so.6.0.4 copied from the pinned Python 3.8.3 arm64 build stage",
+    "final_path": "/opt/e006/compat/libffi.so.6"
+  },
+  "python_images": {
+    "3.8.3": "python:3.8.3-slim-buster@sha256:47322f8e4b1f0a9a7fbe208f3f5bf51116d69d43314e983c1c1963a5c7873aaa",
+    "3.8.1": "python:3.8.1-slim-buster@sha256:ffae7d875975e38d38378ce65d10ab62c2156eb198e2e798664ec6c793015c03",
+    "3.7.0": "python:3.7.0-slim-stretch@sha256:749bd3e256151de11e3e9c089d957e05ac1997449c24d8f09b91a5f2f8f2f28b",
+    "3.6.9": "python:3.6.9-slim-stretch@sha256:a7b0a171050100296383df09659a434d5c771b77abf94ea0de527768314a8488"
+  },
+  "case_environments": {
+    "E006-H01": {"python": "3.8.3", "venv": "py383-h", "requirements": "requirements-h.txt", "test_runner": "pytest 3.10.1 (control-side only)"},
+    "E006-H02": {"python": "3.8.3", "venv": "py383-h", "requirements": "requirements-h.txt", "test_runner": "pytest 3.10.1 (control-side only)"},
+    "E006-H03": {"python": "3.8.3", "venv": "py383-h", "requirements": "requirements-h.txt", "test_runner": "pytest 3.10.1 (control-side only)"},
+    "E006-H04": {"python": "3.8.3", "venv": "py383-h", "requirements": "requirements-h.txt", "test_runner": "pytest 3.10.1 (control-side only)"},
+    "E006-H05": {"python": "3.8.3", "venv": "py383-h", "requirements": "requirements-h.txt", "test_runner": "pytest 3.10.1 (control-side only)"},
+    "E006-K01": {"python": "3.8.3", "venv": "py383-k01", "requirements": ["requirements-k01.txt", "requirements-test-py38.txt"], "test_runner": "unittest; pytest 3.10.1 control-side"},
+    "E006-K02": {"python": "3.8.1", "venv": "py381-k02", "requirements": "requirements-k02.txt", "test_runner": "unittest; pytest 3.10.1 control-side"},
+    "E006-K03": {"python": "3.8.3", "venv": "py383-k03", "requirements": ["requirements-k03.txt", "requirements-test-py38.txt"], "test_runner": "unittest; pytest 3.10.1 control-side"},
+    "E006-K04": {"python": "3.7.0", "venv": "py370-k04", "requirements": "requirements-k04.txt", "test_runner": "pytest 3.10.1"},
+    "E006-K05": {"python": "3.6.9", "venv": "py369-k05", "requirements": "requirements-k05.txt", "test_runner": "pytest 5.4.3"}
+  },
+  "dependency_sources": {
+    "E006-K01": "BugsInPy historical metadata plus the frozen black setup.py/setup.cfg/Pipfile.lock; pytest support is pinned from the pre-freeze E006 validation environment.",
+    "E006-K02": "BugsInPy historical metadata plus the frozen PySnooper requirements.txt/setup.py and python-toolbox metadata; pytest support is pinned from the pre-freeze E006 validation environment.",
+    "E006-K03": "BugsInPy historical metadata plus the frozen black setup.py/setup.cfg/Pipfile.lock; pytest support is pinned from the pre-freeze E006 validation environment.",
+    "E006-K04": "BugsInPy historical metadata plus the frozen thefuck requirements.txt/setup.py/setup.cfg/tox.ini; exact pins are recorded from the historical dependency layer.",
+    "E006-K05": "BugsInPy historical metadata plus the frozen tqdm setup.py/setup.cfg/requirements-dev.txt/tox.ini; exact pins are recorded from the historical dependency layer.",
+    "E006-H01-H05": "Frozen E006 pyproject.toml files declare Python >=3.8 and no third-party project dependencies; pytest is included only for the private control-side evaluator and is not an agent task dependency."
+  },
+  "sources": {
+    "historical_runtime_versions": "manifests/experiment-006-config.json and the recorded case metadata",
+    "historical_packages": "BugsInPy metadata requirements.txt plus each frozen project setup.py/setup.cfg/requirements files",
+    "validation_compatibility": "the frozen validation environment and the pre-freeze E006 deterministic validator",
+    "python_images": "official Docker Library Python arm64 manifests pinned by digest",
+    "novel_cases": "frozen E006 pyproject.toml files; standard library only"
+  }
+}

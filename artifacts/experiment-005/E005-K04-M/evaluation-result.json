@@ -1,0 +1,80 @@
+{
+  "case_id": "E005-K04",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-005",
+  "failure_summary": "Public and held-out behavior failed because cycle cleanup was moved into RequestHandler.finish, clearing template state before an ordinary WebSocket render; regression passed.",
+  "heldout": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-K04",
+          "-p",
+          "test_behavior.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.091,
+        "returncode": 1,
+        "status": "fail",
+        "timed_out": false
+      }
+    ],
+    "overall": "fail"
+  },
+  "patch": {
+    "additions": 4,
+    "changed_files": [
+      "tornado/web.py",
+      "tornado/websocket.py"
+    ],
+    "deletions": 0,
+    "sha256": "bee13c162100aa94f5d780bb97a2d2c5212b0b1da2e12f777a50dbe0137db161"
+  },
+  "public": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "-q",
+          "tornado.test.websocket_test.WebSocketTest.test_render_message"
+        ],
+        "elapsed_seconds": 0.217,
+        "returncode": 1,
+        "status": "fail",
+        "timed_out": false
+      }
+    ],
+    "overall": "fail"
+  },
+  "regression": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-K04",
+          "-p",
+          "test_regression.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.086,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "run_id": "E005-K04-M",
+  "schema_version": 1,
+  "task_success": false
+}

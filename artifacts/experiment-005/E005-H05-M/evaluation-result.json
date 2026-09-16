@@ -1,0 +1,82 @@
+{
+  "case_id": "E005-H05",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-005",
+  "failure_summary": "Held-out behavior failed because a subscription closed during an active dispatch was skipped immediately, instead of remaining effective for the current stable dispatch; public and regression suites passed.",
+  "heldout": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-H05",
+          "-p",
+          "test_behavior.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.06,
+        "returncode": 1,
+        "status": "fail",
+        "timed_out": false
+      }
+    ],
+    "overall": "fail"
+  },
+  "patch": {
+    "additions": 3,
+    "changed_files": [
+      "src/event_ledger/projection.py",
+      "src/event_ledger/subscriptions.py"
+    ],
+    "deletions": 1,
+    "sha256": "276f452ced303b5b8329c08fcf625a77cc1d568112855785ed7a4d230bab9c7c"
+  },
+  "public": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests",
+          "-v"
+        ],
+        "elapsed_seconds": 0.055,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "regression": {
+    "commands": [
+      {
+        "command": [
+          "/python-runtime/bin/python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-H05",
+          "-p",
+          "test_regression.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.041,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "run_id": "E005-H05-M",
+  "schema_version": 1,
+  "task_success": false
+}

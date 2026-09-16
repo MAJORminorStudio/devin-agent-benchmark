@@ -1,0 +1,79 @@
+{
+  "case_id": "E005-K01",
+  "condition": "M",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 127499,
+    "completion": 583,
+    "prompt": 129859,
+    "steps": 81,
+    "tool_calls": 132
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 92906,
+      "deleted_bytes": 85838
+    },
+    "changed_files": [
+      "fastapi/applications.py",
+      "fastapi/encoders.py",
+      "fastapi/openapi/utils.py",
+      "fastapi/routing.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 145,
+      "deletions": 14
+    },
+    "sha256": "ba0351317e0531e4ef8abc11829b19b63640062e7f94f9d89eec7c135d9956ff",
+    "source_files_changed": [
+      "fastapi/applications.py",
+      "fastapi/encoders.py",
+      "fastapi/openapi/utils.py",
+      "fastapi/routing.py"
+    ],
+    "workspace_churn_files": 4
+  },
+  "prompt_sha256": "7e73a8187e9e5554d95b2f36c724054b2770587af63781ee5873fe1f573c79af",
+  "provenance": "historical-public",
+  "retries": 0,
+  "run_id": "E005-K01-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "trail-study",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T02:07:45.192529+00:00",
+    "started_at_utc": "2026-09-16T01:54:53.459968+00:00",
+    "wall_time_seconds": 771.6972634169506
+  }
+}

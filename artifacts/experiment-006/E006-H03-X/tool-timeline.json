@@ -1,0 +1,322 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 237908,
+    "total_completion_tokens": 19519,
+    "total_prompt_tokens": 266586,
+    "total_steps": 18
+  },
+  "hidden_reasoning_omitted": true,
+  "schema_version": 1,
+  "session_id": "harsh-narcissus",
+  "steps": [
+    {
+      "message": "The stream session reports malformed input, but later valid commands can be\nlost or blocked by backpressure. Restore reliable recovery for fragmented\nand coalesced input while preserving frame order, flow-control accounting,\ncommand behavior, and session close semantics.\n\nRun the available test suite with:\n\n    PYTHONPATH=src python -m unittest discover -s tests -v",
+      "source": "user",
+      "step_id": 6,
+      "timestamp": "2026-09-16T17:22:26.638177501+00:00"
+    },
+    {
+      "message": "I'll start by exploring the workspace structure.",
+      "source": "agent",
+      "step_id": 8,
+      "timestamp": "2026-09-16T17:22:27.893645585+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "find /workspace -type f -name \"*.py\" | head -50 && echo \"---\" && ls /workspace"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell b5d256:\n/workspace/tests/test_session.py\n/workspace/src/wire_relay/session.py\n/workspace/src/wire_relay/__init__.py\n/workspace/src/wire_relay/flow.py\n/workspace/src/wire_relay/framing.py\n/workspace/src/wire_relay/router.py\n---\nREADME.md\nTASK.md\npyproject.toml\nsrc\ntests\n\n\nExit code: 0",
+            "content_length": 313,
+            "content_sha256": "799a275a82fb04aa0cfdcbbd9d1d1443375dee225da593d3d52e22851b5e2258"
+          },
+          "tool_call_id": "exec_0#7620e6379f60465d88cf944247060c30"
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "step_id": 9,
+      "timestamp": "2026-09-16T17:22:31.064397003+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/TASK.md"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/TASK.md\" start_line=\"1\" end_line=\"8\" total_lines=\"8\">\n  1|The stream session reports malformed input, but later valid commands can be\n  2|lost or blocked by backpressure. Restore reliable recovery for fragmented\n  3|and coalesced input while preserving frame order, flow-control accounting,\n  4|command behavior, and session close semantics.\n  5|\n  6|Run the available test suite with:\n  7|\n  8|    PYTHONPATH=src python -m unittest discover -s tests -v\n</file-view>",
+            "content_length": 494,
+            "content_sha256": "75f0a49165079567fe6c6cc49af8ca39ddf3fd71b800e96a1953579443626e30"
+          },
+          "tool_call_id": "read_1#e1648d1451964f7bace26d6d1eb53c75"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/README.md"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/README.md\" start_line=\"1\" end_line=\"5\" total_lines=\"5\">\n  1|# Wire Relay\n  2|\n  3|Wire Relay accepts a length-prefixed command stream. The session keeps a\n  4|receive window so a peer must make progress before more input is admitted.\n  5|Malformed frames are reported and the stream remains usable.\n</file-view>",
+            "content_length": 339,
+            "content_sha256": "5078e3ce13e79a4f0604ddba7f176943fc4c773ff8fda8535d0b3fbd11b64d96"
+          },
+          "tool_call_id": "read_2#46e0cc0791c94fcdbc123ebe3e2b9506"
+        },
+        {
+          "arguments": {
+            "command": "ls -la /workspace/src/wire_relay /workspace/tests && wc -l /workspace/src/wire_relay/*.py /workspace/tests/*.py"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 50cc84:\n/workspace/src/wire_relay:\ntotal 20\ndrwxr-xr-x 8 root root  256 Sep 16 12:15 .\ndrwxr-xr-x 3 root root   96 Sep 16 12:12 ..\n-rw-r--r-- 1 root root   98 Sep 16 12:12 __init__.py\ndrwxr-xr-x 7 root root  224 Sep 16 12:15 __pycache__\n-rw-r--r-- 1 root root  353 Sep 16 12:12 flow.py\n-rw-r--r-- 1 root root 1142 Sep 16 12:12 framing.py\n-rw-r--r-- 1 root root  484 Sep 16 12:12 router.py\n-rw-r--r-- 1 root root 1126 Sep 16 12:12 session.py\n\n/workspace/tests:\ntotal 4\ndrwxr-xr-x 4 root root 128 Sep 16 12:15 .\ndrwxr-xr-x 7 root root 224 Sep 16 14:47 ..\ndrwxr-xr-x 3 root root  96 Sep 16 12:15 __pycache__\n-rw-r--r-- 1 root root 825 Sep 16 12:12 test_session.py\n   3 /workspace/src/wire_relay/__init__.py\n  13 /workspace/src/wire_relay/flow.py\n  44 /workspace/src/wire_relay/framing.py\n  12 /workspace/src/wire_relay/router.py\n  35 /workspace/src/wire_relay/session.py\n  24 /workspace/tests/test_session.py\n 131 total\n\n\nExit code: 0",
+            "content_length": 960,
+            "content_sha256": "7124cd8c99e7dd1c0b9ef8655652c0d63b5f08bfdadfb0ebc0ecb5d38446be9f"
+          },
+          "tool_call_id": "exec_3#30621222f5514377a96a196c96cf2553"
+        }
+      ]
+    },
+    {
+      "message": "Small codebase. Let me read all the files.",
+      "source": "agent",
+      "step_id": 10,
+      "timestamp": "2026-09-16T17:22:37.944917548+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/session.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/session.py\" start_line=\"1\" end_line=\"35\" total_lines=\"35\">\n  1|from enum import Enum\n  2|\n  3|from .flow import FlowWindow\n  4|from .framing import Frame, FrameDecoder, ProtocolError\n  5|from .router import CommandRouter\n  6|\n  7|\n  8|class SessionState(Enum):\n  9|    READY = \"ready\"\n 10|    CLOSED = \"closed\"\n 11|\n 12|\n 13|class ProtocolSession:\n 14|    def __init__(self, window_size=64):\n 15|        self.decoder = FrameDecoder()\n 16|        self.window = FlowWindow(window_size)\n 17|        self.router = CommandRouter()\n 18|        self.state = SessionState.READY\n 19|\n 20|    def receive(self, data):\n 21|        if self.state is SessionState.CLOSED:\n 22|            return [{\"kind\": \"error\", \"code\": \"closed\"}]\n 23|        if not self.window.reserve(len(data)):\n 24|            return [{\"kind\": \"error\", \"code\": \"backpressure\"}]\n 25|        responses = []\n 26|        for event in self.decoder.feed(data):\n 27|            if isinstance(event, ProtocolError):\n 28|                responses.append({\"kind\": \"error\", \"code\": event.code})\n 29|            elif isinstance(event, Frame):\n 30|                responses.append(self.router.dispatch(event.payload))\n 31|            self.window.acknowledge(event.wire_size)\n 32|        return responses\n 33|\n 34|    def close(self):\n 35|        self.state = SessionState.CLOSED\n</file-view>",
+            "content_length": 1380,
+            "content_sha256": "2a5718c933e702100e80ef0ce56ceb8f43b2f4e0407ad5182c8384f1413caf87"
+          },
+          "tool_call_id": "read_4#d0b00a6f30c64480b28909ac13661bc0"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/framing.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/framing.py\" start_line=\"1\" end_line=\"44\" total_lines=\"44\">\n  1|import json\n  2|import struct\n  3|from dataclasses import dataclass\n  4|\n  5|\n  6|@dataclass\n  7|class Frame:\n  8|    payload: object\n  9|    wire_size: int\n 10|\n 11|\n 12|@dataclass\n 13|class ProtocolError:\n 14|    code: str\n 15|    wire_size: int\n 16|\n 17|\n 18|class FrameDecoder:\n 19|    HEADER = 4\n 20|    MAX_BODY = 64\n 21|\n 22|    def __init__(self):\n 23|        self._buffer = bytearray()\n 24|\n 25|    def feed(self, data):\n 26|        self._buffer.extend(data)\n 27|        events = []\n 28|        while len(self._buffer) >= self.HEADER:\n 29|            length = struct.unpack(\"!I\", self._buffer[:4])[0]\n 30|            if length > self.MAX_BODY:\n 31|                del self._buffer[:4]\n 32|                events.append(ProtocolError(\"frame-too-large\", 0))\n 33|                continue\n 34|            if len(self._buffer) < self.HEADER + length:\n 35|                break\n 36|            raw = bytes(self._buffer[4:4 + length])\n 37|            del self._buffer[:4 + length]\n 38|            try:\n 39|                payload = json.loads(raw.decode(\"utf-8\"))\n 40|            except (UnicodeDecodeError, ValueError):\n 41|                events.append(ProtocolError(\"invalid-payload\", 0))\n 42|            else:\n 43|                events.append(Frame(payload, self.HEADER + length))\n 44|        return events\n</file-view>",
+            "content_length": 1432,
+            "content_sha256": "1cc4112cb727bbc87674a95df433f20ab91a7828ff23a271a41685c4a27d49e8"
+          },
+          "tool_call_id": "read_5#4cd571c3b35d4723b4799101e20befbb"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/flow.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/flow.py\" start_line=\"1\" end_line=\"13\" total_lines=\"13\">\n  1|class FlowWindow:\n  2|    def __init__(self, size=64):\n  3|        self.size = size\n  4|        self.available = size\n  5|\n  6|    def reserve(self, amount):\n  7|        if amount > self.available:\n  8|            return False\n  9|        self.available -= amount\n 10|        return True\n 11|\n 12|    def acknowledge(self, amount):\n 13|        self.available = min(self.size, self.available + amount)\n</file-view>",
+            "content_length": 516,
+            "content_sha256": "01dccbc59693cde253cd71299158f059eb930b13091c5f7d95ed51f916d62eba"
+          },
+          "tool_call_id": "read_6#f28dddd6814d4f4495bad308040e0871"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/router.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/router.py\" start_line=\"1\" end_line=\"12\" total_lines=\"12\">\n  1|class CommandRouter:\n  2|    def __init__(self):\n  3|        self.counter = 0\n  4|\n  5|    def dispatch(self, payload):\n  6|        command = payload.get(\"command\") if isinstance(payload, dict) else None\n  7|        if command == \"increment\":\n  8|            self.counter += payload.get(\"amount\", 1)\n  9|            return {\"kind\": \"ack\", \"counter\": self.counter}\n 10|        if command == \"read\":\n 11|            return {\"kind\": \"value\", \"counter\": self.counter}\n 12|        return {\"kind\": \"error\", \"code\": \"unknown-command\"}\n</file-view>",
+            "content_length": 645,
+            "content_sha256": "76a1f6821702bb51a47429e376439f9d8734869211e80b4dc5c95fef578345aa"
+          },
+          "tool_call_id": "read_7#cebc6e1c9bd54b0094a9f785cc85291e"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/__init__.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/__init__.py\" start_line=\"1\" end_line=\"3\" total_lines=\"3\">\n  1|from .session import ProtocolSession, SessionState\n  2|\n  3|__all__ = [\"ProtocolSession\", \"SessionState\"]\n</file-view>",
+            "content_length": 223,
+            "content_sha256": "38329299ac040683762a9d18a7ce4ede796fdd13afe88f785ce5b418b2e5cacf"
+          },
+          "tool_call_id": "read_8#0157bf6c6089407caa4318a013bbfdd0"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/tests/test_session.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/tests/test_session.py\" start_line=\"1\" end_line=\"24\" total_lines=\"24\">\n  1|import json\n  2|import struct\n  3|import unittest\n  4|\n  5|from wire_relay import ProtocolSession, SessionState\n  6|\n  7|\n  8|def frame(message):\n  9|    body = json.dumps(message, separators=(\",\", \":\")).encode(\"utf-8\")\n 10|    return struct.pack(\"!I\", len(body)) + body\n 11|\n 12|\n 13|class SessionTests(unittest.TestCase):\n 14|    def test_valid_command_remains_available_after_bad_payload(self):\n 15|        session = ProtocolSession(window_size=64)\n 16|        bad = struct.pack(\"!I\", 8) + b\"not-json\"\n 17|        self.assertEqual(session.receive(bad), [{\"kind\": \"error\", \"code\": \"invalid-payload\"}])\n 18|        self.assertEqual(session.window.available, 64)\n 19|        self.assertEqual(session.receive(frame({\"command\": \"increment\", \"amount\": 2})), [{\"kind\": \"ack\", \"counter\": 2}])\n 20|        self.assertEqual(session.state, SessionState.READY)\n 21|\n 22|\n 23|if __name__ == \"__main__\":\n 24|    unittest.main()\n</file-view>",
+            "content_length": 1031,
+            "content_sha256": "d62bf6f2bc153669b0bef43be026110ed539405d655b70c7088a9975d28e2075"
+          },
+          "tool_call_id": "read_9#76f6efa4a9c44efc9f8abd1cbb856764"
+        }
+      ]
+    },
+    {
+      "message": "Let me run the test suite to see the current state.",
+      "source": "agent",
+      "step_id": 11,
+      "timestamp": "2026-09-16T17:22:44.897420343+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python -m unittest discover -s tests -v"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 493e00:\ntest_valid_command_remains_available_after_bad_payload (test_session.SessionTests) ... FAIL\n\n======================================================================\nFAIL: test_valid_command_remains_available_after_bad_payload (test_session.SessionTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/workspace/tests/test_session.py\", line 18, in test_valid_command_remains_available_after_bad_payload\n    self.assertEqual(session.window.available, 64)\nAssertionError: 52 != 64\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (failures=1)\n\n\nExit code: 1",
+            "content_length": 710,
+            "content_sha256": "69d36554ce069df6453c6dcee073d019a5936d05cda79d4cb3abfaba54ea0f58"
+          },
+          "tool_call_id": "exec_10#2a937927e066475f9895f270fdc8c8cd"
+        }
+      ]
+    },
+    {
+      "message": "The test failure is a window accounting leak. Let me analyze the decoder logic carefully:\n\n**Bugs found:**\n\n1. **`invalid-payload` leaks window** \u2014 the decoder consumes `4 + length` bytes but reports `wire_size=0`, so `session.receive` acknowledges nothing. Each bad frame permanently shrinks the window until `reserve()` fails \u2192 everything blocked by backpressure. (This is the visible test failure.)\n\n2. **`frame-too-large` desyncs the stream** \u2014 on an oversized length it deletes only the 4-byte header, then reparses the body bytes as new frame headers. Those garbage \"headers\" can consume bytes belonging to a subsequent valid frame \u2192 later valid commands lost. It also leaks the 4 consumed bytes (`wire_size=0`).\n\nThe fix: when a frame is declared too large, the peer still sends `length` body bytes \u2014 the decoder must skip exactly that many (tracking partial progress across fragmented `feed` calls) before resuming header parsing. And every consumed byte must be credited back to the window exactly once.\n\nLet me verify the current bad behavior before fixing:",
+      "source": "agent",
+      "step_id": 12,
+      "timestamp": "2026-09-16T17:22:48.492893470+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python -c \"\nimport json, struct\nfrom wire_relay import ProtocolSession\n\ndef frame(msg):\n    b = json.dumps(msg, separators=(',',':')).encode()\n    return struct.pack('!I', len(b)) + b\n\n# too-large frame followed by valid frame, coalesced\ns = ProtocolSession(window_size=64)\nbig = struct.pack('!I', 100) + b'x' * 100\ndata = big + frame({'command':'increment'})\n# feed in two chunks under the window\nprint(s.receive(data[:64]))\nprint(s.receive(data[64:]))\nprint('window', s.window.available, 'counter', s.router.counter)\n\"\n"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 7ca8d7:\n[{'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'frame-too-large'}]\n[{'kind': 'error', 'code': 'backpressure'}]\nwindow 0 counter 0\n\n\nExit code: 0",
+            "content_length": 851,
+            "content_sha256": "f5ea2f4925c0fac755e7f82311924963ef2b10e07fb31196896f8eeebe3d23aa"
+          },
+          "tool_call_id": "exec_11#e185ebe96cd24c6f95366a0d8d61f8d9"
+        }
+      ]
+    },
+    {
+      "message": "Confirmed: the oversized frame's body gets reparsed as headers (each `0x78`=120 \u2192 15 spurious errors), the valid frame is lost, and the window leaks to 0 \u2192 permanent backpressure.\n\nNow the fix in `framing.py`. The decoder needs a skip counter so an oversized frame's declared body is consumed as body (never reparsed), and every consumed byte must be credited to the window exactly once. I'll emit a `Discarded` accounting event for skipped bytes \u2014 the session's loop already calls `window.acknowledge(event.wire_size)` for every event and only appends responses for `Frame`/`ProtocolError`, so it slots in with zero session changes.",
+      "source": "agent",
+      "step_id": 13,
+      "timestamp": "2026-09-16T17:28:46.350013177+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/framing.py",
+            "new_string": "@dataclass\nclass ProtocolError:\n    code: str\n    wire_size: int\n\n\n@dataclass\nclass Discarded:\n    wire_size: int\n\n\nclass FrameDecoder:\n    HEADER = 4\n    MAX_BODY = 64\n\n    def __init__(self):\n        self._buffer = bytearray()\n        self._skip = 0\n\n    def feed(self, data):\n        self._buffer.extend(data)\n        events = []\n        while True:\n            if self._skip:\n                dropped = min(len(self._buffer), self._skip)\n                del self._buffer[:dropped]\n                self._skip -= dropped\n                if dropped:\n                    events.append(Discarded(dropped))\n                if self._skip:\n                    break\n                continue\n            if len(self._buffer) < self.HEADER:\n                break\n            length = struct.unpack(\"!I\", self._buffer[:4])[0]\n            if length > self.MAX_BODY:\n                del self._buffer[:4]\n                self._skip = length\n                events.append(ProtocolError(\"frame-too-large\", self.HEADER))\n                continue\n            if len(self._buffer) < self.HEADER + length:\n                break\n            raw = bytes(self._buffer[4:4 + length])\n            del self._buffer[:4 + length]\n            try:\n                payload = json.loads(raw.decode(\"utf-8\"))\n            except (UnicodeDecodeError, ValueError):\n                events.append(ProtocolError(\"invalid-payload\", self.HEADER + length))\n            else:\n                events.append(Frame(payload, self.HEADER + length))\n        return events",
+            "old_string": "@dataclass\nclass ProtocolError:\n    code: str\n    wire_size: int\n\n\nclass FrameDecoder:\n    HEADER = 4\n    MAX_BODY = 64\n\n    def __init__(self):\n        self._buffer = bytearray()\n\n    def feed(self, data):\n        self._buffer.extend(data)\n        events = []\n        while len(self._buffer) >= self.HEADER:\n            length = struct.unpack(\"!I\", self._buffer[:4])[0]\n            if length > self.MAX_BODY:\n                del self._buffer[:4]\n                events.append(ProtocolError(\"frame-too-large\", 0))\n                continue\n            if len(self._buffer) < self.HEADER + length:\n                break\n            raw = bytes(self._buffer[4:4 + length])\n            del self._buffer[:4 + length]\n            try:\n                payload = json.loads(raw.decode(\"utf-8\"))\n            except (UnicodeDecodeError, ValueError):\n                events.append(ProtocolError(\"invalid-payload\", 0))\n            else:\n                events.append(Frame(payload, self.HEADER + length))\n        return events"
+          },
+          "function_name": "edit",
+          "observation": {
+            "content": "The file /workspace/src/wire_relay/framing.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:\n  8|    payload: object\n  9|    wire_size: int\n 10|\n 11|\n 12|@dataclass\n 13|class ProtocolError:\n 14|    code: str\n 15|    wire_size: int\n 16|\n 17|\n 18|@dataclass\n 19|class Discarded:\n 20|    wire_size: int\n 21|\n 22|\n 23|class FrameDecoder:\n 24|    HEADER = 4\n 25|    MAX_BODY = 64\n 26|\n 27|    def __init__(self):\n 28|        self._buffer = bytearray()\n 29|        self._skip = 0\n 30|\n 31|    def feed(self, data):\n 32|        self._buffer.extend(data)\n 33|        events = []\n 34|        while True:\n 35|            if self._skip:\n 36|                dropped = min(len(self._buffer), self._skip)\n 37|                del self._buffer[:dropped]\n 38|                self._skip -= dropped\n 39|                if dropped:\n 40|                    events.append(Discarded(dropped))\n 41|                if self._skip:\n 42|                    break\n 43|                continue\n 44|            if len(self._buffer) < self.HEADER:\n 45|                break\n 46|            length = struct.unpack(\"!I\", self._buffer[:4])[0]\n 47|            if length > self.MAX_BODY:\n 48|                del self._buffer[:4]\n 49|                self._skip = length\n 50|                events.append(ProtocolError(\"frame-too-large\", self.HEADER))\n 51|                continue\n 52|            if len(self._buffer) < self.HEADER + length:\n 53|                break\n 54|            raw = bytes(self._buffer[4:4 + length])\n 55|            del self._buffer[:4 + length]\n 56|            try:\n 57|                payload = json.loads(raw.decode(\"utf-8\"))\n 58|            except (UnicodeDecodeError, ValueError):\n 59|                events.append(ProtocolError(\"invalid-payload\", self.HEADER + length))\n 60|            else:\n 61|                events.append(Frame(payload, self.HEADER + length))\n 62|        return events",
+            "content_length": 1922,
+            "content_sha256": "32b53bbe86644408b627f03f4d2e71ab15f2247b484e12b0e0cec8740ff8461f"
+          },
+          "tool_call_id": "edit_12#2dbafb0dd67b4c50b5e110cf90e0dea7"
+        }
+      ]
+    },
+    {
+      "message": "Now run the test suite plus a comprehensive scenario check:",
+      "source": "agent",
+      "step_id": 14,
+      "timestamp": "2026-09-16T17:29:10.994629091+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python -m unittest discover -s tests -v"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 16e7b5:\ntest_valid_command_remains_available_after_bad_payload (test_session.SessionTests) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n\n\nExit code: 0",
+            "content_length": 238,
+            "content_sha256": "a9d6edcfc0196b4ce295f56e46858f37b4cf085770d67971e4cb4c235b15e570"
+          },
+          "tool_call_id": "exec_13#4d0d0d66166043e68037140d55845a24"
+        },
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python -c \"\nimport json, struct\nfrom wire_relay import ProtocolSession, SessionState\n\ndef frame(msg):\n    b = json.dumps(msg, separators=(',',':')).encode()\n    return struct.pack('!I', len(b)) + b\n\nok = True\ndef check(name, got, want):\n    global ok\n    status = 'PASS' if got == want else 'FAIL'\n    if got != want: ok = False\n    print(f'{status} {name}: {got!r}')\n\n# 1. invalid-payload coalesced with valid frame, order preserved\ns = ProtocolSession(window_size=64)\nbad = struct.pack('!I', 8) + b'not-json'\ncheck('coalesced bad+valid', s.receive(bad + frame({'command':'increment','amount':3})),\n      [{'kind':'error','code':'invalid-payload'}, {'kind':'ack','counter':3}])\ncheck('window after coalesced', s.window.available, 64)\n\n# 2. too-large frame coalesced with valid frame\ns = ProtocolSession(window_size=64)\nbig = struct.pack('!I', 100) + b'x'*100\nr1 = s.receive((big + frame({'command':'increment','amount':5}))[:64])\nr2 = s.receive((big + frame({'command':'increment','amount':5}))[64:])\ncheck('too-large chunk1', r1, [{'kind':'error','code':'frame-too-large'}])\ncheck('too-large chunk2', r2, [{'kind':'ack','counter':5}])\ncheck('window after too-large', s.window.available, 64)\n\n# 3. fragmented valid frame across receives\ns = ProtocolSession(window_size=64)\nf = frame({'command':'increment','amount':7})\nrs = [s.receive(f[:3]), s.receive(f[3:9]), s.receive(f[9:])]\ncheck('fragmented valid', rs, [[], [], [{'kind':'ack','counter':7}]])\ncheck('window after frag', s.window.available, 64)\n\n# 4. fragmented too-large, error reported promptly at header\ns = ProtocolSession(window_size=64)\ncheck('tl header', s.receive(struct.pack('!I', 100)), [{'kind':'error','code':'frame-too-large'}])\ncheck('tl body part', s.receive(b'x'*40), [])\ncheck('tl body rest + valid', s.receive(b'x'*60 + frame({'command':'increment','amount':2})),\n      [{'kind':'ack','counter':2}])\ncheck('window after tl frag', s.window.available, 64)\n\n# 5. backpressure + recovery\ns = ProtocolSession(window_size=64)\ncheck('partial reserve', s.receive(f[:40]), [])          # 40 reserved, 24 avail\ncheck('over window', s.receive(b'y'*30), [{'kind':'error','code':'backpressure'}])  # rejected, not fed\ncheck('rest of frame', s.receive(f[40:]), [{'kind':'ack','counter':7}])\ncheck('window after bp', s.window.available, 64)\n\n# 6. multiple bad frames + valid in one chunk\ns = ProtocolSession(window_size=64)\nblob = bad + struct.pack('!I', 70) + b'z'*70 + bad + frame({'command':'read'})\ncheck('mixed stream', s.receive(blob),\n      [{'kind':'error','code':'invalid-payload'},\n       {'kind':'error','code':'frame-too-large'},\n       {'kind':'error','code':'invalid-payload'},\n       {'kind':'value','counter':0}])\ncheck('window after mixed', s.window.available, 64)\n\n# 7. close semantics\ns.close()\ncheck('after close', s.receive(frame({'command':'increment'})), [{'kind':'error','code':'closed'}])\ncheck('state', s.state, SessionState.CLOSED)\n\n# 8. unknown command + read preserved\ns = ProtocolSession(window_size=64)\ncheck('unknown', s.receive(frame({'command':'bogus'})), [{'kind':'error','code':'unknown-command'}])\ncheck('read', s.receive(frame({'command':'read'})), [{'kind':'value','counter':0}])\n\nprint('ALL OK' if ok else 'FAILURES')\n\"\n"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 08a86e:\nPASS coalesced bad+valid: [{'kind': 'error', 'code': 'invalid-payload'}, {'kind': 'ack', 'counter': 3}]\nPASS window after coalesced: 64\nPASS too-large chunk1: [{'kind': 'error', 'code': 'frame-too-large'}]\nFAIL too-large chunk2: [{'kind': 'error', 'code': 'backpressure'}]\nPASS window after too-large: 64\nPASS fragmented valid: [[], [], [{'kind': 'ack', 'counter': 7}]]\nPASS window after frag: 64\nPASS tl header: [{'kind': 'error', 'code': 'frame-too-large'}]\nPASS tl body part: []\nFAIL tl body rest + valid: [{'kind': 'error', 'code': 'backpressure'}]\nPASS window after tl frag: 64\nFAIL partial reserve: [{'kind': 'ack', 'counter': 7}]\nFAIL over window: [{'kind': 'error', 'code': 'frame-too-large'}]\nFAIL rest of frame: []\nPASS window after bp: 64\nFAIL mixed stream: [{'kind': 'error', 'code': 'backpressure'}]\nPASS window after mixed: 64\nPASS after close: [{'kind': 'error', 'code': 'closed'}]\nPASS state: <SessionState.CLOSED: 'closed'>\nPASS unknown: [{'kind': 'error', 'code': 'unknown-command'}]\nPASS read: [{'kind': 'value', 'counter': 0}]\nFAILURES\n\n\nExit code: 0",
+            "content_length": 1107,
+            "content_sha256": "1d88149c4628b8e29a981bdb348b71e12fef294a893840c602d0a4dcc90eee03"
+          },
+          "tool_call_id": "exec_14#43fc1a113769497fbbca6f3becffb567"
+        }
+      ]
+    },
+    {
+      "message": "All decoder behavior is correct \u2014 the FAILs are my test script feeding chunks larger than the 64-byte window (which correctly yields `backpressure`), and `window after ...: 64` passed in every case. Let me rerun those scenarios with properly-sized chunks:",
+      "source": "agent",
+      "step_id": 15,
+      "timestamp": "2026-09-16T17:29:35.133230088+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python -c \"\nimport json, struct\nfrom wire_relay import ProtocolSession, SessionState\n\ndef frame(msg):\n    b = json.dumps(msg, separators=(',',':')).encode()\n    return struct.pack('!I', len(b)) + b\n\nok = True\ndef check(name, got, want):\n    global ok\n    if got != want: ok = False\n    print(('PASS' if got == want else 'FAIL'), name, '->', got)\n\n# too-large coalesced with valid, fed in window-sized pieces\ns = ProtocolSession(window_size=64)\nbig = struct.pack('!I', 100) + b'x'*100\nstream = big + frame({'command':'increment','amount':5})\ncheck('tl c1', s.receive(stream[:60]), [{'kind':'error','code':'frame-too-large'}])\ncheck('tl c2', s.receive(stream[60:120]), [])                       # 44 body + skip-pending... \ncheck('tl c3', s.receive(stream[120:]), [{'kind':'ack','counter':5}])\ncheck('window', s.window.available, 64)\n\n# fragmented too-large header itself split mid-header\ns = ProtocolSession(window_size=64)\ncheck('tl hdr part', s.receive(struct.pack('!I', 100)[:2]), [])     # 2 bytes buffered, reserved\ncheck('tl hdr rest', s.receive(struct.pack('!I', 100)[2:] + b'x'*50), [{'kind':'error','code':'frame-too-large'}])\ncheck('tl body+valid', s.receive(b'x'*50 + frame({'command':'increment'})[:40]), [])\ncheck('tl valid rest', s.receive(frame({'command':'increment'})[40:]), [{'kind':'ack','counter':1}])\ncheck('window', s.window.available, 64)\n\n# backpressure then retry\ns = ProtocolSession(window_size=64)\nf = frame({'command':'increment','amount':9})\ncheck('partial', s.receive(f[:40]), [])                              # 40 reserved\ncheck('bp', s.receive(b'y'*30), [{'kind':'error','code':'backpressure'}])  # not fed, caller retries\ncheck('retry+rest', s.receive(f[40:]), [{'kind':'ack','counter':9}])\ncheck('window', s.window.available, 64)\n\n# mixed malformed + valid, bigger window\ns = ProtocolSession(window_size=256)\nbad = struct.pack('!I', 8) + b'not-json'\nblob = bad + struct.pack('!I', 70) + b'z'*70 + bad + frame({'command':'read'})\ncheck('mixed', s.receive(blob),\n      [{'kind':'error','code':'invalid-payload'},\n       {'kind':'error','code':'frame-too-large'},\n       {'kind':'error','code':'invalid-payload'},\n       {'kind':'value','counter':0}])\ncheck('window', s.window.available, 256)\n\n# adversarial: too-large body bytes that would decode as a SMALL length (would eat valid frame under old code)\ns = ProtocolSession(window_size=256)\nevil_body = struct.pack('!I', 5) + b'hello' + b'\\\\x00'*63  # starts with a valid-looking header\nbig2 = struct.pack('!I', 72) + evil_body\ncheck('evil tl', s.receive(big2 + frame({'command':'increment','amount':4})),\n      [{'kind':'error','code':'frame-too-large'}, {'kind':'ack','counter':4}])\ncheck('window', s.window.available, 256)\n\n# zero-length frame -> invalid-payload, accounting for header only\ns = ProtocolSession(window_size=64)\ncheck('zero len', s.receive(struct.pack('!I', 0)), [{'kind':'error','code':'invalid-payload'}])\ncheck('window', s.window.available, 64)\n\nprint('ALL OK' if ok else 'FAILURES')\n\"\n"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 61d358:\nPASS tl c1 -> [{'kind': 'error', 'code': 'frame-too-large'}]\nPASS tl c2 -> []\nPASS tl c3 -> [{'kind': 'ack', 'counter': 5}]\nPASS window -> 64\nPASS tl hdr part -> []\nPASS tl hdr rest -> [{'kind': 'error', 'code': 'frame-too-large'}]\nFAIL tl body+valid -> [{'kind': 'error', 'code': 'backpressure'}]\nFAIL tl valid rest -> []\nPASS window -> 64\nFAIL partial -> [{'kind': 'ack', 'counter': 9}]\nFAIL bp -> [{'kind': 'error', 'code': 'frame-too-large'}]\nFAIL retry+rest -> []\nPASS window -> 64\nPASS mixed -> [{'kind': 'error', 'code': 'invalid-payload'}, {'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'error', 'code': 'invalid-payload'}, {'kind': 'value', 'counter': 0}]\nPASS window -> 256\nPASS evil tl -> [{'kind': 'error', 'code': 'frame-too-large'}, {'kind': 'ack', 'counter': 4}]\nPASS window -> 256\nPASS zero len -> [{'kind': 'error', 'code': 'invalid-payload'}]\nPASS window -> 64\nFAILURES\n\n\nExit code: 0",
+            "content_length": 947,
+            "content_sha256": "a26ebe86b03dae5672c891053a33b35e06e3513757fa9f9535e9fbf090de596e"
+          },
+          "tool_call_id": "exec_15#b1452e08c5df431eb9673dbc593e0422"
+        }
+      ]
+    },
+    {
+      "message": "Those remaining FAILs are my harness math again \u2014 the increment frame is only 29 bytes so `f[:40]` fed it whole, and a 77-byte chunk into a 64-byte window correctly backpressures. Let me do one clean run with computed sizes:",
+      "source": "agent",
+      "step_id": 16,
+      "timestamp": "2026-09-16T17:30:09.415237132+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python -c \"\nimport json, struct\nfrom wire_relay import ProtocolSession, SessionState\n\ndef frame(msg):\n    b = json.dumps(msg, separators=(',',':')).encode()\n    return struct.pack('!I', len(b)) + b\n\nok = True\ndef check(name, got, want):\n    global ok\n    if got != want: ok = False\n    print(('PASS' if got == want else 'FAIL'), name, '->', got)\n\n# fragmented too-large + fragmented valid, chunks sized to window\ns = ProtocolSession(window_size=64)\nf = frame({'command':'increment'})            # 27 bytes on wire\ncheck('hdr part', s.receive(b'\\\\x00\\\\x00'), [])\ncheck('hdr rest + body part', s.receive(b'\\\\x00\\\\x64' + b'x'*50), [{'kind':'error','code':'frame-too-large'}])\ncheck('body rest', s.receive(b'x'*50), [])\ncheck('valid frag1', s.receive(f[:20]), [])\ncheck('valid frag2', s.receive(f[20:]), [{'kind':'ack','counter':1}])\ncheck('window', s.window.available, 64)\n\n# backpressure mid-frame then retry \u2014 window genuinely full\ns = ProtocolSession(window_size=64)\nbig_frame = struct.pack('!I', 60) + json.dumps({'command':'increment','amount':9}).encode().ljust(60, b' ')\nassert len(big_frame) == 64\ncheck('frag1', s.receive(big_frame[:40]), [])                       # 40 reserved, 24 left\ncheck('bp reject', s.receive(b'y'*30), [{'kind':'error','code':'backpressure'}])\ncheck('frag2 (retry)', s.receive(big_frame[40:]), [{'kind':'ack','counter':9}])\ncheck('window', s.window.available, 64)\n\n# session usable after repeated malformed input \u2014 the original complaint\ns = ProtocolSession(window_size=64)\nfor i in range(10):\n    s.receive(struct.pack('!I', 8) + b'not-json')\n    s.receive(struct.pack('!I', 100) + b'x'*60)\n    s.receive(b'x'*40)\ncheck('after 10 bad', s.receive(frame({'command':'increment','amount':2})), [{'kind':'ack','counter':2}])\ncheck('window', s.window.available, 64)\ncheck('state', s.state, SessionState.READY)\n\nprint('ALL OK' if ok else 'FAILURES')\n\"\n"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell b79208:\nPASS hdr part -> []\nPASS hdr rest + body part -> [{'kind': 'error', 'code': 'frame-too-large'}]\nPASS body rest -> []\nPASS valid frag1 -> []\nPASS valid frag2 -> [{'kind': 'ack', 'counter': 1}]\nPASS window -> 64\nPASS frag1 -> []\nPASS bp reject -> [{'kind': 'error', 'code': 'backpressure'}]\nPASS frag2 (retry) -> [{'kind': 'ack', 'counter': 9}]\nPASS window -> 64\nPASS after 10 bad -> [{'kind': 'ack', 'counter': 2}]\nPASS window -> 64\nPASS state -> SessionState.READY\nALL OK\n\n\nExit code: 0",
+            "content_length": 523,
+            "content_sha256": "2dd761d18d67b1332a77c9140efd931d7c63ebc383774f5a62db8316fb97114b"
+          },
+          "tool_call_id": "exec_16#18f0d12e8f6246e4a0e4aae9eee530a5"
+        }
+      ]
+    },
+    {
+      "message": "All green. Final check of the diff:",
+      "source": "agent",
+      "step_id": 17,
+      "timestamp": "2026-09-16T17:30:29.781077586+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && git diff && git status --short"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 1c6fc7:\nwarning: Not a git repository. Use --no-index to compare two paths outside a working tree\nusage: git diff --no-index [<options>] <path> <path>\n\nDiff output format options\n    -p, --patch           generate patch\n    -s, --no-patch        suppress diff output\n    -u                    generate patch\n    -U, --unified[=<n>]   generate diffs with <n> lines context\n    -W, --function-context\n                          generate diffs with <n> lines context\n    --raw                 generate the diff in raw format\n    --patch-with-raw      synonym for '-p --raw'\n    --patch-with-stat     synonym for '-p --stat'\n    --numstat             machine friendly --stat\n    --shortstat           output only the last line of --stat\n    -X, --dirstat[=<param1,param2>...]\n                          output the distribution of relative amount of changes for each sub-directory\n    --cumulative          synonym for --dirstat=cumulative\n    --dirstat-by-file[=<param1,param2>...]\n                          synonym for --dirstat=files,param1,param2...\n    --check               warn if changes introduce conflict markers or whitespace errors\n    --summary             condensed summary such as creations, renames and mode changes\n    --name-only           show only names of changed files\n    --name-status         show only names and status of changed files\n    --stat[=<width>[,<name-width>[,<count>]]]\n                          generate diffstat\n    --stat-width <width>  generate diffstat with a given width\n    --stat-name-width <width>\n                          generate diffstat with a given name width\n    --stat-graph-width <width>\n                          generate diffstat with a given graph width\n    --stat-count <count>  generate diffstat with limited lines\n    --compact-summary     generate compact summary in diffstat\n    --binary              output a binary diff that can be applied\n    --full-index          show full pre- and post-image object names on the \"index\" lines\n    --color[=<when>]      show colored diff\n    --ws-error-highlight <kind>\n                          highlight whitespace errors in the 'context', 'old' or 'new' lines in the diff\n    -z                    do not munge pathnames and use NULs as output field terminators in --raw or --numstat\n    --abbrev[=<n>]        use <n> digits to display object names\n    --src-prefix <prefix>\n                          show the given source prefix instead of \"a/\"\n    --dst-prefix <prefix>\n                          show the given destination prefix instead of \"b/\"\n    --line-prefix <prefix>\n                          prepend an additional prefix to every line of output\n    --no-prefix           do not show any source or destination prefix\n    --inter-hunk-context <n>\n                          show context between diff hunks up to the specified number of lines\n    --output-indicator-new <char>\n                          specify the character to indicate a new line instead of '+'\n    --output-indicator-old <char>\n                          specify the character to indicate an old line instead of '-'\n    --output-indicator-context <char>\n                          specify the character to indicate a context instead of ' '\n\nDiff rename options\n    -B, --break-rewrites[=<n>[/<m>]]\n                          break complete rewrite changes into pairs of delete and create\n    -M, --find-renames[=<n>]\n                          detect renames\n    -D, --irreversible-delete\n                          omit the preimage for deletes\n    -C, --find-copies[=<n>]\n                          detect copies\n    --find-copies-harder  use unmodified files as source to find copies\n    --no-renames          disable rename detection\n    --rename-empty        use empty blobs as rename source\n    --follow              continue listing the history of a file beyond renames\n    -l <n>                prevent rename/copy detection if the number of rename/copy targets exceeds given limit\n\nDiff algorithm ",
+            "content_length": 7321,
+            "content_sha256": "6175cbc1507156f5a463c549cbc66c8350dfb96e83f415d706e9fc251e0551bd"
+          },
+          "tool_call_id": "exec_17#646b203a18494eb39f45b0b2150a7586"
+        }
+      ]
+    },
+    {
+      "message": "Not a git repo \u2014 no diff needed. Only `src/wire_relay/framing.py` changed; session, flow, and router are untouched.\n\n## Summary\n\nThe decoder had two bugs that compounded into lost commands and dead sessions:\n\n**Window leak on malformed frames** \u2014 both `ProtocolError` events reported `wire_size=0` even though the decoder had consumed bytes. `session.receive` acknowledges per-event `wire_size`, so every bad frame permanently shrank the window until `reserve()` rejected everything with `backpressure`. Now `invalid-payload` reports `HEADER + length` (the actual bytes consumed).\n\n**Stream desync on oversized frames** \u2014 on `length > MAX_BODY`, the decoder dropped only the 4-byte header, then reparsed the frame's body as new headers. Garbage lengths either spawned spurious errors or consumed bytes belonging to subsequent valid frames \u2014 losing them. Now the decoder reports `frame-too-large` (credited for the 4 header bytes) and enters a skip state (`self._skip = length`) that consumes exactly the declared body before resuming header parsing \u2014 safe across fragmented feeds and coalesced streams, including adversarial bodies that look like valid headers.\n\nSkipped body bytes are surfaced as `Discarded` accounting events <ref_snippet file=\"/workspace/src/wire_relay/framing.py\" lines=\"18-20\"/>, which the session's existing `window.acknowledge(event.wire_size)` loop credits without producing a response \u2014 so every wire byte is acknowledged exactly once, and errors are still reported in wire order.\n\nVerified: the suite passes, plus manual checks for fragmented/coalesced valid and oversized frames, mid-header splits, backpressure reject-then-retry, close semantics, and 10 consecutive malformed frames leaving the session fully usable with `window.available` restored.",
+      "source": "agent",
+      "step_id": 18,
+      "timestamp": "2026-09-16T17:30:36.901344714+00:00"
+    }
+  ]
+}

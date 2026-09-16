@@ -1,0 +1,22 @@
+{
+  "final_metrics": {
+    "cached": 504091,
+    "completion": 9460,
+    "prompt": 534463
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "scythe-single",
+  "steps": 31,
+  "tool_calls": 26,
+  "tool_calls_by_function": {
+    "edit": 4,
+    "exec": 14,
+    "grep": 1,
+    "read": 6,
+    "webfetch": 1
+  }
+}

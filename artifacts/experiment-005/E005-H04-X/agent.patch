@@ -1,0 +1,9 @@
+--- a/src/order_flow/transaction.py
++++ b/src/order_flow/transaction.py
+@@ -11,5 +11,5 @@
+         self._actions.append(action)
+
+     def rollback(self) -> None:
+-        for action in self._actions:
++        for action in reversed(self._actions):
+             action()

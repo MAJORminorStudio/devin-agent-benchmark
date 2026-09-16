@@ -1,0 +1,23 @@
+{
+  "baseline_entry_count": 39,
+  "classification_counts": {
+    "generated_or_environment": 9,
+    "source": 1
+  },
+  "generated_or_environment_files": [
+    "tqdm/__pycache__/__init__.cpython-311.pyc",
+    "tqdm/__pycache__/_main.cpython-311.pyc",
+    "tqdm/__pycache__/_monitor.cpython-311.pyc",
+    "tqdm/__pycache__/_tqdm.cpython-311.pyc",
+    "tqdm/__pycache__/_tqdm_gui.cpython-311.pyc",
+    "tqdm/__pycache__/_tqdm_pandas.cpython-311.pyc",
+    "tqdm/__pycache__/_utils.cpython-311.pyc",
+    "tqdm/__pycache__/_version.cpython-311.pyc",
+    "tqdm/tests/__pycache__/tests_tqdm.cpython-311.pyc"
+  ],
+  "note": "Counts are based on the preserved final patch/file-change record. Full workspace trees and dependency environments are not published.",
+  "observed_changed_entry_count": 10,
+  "source_files": [
+    "tqdm/_tqdm.py"
+  ]
+}

@@ -1,0 +1,18 @@
+--- a/src/preferences/store.py
++++ b/src/preferences/store.py
+@@ -1,5 +1,6 @@
+ from __future__ import annotations
+ 
++import copy
+ from typing import Any
+ 
+ from .editor import EditSession
+@@ -10,7 +11,7 @@
+         self._values = dict(values or {})
+ 
+     def snapshot(self) -> dict[str, Any]:
+-        return dict(self._values)
++        return copy.deepcopy(self._values)
+ 
+     def replace(self, values: dict[str, Any]) -> None:
+         self._values = dict(values)

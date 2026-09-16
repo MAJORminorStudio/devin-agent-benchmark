@@ -1,0 +1,77 @@
+{
+  "case_id": "E005-H05",
+  "condition": "X",
+  "evaluator": {
+    "heldout": "fail",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": false
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 20967,
+    "completion": 411,
+    "prompt": 22189,
+    "steps": 17,
+    "tool_calls": 19
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 3035,
+      "deleted_bytes": 2771
+    },
+    "changed_files": [
+      "src/event_ledger/bus.py",
+      "src/event_ledger/projection.py",
+      "src/event_ledger/subscriptions.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 13,
+      "deletions": 5
+    },
+    "sha256": "cb028b53a080c4008334667523c039807237a69e38158d15537548973538ce43",
+    "source_files_changed": [
+      "src/event_ledger/bus.py",
+      "src/event_ledger/projection.py",
+      "src/event_ledger/subscriptions.py"
+    ],
+    "workspace_churn_files": 3
+  },
+  "prompt_sha256": "c133e06d8336e9f94871aa5748f21b61b6104fa3904335743548472c5cc5cb4c",
+  "provenance": "newly-constructed-withheld",
+  "retries": 0,
+  "run_id": "E005-H05-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "jumpy-pegasus",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T02:11:42.148786+00:00",
+    "started_at_utc": "2026-09-16T02:07:46.588801+00:00",
+    "wall_time_seconds": 235.5587586669717
+  }
+}

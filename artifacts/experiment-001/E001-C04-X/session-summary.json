@@ -1,0 +1,54 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": 1,
+    "fusion_enabled": false,
+    "model": "swe-2-max",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "subscription_or_usage": {
+      "amount": null,
+      "available": false,
+      "currency": null
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 78532,
+    "total_completion_tokens": 2626,
+    "total_prompt_tokens": 84848,
+    "total_steps": 13
+  },
+  "first_step_timestamp": "2026-09-15T00:37:38.828102+00:00",
+  "last_step_timestamp": "2026-09-15T00:37:57.107526+00:00",
+  "model": "swe-2-max",
+  "patch_empty": true,
+  "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "permission_warning": "warning: rejected a tool call that requires confirmation. Running in non-interactive mode. Use --permission-mode dangerous to auto-approve all tools.",
+  "rejected_tool_calls": [
+    {
+      "arguments": {
+        "command": "cd /agent-workspace && python3 --version && pip list 2>/dev/null | grep -i -E \"pytest|tqdm|nose\" && cat requirements.txt"
+      },
+      "attempted_operation": "dependency/environment inspection",
+      "function_name": "exec",
+      "rejection_message": "Tool execution was rejected by the user",
+      "requested_category": "shell execution",
+      "status": "rejected",
+      "step_id": 13,
+      "tool_call_id": "exec_8"
+    }
+  ],
+  "schema_version": 1,
+  "session_id": "desert-buckthorn",
+  "source_step_counts": {
+    "agent": 6,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 9,
+  "tool_calls_by_function": {
+    "exec": 5,
+    "read": 4
+  },
+  "total_steps": 13
+}

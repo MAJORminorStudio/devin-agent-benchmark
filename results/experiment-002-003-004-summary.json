@@ -1,0 +1,189 @@
+{
+  "E004_resource_summary": {
+    "M": {
+      "generated_or_environment_files_changed": 0,
+      "patch": {
+        "files_changed": {
+          "mean": 1,
+          "median": 1,
+          "n": 5,
+          "total": 5
+        },
+        "lines_added": {
+          "mean": 3.4,
+          "median": 3,
+          "n": 5,
+          "total": 17
+        },
+        "lines_deleted": {
+          "mean": 2,
+          "median": 2,
+          "n": 5,
+          "total": 10
+        }
+      },
+      "runs": 5,
+      "steps": {
+        "mean": 16.2,
+        "median": 16,
+        "n": 5,
+        "total": 81
+      },
+      "successes": 5,
+      "tokens": {
+        "cached": {
+          "mean": 117619.2,
+          "median": 119360,
+          "n": 5,
+          "total": 588096
+        },
+        "completion": {
+          "mean": 1177.8,
+          "median": 1204,
+          "n": 5,
+          "total": 5889
+        },
+        "prompt": {
+          "mean": 130575.4,
+          "median": 125364,
+          "n": 5,
+          "total": 652877
+        }
+      },
+      "tool_calls": {
+        "mean": 12.2,
+        "median": 12,
+        "n": 5,
+        "total": 61
+      },
+      "wall_time_seconds": {
+        "mean": 82.49784692518878,
+        "median": 81.51801574998535,
+        "n": 5,
+        "total": 412.48923462594394
+      }
+    },
+    "X": {
+      "generated_or_environment_files_changed": 0,
+      "patch": {
+        "files_changed": {
+          "mean": 1,
+          "median": 1,
+          "n": 5,
+          "total": 5
+        },
+        "lines_added": {
+          "mean": 3,
+          "median": 2,
+          "n": 5,
+          "total": 15
+        },
+        "lines_deleted": {
+          "mean": 1.4,
+          "median": 1,
+          "n": 5,
+          "total": 7
+        }
+      },
+      "runs": 5,
+      "steps": {
+        "mean": 17.6,
+        "median": 17,
+        "n": 5,
+        "total": 88
+      },
+      "successes": 4,
+      "tokens": {
+        "cached": {
+          "mean": 158310.4,
+          "median": 151040,
+          "n": 5,
+          "total": 791552
+        },
+        "completion": {
+          "mean": 4130.4,
+          "median": 3977,
+          "n": 5,
+          "total": 20652
+        },
+        "prompt": {
+          "mean": 171468.8,
+          "median": 163640,
+          "n": 5,
+          "total": 857344
+        }
+      },
+      "tool_calls": {
+        "mean": 23,
+        "median": 26,
+        "n": 5,
+        "total": 115
+      },
+      "wall_time_seconds": {
+        "mean": 129.00945915000048,
+        "median": 119.36251529096626,
+        "n": 5,
+        "total": 645.0472957500024
+      }
+    }
+  },
+  "analysis_type": "descriptive combined E002 plus E003 plus E004 analysis",
+  "combined_paired_outcomes": {
+    "Max-only": 0,
+    "Medium-only": 2,
+    "both fail": 0,
+    "both success": 13
+  },
+  "combined_successes": {
+    "Max": 13,
+    "Medium": 15
+  },
+  "combined_unique_cases": 15,
+  "experiments": {
+    "E002_historical": {
+      "Max": "4/5",
+      "Medium": "5/5",
+      "paired_outcomes": {
+        "Max-only": 0,
+        "Medium-only": 1,
+        "both fail": 0,
+        "both success": 4
+      },
+      "unique_cases": 5
+    },
+    "E003_novel_easier": {
+      "Max": "5/5",
+      "Medium": "5/5",
+      "paired_outcomes": {
+        "Max-only": 0,
+        "Medium-only": 0,
+        "both fail": 0,
+        "both success": 5
+      },
+      "unique_cases": 5
+    },
+    "E004_novel_E002_calibrated": {
+      "Max": "4/5",
+      "Medium": "5/5",
+      "paired_outcomes": {
+        "Max-only": 0,
+        "Medium-only": 1,
+        "both fail": 0,
+        "both success": 4
+      },
+      "unique_cases": 5
+    }
+  },
+  "interpretation": "E004 matched E002 descriptively in paired outcome pattern with one Medium-only pair, while E003 had an all-success tie. E004 sessions were much shorter and had less workspace burden than E002, so the outcome resemblance does not establish full difficulty equivalence or causation.",
+  "limitations": [
+    "The three experiments are small descriptive samples, not statistically powered comparisons.",
+    "Experiments differ in case provenance, repository scale, and infrastructure history.",
+    "Observable traces do not reveal hidden reasoning.",
+    "No causal or general model-effort conclusion is supported."
+  ],
+  "source_summaries": {
+    "E002": "../results/experiment-002-summary.json",
+    "E003": "../results/experiment-003-summary.json",
+    "E004": "../results/experiment-004-summary.json"
+  }
+}

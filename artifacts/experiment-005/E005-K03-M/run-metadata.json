@@ -1,0 +1,73 @@
+{
+  "case_id": "E005-K03",
+  "condition": "M",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 26368,
+    "completion": 272,
+    "prompt": 26575,
+    "steps": 23,
+    "tool_calls": 17
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 10083,
+      "deleted_bytes": 9621
+    },
+    "changed_files": [
+      "tornado/platform/asyncio.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 8,
+      "deletions": 0
+    },
+    "sha256": "1bd305f79188a1f696ad88002dd2547e02c9c03be7db0bfa2c66f44335bdd12c",
+    "source_files_changed": [
+      "tornado/platform/asyncio.py"
+    ],
+    "workspace_churn_files": 1
+  },
+  "prompt_sha256": "299f94c0da2286f18b285b3c26a78cbdd4b9dccf64d55a575571b1279914b4c8",
+  "provenance": "historical-public",
+  "retries": 0,
+  "run_id": "E005-K03-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "petite-crater",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T03:53:27.564321+00:00",
+    "started_at_utc": "2026-09-16T03:50:58.668462+00:00",
+    "wall_time_seconds": 148.89469066704623
+  }
+}

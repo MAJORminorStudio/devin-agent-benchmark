@@ -1,0 +1,17 @@
+{
+  "changed_files": [
+    "src/feature_plan/resolver.py",
+    "src/feature_plan/service.py"
+  ],
+  "classification_counts": {
+    "generated_or_environment": 0,
+    "source": 2
+  },
+  "generated_or_environment_files": [],
+  "note": "Full workspaces and dependency trees are not published.",
+  "source_files": [
+    "src/feature_plan/resolver.py",
+    "src/feature_plan/service.py"
+  ],
+  "workspace_churn_files": 2
+}

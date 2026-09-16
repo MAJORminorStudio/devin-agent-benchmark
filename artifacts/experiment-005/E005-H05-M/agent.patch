@@ -1,0 +1,19 @@
+--- a/src/event_ledger/projection.py
++++ b/src/event_ledger/projection.py
+@@ -11,6 +11,8 @@
+         self.total = 0
+
+     def start(self) -> None:
++        if self._subscription is not None and self._subscription.active:
++            return
+         self._subscription = self._bus.subscribe("delta", self._apply)
+
+     def stop(self) -> None:
+--- a/src/event_ledger/subscriptions.py
++++ b/src/event_ledger/subscriptions.py
+@@ -38,4 +38,4 @@
+                     return
+
+     def for_topic(self, topic: str) -> list[Subscription]:
+-        return self._topics.get(topic, [])
++        return list(self._topics.get(topic, ()))

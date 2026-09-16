@@ -1,0 +1,23 @@
+{
+  "byte_counts": {
+    "added_bytes": 3035,
+    "deleted_bytes": 2771
+  },
+  "changed_files": [
+    "src/event_ledger/bus.py",
+    "src/event_ledger/projection.py",
+    "src/event_ledger/subscriptions.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 13,
+    "deletions": 5
+  },
+  "sha256": "cb028b53a080c4008334667523c039807237a69e38158d15537548973538ce43",
+  "source_files_changed": [
+    "src/event_ledger/bus.py",
+    "src/event_ledger/projection.py",
+    "src/event_ledger/subscriptions.py"
+  ],
+  "workspace_churn_files": 3
+}

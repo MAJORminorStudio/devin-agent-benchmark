@@ -1,0 +1,80 @@
+{
+  "case_id": "E005-K04",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-005",
+  "failure_summary": null,
+  "heldout": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-K04",
+          "-p",
+          "test_behavior.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.091,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "patch": {
+    "additions": 13,
+    "changed_files": [
+      "tornado/web.py",
+      "tornado/websocket.py"
+    ],
+    "deletions": 0,
+    "sha256": "763abeeb4e68471830fcb7984d4ce8c936deb357911616aa7fbfcd5f1f969f28"
+  },
+  "public": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "-q",
+          "tornado.test.websocket_test.WebSocketTest.test_render_message"
+        ],
+        "elapsed_seconds": 0.196,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "regression": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-K04",
+          "-p",
+          "test_regression.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.075,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "run_id": "E005-K04-X",
+  "schema_version": 1,
+  "task_success": true
+}

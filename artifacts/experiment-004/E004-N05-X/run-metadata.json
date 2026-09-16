@@ -1,0 +1,59 @@
+{
+  "case_id": "E004-N05",
+  "condition": "X",
+  "effort_level": "max",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-004",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "frozen_image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true,
+    "status": "OK"
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 17,
+    "tokens": {
+      "cached": 155456,
+      "completion": 5410,
+      "prompt": 163640
+    },
+    "tool_calls": 26
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "files_changed": 1,
+    "generated_or_environment_files": [],
+    "lines_added": 0,
+    "lines_deleted": 2,
+    "reference_patch_sha256": "ce5c917589404d9df619d256025f2a93b48dc8dd30c1b7a46686d47ce772d28c",
+    "sha256": "ce5c917589404d9df619d256025f2a93b48dc8dd30c1b7a46686d47ce772d28c",
+    "source_files_changed": [
+      "src/reportpipe/publishing.py"
+    ]
+  },
+  "prompt_sha256": "e1d12f0c1427be980f30e302d63f97a821d4f15da4dfaf1481b44958d197826c",
+  "run_id": "E004-N05-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "mire-session",
+  "termination_state": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-15T23:56:58.734648+00:00",
+    "started_at_utc": "2026-09-15T23:54:37.266276+00:00",
+    "wall_time_seconds": 141.47034537501168
+  }
+}

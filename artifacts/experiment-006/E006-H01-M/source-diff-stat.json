@@ -1,0 +1,17 @@
+{
+  "changed_files": [
+    "src/feature_store/cache.py",
+    "src/feature_store/resolver.py"
+  ],
+  "generated_or_environment_files": [
+    "src/feature_store/__pycache__/cache.cpython-38.pyc",
+    "src/feature_store/__pycache__/resolver.cpython-38.pyc"
+  ],
+  "line_counts": {
+    "additions": 5,
+    "deletions": 2
+  },
+  "patch_byte_length": 956,
+  "patch_sha256": "1feceaa38dd143db20b6d991a9388363c4ebc315af9de844cae74756823716bf",
+  "reference_match": false
+}

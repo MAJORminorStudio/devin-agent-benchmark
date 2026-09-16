@@ -1,0 +1,52 @@
+--- a/src/wire_relay/framing.py
++++ b/src/wire_relay/framing.py
+@@ -25,11 +25,18 @@
+         self._buffer = bytearray()
+         self._expected: int | None = None
+         self._kind: int | None = None
++        self._skip = 0
+
+     def feed(self, chunk: bytes) -> list[Message | FrameError]:
+         self._buffer.extend(chunk)
+         events: list[Message | FrameError] = []
+         while True:
++            if self._skip:
++                skipped = min(self._skip, len(self._buffer))
++                del self._buffer[:skipped]
++                self._skip -= skipped
++                if self._skip:
++                    break
+             if self._expected is None:
+                 if len(self._buffer) < _HEADER.size:
+                     break
+@@ -37,6 +44,7 @@
+                 del self._buffer[:_HEADER.size]
+                 if length > MAX_PAYLOAD:
+                     self._kind = None
++                    self._skip = length
+                     events.append(FrameError("payload-too-large"))
+                     continue
+                 self._expected = length
+@@ -53,7 +61,6 @@
+                     raise ValueError("payload must be an object")
+             except (UnicodeDecodeError, json.JSONDecodeError, ValueError):
+                 events.append(FrameError("invalid-payload"))
+-                self._buffer.clear()
+             else:
+                 events.append(Message(kind if kind is not None else 0, decoded))
+         return events
+--- a/src/wire_relay/session.py
++++ b/src/wire_relay/session.py
+@@ -27,10 +27,9 @@
+             if isinstance(event, FrameError):
+                 self.state = SessionState.RECOVERING
+                 self.responses.append({"kind": "error", "code": event.code})
+-            elif self.state is SessionState.READY:
++            else:
++                self.state = SessionState.READY
+                 self.responses.append(self._router.dispatch(event.payload))
+-            else:
+-                self.responses.append({"kind": "error", "code": "recovery-required"})
+         return self.responses[before:]
+
+     def close(self) -> None:

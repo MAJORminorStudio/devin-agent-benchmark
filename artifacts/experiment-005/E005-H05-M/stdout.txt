@@ -1,0 +1,14 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+Two bugs found:
+
+1. `CounterProjection.start()` subscribes every call, so calling it twice counts each event twice.
+2. `EventBus.publish` iterates the live subscriber list — closing or adding subscribers mid-dispatch mutates the list being iterated, skipping subscribers or delivering the current event to brand-new ones.
+
+Fixes:`publish` already checks `subscription.active` per iteration, so with the snapshot a subscriber closed mid-dispatch is skipped and replacements added during dispatch don't receive the current event. Running tests:Test passes. Changes:
+
+- `src/event_ledger/projection.py`: `start()` is now idempotent — returns early if an active subscription exists, so repeated starts don't double-count.
+- `src/event_ledger/subscriptions.py`: `for_topic()` returns a snapshot copy, so `publish` iterates a stable list. Combined with the existing `active` check, a subscriber that closes itself mid-dispatch won't fire again, one added as a replacement won't receive the current event, and `once` listeners still auto-close after their first delivery.

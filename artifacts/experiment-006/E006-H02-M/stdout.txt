@@ -1,0 +1,11 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The bug: `self._attempt_tasks` only records the first attempt's task, so `cancel` during a retry sees a stale (done) handle and returns without cancelling. I'll fix the lifecycle so the current attempt is tracked, and also handle cancellation while the supervisor is in `RETRY_WAIT` (no attempt task running).Also, cancellation during `RETRY_WAIT` (while awaiting `retry_gate`) bypasses the `except CancelledError` that sets the record state — need to mark the record there too.Test passes. Summary of fixes in `src/work_queue/engine.py`:
+
+- **Stale attempt handle**: `_attempt_tasks` was only written for attempt 1, so `cancel()` during a retry saw the finished first-attempt task and returned without cancelling. Now the handle is updated every attempt, so `cancel()` targets the in-flight attempt — the `finally` in `_attempt` releases the permit against the correct attempt.
+- **Cancel during `RETRY_WAIT`**: if no attempt task is running, `cancel()` now cancels the supervisor itself, and the `retry_gate.wait()` is wrapped so the record is marked `CANCELLED` instead of being left in `RETRY_WAIT` with the supervisor dead.
+
+Success, permanent failure, and queued-job paths are unchanged: `await supervisor` in `cancel` only swallows `CancelledError` raised by our own cancel.

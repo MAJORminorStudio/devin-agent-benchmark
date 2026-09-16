@@ -1,0 +1,19 @@
+{
+  "byte_counts": {
+    "added_bytes": 377,
+    "deleted_bytes": 367
+  },
+  "changed_files": [
+    "src/order_flow/transaction.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 1,
+    "deletions": 1
+  },
+  "sha256": "50e657161f7392b006ee0feeec2513c09b282f97d0cf00240487fd2dc7fe1f57",
+  "source_files_changed": [
+    "src/order_flow/transaction.py"
+  ],
+  "workspace_churn_files": 1
+}

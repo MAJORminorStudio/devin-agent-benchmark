@@ -1,0 +1,73 @@
+{
+  "case_id": "E005-K02",
+  "condition": "X",
+  "evaluator": {
+    "heldout": "fail",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": false
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 68252,
+    "completion": 639,
+    "prompt": 68993,
+    "steps": 56,
+    "tool_calls": 54
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 40340,
+      "deleted_bytes": 40207
+    },
+    "changed_files": [
+      "luigi/scheduler.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 5,
+      "deletions": 0
+    },
+    "sha256": "d4e6591c4abe8c2fae09ea6ee9322849d4704fd6d16b04a2460348ff1160ec89",
+    "source_files_changed": [
+      "luigi/scheduler.py"
+    ],
+    "workspace_churn_files": 1
+  },
+  "prompt_sha256": "f666e127b503c5e6953b39e4bdd5482e1a8f68f0e9f1229804f23bb26493e485",
+  "provenance": "historical-public",
+  "retries": 0,
+  "run_id": "E005-K02-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "glorious-droplet",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T01:54:50.113636+00:00",
+    "started_at_utc": "2026-09-16T01:45:18.365497+00:00",
+    "wall_time_seconds": 571.7501981660025
+  }
+}

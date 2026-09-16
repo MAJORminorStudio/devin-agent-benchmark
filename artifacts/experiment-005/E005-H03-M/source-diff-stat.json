@@ -1,0 +1,21 @@
+{
+  "byte_counts": {
+    "added_bytes": 3024,
+    "deleted_bytes": 3150
+  },
+  "changed_files": [
+    "src/wire_relay/framing.py",
+    "src/wire_relay/session.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 2,
+    "deletions": 4
+  },
+  "sha256": "257d4e97425953e49123bf6e2012b07e20c6ca033220729b148d598a4e6b1f9b",
+  "source_files_changed": [
+    "src/wire_relay/framing.py",
+    "src/wire_relay/session.py"
+  ],
+  "workspace_churn_files": 2
+}

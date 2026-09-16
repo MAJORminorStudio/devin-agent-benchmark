@@ -1,0 +1,16 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+Let me check how upstream Tornado fixed this.Now I understand the bug. `_ioloop_for_asyncio` (a `WeakKeyDictionary`) keeps wrapper entries forever: closing an `AsyncIOLoop` never removes its entry, and wrappers for asyncio loops closed directly are never purged. The fix (matching upstream Tornado) is to delete the entry in `BaseAsyncIOLoop.close` and purge stale closed-loop entries in `initialize`.The repo targets old Python; running under 3.11 needs compat shims. Let me try with a prelude.All asyncio tests pass, including both leak tests. Let me also run the ioloop test suite for regressions.Fixed. The leak was in `tornado/platform/asyncio.py`: `_ioloop_for_asyncio` entries were never removed, so every created/closed loop left a stale `IOLoop` wrapper reachable.
+
+Changes in `BaseAsyncIOLoop`:
+- `close()` now deletes its own entry from `IOLoop._ioloop_for_asyncio` after closing the asyncio loop.
+- `initialize()` purges entries whose asyncio loop `is_closed()`, cleaning up wrappers for loops that were closed directly through asyncio (bypassing `IOLoop.close`).
+
+[asyncio.py:40-59](file:///workspace/tornado/platform/asyncio.py)
+
+Verification (with py3.11 compat shims for this older codebase):
+- `tornado.test.asyncio_test`: 8/8 pass, including `test_ioloop_close_leak` (0 leaked wrappers after close) and `test_asyncio_close_leak` (only 1 dangling entry, purged on next loop creation).
+- `tornado.test.ioloop_test`: 55 tests pass (5 skipped).

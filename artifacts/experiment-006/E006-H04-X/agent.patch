@@ -1,0 +1,39 @@
+--- a/src/account_ledger/events.py
++++ b/src/account_ledger/events.py
+@@ -7,7 +7,12 @@
+         self.active = True
+ 
+     def close(self):
++        if not self.active:
++            return
+         self.active = False
++        subscribers = self.bus._subscriptions.get(self.topic)
++        if subscribers is not None and self in subscribers:
++            subscribers.remove(self)
+ 
+ 
+ class EventBus:
+@@ -20,9 +25,9 @@
+         return item
+ 
+     def publish(self, event):
+-        for item in self._subscriptions.get(event["topic"], []):
++        for item in list(self._subscriptions.get(event["topic"], [])):
+             if not item.active:
+                 continue
+-            item.callback(event)
+             if item.once:
+                 item.close()
++            item.callback(event)
+--- a/src/account_ledger/service.py
++++ b/src/account_ledger/service.py
+@@ -10,8 +10,8 @@
+         transaction = self.store.begin()
+         balance = self.store.balance(account) + delta
+         transaction.set(account, balance)
++        transaction.commit()
+         self.bus.publish({"topic": "account.changed", "account": account, "balance": balance, "delta": delta})
+-        transaction.commit()
+ 
+     def balance(self, account):
+         return self.store.balance(account)

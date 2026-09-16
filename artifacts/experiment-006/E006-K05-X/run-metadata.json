@@ -1,0 +1,140 @@
+{
+  "case": {
+    "bug_id": "2",
+    "case_id": "tqdm-2",
+    "project": "tqdm"
+  },
+  "condition": "X",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_case_id": "E006-K05",
+  "experiment_id": "experiment-006",
+  "failure_forensics": null,
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "cpus": 4,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed_to_agent": false,
+    "evaluator_started_after_container_closed": true,
+    "fusion": "disabled",
+    "image": "devin-e006:3000.10.21-r7@sha256:7557a0bc640492d8f77f271ebafc6402733fa0ba843c344f74ab613b94416699",
+    "memory": "4g",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "pids_limit": 512,
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 73,
+    "tokens": {
+      "cached": 3884714,
+      "completion": 49444,
+      "prompt": 4002470
+    },
+    "tool_calls": 70,
+    "tool_calls_by_function": {
+      "edit": 4,
+      "exec": 26,
+      "read": 10,
+      "web_search": 19,
+      "webfetch": 11
+    }
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "bytes": 1499,
+    "files_changed": [
+      ".pytest_cache/.gitignore",
+      ".pytest_cache/CACHEDIR.TAG",
+      ".pytest_cache/README.md",
+      ".pytest_cache/v/cache/lastfailed",
+      ".pytest_cache/v/cache/nodeids",
+      ".pytest_cache/v/cache/stepwise",
+      "tqdm/__pycache__/__init__.cpython-36.pyc",
+      "tqdm/__pycache__/_monitor.cpython-36.pyc",
+      "tqdm/__pycache__/_tqdm_pandas.cpython-36.pyc",
+      "tqdm/__pycache__/_version.cpython-36.pyc",
+      "tqdm/__pycache__/auto.cpython-36.pyc",
+      "tqdm/__pycache__/autonotebook.cpython-36.pyc",
+      "tqdm/__pycache__/cli.cpython-36.pyc",
+      "tqdm/__pycache__/gui.cpython-36.pyc",
+      "tqdm/__pycache__/std.cpython-36.pyc",
+      "tqdm/__pycache__/utils.cpython-36.pyc",
+      "tqdm/contrib/__pycache__/__init__.cpython-36.pyc",
+      "tqdm/std.py",
+      "tqdm/tests/__pycache__/tests_main.cpython-36-pytest-5.4.3.pyc",
+      "tqdm/tests/__pycache__/tests_pandas.cpython-36-pytest-5.4.3.pyc",
+      "tqdm/tests/__pycache__/tests_synchronisation.cpython-36-pytest-5.4.3.pyc",
+      "tqdm/tests/__pycache__/tests_tqdm.cpython-36-pytest-5.4.3.pyc",
+      "tqdm/tests/__pycache__/tests_tqdm.cpython-36.pyc",
+      "tqdm/tests/__pycache__/tests_version.cpython-36-pytest-5.4.3.pyc",
+      "tqdm/utils.py"
+    ],
+    "generated_or_environment_files": [
+      ".pytest_cache/.gitignore",
+      ".pytest_cache/CACHEDIR.TAG",
+      ".pytest_cache/README.md",
+      ".pytest_cache/v/cache/lastfailed",
+      ".pytest_cache/v/cache/nodeids",
+      ".pytest_cache/v/cache/stepwise",
+      "tqdm/__pycache__/__init__.cpython-36.pyc",
+      "tqdm/__pycache__/_monitor.cpython-36.pyc",
+      "tqdm/__pycache__/_tqdm_pandas.cpython-36.pyc",
+      "tqdm/__pycache__/_version.cpython-36.pyc",
+      "tqdm/__pycache__/auto.cpython-36.pyc",
+      "tqdm/__pycache__/autonotebook.cpython-36.pyc",
+      "tqdm/__pycache__/cli.cpython-36.pyc",
+      "tqdm/__pycache__/gui.cpython-36.pyc",
+      "tqdm/__pycache__/std.cpython-36.pyc",
+      "tqdm/__pycache__/utils.cpython-36.pyc",
+      "tqdm/contrib/__pycache__/__init__.cpython-36.pyc",
+      "tqdm/tests/__pycache__/tests_main.cpython-36-pytest-5.4.3.pyc",
+      "tqdm/tests/__pycache__/tests_pandas.cpython-36-pytest-5.4.3.pyc",
+      "tqdm/tests/__pycache__/tests_synchronisation.cpython-36-pytest-5.4.3.pyc",
+      "tqdm/tests/__pycache__/tests_tqdm.cpython-36-pytest-5.4.3.pyc",
+      "tqdm/tests/__pycache__/tests_tqdm.cpython-36.pyc",
+      "tqdm/tests/__pycache__/tests_version.cpython-36-pytest-5.4.3.pyc"
+    ],
+    "lines_added": 9,
+    "lines_deleted": 6,
+    "sha256": "88d530c24859d575b07b33489f69387272895036c655b15f6d9df069f6414588",
+    "source_files_changed": [
+      "tqdm/std.py",
+      "tqdm/utils.py"
+    ]
+  },
+  "prompt_sha256": "23e06a1032063aef0947faf9067bced3720d4305ed59d5db5039a37d5081aa9b",
+  "provenance": "historical-public",
+  "retries": 0,
+  "run_id": "E006-K05-X",
+  "run_index": 9,
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, raw machine paths, and full workspaces are excluded.",
+  "session_id": "rapid-mandible",
+  "termination": {
+    "reason": "completed",
+    "runner_returncode": 0,
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T17:16:04.301728+00:00",
+    "started_at_utc": "2026-09-16T16:53:18.526360+00:00",
+    "wall_time_seconds": 1365.7721701249247
+  },
+  "workspace_churn": {
+    "changed_files": 25,
+    "generated_or_environment_files": 23,
+    "source_files": 2
+  }
+}

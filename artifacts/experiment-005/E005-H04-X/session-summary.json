@@ -1,0 +1,25 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 131520,
+    "total_completion_tokens": 2740,
+    "total_prompt_tokens": 140433,
+    "total_steps": 16
+  },
+  "first_observable_timestamp": "2026-09-16T03:01:44.417169417+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T03:02:28.175065882+00:00",
+  "model": "swe-2-max",
+  "observable_steps": 10,
+  "patch_sha256": "50e657161f7392b006ee0feeec2513c09b282f97d0cf00240487fd2dc7fe1f57",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "sideways-gasosaurus",
+  "steps": 16,
+  "tool_calls": 16,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 5,
+    "read": 10
+  }
+}

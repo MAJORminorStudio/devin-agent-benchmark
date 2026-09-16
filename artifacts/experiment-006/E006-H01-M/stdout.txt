@@ -1,0 +1,12 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The bug: `PlanResolver.resolve` collapses a cached entry's lineage to `{name}`, so parents never record transitive dependencies and `invalidate` misses them. Fix by preserving the full cached lineage.Fixed. The stale-publish bug was in `PlanResolver.resolve`: when a dependency was served from the cache, it reported its lineage as just `{name}`, discarding the transitive dependencies recorded at cache time. So a plan like `page` was stored with lineage `{page, middle}` instead of `{page, middle, leaf}`, and `cache.invalidate({"leaf"})` never evicted it.
+
+Changes:
+- `cache.py`: added `PlanCache.get_entry` returning the full `CacheEntry` (kept `get` unchanged for API compatibility).
+- `resolver.py`: cached hits now return the entry's full lineage (copied), so parents correctly record the entire dependency chain.
+
+Reuse behavior is preserved — cached values are still returned without re-resolution; only the lineage propagation was corrected. Test suite passes.

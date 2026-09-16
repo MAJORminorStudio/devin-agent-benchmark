@@ -1,0 +1,19 @@
+{
+  "final_metrics": {
+    "cached": 100161,
+    "completion": 875,
+    "prompt": 106432
+  },
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "alive-steed",
+  "steps": 15,
+  "tool_calls": 9,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 5,
+    "read": 3
+  }
+}

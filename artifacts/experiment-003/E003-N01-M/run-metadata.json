@@ -1,0 +1,53 @@
+{
+  "acus": null,
+  "case_id": "E003-N01",
+  "condition": "M",
+  "cost": null,
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-003",
+  "interventions": 0,
+  "metrics": {
+    "steps": 17,
+    "tokens": {
+      "cached": 124298,
+      "completion": 1104,
+      "prompt": 132479
+    },
+    "tool_calls": 10
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "files_changed": [
+      "src/asset_index/discovery.py"
+    ],
+    "generated_or_environment_files": [],
+    "lines_added": 1,
+    "lines_deleted": 1,
+    "sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a",
+    "source_files_changed": [
+      "src/asset_index/discovery.py"
+    ]
+  },
+  "prompt_sha256": "a3434affd4ef855805dc1001edf5d9a9107427f5fc108f6f9b4fba0810e76db3",
+  "reference_comparison": {
+    "matches_human_reference_patch": true,
+    "performed_after_pair_closure": true,
+    "reference_patch_sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a"
+  },
+  "run_id": "E003-N01-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning and private paths are omitted.",
+  "session_id": "absorbed-beaufort",
+  "termination_reason": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-15T22:08:14.618654+00:00",
+    "started_at_utc": "2026-09-15T22:06:30.891954+00:00",
+    "wall_time_seconds": 103.72602279100101
+  }
+}

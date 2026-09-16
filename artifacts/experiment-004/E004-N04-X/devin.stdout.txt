@@ -1,0 +1,27 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as [redacted].
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace to understand the codebase.The codebase is small. Let me reproduce the failure first, per the README's test command.Failure reproduced: `seen == ['first']` — the second subscriber is skipped.
+
+**Root cause:** `EventHub.publish` iterates `self._subscriptions`, and `SubscriptionList.__iter__` returns `iter(self._items)` — a *live* list iterator. When `remove_self` calls `hub.unsubscribe(first)`, `SubscriptionList.remove` mutates `_items` mid-iteration; `second` shifts from index 1 → 0 while the iterator advances to index 1, ending the loop. [subscriptions.py:23-29](file:///workspace/src/signalhub/subscriptions.py) [hub.py:20-28](file:///workspace/src/signalhub/hub.py)
+
+Per `docs/delivery.md`, "callbacks belong to the current delivery cycle" — the delivery set should be a snapshot taken when `publish` starts. The existing `active` flag check in `publish` already handles the case where a callback unsubscribes a *later* subscriber (it's in the snapshot but flagged inactive). I'll fix `__iter__` to yield a snapshot — that's the ownership boundary, and it protects every iteration consumer, not just `publish`.All 5 tests pass. Let me verify the adjacent edge cases behave correctly — unsubscribing a *later* subscriber mid-delivery, adding a subscriber mid-delivery, and nested publish.My case-3 expectation was wrong — `outer` subscribes to *all* events (the hub has no channel filtering), so the nested `publish("b")` correctly delivers "b" to `outer` too, appending a second `"outer"`. The actual output `["outer", "outer", "inner:b", "inner:a"]` is the correct synchronous nested-delivery order. Let me correct the assertion and re-run.All edge cases verified. Final check — review the diff and re-run the suite.Not a git repo — `git diff` printed usage. Let me just show the change and re-run tests.Done. All 5 tests pass.
+
+## Summary
+
+**Reproduced:** `test_self_removal_does_not_skip_the_next_subscriber` failed with `['first']` — the second subscriber never saw the event.
+
+**Root cause:** `SubscriptionList.__iter__` returned `iter(self._items)`, a live iterator over the backing list. During `EventHub.publish`, when `remove_self` called `hub.unsubscribe(first)`, `SubscriptionList.remove` ran `self._items.remove(subscription)` mid-iteration. The second subscription shifted from index 1 → 0 while the iterator advanced to index 1 (now out of bounds), so iteration ended early and `second` was skipped.
+
+**Fix** (one line, [subscriptions.py:28-29](file:///workspace/src/signalhub/subscriptions.py)): `__iter__` now returns `iter(tuple(self._items))` — a snapshot of membership taken when iteration begins. This matches `docs/delivery.md`'s "callbacks belong to the current delivery cycle": the delivery set is fixed per `publish` call, and fixing it at `__iter__` (the ownership boundary) protects every consumer, not just `publish`.
+
+**Verified semantics:**
+- Self-removal mid-delivery → next subscriber still fires (the bug)
+- Unsubscribing a *later* subscriber mid-delivery → it's in the snapshot but `active=False`, so the existing check in `publish` skips it correctly
+- Subscribing mid-delivery → new callback joins the *next* cycle, not the in-flight one
+- Nested `publish` → gets its own snapshot, delivered synchronously; an outer-cycle removal doesn't corrupt it
+- `once` subscriptions still run exactly once
+
+`PYTHONPATH=src python3 -m unittest discover -s tests -v`: 5/5 OK.

@@ -1,0 +1,21 @@
+{
+  "final_metrics": {
+    "cached": 256886,
+    "completion": 26742,
+    "prompt": 291431
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "snowy-scissor",
+  "steps": 17,
+  "tool_calls": 18,
+  "tool_calls_by_function": {
+    "edit": 3,
+    "exec": 5,
+    "read": 9,
+    "write": 1
+  }
+}

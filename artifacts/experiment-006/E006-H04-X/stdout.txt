@@ -1,0 +1,21 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace to understand the codebase structure.Now I understand the codebase. Let me trace the bug:
+
+1. **`service.py`**: `adjust` publishes the event *before* `transaction.commit()`, so a reentrant `adjust` reads the pre-transaction balance (10, not 9), computes 8, and the outer commit then overwrites with 9 — losing the inner change.
+2. **`events.py`**: `publish` iterates the live subscription list — a `subscribe` during dispatch mutates the list mid-iteration (new listeners join the current dispatch / items get skipped). Also, a `once` listener is only closed *after* its callback, so a reentrant publish of the same topic invokes it again — breaking once-only.
+
+Fixes: commit before publishing, snapshot the dispatch list, and close `once` subscriptions before invoking their callback. I'll also make `close()` remove the subscription from the live list so closed/once listeners don't accumulate (safe now that dispatch iterates a snapshot).Now let me run the test suite and a quick sanity check on the reentrancy semantics.All tests pass. Here's a summary of the repairs:
+
+**`src/account_ledger/service.py`** — moved `transaction.commit()` before `bus.publish(...)`. Previously the event went out while the balance change was still pending in the transaction, so a reentrant `adjust` read the stale balance and the outer commit clobbered the inner one. Now listeners always observe committed state.
+
+**`src/account_ledger/events.py`** — three dispatch fixes:
+
+- `publish` iterates a snapshot (`list(...)`), so the current dispatch has stable membership: subscriptions added mid-dispatch wait for the next publish, and removals can't cause skipped listeners.
+- `once` subscriptions are closed *before* their callback runs instead of after, so a reentrant publish of the same topic can't fire them a second time — once-only stays once-only.
+- `Subscription.close()` now also removes itself from the bus's live subscription list (idempotent via the `active` guard), so closed and fired-once listeners don't linger; the `active` check in `publish` still skips any snapshotted listener closed earlier in the same dispatch.
+
+Verification: the suite passes (`test_reentrant_listener_observes_committed_balance`), and I confirmed via a scratch script that replacements registered mid-dispatch don't fire until the next publish, once listeners survive reentrant publishes, closing a sibling mid-dispatch skips only it, and normal balance arithmetic is unchanged.

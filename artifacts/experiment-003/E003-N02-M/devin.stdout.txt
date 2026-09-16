@@ -1,0 +1,8 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+Bug reproduced: `discard` removes the record but leaves the stale tag cache intact. Fix: clear the cache on discard too.Done. The bug: `Catalog.discard` removed the record but never invalidated `_tag_cache`, so a warmed `ids_for_tag` lookup kept returning the deleted id. `add` already cleared the cache — I added the same `self._tag_cache.clear()` to `discard` in [store.py:15-17](file:///workspace/src/catalog/store.py).
+
+Test result: `test_discard_updates_a_warmed_tag_lookup` failed before (`('blue-chair',) != ()`), passes after.

@@ -1,0 +1,11 @@
+--- a/src/reportpipe/publishing.py
++++ b/src/reportpipe/publishing.py
+@@ -10,8 +10,6 @@
+     def publish(self, batch: Batch | None) -> None:
+         if batch is None:
+             return
+-        if not batch.complete:
+-            return
+         self._batches.append(batch)
+ 
+     def batches(self) -> tuple[Batch, ...]:

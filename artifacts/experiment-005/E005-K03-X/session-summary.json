@@ -1,0 +1,28 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 1425664,
+    "total_completion_tokens": 22552,
+    "total_prompt_tokens": 1470801,
+    "total_steps": 45
+  },
+  "first_observable_timestamp": "2026-09-16T03:12:56.774787673+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T03:21:07.569194053+00:00",
+  "model": "swe-2-max",
+  "observable_steps": 39,
+  "patch_sha256": "3c66ec89962cc37f578bddbdff45740b725123e81d09727030d03f60fc7362d6",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "shining-radio",
+  "steps": 45,
+  "tool_calls": 46,
+  "tool_calls_by_function": {
+    "edit": 4,
+    "exec": 29,
+    "grep": 1,
+    "read": 6,
+    "web_search": 3,
+    "webfetch": 3
+  }
+}

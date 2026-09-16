@@ -1,0 +1,848 @@
+{
+  "canonical_evidence": {
+    "E002_summary": "12f8fe8816e64e1e5c91c97cd1b8a22c5af90fa0005cef13a9af54d95a72e26f",
+    "E004_summary": "c8f82294b30312f9aef770dde291ccc47faf38a764e73b7d7cd91067bf56788d",
+    "E005_ledger": "3eca267758716c8b86518b67ec86c84d6b14cd33c15ac27a4941e494841fadd4",
+    "E006_ledger": "c1dc0e99c9efaafb98cf542e49eaaf7f13e6b49c26079c8330975260fea42d75"
+  },
+  "exclusions": {
+    "E001": "Methodological permission-gating failure; excluded from capability evidence.",
+    "E003": "Supplemental easier withheld replication; excluded from the 30-case primary denominator."
+  },
+  "experiment": "publication-v4",
+  "exploratory_statistics": {
+    "by_tier": {
+      "cumulative-primary": {
+        "confidence_intervals_95_wilson": {
+          "M": {
+            "interval": [
+              0.6269430358685175,
+              0.9049489282271013
+            ],
+            "runs": 30,
+            "successes": 24
+          },
+          "X": {
+            "interval": [
+              0.5907167384187784,
+              0.8820761185551049
+            ],
+            "runs": 30,
+            "successes": 23
+          }
+        },
+        "discordant_pairs": 7,
+        "exact_mcnemar_two_sided_p": 1.0,
+        "max_only": 3,
+        "medium_only": 4,
+        "pairs": 30
+      },
+      "hard": {
+        "confidence_intervals_95_wilson": {
+          "M": {
+            "interval": [
+              0.39677814746114537,
+              0.8922087325936989
+            ],
+            "runs": 10,
+            "successes": 7
+          },
+          "X": {
+            "interval": [
+              0.31267376973365824,
+              0.8318196702937638
+            ],
+            "runs": 10,
+            "successes": 6
+          }
+        },
+        "discordant_pairs": 3,
+        "exact_mcnemar_two_sided_p": 1.0,
+        "max_only": 1,
+        "medium_only": 2,
+        "pairs": 10
+      },
+      "moderate": {
+        "confidence_intervals_95_wilson": {
+          "M": {
+            "interval": [
+              0.7224672001371107,
+              0.9999999999999999
+            ],
+            "runs": 10,
+            "successes": 10
+          },
+          "X": {
+            "interval": [
+              0.49016247153664183,
+              0.9433178485456247
+            ],
+            "runs": 10,
+            "successes": 8
+          }
+        },
+        "discordant_pairs": 2,
+        "exact_mcnemar_two_sided_p": 0.5,
+        "max_only": 0,
+        "medium_only": 2,
+        "pairs": 10
+      },
+      "very-hard": {
+        "confidence_intervals_95_wilson": {
+          "M": {
+            "interval": [
+              0.39677814746114537,
+              0.8922087325936989
+            ],
+            "runs": 10,
+            "successes": 7
+          },
+          "X": {
+            "interval": [
+              0.5958499732047615,
+              0.9821237869049271
+            ],
+            "runs": 10,
+            "successes": 9
+          }
+        },
+        "discordant_pairs": 2,
+        "exact_mcnemar_two_sided_p": 0.5,
+        "max_only": 2,
+        "medium_only": 0,
+        "pairs": 10
+      }
+    },
+    "caveat": "Small paired samples; intervals and p-values are exploratory and do not establish general model superiority or causality.",
+    "method": "Exact two-sided conditional McNemar/binomial test on discordant paired outcomes; 95% Wilson intervals for proportions."
+  },
+  "failure_modes": {
+    "by_experiment": {
+      "E002": {
+        "held-out-only behavioral failure": 1
+      },
+      "E004": {
+        "held-out-only behavioral failure": 1
+      },
+      "E005": {
+        "held-out-only behavioral failure": 5,
+        "regression failure": 1,
+        "visible/public failure": 1
+      },
+      "E006": {
+        "held-out-only behavioral failure": 3,
+        "regression failure": 1
+      }
+    },
+    "in_protocol_evaluator_incidents": 0,
+    "public_pass_held_out_fail_by_experiment": {
+      "E002": 1,
+      "E004": 1,
+      "E005": 5,
+      "E006": 3
+    },
+    "public_pass_held_out_fail_runs": 10,
+    "run_level_mutually_exclusive_counts": {
+      "held-out-only behavioral failure": 10,
+      "regression failure": 2,
+      "visible/public failure": 1
+    },
+    "timeouts": 0
+  },
+  "interpretation": {
+    "not_established": [
+      "General superiority of Max or Medium.",
+      "A universal difficulty crossover point.",
+      "A causal effect of hidden reasoning on repair quality.",
+      "Training exposure or absence from training data.",
+      "Generalization beyond this agent, model family, task sample, and protocol."
+    ],
+    "observed": [
+      "Moderate: Medium 10/10, Max 8/10.",
+      "Hard: Medium 7/10, Max 6/10.",
+      "Very-hard: Medium 7/10, Max 9/10.",
+      "Primary cumulative: Medium 24/30, Max 23/30.",
+      "Max produced two Max-only repairs and zero Medium-only repairs at the very-hard tier."
+    ],
+    "supported": [
+      "Additional reasoning effort changed observable repair trajectories.",
+      "Additional effort did not provide a uniform correctness benefit across tiers.",
+      "The value of increased effort may be conditional on task difficulty in this benchmark."
+    ]
+  },
+  "primary": {
+    "conditions": {
+      "Max": {
+        "cached_tokens": {
+          "mean": 861537.0666666667,
+          "median": 153248.0,
+          "n": 30,
+          "total": 25846112
+        },
+        "completion_tokens": {
+          "mean": 14462.733333333334,
+          "median": 4693.5,
+          "n": 30,
+          "total": 433882
+        },
+        "generated_or_environment_files": {
+          "mean": 116.9,
+          "median": 0.0,
+          "n": 30,
+          "total": 3507
+        },
+        "held_out_passes": 24,
+        "lines_added": {
+          "mean": 122.03333333333333,
+          "median": 9.5,
+          "n": 30,
+          "total": 3661
+        },
+        "lines_deleted": {
+          "mean": 4.1,
+          "median": 2.0,
+          "n": 30,
+          "total": 123
+        },
+        "prompt_tokens": {
+          "mean": 892707.1333333333,
+          "median": 170400.0,
+          "n": 30,
+          "total": 26781214
+        },
+        "public_passes": 30,
+        "regression_passes": 29,
+        "runs": 30,
+        "source_files_changed": {
+          "mean": 1.7333333333333334,
+          "median": 1.0,
+          "n": 30,
+          "total": 52
+        },
+        "steps": {
+          "mean": 36.766666666666666,
+          "median": 19.0,
+          "n": 30,
+          "total": 1103
+        },
+        "success_rate": 0.7666666666666667,
+        "successes": 23,
+        "tool_calls": {
+          "mean": 40.13333333333333,
+          "median": 27.0,
+          "n": 30,
+          "total": 1204
+        },
+        "wall_time_seconds": {
+          "mean": 528.9517222179906,
+          "median": 407.0112753124954,
+          "n": 30,
+          "total": 15868.551666539715
+        },
+        "workspace_churn_files": {
+          "mean": 118.63333333333334,
+          "median": 2.0,
+          "n": 30,
+          "total": 3559
+        }
+      },
+      "Medium": {
+        "cached_tokens": {
+          "mean": 264917.1,
+          "median": 92154.0,
+          "n": 30,
+          "total": 7947513
+        },
+        "completion_tokens": {
+          "mean": 3632.4666666666667,
+          "median": 1218.5,
+          "n": 30,
+          "total": 108974
+        },
+        "generated_or_environment_files": {
+          "mean": 12.166666666666666,
+          "median": 0.5,
+          "n": 30,
+          "total": 365
+        },
+        "held_out_passes": 25,
+        "lines_added": {
+          "mean": 15,
+          "median": 5.0,
+          "n": 30,
+          "total": 450
+        },
+        "lines_deleted": {
+          "mean": 3.4,
+          "median": 2.0,
+          "n": 30,
+          "total": 102
+        },
+        "prompt_tokens": {
+          "mean": 286103.5,
+          "median": 110203.0,
+          "n": 30,
+          "total": 8583105
+        },
+        "public_passes": 29,
+        "regression_passes": 29,
+        "runs": 30,
+        "source_files_changed": {
+          "mean": 1.7,
+          "median": 1.0,
+          "n": 30,
+          "total": 51
+        },
+        "steps": {
+          "mean": 26.1,
+          "median": 17.0,
+          "n": 30,
+          "total": 783
+        },
+        "success_rate": 0.8,
+        "successes": 24,
+        "tool_calls": {
+          "mean": 24.366666666666667,
+          "median": 14.5,
+          "n": 30,
+          "total": 731
+        },
+        "wall_time_seconds": {
+          "mean": 283.20028605837115,
+          "median": 118.17491741705453,
+          "n": 30,
+          "total": 8496.008581751135
+        },
+        "workspace_churn_files": {
+          "mean": 13.866666666666667,
+          "median": 2.0,
+          "n": 30,
+          "total": 416
+        }
+      }
+    },
+    "historical_cases": 15,
+    "paired_outcomes": {
+      "Max-only": 3,
+      "Medium-only": 4,
+      "both fail": 3,
+      "both success": 20
+    },
+    "tiers": 3,
+    "unique_bugs": 30,
+    "valid_runs": 60,
+    "withheld_cases": 15
+  },
+  "publication_outputs": {
+    "charts": "artifacts/publication-v4/charts/",
+    "paired_csv": "results/publication-v4-paired-results.csv",
+    "report": "reports/devin-swe2-reasoning-effort-v4-final.md",
+    "runs_csv": "results/publication-v4-runs.csv",
+    "summary": "results/publication-v4-summary.json",
+    "tier_summary_csv": "results/publication-v4-tier-summary.csv"
+  },
+  "publication_version": "4.0.0",
+  "resource_ratios_E006_max_minus_medium": {
+    "cached_tokens": 4.274569947378932,
+    "completion_tokens": 5.070854470679109,
+    "prompt_tokens": 3.9201016065162473,
+    "steps": 1.6143497757847534,
+    "tool_calls": 1.7740384615384615,
+    "wall_time_seconds": 1.6315828498163467
+  },
+  "schema_version": 1,
+  "source_commit": "82915fc31c63cd8fb6a01a4e527be95e0d7de698",
+  "subtitle": "A 30-case paired evaluation of SWE-2 Medium and Max in Devin",
+  "tiers": {
+    "hard": {
+      "conditions": {
+        "Max": {
+          "cached_tokens": {
+            "mean": 48186.9,
+            "median": 35424.0,
+            "n": 10,
+            "total": 481869
+          },
+          "completion_tokens": {
+            "mean": 534.8,
+            "median": 457.0,
+            "n": 10,
+            "total": 5348
+          },
+          "generated_or_environment_files": {
+            "mean": 0,
+            "median": 0.0,
+            "n": 10,
+            "total": 0
+          },
+          "held_out_passes": 7,
+          "lines_added": {
+            "mean": 22.1,
+            "median": 8.5,
+            "n": 10,
+            "total": 221
+          },
+          "lines_deleted": {
+            "mean": 4.2,
+            "median": 3.0,
+            "n": 10,
+            "total": 42
+          },
+          "prompt_tokens": {
+            "mean": 49893.8,
+            "median": 35619.5,
+            "n": 10,
+            "total": 498938
+          },
+          "public_passes": 10,
+          "regression_passes": 9,
+          "runs": 10,
+          "source_files_changed": {
+            "mean": 2,
+            "median": 2.0,
+            "n": 10,
+            "total": 20
+          },
+          "steps": {
+            "mean": 38.1,
+            "median": 31.5,
+            "n": 10,
+            "total": 381
+          },
+          "success_rate": 0.6,
+          "successes": 6,
+          "tool_calls": {
+            "mean": 39.8,
+            "median": 32.0,
+            "n": 10,
+            "total": 398
+          },
+          "wall_time_seconds": {
+            "mean": 438.38465854150706,
+            "median": 409.52627831249265,
+            "n": 10,
+            "total": 4383.846585415071
+          },
+          "workspace_churn_files": {
+            "mean": 2,
+            "median": 2.0,
+            "n": 10,
+            "total": 20
+          }
+        },
+        "Medium": {
+          "cached_tokens": {
+            "mean": 31094.3,
+            "median": 17610.0,
+            "n": 10,
+            "total": 310943
+          },
+          "completion_tokens": {
+            "mean": 287.1,
+            "median": 255.0,
+            "n": 10,
+            "total": 2871
+          },
+          "generated_or_environment_files": {
+            "mean": 0,
+            "median": 0.0,
+            "n": 10,
+            "total": 0
+          },
+          "held_out_passes": 7,
+          "lines_added": {
+            "mean": 18.3,
+            "median": 4.5,
+            "n": 10,
+            "total": 183
+          },
+          "lines_deleted": {
+            "mean": 3.5,
+            "median": 1.0,
+            "n": 10,
+            "total": 35
+          },
+          "prompt_tokens": {
+            "mean": 31903.1,
+            "median": 18108.0,
+            "n": 10,
+            "total": 319031
+          },
+          "public_passes": 9,
+          "regression_passes": 10,
+          "runs": 10,
+          "source_files_changed": {
+            "mean": 1.9,
+            "median": 2.0,
+            "n": 10,
+            "total": 19
+          },
+          "steps": {
+            "mean": 28,
+            "median": 18.0,
+            "n": 10,
+            "total": 280
+          },
+          "success_rate": 0.7,
+          "successes": 7,
+          "tool_calls": {
+            "mean": 29.3,
+            "median": 14.5,
+            "n": 10,
+            "total": 293
+          },
+          "wall_time_seconds": {
+            "mean": 186.05215993340826,
+            "median": 117.74408158351434,
+            "n": 10,
+            "total": 1860.5215993340826
+          },
+          "workspace_churn_files": {
+            "mean": 1.9,
+            "median": 2.0,
+            "n": 10,
+            "total": 19
+          }
+        }
+      },
+      "paired_outcomes": {
+        "Max-only": 1,
+        "Medium-only": 2,
+        "both fail": 2,
+        "both success": 5
+      },
+      "provenance_cases": {
+        "historical-public": 5,
+        "newly-constructed-withheld": 5
+      },
+      "runs": 20,
+      "unique_cases": 10
+    },
+    "moderate": {
+      "conditions": {
+        "Max": {
+          "cached_tokens": {
+            "mean": 1220042.7,
+            "median": 388154.5,
+            "n": 10,
+            "total": 12200427
+          },
+          "completion_tokens": {
+            "mean": 18563.5,
+            "median": 7744.5,
+            "n": 10,
+            "total": 185635
+          },
+          "generated_or_environment_files": {
+            "mean": 321.8,
+            "median": 0.0,
+            "n": 10,
+            "total": 3218
+          },
+          "held_out_passes": 8,
+          "lines_added": {
+            "mean": 326.7,
+            "median": 10.5,
+            "n": 10,
+            "total": 3267
+          },
+          "lines_deleted": {
+            "mean": 1.7,
+            "median": 1.0,
+            "n": 10,
+            "total": 17
+          },
+          "prompt_tokens": {
+            "mean": 1259829.5,
+            "median": 409019.0,
+            "n": 10,
+            "total": 12598295
+          },
+          "public_passes": 10,
+          "regression_passes": 10,
+          "runs": 10,
+          "source_files_changed": {
+            "mean": 1,
+            "median": 1.0,
+            "n": 10,
+            "total": 10
+          },
+          "steps": {
+            "mean": 36.2,
+            "median": 28.0,
+            "n": 10,
+            "total": 362
+          },
+          "success_rate": 0.8,
+          "successes": 8,
+          "tool_calls": {
+            "mean": 43.7,
+            "median": 28.5,
+            "n": 10,
+            "total": 437
+          },
+          "wall_time_seconds": {
+            "mean": 429.48272957500023,
+            "median": 250.7784359794776,
+            "n": 10,
+            "total": 4294.827295750002
+          },
+          "workspace_churn_files": {
+            "mean": 322.8,
+            "median": 1.0,
+            "n": 10,
+            "total": 3228
+          }
+        },
+        "Medium": {
+          "cached_tokens": {
+            "mean": 455700.5,
+            "median": 177993.5,
+            "n": 10,
+            "total": 4557005
+          },
+          "completion_tokens": {
+            "mean": 5820.2,
+            "median": 1830.0,
+            "n": 10,
+            "total": 58202
+          },
+          "generated_or_environment_files": {
+            "mean": 8,
+            "median": 0.5,
+            "n": 10,
+            "total": 80
+          },
+          "held_out_passes": 10,
+          "lines_added": {
+            "mean": 14.5,
+            "median": 12.0,
+            "n": 10,
+            "total": 145
+          },
+          "lines_deleted": {
+            "mean": 2.1,
+            "median": 2.0,
+            "n": 10,
+            "total": 21
+          },
+          "prompt_tokens": {
+            "mean": 477335.3,
+            "median": 189655.5,
+            "n": 10,
+            "total": 4773353
+          },
+          "public_passes": 10,
+          "regression_passes": 10,
+          "runs": 10,
+          "source_files_changed": {
+            "mean": 1,
+            "median": 1.0,
+            "n": 10,
+            "total": 10
+          },
+          "steps": {
+            "mean": 28,
+            "median": 20.0,
+            "n": 10,
+            "total": 280
+          },
+          "success_rate": 1.0,
+          "successes": 10,
+          "tool_calls": {
+            "mean": 23,
+            "median": 15.5,
+            "n": 10,
+            "total": 230
+          },
+          "wall_time_seconds": {
+            "mean": 222.8798234625944,
+            "median": 123.96559891702515,
+            "n": 10,
+            "total": 2228.798234625944
+          },
+          "workspace_churn_files": {
+            "mean": 9,
+            "median": 1.5,
+            "n": 10,
+            "total": 90
+          }
+        }
+      },
+      "paired_outcomes": {
+        "Medium-only": 2,
+        "both success": 8
+      },
+      "provenance_cases": {
+        "historical-public": 5,
+        "newly-constructed-withheld": 5
+      },
+      "runs": 20,
+      "unique_cases": 10
+    },
+    "very-hard": {
+      "conditions": {
+        "Max": {
+          "cached_tokens": {
+            "mean": 1316381.6,
+            "median": 247397.0,
+            "n": 10,
+            "total": 13163816
+          },
+          "completion_tokens": {
+            "mean": 24289.9,
+            "median": 22258.5,
+            "n": 10,
+            "total": 242899
+          },
+          "generated_or_environment_files": {
+            "mean": 28.9,
+            "median": 8.0,
+            "n": 10,
+            "total": 289
+          },
+          "held_out_passes": 9,
+          "lines_added": {
+            "mean": 17.3,
+            "median": 10.0,
+            "n": 10,
+            "total": 173
+          },
+          "lines_deleted": {
+            "mean": 6.4,
+            "median": 4.5,
+            "n": 10,
+            "total": 64
+          },
+          "prompt_tokens": {
+            "mean": 1368398.1,
+            "median": 279008.5,
+            "n": 10,
+            "total": 13683981
+          },
+          "public_passes": 10,
+          "regression_passes": 10,
+          "runs": 10,
+          "source_files_changed": {
+            "mean": 2.2,
+            "median": 1.0,
+            "n": 10,
+            "total": 22
+          },
+          "steps": {
+            "mean": 36,
+            "median": 18.0,
+            "n": 10,
+            "total": 360
+          },
+          "success_rate": 0.9,
+          "successes": 9,
+          "tool_calls": {
+            "mean": 36.9,
+            "median": 18.5,
+            "n": 10,
+            "total": 369
+          },
+          "wall_time_seconds": {
+            "mean": 718.9877785374644,
+            "median": 667.7272179584252,
+            "n": 10,
+            "total": 7189.877785374643
+          },
+          "workspace_churn_files": {
+            "mean": 31.1,
+            "median": 9.5,
+            "n": 10,
+            "total": 311
+          }
+        },
+        "Medium": {
+          "cached_tokens": {
+            "mean": 307956.5,
+            "median": 92154.0,
+            "n": 10,
+            "total": 3079565
+          },
+          "completion_tokens": {
+            "mean": 4790.1,
+            "median": 1562.5,
+            "n": 10,
+            "total": 47901
+          },
+          "generated_or_environment_files": {
+            "mean": 28.5,
+            "median": 10.0,
+            "n": 10,
+            "total": 285
+          },
+          "held_out_passes": 8,
+          "lines_added": {
+            "mean": 12.2,
+            "median": 6.0,
+            "n": 10,
+            "total": 122
+          },
+          "lines_deleted": {
+            "mean": 4.6,
+            "median": 2.5,
+            "n": 10,
+            "total": 46
+          },
+          "prompt_tokens": {
+            "mean": 349072.1,
+            "median": 103982.0,
+            "n": 10,
+            "total": 3490721
+          },
+          "public_passes": 10,
+          "regression_passes": 9,
+          "runs": 10,
+          "source_files_changed": {
+            "mean": 2.2,
+            "median": 1.0,
+            "n": 10,
+            "total": 22
+          },
+          "steps": {
+            "mean": 22.3,
+            "median": 14.5,
+            "n": 10,
+            "total": 223
+          },
+          "success_rate": 0.7,
+          "successes": 7,
+          "tool_calls": {
+            "mean": 20.8,
+            "median": 11.5,
+            "n": 10,
+            "total": 208
+          },
+          "wall_time_seconds": {
+            "mean": 440.66887477911075,
+            "median": 118.17491741705453,
+            "n": 10,
+            "total": 4406.688747791108
+          },
+          "workspace_churn_files": {
+            "mean": 30.7,
+            "median": 12.0,
+            "n": 10,
+            "total": 307
+          }
+        }
+      },
+      "paired_outcomes": {
+        "Max-only": 2,
+        "both fail": 1,
+        "both success": 7
+      },
+      "provenance_cases": {
+        "historical-public": 5,
+        "newly-constructed-withheld": 5
+      },
+      "runs": 20,
+      "unique_cases": 10
+    }
+  },
+  "title": "Reasoning Effort Across the Software-Repair Difficulty Curve"
+}

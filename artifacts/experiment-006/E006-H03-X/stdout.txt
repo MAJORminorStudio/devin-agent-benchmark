@@ -1,0 +1,30 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace structure.Small codebase. Let me read all the files.Let me run the test suite to see the current state.The test failure is a window accounting leak. Let me analyze the decoder logic carefully:
+
+**Bugs found:**
+
+1. **`invalid-payload` leaks window** — the decoder consumes `4 + length` bytes but reports `wire_size=0`, so `session.receive` acknowledges nothing. Each bad frame permanently shrinks the window until `reserve()` fails → everything blocked by backpressure. (This is the visible test failure.)
+
+2. **`frame-too-large` desyncs the stream** — on an oversized length it deletes only the 4-byte header, then reparses the body bytes as new frame headers. Those garbage "headers" can consume bytes belonging to a subsequent valid frame → later valid commands lost. It also leaks the 4 consumed bytes (`wire_size=0`).
+
+The fix: when a frame is declared too large, the peer still sends `length` body bytes — the decoder must skip exactly that many (tracking partial progress across fragmented `feed` calls) before resuming header parsing. And every consumed byte must be credited back to the window exactly once.
+
+Let me verify the current bad behavior before fixing:Confirmed: the oversized frame's body gets reparsed as headers (each `0x78`=120 → 15 spurious errors), the valid frame is lost, and the window leaks to 0 → permanent backpressure.
+
+Now the fix in `framing.py`. The decoder needs a skip counter so an oversized frame's declared body is consumed as body (never reparsed), and every consumed byte must be credited to the window exactly once. I'll emit a `Discarded` accounting event for skipped bytes — the session's loop already calls `window.acknowledge(event.wire_size)` for every event and only appends responses for `Frame`/`ProtocolError`, so it slots in with zero session changes.Now run the test suite plus a comprehensive scenario check:All decoder behavior is correct — the FAILs are my test script feeding chunks larger than the 64-byte window (which correctly yields `backpressure`), and `window after ...: 64` passed in every case. Let me rerun those scenarios with properly-sized chunks:Those remaining FAILs are my harness math again — the increment frame is only 29 bytes so `f[:40]` fed it whole, and a 77-byte chunk into a 64-byte window correctly backpressures. Let me do one clean run with computed sizes:All green. Final check of the diff:Not a git repo — no diff needed. Only `src/wire_relay/framing.py` changed; session, flow, and router are untouched.
+
+## Summary
+
+The decoder had two bugs that compounded into lost commands and dead sessions:
+
+**Window leak on malformed frames** — both `ProtocolError` events reported `wire_size=0` even though the decoder had consumed bytes. `session.receive` acknowledges per-event `wire_size`, so every bad frame permanently shrank the window until `reserve()` rejected everything with `backpressure`. Now `invalid-payload` reports `HEADER + length` (the actual bytes consumed).
+
+**Stream desync on oversized frames** — on `length > MAX_BODY`, the decoder dropped only the 4-byte header, then reparsed the frame's body as new headers. Garbage lengths either spawned spurious errors or consumed bytes belonging to subsequent valid frames — losing them. Now the decoder reports `frame-too-large` (credited for the 4 header bytes) and enters a skip state (`self._skip = length`) that consumes exactly the declared body before resuming header parsing — safe across fragmented feeds and coalesced streams, including adversarial bodies that look like valid headers.
+
+Skipped body bytes are surfaced as `Discarded` accounting events [framing.py:18-20](file:///workspace/src/wire_relay/framing.py), which the session's existing `window.acknowledge(event.wire_size)` loop credits without producing a response — so every wire byte is acknowledged exactly once, and errors are still reported in wire order.
+
+Verified: the suite passes, plus manual checks for fragmented/coalesced valid and oversized frames, mid-header splits, backpressure reject-then-retry, close semantics, and 10 consecutive malformed frames leaving the session fully usable with `window.available` restored.

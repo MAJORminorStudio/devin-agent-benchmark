@@ -1,0 +1,40 @@
+{
+  "experiment_id": "experiment-006",
+  "schema_version": 1,
+  "source_manifest": "manifests/experiment-006-config.json",
+  "freeze_status": "frozen-ready-for-launch",
+  "randomization": {
+    "method": "Python random.Random(seed).shuffle over all case-condition pairs",
+    "seed": 20260926,
+    "condition_pattern": "balanced but non-blocked",
+    "case_pair_separation": "each case's M and X runs are separated by the fixed shuffle"
+  },
+  "run_order": [
+    "E006-K03-M", "E006-H02-M", "E006-H03-M", "E006-H02-X", "E006-K05-M",
+    "E006-K04-M", "E006-H01-X", "E006-H05-X", "E006-K05-X", "E006-K02-X",
+    "E006-H04-M", "E006-H03-X", "E006-H05-M", "E006-H04-X", "E006-H01-M",
+    "E006-K03-X", "E006-K04-X", "E006-K01-M", "E006-K01-X", "E006-K02-M"
+  ],
+  "runs": [
+    {"run_index": 1, "run_id": "E006-K03-M", "case_id": "E006-K03", "provenance": "historical-public", "condition": "M", "model": "swe-2-medium", "prompt": "prompts/experiment-006/E006-K03.md", "status": "frozen-pending"},
+    {"run_index": 2, "run_id": "E006-H02-M", "case_id": "E006-H02", "provenance": "newly-constructed-withheld", "condition": "M", "model": "swe-2-medium", "prompt": "prompts/experiment-006/E006-H02.md", "status": "frozen-pending"},
+    {"run_index": 3, "run_id": "E006-H03-M", "case_id": "E006-H03", "provenance": "newly-constructed-withheld", "condition": "M", "model": "swe-2-medium", "prompt": "prompts/experiment-006/E006-H03.md", "status": "frozen-pending"},
+    {"run_index": 4, "run_id": "E006-H02-X", "case_id": "E006-H02", "provenance": "newly-constructed-withheld", "condition": "X", "model": "swe-2-max", "prompt": "prompts/experiment-006/E006-H02.md", "status": "frozen-pending"},
+    {"run_index": 5, "run_id": "E006-K05-M", "case_id": "E006-K05", "provenance": "historical-public", "condition": "M", "model": "swe-2-medium", "prompt": "prompts/experiment-006/E006-K05.md", "status": "frozen-pending"},
+    {"run_index": 6, "run_id": "E006-K04-M", "case_id": "E006-K04", "provenance": "historical-public", "condition": "M", "model": "swe-2-medium", "prompt": "prompts/experiment-006/E006-K04.md", "status": "frozen-pending"},
+    {"run_index": 7, "run_id": "E006-H01-X", "case_id": "E006-H01", "provenance": "newly-constructed-withheld", "condition": "X", "model": "swe-2-max", "prompt": "prompts/experiment-006/E006-H01.md", "status": "frozen-pending"},
+    {"run_index": 8, "run_id": "E006-H05-X", "case_id": "E006-H05", "provenance": "newly-constructed-withheld", "condition": "X", "model": "swe-2-max", "prompt": "prompts/experiment-006/E006-H05.md", "status": "frozen-pending"},
+    {"run_index": 9, "run_id": "E006-K05-X", "case_id": "E006-K05", "provenance": "historical-public", "condition": "X", "model": "swe-2-max", "prompt": "prompts/experiment-006/E006-K05.md", "status": "frozen-pending"},
+    {"run_index": 10, "run_id": "E006-K02-X", "case_id": "E006-K02", "provenance": "historical-public", "condition": "X", "model": "swe-2-max", "prompt": "prompts/experiment-006/E006-K02.md", "status": "frozen-pending"},
+    {"run_index": 11, "run_id": "E006-H04-M", "case_id": "E006-H04", "provenance": "newly-constructed-withheld", "condition": "M", "model": "swe-2-medium", "prompt": "prompts/experiment-006/E006-H04.md", "status": "frozen-pending"},
+    {"run_index": 12, "run_id": "E006-H03-X", "case_id": "E006-H03", "provenance": "newly-constructed-withheld", "condition": "X", "model": "swe-2-max", "prompt": "prompts/experiment-006/E006-H03.md", "status": "frozen-pending"},
+    {"run_index": 13, "run_id": "E006-H05-M", "case_id": "E006-H05", "provenance": "newly-constructed-withheld", "condition": "M", "model": "swe-2-medium", "prompt": "prompts/experiment-006/E006-H05.md", "status": "frozen-pending"},
+    {"run_index": 14, "run_id": "E006-H04-X", "case_id": "E006-H04", "provenance": "newly-constructed-withheld", "condition": "X", "model": "swe-2-max", "prompt": "prompts/experiment-006/E006-H04.md", "status": "frozen-pending"},
+    {"run_index": 15, "run_id": "E006-H01-M", "case_id": "E006-H01", "provenance": "newly-constructed-withheld", "condition": "M", "model": "swe-2-medium", "prompt": "prompts/experiment-006/E006-H01.md", "status": "frozen-pending"},
+    {"run_index": 16, "run_id": "E006-K03-X", "case_id": "E006-K03", "provenance": "historical-public", "condition": "X", "model": "swe-2-max", "prompt": "prompts/experiment-006/E006-K03.md", "status": "frozen-pending"},
+    {"run_index": 17, "run_id": "E006-K04-X", "case_id": "E006-K04", "provenance": "historical-public", "condition": "X", "model": "swe-2-max", "prompt": "prompts/experiment-006/E006-K04.md", "status": "frozen-pending"},
+    {"run_index": 18, "run_id": "E006-K01-M", "case_id": "E006-K01", "provenance": "historical-public", "condition": "M", "model": "swe-2-medium", "prompt": "prompts/experiment-006/E006-K01.md", "status": "frozen-pending"},
+    {"run_index": 19, "run_id": "E006-K01-X", "case_id": "E006-K01", "provenance": "historical-public", "condition": "X", "model": "swe-2-max", "prompt": "prompts/experiment-006/E006-K01.md", "status": "frozen-pending"},
+    {"run_index": 20, "run_id": "E006-K02-M", "case_id": "E006-K02", "provenance": "historical-public", "condition": "M", "model": "swe-2-medium", "prompt": "prompts/experiment-006/E006-K02.md", "status": "frozen-pending"}
+  ]
+}

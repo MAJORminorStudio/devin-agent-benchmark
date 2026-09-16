@@ -1,0 +1,15 @@
+{
+  "case_id": "E003-N05",
+  "category": "protocol/parser/state machine",
+  "commands": {
+    "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+    "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+    "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+  },
+  "description": "A line protocol parser must recover when a newer transaction begins before the previous one completes.",
+  "expected_fixed_behavior": "public, held-out, and regression tests pass on the fixed source tree",
+  "experiment_id": "experiment-003",
+  "project_name": "line-protocol",
+  "release_note": "The source, tests, and reference patch were embargoed until all ten E003 runs closed.",
+  "schema_version": 1
+}

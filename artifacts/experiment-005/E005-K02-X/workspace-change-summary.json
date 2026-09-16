@@ -1,0 +1,15 @@
+{
+  "changed_files": [
+    "luigi/scheduler.py"
+  ],
+  "classification_counts": {
+    "generated_or_environment": 0,
+    "source": 1
+  },
+  "generated_or_environment_files": [],
+  "note": "Full workspaces and dependency trees are not published.",
+  "source_files": [
+    "luigi/scheduler.py"
+  ],
+  "workspace_churn_files": 1
+}

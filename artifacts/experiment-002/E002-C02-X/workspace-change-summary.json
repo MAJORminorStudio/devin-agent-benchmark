@@ -1,0 +1,13 @@
+{
+  "baseline_entry_count": 686,
+  "classification_counts": {
+    "generated_or_environment": 0,
+    "source": 1
+  },
+  "generated_or_environment_files": [],
+  "note": "Counts are based on the preserved final patch/file-change record. Full workspace trees and dependency environments are not published.",
+  "observed_changed_entry_count": 1,
+  "source_files": [
+    "fastapi/routing.py"
+  ]
+}

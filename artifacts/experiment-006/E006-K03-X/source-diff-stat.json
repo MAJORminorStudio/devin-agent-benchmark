@@ -1,0 +1,28 @@
+{
+  "changed_files": [
+    "black.py"
+  ],
+  "generated_or_environment_files": [
+    "__pycache__/black.cpython-38.pyc",
+    "blib2to3/Grammar3.8.3.final.0.pickle",
+    "blib2to3/PatternGrammar3.8.3.final.0.pickle",
+    "blib2to3/__pycache__/__init__.cpython-38.pyc",
+    "blib2to3/__pycache__/pygram.cpython-38.pyc",
+    "blib2to3/__pycache__/pytree.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/__init__.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/driver.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/grammar.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/parse.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/pgen.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/token.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/tokenize.cpython-38.pyc",
+    "tests/__pycache__/test_black.cpython-38.pyc"
+  ],
+  "line_counts": {
+    "additions": 11,
+    "deletions": 0
+  },
+  "patch_byte_length": 513,
+  "patch_sha256": "c8ea65f2ede06201ceb7a718a21b869e03515740c823e6e5a5f964a860bcac92",
+  "reference_match": false
+}

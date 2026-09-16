@@ -1,0 +1,32 @@
+{
+  "E004-N01": {
+    "difficulty_band": "near E002 median, toward harder end",
+    "failure_class": "dependency graph invalidation",
+    "project_name": "buildgraph",
+    "visible_symptom": "A cached top-level plan remains stale after a source artifact is replaced."
+  },
+  "E004-N02": {
+    "difficulty_band": "near E002 median",
+    "failure_class": "resource lifecycle and replacement",
+    "project_name": "taskqueue",
+    "visible_symptom": "A later job cannot obtain a worker after an earlier job reports an operational error."
+  },
+  "E004-N03": {
+    "difficulty_band": "easier-to-median",
+    "failure_class": "transaction rollback and ownership",
+    "project_name": "preferences",
+    "visible_symptom": "An exception during a nested settings edit changes a saved value."
+  },
+  "E004-N04": {
+    "difficulty_band": "near E002 median",
+    "failure_class": "event dispatch and reentrancy",
+    "project_name": "signalhub",
+    "visible_symptom": "A subscriber removing itself can cause the next subscriber to miss the current event."
+  },
+  "E004-N05": {
+    "difficulty_band": "easier-to-median",
+    "failure_class": "multi-stage batch processing",
+    "project_name": "reportpipe",
+    "visible_symptom": "Rows in a final batch smaller than the target size are absent from the written report."
+  }
+}

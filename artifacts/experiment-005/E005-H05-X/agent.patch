@@ -1,0 +1,43 @@
+--- a/src/event_ledger/bus.py
++++ b/src/event_ledger/bus.py
+@@ -11,9 +11,13 @@
+         return self._subscriptions.add(topic, callback, once=once)
+
+     def publish(self, topic: str, payload: dict[str, object]) -> None:
+-        for subscription in self._subscriptions.for_topic(topic):
++        for subscription in list(self._subscriptions.for_topic(topic)):
+             if not subscription.active:
+                 continue
+-            subscription.callback(payload)
+             if subscription.once:
+-                subscription.close()
++                try:
++                    subscription.callback(payload)
++                finally:
++                    subscription.close()
++            else:
++                subscription.callback(payload)
+--- a/src/event_ledger/projection.py
++++ b/src/event_ledger/projection.py
+@@ -11,7 +11,8 @@
+         self.total = 0
+
+     def start(self) -> None:
+-        self._subscription = self._bus.subscribe("delta", self._apply)
++        if self._subscription is None or not self._subscription.active:
++            self._subscription = self._bus.subscribe("delta", self._apply)
+
+     def stop(self) -> None:
+         if self._subscription is not None:
+--- a/src/event_ledger/subscriptions.py
++++ b/src/event_ledger/subscriptions.py
+@@ -14,7 +14,10 @@
+     _book: "SubscriptionBook | None" = None
+
+     def close(self) -> None:
+-        if self.active and self._book is not None:
++        if not self.active:
++            return
++        self.active = False
++        if self._book is not None:
+         self._book.remove(self.token)

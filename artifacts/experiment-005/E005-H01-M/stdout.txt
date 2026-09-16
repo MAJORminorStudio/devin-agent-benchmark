@@ -1,0 +1,13 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The bug: both `FeatureBuilder.build` and `PlanResolver.resolve` only fingerprint the definition's own version (plus direct deps), so a change to a transitive dependency isn't detected. The graph already exposes `revisions_for` (transitive). I'll use it in both places.Fixed. The staleness came from fingerprints that only covered the definition itself (and its direct deps), so a change two or more levels down went unnoticed.
+
+Changes:
+
+- `PlanResolver.resolve` now keys cache entries on `graph.revisions_for(name)` — versions of the full transitive dependency set — instead of just the node plus direct deps. Intermediate cached subtrees still hit when their own dependency chain is unchanged, preserving reuse. [resolver.py:16-28](file:///workspace/src/feature_plan/resolver.py)
+- `FeatureBuilder.build` now stores the same transitive revision map as the published-plan fingerprint rather than the definition's own version alone. [service.py:25-32](file:///workspace/src/feature_plan/service.py)
+
+Public API, error behavior (unknown/invalid definitions still raise via `definition`/`_check_dependencies`), and reuse for unrelated changes are unchanged. Test passes (`python` isn't installed; ran with `python3`).

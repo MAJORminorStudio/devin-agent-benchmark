@@ -1,0 +1,23 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+Running the existing test to reproduce the issue.Reproduced: `close()` cancels the worker task but returns without awaiting it, so cleanup hasn't run when it returns. Fix: signal the stop event and await the worker task, so repeat calls also wait for completion.Test passes. Quick sanity check on double-close and close-before-start:Done. The bug was in `Session.close()` at [session.py:34-38](file:///workspace/src/event_stream/session.py): it called `self._task.cancel()` and returned immediately. Since cancellation is delivered asynchronously, `close()` returned while the worker was still active and its `finally` cleanup hadn't run — the test showed `(True, 0)` instead of `(False, 1)`.
+
+The fix uses the already-present `_stop` event (previously never set) for a graceful shutdown, then awaits the worker task:
+
+```python
+async def close(self) -> None:
+    self._closed = True
+    self._stop.set()
+    if self._task is not None:
+        await self._task
+```
+
+This satisfies all three requirements:
+- **Awaitable/completes after cleanup**: awaiting the task means `close()` returns only after `_serve`'s `finally` block ran, so `active` is `False` and `cleanup_count` is 1.
+- **Idempotent**: awaiting an already-finished task returns immediately, so sequential and even concurrent `close()` calls are safe — every caller waits for the worker.
+- **No API change**: `close()` was already `async`; no dependencies added.
+
+Verified: the public test failed before (`(True, 0)`) and passes after, plus a manual check confirms close-before-start and repeated/concurrent closes all behave correctly.

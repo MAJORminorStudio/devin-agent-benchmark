@@ -1,0 +1,15 @@
+--- a/src/profile_runtime/cache.py
++++ b/src/profile_runtime/cache.py
+@@ -3,10 +3,10 @@
+         self._items = {}
+ 
+     def get(self, name, mode, version):
+-        return self._items.get(name)
++        return self._items.get((name, mode, version))
+ 
+     def put(self, name, mode, version, payload):
+-        self._items[name] = payload
++        self._items[(name, mode, version)] = payload
+ 
+     def clear(self):
+         self._items.clear()

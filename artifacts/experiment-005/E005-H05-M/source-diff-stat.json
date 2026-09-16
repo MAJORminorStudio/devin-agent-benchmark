@@ -1,0 +1,21 @@
+{
+  "byte_counts": {
+    "added_bytes": 2205,
+    "deleted_bytes": 2107
+  },
+  "changed_files": [
+    "src/event_ledger/projection.py",
+    "src/event_ledger/subscriptions.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 3,
+    "deletions": 1
+  },
+  "sha256": "276f452ced303b5b8329c08fcf625a77cc1d568112855785ed7a4d230bab9c7c",
+  "source_files_changed": [
+    "src/event_ledger/projection.py",
+    "src/event_ledger/subscriptions.py"
+  ],
+  "workspace_churn_files": 2
+}

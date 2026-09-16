@@ -1,0 +1,24 @@
+new file: tqdm/__pycache__/__init__.cpython-311.pyc
+new file: tqdm/__pycache__/_main.cpython-311.pyc
+new file: tqdm/__pycache__/_monitor.cpython-311.pyc
+new file: tqdm/__pycache__/_tqdm.cpython-311.pyc
+new file: tqdm/__pycache__/_tqdm_gui.cpython-311.pyc
+new file: tqdm/__pycache__/_tqdm_pandas.cpython-311.pyc
+new file: tqdm/__pycache__/_utils.cpython-311.pyc
+new file: tqdm/__pycache__/_version.cpython-311.pyc
+--- a/tqdm/_tqdm.py
++++ b/tqdm/_tqdm.py
+@@ -754,6 +754,12 @@
+             self.pos = self._get_free_pos(self)
+             self._instances.remove(self)
+             self.n = initial
++            if total is None and iterable is not None:
++                try:
++                    total = len(iterable)
++                except (TypeError, AttributeError):
++                    total = None
++            self.total = total
+             return
+ 
+         if kwargs:
+new file: tqdm/tests/__pycache__/tests_tqdm.cpython-311.pyc

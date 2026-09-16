@@ -1,0 +1,8 @@
+{
+  "name": "BugsInPy",
+  "url": "https://github.com/reproducing-research-projects/BugsInPy.git",
+  "ref": "master",
+  "dataset_commit": "316b95e2353ecda832bad9b42f86fa7c2fcec8ac",
+  "policy": "External checkout only; never vendor or copy the BugsInPy repository into this repository.",
+  "source_metadata": "projects/*/project.info and projects/*/bugs/*/{bug.info,run_test.sh,requirements.txt,setup.sh}"
+}

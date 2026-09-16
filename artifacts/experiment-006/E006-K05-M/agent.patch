@@ -1,0 +1,38 @@
+--- a/tqdm/std.py
++++ b/tqdm/std.py
+@@ -485,8 +485,7 @@
+             if not _is_ascii(full_bar.charset) and _is_ascii(bar_format):
+                 bar_format = _unicode(bar_format)
+             res = bar_format.format(bar=full_bar, **format_dict)
+-            if ncols:
+-                return disp_trim(res, ncols)
++            return disp_trim(res, ncols) if ncols else res
+ 
+         elif bar_format:
+             # user-specified bar_format but no total
+@@ -502,8 +501,7 @@
+                 if ncols else 10,
+                 charset=Bar.BLANK)
+             res = bar_format.format(bar=full_bar, **format_dict)
+-            if ncols:
+-                return disp_trim(res, ncols)
++            return disp_trim(res, ncols) if ncols else res
+         else:
+             # no total: no progressbar, ETA, just progress stats
+             return ((prefix + ": ") if prefix else '') + \
+--- a/tqdm/utils.py
++++ b/tqdm/utils.py
+@@ -360,8 +360,12 @@
+     if len(data) == disp_len(data):
+         return data[:length]
+ 
++    ansi_present = bool(RE_ANSI.search(data))
++    untrimmed_len = disp_len(data)
+     while disp_len(data) > length:  # carefully delete one char at a time
+         data = data[:-1]
+-    if RE_ANSI.search(data):  # assume ANSI reset is required
++    if ansi_present and disp_len(data) < untrimmed_len \
++            and not data.endswith("\033[0m"):
++        # assume ANSI reset is required
+         return data + "\033[0m"
+     return data

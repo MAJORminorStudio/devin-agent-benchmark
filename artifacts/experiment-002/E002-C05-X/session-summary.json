@@ -1,0 +1,46 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": "experiment-002",
+    "effective_permission_mode": "Bypass",
+    "fusion_enabled": false,
+    "model": "swe-2-max",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "permission_mode": "dangerous",
+    "provider_metrics": {
+      "total_cached_tokens": 756333,
+      "total_completion_tokens": 9317,
+      "total_prompt_tokens": 783919,
+      "total_steps": 36
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 756333,
+    "total_completion_tokens": 9317,
+    "total_prompt_tokens": 783919,
+    "total_steps": 36
+  },
+  "first_step_timestamp": "2026-09-15T02:22:01.402261544+00:00",
+  "last_step_timestamp": "2026-09-15T02:26:15.613660092+00:00",
+  "model": "swe-2-max",
+  "patch_empty": false,
+  "patch_sha256": "918158b21c59961b6dd27f1cc4bcd257de38557ef8ec6adf45387c49fbb1eb03",
+  "permission_warning": null,
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "glitter-currant",
+  "source_step_counts": {
+    "agent": 29,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 30,
+  "tool_calls_by_function": {
+    "edit": 3,
+    "exec": 20,
+    "grep": 1,
+    "read": 6
+  },
+  "total_steps": 36
+}

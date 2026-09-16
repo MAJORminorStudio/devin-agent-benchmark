@@ -1,0 +1,11 @@
+experiment_case_id,case_id,provenance,medium_run,max_run,outcome,medium_success,max_success,wall_time_delta_max_minus_medium,steps_delta_max_minus_medium,tool_calls_delta_max_minus_medium,prompt_tokens_delta_max_minus_medium,completion_tokens_delta_max_minus_medium,cached_tokens_delta_max_minus_medium,source_patch_lines_delta_max_minus_medium,max_wall_time_higher,max_steps_higher,max_tool_calls_higher,max_prompt_tokens_higher,max_completion_tokens_higher,visible_heldout_disagreement,source_patch_same
+E006-H01,feature-store,newly-constructed-withheld,E006-H01-M,E006-H01-X,Max-only,False,True,301.69898495904636,4,7,126844,11069,119358,14,True,True,True,True,True,False,False
+E006-H02,work-queue,newly-constructed-withheld,E006-H02-M,E006-H02-X,both success,True,True,673.0049922079779,3,7,191466,25066,165054,13,True,True,True,True,True,False,False
+E006-H03,wire-relay,newly-constructed-withheld,E006-H03-M,E006-H03-X,Max-only,False,True,444.3210559998406,6,8,197526,18070,184352,20,True,True,True,True,True,True,False
+E006-H04,account-ledger,newly-constructed-withheld,E006-H04-M,E006-H04-X,both fail,False,False,125.8691778749926,2,5,42980,4450,38929,1,True,True,True,True,True,True,False
+E006-H05,profile-runtime,newly-constructed-withheld,E006-H05-M,E006-H05-X,both success,True,True,41.40646725089755,2,3,31489,1272,38059,2,True,True,True,True,True,False,False
+E006-K01,black-6,historical-public,E006-K01-M,E006-K01-X,both success,True,True,1238.4572036670288,29,22,2921736,47883,2811259,11,True,True,True,True,True,False,False
+E006-K02,PySnooper-1,historical-public,E006-K02-M,E006-K02-X,both success,True,True,72.3675200829748,2,7,80689,2682,80045,0,True,True,True,True,True,False,True
+E006-K03,black-23,historical-public,E006-K03-M,E006-K03-X,both success,True,True,-1828.1500080000842,8,13,961132,16929,1133266,-1,False,True,True,True,True,False,False
+E006-K04,thefuck-17,historical-public,E006-K04-M,E006-K04-X,both success,True,True,715.4405885409797,39,45,2171391,27593,2133306,6,True,True,True,True,True,False,False
+E006-K05,tqdm-2,historical-public,E006-K05-M,E006-K05-X,both success,True,True,998.7730549998814,42,44,3468007,39984,3380623,3,True,True,True,True,True,False,False

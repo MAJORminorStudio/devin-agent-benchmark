@@ -1,0 +1,178 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 53556,
+    "total_completion_tokens": 1449,
+    "total_prompt_tokens": 69060,
+    "total_steps": 12
+  },
+  "hidden_reasoning_omitted": true,
+  "schema_version": 1,
+  "session_id": "lacy-need",
+  "steps": [
+    {
+      "message": "The stream session reports malformed input, but later valid commands can be\nlost or blocked by backpressure. Restore reliable recovery for fragmented\nand coalesced input while preserving frame order, flow-control accounting,\ncommand behavior, and session close semantics.\n\nRun the available test suite with:\n\n    PYTHONPATH=src python -m unittest discover -s tests -v",
+      "source": "user",
+      "step_id": 6,
+      "timestamp": "2026-09-16T16:18:45.275332385+00:00"
+    },
+    {
+      "source": "agent",
+      "step_id": 8,
+      "timestamp": "2026-09-16T16:18:47.468835970+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "find /workspace -type f -name \"*.py\" | head -50 && echo --- && ls /workspace"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell c011d2:\n/workspace/tests/test_session.py\n/workspace/src/wire_relay/session.py\n/workspace/src/wire_relay/__init__.py\n/workspace/src/wire_relay/flow.py\n/workspace/src/wire_relay/framing.py\n/workspace/src/wire_relay/router.py\n---\nREADME.md\nTASK.md\npyproject.toml\nsrc\ntests\n\n\nExit code: 0",
+            "content_length": 313,
+            "content_sha256": "8b6753168bd54a255e0a43a4fa77445aaf67e4a3aa8e8825f06407b9bcb69329"
+          },
+          "tool_call_id": "exec_0#b710cfbc8c21430f8a6d97ba3ff9d3da"
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "step_id": 9,
+      "timestamp": "2026-09-16T16:18:54.774780500+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/TASK.md"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/TASK.md\" start_line=\"1\" end_line=\"8\" total_lines=\"8\">\n  1|The stream session reports malformed input, but later valid commands can be\n  2|lost or blocked by backpressure. Restore reliable recovery for fragmented\n  3|and coalesced input while preserving frame order, flow-control accounting,\n  4|command behavior, and session close semantics.\n  5|\n  6|Run the available test suite with:\n  7|\n  8|    PYTHONPATH=src python -m unittest discover -s tests -v\n</file-view>",
+            "content_length": 494,
+            "content_sha256": "75f0a49165079567fe6c6cc49af8ca39ddf3fd71b800e96a1953579443626e30"
+          },
+          "tool_call_id": "read_1#6a067635b9ee4551a008f3c68b553031"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/session.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/session.py\" start_line=\"1\" end_line=\"35\" total_lines=\"35\">\n  1|from enum import Enum\n  2|\n  3|from .flow import FlowWindow\n  4|from .framing import Frame, FrameDecoder, ProtocolError\n  5|from .router import CommandRouter\n  6|\n  7|\n  8|class SessionState(Enum):\n  9|    READY = \"ready\"\n 10|    CLOSED = \"closed\"\n 11|\n 12|\n 13|class ProtocolSession:\n 14|    def __init__(self, window_size=64):\n 15|        self.decoder = FrameDecoder()\n 16|        self.window = FlowWindow(window_size)\n 17|        self.router = CommandRouter()\n 18|        self.state = SessionState.READY\n 19|\n 20|    def receive(self, data):\n 21|        if self.state is SessionState.CLOSED:\n 22|            return [{\"kind\": \"error\", \"code\": \"closed\"}]\n 23|        if not self.window.reserve(len(data)):\n 24|            return [{\"kind\": \"error\", \"code\": \"backpressure\"}]\n 25|        responses = []\n 26|        for event in self.decoder.feed(data):\n 27|            if isinstance(event, ProtocolError):\n 28|                responses.append({\"kind\": \"error\", \"code\": event.code})\n 29|            elif isinstance(event, Frame):\n 30|                responses.append(self.router.dispatch(event.payload))\n 31|            self.window.acknowledge(event.wire_size)\n 32|        return responses\n 33|\n 34|    def close(self):\n 35|        self.state = SessionState.CLOSED\n</file-view>",
+            "content_length": 1380,
+            "content_sha256": "2a5718c933e702100e80ef0ce56ceb8f43b2f4e0407ad5182c8384f1413caf87"
+          },
+          "tool_call_id": "read_2#1d9a1f9b900d47c783711bcf1365a58b"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/framing.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/framing.py\" start_line=\"1\" end_line=\"44\" total_lines=\"44\">\n  1|import json\n  2|import struct\n  3|from dataclasses import dataclass\n  4|\n  5|\n  6|@dataclass\n  7|class Frame:\n  8|    payload: object\n  9|    wire_size: int\n 10|\n 11|\n 12|@dataclass\n 13|class ProtocolError:\n 14|    code: str\n 15|    wire_size: int\n 16|\n 17|\n 18|class FrameDecoder:\n 19|    HEADER = 4\n 20|    MAX_BODY = 64\n 21|\n 22|    def __init__(self):\n 23|        self._buffer = bytearray()\n 24|\n 25|    def feed(self, data):\n 26|        self._buffer.extend(data)\n 27|        events = []\n 28|        while len(self._buffer) >= self.HEADER:\n 29|            length = struct.unpack(\"!I\", self._buffer[:4])[0]\n 30|            if length > self.MAX_BODY:\n 31|                del self._buffer[:4]\n 32|                events.append(ProtocolError(\"frame-too-large\", 0))\n 33|                continue\n 34|            if len(self._buffer) < self.HEADER + length:\n 35|                break\n 36|            raw = bytes(self._buffer[4:4 + length])\n 37|            del self._buffer[:4 + length]\n 38|            try:\n 39|                payload = json.loads(raw.decode(\"utf-8\"))\n 40|            except (UnicodeDecodeError, ValueError):\n 41|                events.append(ProtocolError(\"invalid-payload\", 0))\n 42|            else:\n 43|                events.append(Frame(payload, self.HEADER + length))\n 44|        return events\n</file-view>",
+            "content_length": 1432,
+            "content_sha256": "1cc4112cb727bbc87674a95df433f20ab91a7828ff23a271a41685c4a27d49e8"
+          },
+          "tool_call_id": "read_3#ce17f9643d6a4117af0f5593c676b87d"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/flow.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/flow.py\" start_line=\"1\" end_line=\"13\" total_lines=\"13\">\n  1|class FlowWindow:\n  2|    def __init__(self, size=64):\n  3|        self.size = size\n  4|        self.available = size\n  5|\n  6|    def reserve(self, amount):\n  7|        if amount > self.available:\n  8|            return False\n  9|        self.available -= amount\n 10|        return True\n 11|\n 12|    def acknowledge(self, amount):\n 13|        self.available = min(self.size, self.available + amount)\n</file-view>",
+            "content_length": 516,
+            "content_sha256": "01dccbc59693cde253cd71299158f059eb930b13091c5f7d95ed51f916d62eba"
+          },
+          "tool_call_id": "read_4#be9dce58b6a840039d0af96d61d5cf41"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/router.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/router.py\" start_line=\"1\" end_line=\"12\" total_lines=\"12\">\n  1|class CommandRouter:\n  2|    def __init__(self):\n  3|        self.counter = 0\n  4|\n  5|    def dispatch(self, payload):\n  6|        command = payload.get(\"command\") if isinstance(payload, dict) else None\n  7|        if command == \"increment\":\n  8|            self.counter += payload.get(\"amount\", 1)\n  9|            return {\"kind\": \"ack\", \"counter\": self.counter}\n 10|        if command == \"read\":\n 11|            return {\"kind\": \"value\", \"counter\": self.counter}\n 12|        return {\"kind\": \"error\", \"code\": \"unknown-command\"}\n</file-view>",
+            "content_length": 645,
+            "content_sha256": "76a1f6821702bb51a47429e376439f9d8734869211e80b4dc5c95fef578345aa"
+          },
+          "tool_call_id": "read_5#c427c610fba34540b244604aa4dcfde5"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/tests/test_session.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/tests/test_session.py\" start_line=\"1\" end_line=\"24\" total_lines=\"24\">\n  1|import json\n  2|import struct\n  3|import unittest\n  4|\n  5|from wire_relay import ProtocolSession, SessionState\n  6|\n  7|\n  8|def frame(message):\n  9|    body = json.dumps(message, separators=(\",\", \":\")).encode(\"utf-8\")\n 10|    return struct.pack(\"!I\", len(body)) + body\n 11|\n 12|\n 13|class SessionTests(unittest.TestCase):\n 14|    def test_valid_command_remains_available_after_bad_payload(self):\n 15|        session = ProtocolSession(window_size=64)\n 16|        bad = struct.pack(\"!I\", 8) + b\"not-json\"\n 17|        self.assertEqual(session.receive(bad), [{\"kind\": \"error\", \"code\": \"invalid-payload\"}])\n 18|        self.assertEqual(session.window.available, 64)\n 19|        self.assertEqual(session.receive(frame({\"command\": \"increment\", \"amount\": 2})), [{\"kind\": \"ack\", \"counter\": 2}])\n 20|        self.assertEqual(session.state, SessionState.READY)\n 21|\n 22|\n 23|if __name__ == \"__main__\":\n 24|    unittest.main()\n</file-view>",
+            "content_length": 1031,
+            "content_sha256": "d62bf6f2bc153669b0bef43be026110ed539405d655b70c7088a9975d28e2075"
+          },
+          "tool_call_id": "read_6#cdacd5442cce42fc8432fadb14b41304"
+        }
+      ]
+    },
+    {
+      "message": "The bug: `ProtocolError` events report `wire_size=0`, so bytes consumed by malformed frames are never returned to the flow window \u2014 the window drains until valid commands hit backpressure. I'll fix the decoder to report the actual consumed bytes.",
+      "source": "agent",
+      "step_id": 10,
+      "timestamp": "2026-09-16T16:19:07.098425465+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/framing.py",
+            "new_string": "            if length > self.MAX_BODY:\n                del self._buffer[:4]\n                events.append(ProtocolError(\"frame-too-large\", self.HEADER))",
+            "old_string": "            if length > self.MAX_BODY:\n                del self._buffer[:4]\n                events.append(ProtocolError(\"frame-too-large\", 0))"
+          },
+          "function_name": "edit",
+          "observation": {
+            "content": "The file /workspace/src/wire_relay/framing.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:\n 26|        self._buffer.extend(data)\n 27|        events = []\n 28|        while len(self._buffer) >= self.HEADER:\n 29|            length = struct.unpack(\"!I\", self._buffer[:4])[0]\n 30|            if length > self.MAX_BODY:\n 31|                del self._buffer[:4]\n 32|                events.append(ProtocolError(\"frame-too-large\", self.HEADER))\n 33|                continue\n 34|            if len(self._buffer) < self.HEADER + length:\n 35|                break\n 36|            raw = bytes(self._buffer[4:4 + length])",
+            "content_length": 651,
+            "content_sha256": "e98641a5554049bbcd3ca51e506185b3c168916962818e7a266d027a0360b220"
+          },
+          "tool_call_id": "edit_7#e48c31187ebd4ecb9bc3ec7bd62815f6"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/framing.py",
+            "new_string": "                events.append(ProtocolError(\"invalid-payload\", self.HEADER + length))",
+            "old_string": "                events.append(ProtocolError(\"invalid-payload\", 0))"
+          },
+          "function_name": "edit",
+          "observation": {
+            "content": "The file /workspace/src/wire_relay/framing.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:\n 37|            del self._buffer[:4 + length]\n 38|            try:\n 39|                payload = json.loads(raw.decode(\"utf-8\"))\n 40|            except (UnicodeDecodeError, ValueError):\n 41|                events.append(ProtocolError(\"invalid-payload\", self.HEADER + length))\n 42|            else:\n 43|                events.append(Frame(payload, self.HEADER + length))\n 44|        return events",
+            "content_length": 530,
+            "content_sha256": "fcc6970f27e396b97198c98b67a03aca7d676231871c49cb2ec721632fc1d981"
+          },
+          "tool_call_id": "edit_8#22e32c1f0b884150b3cebfeed6d6b396"
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "step_id": 11,
+      "timestamp": "2026-09-16T16:19:32.294634921+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python -m unittest discover -s tests -v"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 14b2db:\ntest_valid_command_remains_available_after_bad_payload (test_session.SessionTests) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n\n\nExit code: 0",
+            "content_length": 238,
+            "content_sha256": "015c7691e37f165d027d3429072886bd2167cabda96d3fd9a00cf246c7e38549"
+          },
+          "tool_call_id": "exec_9#3c90b2c2ec2a41b8980b8f2b3ae640ad"
+        }
+      ]
+    },
+    {
+      "message": "Fixed. The decoder emitted `ProtocolError` events with `wire_size=0`, so `ProtocolSession.receive` never credited the consumed bytes back to the `FlowWindow`. Each malformed frame permanently drained the window until valid commands were rejected with `backpressure`.\n\nChanges in `src/wire_relay/framing.py`:\n\n- `frame-too-large` errors now report `wire_size=HEADER` (the 4 bytes actually consumed before resync).\n- `invalid-payload` errors now report `wire_size=HEADER + length` (the full bad frame consumed).\n\nFrame order, fragmentation handling, router dispatch, and close semantics are untouched. Test suite passes.",
+      "source": "agent",
+      "step_id": 12,
+      "timestamp": "2026-09-16T16:19:35.740995339+00:00"
+    }
+  ]
+}

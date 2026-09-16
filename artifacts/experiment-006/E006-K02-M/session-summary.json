@@ -1,0 +1,20 @@
+{
+  "final_metrics": {
+    "cached": 92476,
+    "completion": 979,
+    "prompt": 107574
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "cobalt-cave",
+  "steps": 15,
+  "tool_calls": 7,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 5,
+    "read": 1
+  }
+}

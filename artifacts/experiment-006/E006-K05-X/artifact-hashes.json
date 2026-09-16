@@ -1,0 +1,47 @@
+{
+  "published_files": {
+    "agent.patch": {
+      "bytes": 1499,
+      "sha256": "88d530c24859d575b07b33489f69387272895036c655b15f6d9df069f6414588"
+    },
+    "evaluation-result.json": {
+      "bytes": 435,
+      "sha256": "dcc68ed5f84da0dad2cb1de38a9e04db8330962d3111721c63411ac557598cba"
+    },
+    "prompt.md": {
+      "bytes": 307,
+      "sha256": "23e06a1032063aef0947faf9067bced3720d4305ed59d5db5039a37d5081aa9b"
+    },
+    "run-metadata.json": {
+      "bytes": 4918,
+      "sha256": "dec83d84c7454a1fc438fdc4f9570dbfa0508176a69cede0f2a7c960b7e1dcc5"
+    },
+    "session-summary.json": {
+      "bytes": 433,
+      "sha256": "798f9ae7f2eb180a6e6281a09b255f42bab4c1ee13a77307c5ce7017594c80a5"
+    },
+    "source-diff-stat.json": {
+      "bytes": 1467,
+      "sha256": "1ccca147d87aaa53a180801ccc8b663b32bd786ba3fee4d3cb0181ae26b920f2"
+    },
+    "stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.txt": {
+      "bytes": 9308,
+      "sha256": "81f1d85539412da74e019b1e4ce39bf58c73a294ccadad850c2ebdec5004f8b2"
+    },
+    "tool-timeline.json": {
+      "bytes": 188041,
+      "sha256": "7ef6a9b4cb934a91e68ebb76bfe6bc07dcf36d30357e9a7e83c5ccc2a4fc8f83"
+    },
+    "workspace-change-summary.json": {
+      "bytes": 1226,
+      "sha256": "d052e1ca6c47486636fbbe968c21d27e16ed331ab1bf430c16775b10bd3883cb"
+    }
+  },
+  "run_id": "E006-K05-X",
+  "sanitization": "Private paths, secrets, hidden reasoning, private evaluator source, credentials, raw runner metadata, and full workspaces were excluded or redacted.",
+  "schema_version": 1
+}

@@ -1,0 +1,36 @@
+{
+  "experiment_id": "experiment-002",
+  "schema_version": 1,
+  "source_manifest": "manifests/experiment-002-config.json",
+  "freeze_status": "frozen-ready-for-launch",
+  "randomization": {
+    "method": "fixed-seed balanced interleaving",
+    "seed": 20260915,
+    "condition_pattern": "M, X alternating",
+    "case_pair_separation": "each case's M and X runs are separated"
+  },
+  "run_order": [
+    "E002-C02-M",
+    "E002-C04-X",
+    "E002-C01-M",
+    "E002-C05-X",
+    "E002-C03-M",
+    "E002-C01-X",
+    "E002-C04-M",
+    "E002-C02-X",
+    "E002-C05-M",
+    "E002-C03-X"
+  ],
+  "runs": [
+    {"run_id": "E002-C02-M", "experiment_case_id": "E002-C02", "case_id": "fastapi-3", "condition": "M", "model": "swe-2-medium", "effort_level": "medium", "prompt": "prompts/experiment-001/fastapi-3.md", "status": "frozen-pending"},
+    {"run_id": "E002-C04-X", "experiment_case_id": "E002-C04", "case_id": "tqdm-5", "condition": "X", "model": "swe-2-max", "effort_level": "max", "prompt": "prompts/experiment-001/tqdm-5.md", "status": "frozen-pending"},
+    {"run_id": "E002-C01-M", "experiment_case_id": "E002-C01", "case_id": "black-16", "condition": "M", "model": "swe-2-medium", "effort_level": "medium", "prompt": "prompts/experiment-001/black-16.md", "status": "frozen-pending"},
+    {"run_id": "E002-C05-X", "experiment_case_id": "E002-C05", "case_id": "tornado-13", "condition": "X", "model": "swe-2-max", "effort_level": "max", "prompt": "prompts/experiment-001/tornado-13.md", "status": "frozen-pending"},
+    {"run_id": "E002-C03-M", "experiment_case_id": "E002-C03", "case_id": "scrapy-3", "condition": "M", "model": "swe-2-medium", "effort_level": "medium", "prompt": "prompts/experiment-001/scrapy-3.md", "status": "frozen-pending"},
+    {"run_id": "E002-C01-X", "experiment_case_id": "E002-C01", "case_id": "black-16", "condition": "X", "model": "swe-2-max", "effort_level": "max", "prompt": "prompts/experiment-001/black-16.md", "status": "frozen-pending"},
+    {"run_id": "E002-C04-M", "experiment_case_id": "E002-C04", "case_id": "tqdm-5", "condition": "M", "model": "swe-2-medium", "effort_level": "medium", "prompt": "prompts/experiment-001/tqdm-5.md", "status": "frozen-pending"},
+    {"run_id": "E002-C02-X", "experiment_case_id": "E002-C02", "case_id": "fastapi-3", "condition": "X", "model": "swe-2-max", "effort_level": "max", "prompt": "prompts/experiment-001/fastapi-3.md", "status": "frozen-pending"},
+    {"run_id": "E002-C05-M", "experiment_case_id": "E002-C05", "case_id": "tornado-13", "condition": "M", "model": "swe-2-medium", "effort_level": "medium", "prompt": "prompts/experiment-001/tornado-13.md", "status": "frozen-pending"},
+    {"run_id": "E002-C03-X", "experiment_case_id": "E002-C03", "case_id": "scrapy-3", "condition": "X", "model": "swe-2-max", "effort_level": "max", "prompt": "prompts/experiment-001/scrapy-3.md", "status": "frozen-pending"}
+  ]
+}

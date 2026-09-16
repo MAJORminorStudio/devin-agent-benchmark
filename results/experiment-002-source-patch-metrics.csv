@@ -1,0 +1,11 @@
+run_id,case_id,condition,source_files,source_additions,source_deletions,source_changed_lines,all_changed_files,generated_or_environment_files,source_diff_sha256,all_recorded_additions,all_recorded_deletions,human_reference_files,human_reference_additions,human_reference_deletions,source_file_overlap
+E002-C02-M,fastapi-3,M,fastapi/routing.py,25,7,32,2,1,19b09db6ae913db947482af52d592a4f26b1f41ffcf52cbb22c0d3a8385dd377,26,7,fastapi/routing.py,25,7,fastapi/routing.py
+E002-C04-X,tqdm-5,X,tqdm/_tqdm.py,2,0,2,11,10,bc66a3883b451fe3dadd0ef454627577a3a4a59955d07ee53d1cf973a2dce4f0,12,0,tqdm/_tqdm.py,7,6,tqdm/_tqdm.py
+E002-C01-M,black-16,M,black.py,10,1,11,13,12,73e7df3556bb9f0084f1c7dec82fb26f76d40657368f44b118b981aee1cb06d0,22,1,black.py,14,1,black.py
+E002-C05-X,tornado-13,X,tornado/http1connection.py,1,1,2,36,35,d44de71580dd29ca3fece29953a13defff7b74438c31e022172cdb819da953f4,36,1,tornado/http1connection.py;tornado/test/runtests.py,4,1,tornado/http1connection.py
+E002-C03-M,scrapy-3,M,scrapy/downloadermiddlewares/redirect.py,6,2,8,29,28,7f839e46924958e8373cc3e0761357c4bdfadeca5941c46279278a9ae377807f,34,2,scrapy/downloadermiddlewares/redirect.py,5,2,scrapy/downloadermiddlewares/redirect.py
+E002-C01-X,black-16,X,black.py,10,1,11,1512,1511,73e7df3556bb9f0084f1c7dec82fb26f76d40657368f44b118b981aee1cb06d0,1517,1,black.py,14,1,black.py
+E002-C04-M,tqdm-5,M,tqdm/_tqdm.py,6,0,6,10,9,888f60bb32d02247903df793a8ab870c60d8a56e7c5bf0f5f067dcc7e7879792,15,0,tqdm/_tqdm.py,7,6,tqdm/_tqdm.py
+E002-C02-X,fastapi-3,X,fastapi/routing.py,25,7,32,1,0,2b0b715557ce88757274b89045c8a09f104435eb61f14423dd9b59d4f538acf2,25,7,fastapi/routing.py,25,7,fastapi/routing.py
+E002-C05-M,tornado-13,M,tornado/http1connection.py,1,1,2,31,30,d44de71580dd29ca3fece29953a13defff7b74438c31e022172cdb819da953f4,31,1,tornado/http1connection.py;tornado/test/runtests.py,4,1,tornado/http1connection.py
+E002-C03-X,scrapy-3,X,scrapy/downloadermiddlewares/redirect.py,4,1,5,1663,1662,f880b2fead60655bf769cb3a386101759ba591e2d476f1d118aae7e6afd5182d,1662,1,scrapy/downloadermiddlewares/redirect.py,5,2,scrapy/downloadermiddlewares/redirect.py

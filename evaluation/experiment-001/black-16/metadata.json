@@ -1,0 +1,27 @@
+{
+  "case_id": "black-16",
+  "heldout_test_files": ["test_heldout.py"],
+  "heldout_commands": ["python -m unittest -q test_heldout"],
+  "heldout_test_count": 1,
+  "behavior_under_test": "Directory discovery ignores a Python symbolic link whose resolved target is outside the discovery root while continuing to discover an in-root Python file.",
+  "ground_truth_basis": "The public Black API documents this observable directory-discovery behavior; the evaluator test uses a real temporary directory and external symlink rather than the historical mock-based regression test.",
+  "independence": "Independent evaluator test with different filesystem objects and assertions from the historical regression test.",
+  "regression_commands": [
+    "python -m unittest -q tests.test_black.BlackTestCase.test_broken_symlink",
+    "python -m unittest -q tests.test_black.BlackTestCase.test_include_exclude"
+  ],
+  "environment": {
+    "python": "3.8",
+    "install": [
+      "appdirs==1.4.3",
+      "attrs==19.3.0",
+      "click==7.0",
+      "pathspec==0.7.0",
+      "regex==2020.2.20",
+      "toml==0.10.0",
+      "typed-ast==1.4.0",
+      "pytest==5.4.3"
+    ]
+  },
+  "limitations": "The check requires symbolic-link support from the evaluator host."
+}

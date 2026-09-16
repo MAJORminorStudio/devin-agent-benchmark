@@ -1,0 +1,195 @@
+#!/usr/bin/env python3
+"""Plan or execute one frozen Experiment 006 container run.
+
+The default path is a non-mutating dry-run plan. Actual Devin invocation is
+guarded by both --execute and --confirm-paid and is intentionally not used by
+the freeze workflow.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import shlex
+import subprocess
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, NoReturn
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+CONFIG_PATH = REPO_ROOT / "manifests" / "experiment-006-config.json"
+RUNS_PATH = REPO_ROOT / "manifests" / "experiment-006-runs.json"
+
+
+def die(message: str) -> NoReturn:
+    raise SystemExit(f"error: {message}")
+
+
+def read_json(path: Path) -> dict[str, Any]:
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        die(f"could not read {path}: {exc}")
+    if not isinstance(value, dict):
+        die(f"expected JSON object in {path}")
+    return value
+
+
+def load_run(run_id: str) -> dict[str, Any]:
+    matches = [r for r in read_json(RUNS_PATH).get("runs", []) if r.get("run_id") == run_id]
+    if len(matches) != 1:
+        die(f"run ID is absent or duplicated: {run_id}")
+    return matches[0]
+
+
+def runtime_for_case(config: dict[str, Any], case_id: str) -> dict[str, Any]:
+    runtime = config.get("runtime", {}).get("case_environments", {}).get(case_id)
+    if not isinstance(runtime, dict):
+        die(f"missing frozen runtime mapping for case: {case_id}")
+    for key in ("python", "venv", "runtime_lib"):
+        if not isinstance(runtime.get(key), str) or not runtime[key]:
+            die(f"invalid frozen runtime mapping for {case_id}: {key}")
+    return runtime
+
+
+def outside_control(path: Path) -> bool:
+    try:
+        path.relative_to(REPO_ROOT)
+    except ValueError:
+        return True
+    return False
+
+
+def validate_paths(workspace: Path, output: Path, credential: Path | None, executing: bool) -> None:
+    if not workspace.is_dir() or not (workspace / "TASK.md").is_file():
+        die("workspace must be a directory containing TASK.md")
+    if not outside_control(workspace):
+        die("workspace must be outside the control repository")
+    if not outside_control(output):
+        die("output must be outside the control repository")
+    if output == workspace or workspace in output.parents:
+        die("output must not be inside the workspace")
+    if output.exists() and any(output.iterdir()):
+        die("output directory must be fresh and empty")
+    if executing:
+        if credential is None or not credential.is_file() or credential.name != "credentials.toml":
+            die("execution requires an existing credentials.toml file")
+        if credential == workspace or workspace in credential.parents:
+            die("credential must be outside the workspace")
+
+
+def docker_command(
+    config: dict[str, Any], run: dict[str, Any], workspace: Path, output: Path, credential: Path
+) -> list[str]:
+    limits = config["limits"]
+    isolation = config["isolation_contract"]
+    runtime = runtime_for_case(config, str(run["case_id"]))
+    base_path = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    return [
+        "docker", "run", "--rm", "--init", "--platform", "linux/arm64", "--read-only",
+        "--cap-drop", "ALL", "--security-opt", "no-new-privileges:true", "--pids-limit",
+        str(isolation["pids_limit"]), "--memory", isolation["memory"], "--cpus",
+        str(isolation["cpus"]), "--workdir", "/workspace", "--network", isolation["network"],
+        "--mount", f"type=bind,src={workspace},dst=/workspace", "--mount",
+        f"type=bind,src={output},dst=/artifacts", "--mount",
+        f"type=bind,src={credential},dst=/run/devin-data/devin/credentials.toml,ro",
+        "--tmpfs", "/run:rw,noexec,nosuid,size=512m", "--tmpfs", "/tmp:rw,noexec,nosuid,size=1g",
+        "--env", "HOME=/root", "--env", "XDG_CONFIG_HOME=/run/devin-config",
+        "--env", "XDG_DATA_HOME=/run/devin-data", "--env",
+        "PATH=/opt/e006/venvs/" + runtime["venv"] + "/bin:" + base_path, "--env",
+        "LD_LIBRARY_PATH=" + runtime["runtime_lib"], "--env",
+        "E006_CASE_ID=" + str(run["case_id"]), "--env",
+        f"HTTPS_PROXY={isolation['egress_proxy']}", "--env",
+        f"HTTP_PROXY={isolation['egress_proxy']}", "--env", "NO_PROXY=localhost,private-network",
+        config["agent"]["container_image"], "--model", run["model"], "--print",
+        "--prompt-file", "/workspace/TASK.md", "--export", "/artifacts/devin-session-export.json",
+        "--permission-mode", "dangerous", "--respect-workspace-trust", "false",
+    ]
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--run-id", required=True)
+    parser.add_argument("--workspace", type=Path, required=True)
+    parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--credential-file", type=Path)
+    parser.add_argument("--execute", action="store_true")
+    parser.add_argument("--confirm-paid", action="store_true")
+    args = parser.parse_args()
+    if args.confirm_paid and not args.execute:
+        die("--confirm-paid requires --execute")
+    if args.execute and not args.confirm_paid:
+        die("refusing agent invocation without --confirm-paid")
+
+    config = read_json(CONFIG_PATH)
+    run = load_run(args.run_id)
+    if config.get("status") != "frozen-ready-for-launch":
+        die("Experiment 006 configuration is not frozen-ready-for-launch")
+    if run.get("model") not in {"swe-2-medium", "swe-2-max"}:
+        die("run model is outside the frozen condition set")
+
+    workspace = args.workspace.expanduser().resolve()
+    output = args.output_dir.expanduser().resolve()
+    credential = args.credential_file.expanduser().resolve() if args.credential_file else None
+    validate_paths(workspace, output, credential, args.execute)
+    plan_credential = credential or Path("<credential-file>")
+    command = docker_command(config, run, workspace, output, plan_credential)
+    plan = {
+        "experiment_id": "experiment-006",
+        "run_id": args.run_id,
+        "case_id": run["case_id"],
+        "provenance": run["provenance"],
+        "model": run["model"],
+        "workspace": str(workspace),
+        "output_dir": str(output),
+        "command": command,
+        "command_display": " ".join(shlex.quote(part) for part in command),
+        "permission_mode": "dangerous",
+        "effective_permission_mode": "Bypass",
+        "fusion": "disabled",
+        "devin_invoked": False,
+    }
+    output.mkdir(parents=True, exist_ok=True)
+    if not args.execute:
+        (output / "dry-run-plan.json").write_text(json.dumps(plan, indent=2) + "\n", encoding="utf-8")
+        print(json.dumps(plan, indent=2))
+        return 0
+
+    started = datetime.now(timezone.utc)
+    monotonic = time.monotonic()
+    timed_out = False
+    try:
+        completed = subprocess.run(
+            command,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=False,
+            timeout=config["limits"]["maximum_wall_time_seconds"],
+        )
+        returncode = completed.returncode
+        stdout, stderr = completed.stdout or "", completed.stderr or ""
+    except subprocess.TimeoutExpired as exc:
+        timed_out = True
+        returncode = 124
+        stdout, stderr = exc.stdout or "", exc.stderr or ""
+    ended = datetime.now(timezone.utc)
+    result = {
+        **plan,
+        "devin_invoked": True,
+        "returncode": returncode,
+        "timed_out": timed_out,
+        "started_at_utc": started.isoformat(),
+        "ended_at_utc": ended.isoformat(),
+        "wall_time_seconds": time.monotonic() - monotonic,
+    }
+    (output / "devin.stdout.txt").write_text(stdout, encoding="utf-8")
+    (output / "devin.stderr.txt").write_text(stderr, encoding="utf-8")
+    (output / "container-run-result.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    return 0 if returncode == 0 else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

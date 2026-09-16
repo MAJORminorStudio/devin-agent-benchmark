@@ -1,0 +1,22 @@
+--- a/src/signalhub/hub.py
++++ b/src/signalhub/hub.py
+@@ -19,7 +19,7 @@
+ 
+     def publish(self, event: Event) -> list[object]:
+         results: list[object] = []
+-        for subscription in self._subscriptions:
++        for subscription in self._subscriptions.snapshot():
+             if not subscription.active:
+                 continue
+             results.append(subscription.callback(event))
+--- a/src/signalhub/subscriptions.py
++++ b/src/signalhub/subscriptions.py
+@@ -28,5 +28,8 @@
+     def __iter__(self) -> Iterator[Subscription]:
+         return iter(self._items)
+ 
++    def snapshot(self) -> tuple[Subscription, ...]:
++        return tuple(self._items)
++
+     def __len__(self) -> int:
+         return len(self._items)

@@ -1,0 +1,17 @@
+{
+  "changed_files": [
+    "src/wire_relay/framing.py",
+    "src/wire_relay/session.py"
+  ],
+  "classification_counts": {
+    "generated_or_environment": 0,
+    "source": 2
+  },
+  "generated_or_environment_files": [],
+  "note": "Full workspaces and dependency trees are not published.",
+  "source_files": [
+    "src/wire_relay/framing.py",
+    "src/wire_relay/session.py"
+  ],
+  "workspace_churn_files": 2
+}

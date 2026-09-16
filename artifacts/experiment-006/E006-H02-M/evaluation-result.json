@@ -1,0 +1,23 @@
+{
+  "case_id": "E006-H02",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-006",
+  "failure_forensics": null,
+  "heldout": {
+    "status": "pass"
+  },
+  "matches_human_reference_patch": false,
+  "public": {
+    "returncodes": [
+      0
+    ],
+    "status": "pass"
+  },
+  "reference_patch_compared": true,
+  "regression": {
+    "status": "pass"
+  },
+  "run_id": "E006-H02-M",
+  "schema_version": 1,
+  "task_success": true
+}

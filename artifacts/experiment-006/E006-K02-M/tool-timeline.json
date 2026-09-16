@@ -1,0 +1,164 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 92476,
+    "total_completion_tokens": 979,
+    "total_prompt_tokens": 107574,
+    "total_steps": 15
+  },
+  "hidden_reasoning_omitted": true,
+  "schema_version": 1,
+  "session_id": "cobalt-cave",
+  "steps": [
+    {
+      "message": "PySnooper's source inspection must preserve non-ASCII Python source when a\nfile has no coding cookie, while still honoring an explicitly declared\nencoding. Reproduce the failing source-inspection test, diagnose the decoding\npath, implement a focused repair, and run the relevant tests. Preserve\nordinary tracing behavior.",
+      "source": "user",
+      "step_id": 6,
+      "timestamp": "2026-09-16T18:49:08.887807173+00:00"
+    },
+    {
+      "source": "agent",
+      "step_id": 8,
+      "timestamp": "2026-09-16T18:49:11.614351049+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "ls /workspace && ls /workspace/* 2>/dev/null | head -50"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell bbeae7:\nAUTHORS\nLICENSE\nMANIFEST.in\nREADME.md\nTASK.md\nmake_release.sh\nmisc\npysnooper\nrequirements.in\nrequirements.txt\nsetup.py\ntests\ntox.ini\n/workspace/AUTHORS\n/workspace/LICENSE\n/workspace/MANIFEST.in\n/workspace/README.md\n/workspace/TASK.md\n/workspace/make_release.sh\n/workspace/requirements.in\n/workspace/requirements.txt\n/workspace/setup.py\n/workspace/tox.ini\n\n/workspace/misc:\nIDE files\ngenerate_authors.py\n\n/workspace/pysnooper:\n__init__.py\npycompat.py\ntracer.py\nutils.py\nvariables.py\n\n/workspace/tests:\n__init__.py\nsamples\ntest_chinese.py\ntest_pysnooper.py\ntest_source_encoding_compat.py\nutils.py\n\nExit code: 0",
+            "content_length": 645,
+            "content_sha256": "3c2aea95c28beb0a30f420488efddb4ce2a818d6da34bd333e2b348bf56a6ba1"
+          },
+          "tool_call_id": "exec_0#636e2c917cd94d94af4115dbbe51ed30"
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "step_id": 9,
+      "timestamp": "2026-09-16T18:49:17.264524469+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cat /workspace/TASK.md /workspace/tests/test_source_encoding_compat.py; ls /workspace/tests/samples"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 248215:\nPySnooper's source inspection must preserve non-ASCII Python source when a\nfile has no coding cookie, while still honoring an explicitly declared\nencoding. Reproduce the failing source-inspection test, diagnose the decoding\npath, implement a focused repair, and run the relevant tests. Preserve\nordinary tracing behavior.\nimport tempfile\nimport types\nimport unittest\nfrom pathlib import Path\n\nfrom pysnooper import tracer\n\n\nclass SourceEncodingCompatibilityTests(unittest.TestCase):\n    def test_file_source_without_cookie_preserves_non_ascii_text(self):\n        with tempfile.TemporaryDirectory() as folder:\n            path = Path(folder) / \"sample.py\"\n            path.write_bytes(\"def sample():\\n    return '\u5931\u8d25'\\n\".encode(\"utf-8\"))\n            frame = types.SimpleNamespace(\n                f_globals={\"__name__\": \"sample\", \"__loader__\": None},\n                f_code=types.SimpleNamespace(co_filename=str(path)),\n            )\n            source = tracer.get_source_from_frame(frame)\n            self.assertIn(\"\u5931\u8d25\", source[1])\n\n\nif __name__ == \"__main__\":\n    unittest.main()\n__init__.py\nexception.py\nindentation.py\nrecursion.py\n\n\nExit code: 0",
+            "content_length": 1185,
+            "content_sha256": "8718c81626fc9156b7d70657589bd7bca6031337f924d57a357c2f6ec2ecc7cc"
+          },
+          "tool_call_id": "exec_1#eb80ea8751684060bf1d93d3ed4f2e42"
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "step_id": 10,
+      "timestamp": "2026-09-16T18:49:18.813953761+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && grep -n \"encoding\\|get_source\\|inspect\" pysnooper/tracer.py pysnooper/utils.py pysnooper/pycompat.py | head -40"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 3440d9:\npysnooper/tracer.py:5:import inspect\npysnooper/tracer.py:43:def get_source_from_frame(frame):\npysnooper/tracer.py:55:    if hasattr(loader, 'get_source'):\npysnooper/tracer.py:57:            source = loader.get_source(module_name)\npysnooper/tracer.py:84:    # apply tokenize.detect_encoding to decode the source into a\npysnooper/tracer.py:87:        encoding = 'ascii'\npysnooper/tracer.py:93:                encoding = match.group(1).decode('ascii')\npysnooper/tracer.py:95:        source = [pycompat.text_type(sline, encoding, 'replace') for sline in\npysnooper/tracer.py:235:        elif inspect.isgeneratorfunction(function):\npysnooper/tracer.py:245:        calling_frame = inspect.currentframe().f_back\npysnooper/tracer.py:257:        calling_frame = inspect.currentframe().f_back\npysnooper/tracer.py:328:        source_line = get_source_from_frame(frame)[line_no - 1]\npysnooper/tracer.py:344:                            get_source_from_frame(frame)[candidate_line_no - 1]\npysnooper/pycompat.py:7:import inspect\npysnooper/pycompat.py:45:    iscoroutinefunction = inspect.iscoroutinefunction\n\nExit code: 0",
+            "content_length": 1142,
+            "content_sha256": "d0f34a19bf3b8da2cb389f705ce5a1368c21c8044cfb58917ce43151ad05b2f8"
+          },
+          "tool_call_id": "exec_2#fd908cc909e8465a864de97bcd642838"
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "step_id": 11,
+      "timestamp": "2026-09-16T18:49:22.292737679+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/pysnooper/tracer.py",
+            "limit": 60,
+            "offset": 40
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/pysnooper/tracer.py\" start_line=\"40\" end_line=\"99\" total_lines=\"393\">\n 40|source_cache = {}\n 41|\n 42|\n 43|def get_source_from_frame(frame):\n 44|    globs = frame.f_globals or {}\n 45|    module_name = globs.get('__name__')\n 46|    file_name = frame.f_code.co_filename\n 47|    cache_key = (module_name, file_name)\n 48|    try:\n 49|        return source_cache[cache_key]\n 50|    except KeyError:\n 51|        pass\n 52|    loader = globs.get('__loader__')\n 53|\n 54|    source = None\n 55|    if hasattr(loader, 'get_source'):\n 56|        try:\n 57|            source = loader.get_source(module_name)\n 58|        except ImportError:\n 59|            pass\n 60|        if source is not None:\n 61|            source = source.splitlines()\n 62|    if source is None:\n 63|        ipython_filename_match = ipython_filename_pattern.match(file_name)\n 64|        if ipython_filename_match:\n 65|            entry_number = int(ipython_filename_match.group(1))\n 66|            try:\n 67|                import IPython\n 68|                ipython_shell = IPython.get_ipython()\n 69|                ((_, _, source_chunk),) = ipython_shell.history_manager. \\\n 70|                                  get_range(0, entry_number, entry_number + 1)\n 71|                source = source_chunk.splitlines()\n 72|            except Exception:\n 73|                pass\n 74|        else:\n 75|            try:\n 76|                with open(file_name, 'rb') as fp:\n 77|                    source = fp.read().splitlines()\n 78|            except utils.file_reading_errors:\n 79|                pass\n 80|    if source is None:\n 81|        source = UnavailableSource()\n 82|\n 83|    # If we just read the source from a file, or if the loader did not\n 84|    # apply tokenize.detect_encoding to decode the source into a\n 85|    # string, then we should do that ourselves.\n 86|    if isinstance(source[0], bytes):\n 87|        encoding = 'ascii'\n 88|        for line in source[:2]:\n 89|            # File coding may be specified. Match pattern from PEP-263\n 90|            # (https://www.python.org/dev/peps/pep-0263/)\n 91|            match = re.search(br'coding[:=]\\s*([-\\w.]+)', line)\n 92|            if match:\n 93|                encoding = match.group(1).decode('ascii')\n 94|                break\n 95|        source = [pycompat.text_type(sline, encoding, 'replace') for sline in\n 96|                  source]\n 97|\n 98|    source_cache[cache_key] = source\n 99|    return source\n</file-view>",
+            "content_length": 2469,
+            "content_sha256": "9fd7b8708f84af9413b750f1abfe28852c58a2f893060a3e0473d9fbc1b7d8aa"
+          },
+          "tool_call_id": "read_3#0f9c562879bc42a3acce21d76464caa6"
+        }
+      ]
+    },
+    {
+      "message": "The default fallback is `'ascii'` \u2014 Python 3 source defaults to UTF-8 per PEP 3120. Reproducing first:",
+      "source": "agent",
+      "step_id": 12,
+      "timestamp": "2026-09-16T18:49:25.547678708+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && python -m pytest tests/test_source_encoding_compat.py -x 2>&1 | tail -15"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell cd8b62:\n\u2026 (19 lines truncated)\n            )\n            source = tracer.get_source_from_frame(frame)\n>           self.assertIn(\"\u5931\u8d25\", source[1])\nE           AssertionError: '\u5931\u8d25' not found in \"    return '\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd'\"\n\ntests/test_source_encoding_compat.py:19: AssertionError\n=============================== warnings summary ===============================\npysnooper/variables.py:3\n  /workspace/pysnooper/variables.py:3: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.9 it will stop working\n    from collections import Mapping, Sequence\n  /workspace/pysnooper/variables.py:3: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.9 it will stop working\n    from collections import Mapping, Sequence\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n===================== 1 failed, 2 warnings in 0.03 seconds =====================\n\nExit code: 1\n\n`| tail -15` was parsed out (15 of 34 total lines shown).\n<truncation_notice>\nFull output written to: /tmp/devin-overflows-0/ad8f7773/content.txt\n</truncation_notice>",
+            "content_length": 1225,
+            "content_sha256": "595ca61e9e32f15e5bd4360d3cf7e184ec6859cd13ccae335bedf679a4bb2de4"
+          },
+          "tool_call_id": "exec_4#795ccaf8d8b8492caf6704621cab2d69"
+        }
+      ]
+    },
+    {
+      "message": "Confirmed: non-ASCII bytes decode with `ascii`/`replace`, producing ``. The fix is to default to UTF-8 (Python 3's source default per PEP 3120) while keeping the PEP 263 cookie check.",
+      "source": "agent",
+      "step_id": 13,
+      "timestamp": "2026-09-16T18:49:30.271445252+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/pysnooper/tracer.py",
+            "new_string": "        encoding = 'utf-8'",
+            "old_string": "        encoding = 'ascii'"
+          },
+          "function_name": "edit",
+          "observation": {
+            "content": "The file /workspace/pysnooper/tracer.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:\n 83|    # If we just read the source from a file, or if the loader did not\n 84|    # apply tokenize.detect_encoding to decode the source into a\n 85|    # string, then we should do that ourselves.\n 86|    if isinstance(source[0], bytes):\n 87|        encoding = 'utf-8'\n 88|        for line in source[:2]:\n 89|            # File coding may be specified. Match pattern from PEP-263\n 90|            # (https://www.python.org/dev/peps/pep-0263/)\n 91|            match = re.search(br'coding[:=]\\s*([-\\w.]+)', line)",
+            "content_length": 637,
+            "content_sha256": "7efb45fcbba0df8a237ca392dc7dfc1502eafa1b3c342a074357e47d748bfcc6"
+          },
+          "tool_call_id": "edit_5#c24ebdd652e84f1398ca6c5dc4c469f5"
+        }
+      ]
+    },
+    {
+      "source": "agent",
+      "step_id": 14,
+      "timestamp": "2026-09-16T18:49:36.106057963+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && python -m pytest tests/test_source_encoding_compat.py tests/test_chinese.py tests/test_pysnooper.py 2>&1 | tail -15"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell b73e46:\n\u2026 (3 lines truncated)\ncollected 30 items\n\ntests/test_source_encoding_compat.py .                                   [  3%]\ntests/test_chinese.py .                                                  [  6%]\ntests/test_pysnooper.py ............................                     [100%]\n\n=============================== warnings summary ===============================\npysnooper/variables.py:3\n  /workspace/pysnooper/variables.py:3: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.9 it will stop working\n    from collections import Mapping, Sequence\n  /workspace/pysnooper/variables.py:3: DeprecationWarning: Using or importing the ABCs from 'collections' instead of from 'collections.abc' is deprecated since Python 3.3, and in 3.9 it will stop working\n    from collections import Mapping, Sequence\n\n-- Docs: https://docs.pytest.org/en/latest/warnings.html\n==================== 30 passed, 2 warnings in 0.08 seconds =====================\n\nExit code: 0\n\n`| tail -15` was parsed out (15 of 18 total lines shown).\n<truncation_notice>\nFull output written to: /tmp/devin-overflows-0/b87c7957/content.txt\n</truncation_notice>",
+            "content_length": 1246,
+            "content_sha256": "d0056e556d1a40086a96c1db34aec77b95bfe6eebd550eb981d6280d80073566"
+          },
+          "tool_call_id": "exec_6#b0133fa0ad44425bb44ea36124a72519"
+        }
+      ]
+    },
+    {
+      "message": "Done. All 30 tests pass.\n\n**Diagnosis:** `get_source_from_frame` in `pysnooper/tracer.py` reads the file as bytes, then decodes each line. When no PEP 263 coding cookie was found, it fell back to `'ascii'` with `'replace'`, mangling non-ASCII source into ``. Since Python 3, source files default to UTF-8 (PEP 3120), so `ascii` was the wrong fallback.\n\n**Fix:** one-line change at `pysnooper/tracer.py:87` \u2014 default encoding `'ascii'` \u2192 `'utf-8'`. The explicit-cookie path is untouched, so declared encodings (e.g. `latin-1`) are still honored.\n\n**Verification:**\n- `test_source_encoding_compat.py` \u2014 previously failed (`'\u5931\u8d25' not found in \"...\"`), now passes\n- `test_chinese.py` + `test_pysnooper.py` \u2014 all 28 tracing tests still pass, so ordinary behavior is preserved",
+      "source": "agent",
+      "step_id": 15,
+      "timestamp": "2026-09-16T18:49:40.125302590+00:00"
+    }
+  ]
+}

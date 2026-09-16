@@ -1,0 +1,31 @@
+--- a/luigi/interface.py
++++ b/luigi/interface.py
+@@ -109,7 +109,7 @@
+ class WorkerSchedulerFactory(object):
+
+     def create_local_scheduler(self):
+-        return scheduler.CentralPlannerScheduler()
++        return scheduler.CentralPlannerScheduler(prune_on_get_work=True)
+
+     def create_remote_scheduler(self, host, port):
+         return rpc.RemoteScheduler(host=host, port=port)
+--- a/luigi/scheduler.py
++++ b/luigi/scheduler.py
+@@ -96,6 +96,7 @@
+                                              config_path=dict(section='scheduler', name='disable-persist-seconds'))
+     max_shown_tasks = parameter.IntParameter(default=100000)
+     prune_done_tasks = parameter.BoolParameter(default=False)
++    prune_on_get_work = parameter.BoolParameter(default=False)
+
+     record_task_history = parameter.BoolParameter(default=False)
+
+@@ -697,6 +698,9 @@
+         return True
+
+     def get_work(self, host=None, assistant=False, **kwargs):
++        if self._config.prune_on_get_work:
++            self.prune()
++
+         # TODO: remove any expired nodes
+
+         # Algo: iterate over all nodes, find the highest priority node no dependencies and available

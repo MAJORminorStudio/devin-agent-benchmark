@@ -1,0 +1,10 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as [redacted].
+
+You're all set. Run [1mdevin[0m to get started.
+Let me check the other tests and docs to understand the intended `complete` semantics.Reproduced: the final partial batch is flushed with `complete=False` and `ReportWriter.publish` silently drops it. Per `docs/streaming.md`, the writer should receive the final non-empty batch too — so the drop is the bug.Done. All 7 tests pass.
+
+**Root cause:** the handoff dropped the tail. `BatchAssembler.flush()` emits the leftover rows as a `Batch` with `complete=False`, but `ReportWriter.publish` silently discarded any batch where `complete` was false — so the final partial batch never reached the writer.
+
+**Fix:** removed the `if not batch.complete: return` early-return in [publishing.py:10-13](file:///workspace/src/reportpipe/publishing.py). This matches the documented contract in `docs/streaming.md` ("the writer also receives the final non-empty batch when the input is finalized"). The `complete` flag remains on `Batch` for consumers that care (e.g. `test_full_batch_is_written_at_the_target_size` still asserts it), but it no longer gates publication.

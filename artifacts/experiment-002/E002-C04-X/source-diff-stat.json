@@ -1,0 +1,41 @@
+{
+  "changed_files": [
+    "tqdm/__pycache__/__init__.cpython-311.pyc",
+    "tqdm/__pycache__/_main.cpython-311.pyc",
+    "tqdm/__pycache__/_monitor.cpython-311.pyc",
+    "tqdm/__pycache__/_tqdm.cpython-311.pyc",
+    "tqdm/__pycache__/_tqdm_gui.cpython-311.pyc",
+    "tqdm/__pycache__/_tqdm_pandas.cpython-311.pyc",
+    "tqdm/__pycache__/_utils.cpython-311.pyc",
+    "tqdm/__pycache__/_version.cpython-311.pyc",
+    "tqdm/_tqdm.py",
+    "tqdm/autonotebook/__pycache__/__init__.cpython-311.pyc",
+    "tqdm/tests/__pycache__/tests_tqdm.cpython-311.pyc"
+  ],
+  "evaluator_task_success": false,
+  "generated_or_environment_files": [
+    "tqdm/__pycache__/__init__.cpython-311.pyc",
+    "tqdm/__pycache__/_main.cpython-311.pyc",
+    "tqdm/__pycache__/_monitor.cpython-311.pyc",
+    "tqdm/__pycache__/_tqdm.cpython-311.pyc",
+    "tqdm/__pycache__/_tqdm_gui.cpython-311.pyc",
+    "tqdm/__pycache__/_tqdm_pandas.cpython-311.pyc",
+    "tqdm/__pycache__/_utils.cpython-311.pyc",
+    "tqdm/__pycache__/_version.cpython-311.pyc",
+    "tqdm/autonotebook/__pycache__/__init__.cpython-311.pyc",
+    "tqdm/tests/__pycache__/tests_tqdm.cpython-311.pyc"
+  ],
+  "line_counts": {
+    "additions": 12,
+    "deletions": 0
+  },
+  "patch_byte_length": 825,
+  "patch_is_empty": false,
+  "patch_sha256": "134e4f61496f1d027cbe42059944a6b1733d841e345a3e93e39968d8d747be21",
+  "reference_comparison": {
+    "reference_patch_checked_after_session": false
+  },
+  "source_files_changed": [
+    "tqdm/_tqdm.py"
+  ]
+}

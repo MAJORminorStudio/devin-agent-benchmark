@@ -1,0 +1,47 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": "experiment-002",
+    "effective_permission_mode": "Bypass",
+    "fusion_enabled": false,
+    "model": "swe-2-medium",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "permission_mode": "dangerous",
+    "provider_metrics": {
+      "total_cached_tokens": 1896201,
+      "total_completion_tokens": 26800,
+      "total_prompt_tokens": 1960369,
+      "total_steps": 62
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 1896201,
+    "total_completion_tokens": 26800,
+    "total_prompt_tokens": 1960369,
+    "total_steps": 62
+  },
+  "first_step_timestamp": "2026-09-15T02:27:33.226044669+00:00",
+  "last_step_timestamp": "2026-09-15T02:39:58.815212417+00:00",
+  "model": "swe-2-medium",
+  "patch_empty": false,
+  "patch_sha256": "5f2065c0e38b075a1878c45b44283503b96da74536a95ebb5526d8c0ea819122",
+  "permission_warning": null,
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "airy-coffee",
+  "source_step_counts": {
+    "agent": 55,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 59,
+  "tool_calls_by_function": {
+    "edit": 2,
+    "exec": 48,
+    "read": 4,
+    "web_search": 1,
+    "webfetch": 4
+  },
+  "total_steps": 62
+}

@@ -1,0 +1,19 @@
+{
+  "final_metrics": {
+    "cached": 101497,
+    "completion": 1109,
+    "prompt": 108023
+  },
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "discreet-wing",
+  "steps": 15,
+  "tool_calls": 12,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 5,
+    "read": 6
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "final_metrics": {
+    "cached": 52252,
+    "completion": 751,
+    "prompt": 66620
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "torpid-warrior",
+  "steps": 12,
+  "tool_calls": 10,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 2,
+    "read": 7
+  }
+}

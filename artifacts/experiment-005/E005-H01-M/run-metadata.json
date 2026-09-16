@@ -1,0 +1,75 @@
+{
+  "case_id": "E005-H01",
+  "condition": "M",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 16000,
+    "completion": 238,
+    "prompt": 16161,
+    "steps": 13,
+    "tool_calls": 12
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 1738,
+      "deleted_bytes": 1867
+    },
+    "changed_files": [
+      "src/feature_plan/resolver.py",
+      "src/feature_plan/service.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 5,
+      "deletions": 8
+    },
+    "sha256": "0857469b7b76e45cb3668c0f3811cb672b865eee5482ea1a4f160180cf2884cc",
+    "source_files_changed": [
+      "src/feature_plan/resolver.py",
+      "src/feature_plan/service.py"
+    ],
+    "workspace_churn_files": 2
+  },
+  "prompt_sha256": "c60707dae70637ff3e44369f4d908784ef54460e21d338bfef6a6c1e3e5fed83",
+  "provenance": "newly-constructed-withheld",
+  "retries": 0,
+  "run_id": "E005-H01-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "triangular-chemistry",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T03:22:44.727554+00:00",
+    "started_at_utc": "2026-09-16T03:21:23.132147+00:00",
+    "wall_time_seconds": 81.59428570896853
+  }
+}

@@ -1,0 +1,27 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as [redacted].
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace to understand the codebase structure.Now I have the full picture. Let me reproduce the failure first.Reproduced. Tracing the lifecycle:
+
+1. `runner.run(fail)` → `pool.acquire()` checks out `Worker(0)` into `_in_use`.
+2. Job raises → `lease.mark_failed()` sets `worker.healthy = False` → `finally: lease.release()` → `pool._return(worker)`.
+3. `_return` removes the worker from `_in_use`, but since `healthy` is False it's **dropped without replacement** — `_available` stays empty, so every later `acquire()` raises `PoolExhausted`.
+
+The README/lifecycle doc says a failed worker must be "taken out of service **and replaced**", and `ResourcePool._next_id` is initialized but never used — it's clearly meant to mint replacement workers. The test confirms this: it expects the next job to get `worker_id == 1` (a fresh worker, not the failed id 0).
+
+Fix in `_return` — replace a failed worker with a fresh one:All 7 tests pass. Quick sanity check that repeated failures keep replenishing the pool:Done. All 7 tests pass.
+
+## Summary
+
+**Bug:** `ResourcePool._return` dropped an unhealthy worker from the pool without a replacement. After any job failure, the pool permanently shrank — with a size-1 pool, every subsequent `acquire()` raised `PoolExhausted` even though no lease was outstanding.
+
+**Trace:** `JobRunner.run` → `mark_failed()` sets `worker.healthy = False` → `release()` → `_return()` discards the id from `_in_use` but skips re-queueing because of the `if worker.healthy` guard.
+
+**Fix** in [resources.py:46-52](file:///workspace/src/taskqueue/resources.py): on return of a failed worker, enqueue a fresh `Worker` minted from the previously-unused `_next_id` counter, matching the documented lifecycle ("taken out of service and replaced").
+
+**Verified:**
+- `test_failed_job_does_not_shrink_the_pool` now passes — pool stays at capacity and the next job gets a new worker (id 1).
+- Repeated failures keep replenishing (ids 1, 2, 3...) with `in_use()` correctly returning to 0.
+- Healthy workers are still reused with the same id (`test_success_returns_the_same_worker`).

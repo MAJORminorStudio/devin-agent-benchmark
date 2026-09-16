@@ -1,0 +1,25 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 78720,
+    "total_completion_tokens": 1233,
+    "total_prompt_tokens": 86998,
+    "total_steps": 13
+  },
+  "first_observable_timestamp": "2026-09-16T03:22:26.965731173+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T03:22:38.081752803+00:00",
+  "model": "swe-2-medium",
+  "observable_steps": 7,
+  "patch_sha256": "0857469b7b76e45cb3668c0f3811cb672b865eee5482ea1a4f160180cf2884cc",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "triangular-chemistry",
+  "steps": 13,
+  "tool_calls": 12,
+  "tool_calls_by_function": {
+    "edit": 3,
+    "exec": 3,
+    "read": 6
+  }
+}

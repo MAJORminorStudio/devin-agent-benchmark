@@ -1,0 +1,50 @@
+new file: scrapy/__pycache__/__init__.cpython-311.pyc
+new file: scrapy/__pycache__/_monkeypatches.cpython-311.pyc
+new file: scrapy/__pycache__/exceptions.cpython-311.pyc
+new file: scrapy/__pycache__/link.cpython-311.pyc
+new file: scrapy/downloadermiddlewares/__pycache__/__init__.cpython-311.pyc
+new file: scrapy/downloadermiddlewares/__pycache__/redirect.cpython-311.pyc
+--- a/scrapy/downloadermiddlewares/redirect.py
++++ b/scrapy/downloadermiddlewares/redirect.py
+@@ -1,5 +1,5 @@
+ import logging
+-from six.moves.urllib.parse import urljoin
++from six.moves.urllib.parse import urljoin, urlparse
+ 
+ from w3lib.url import safe_url_string
+ 
+@@ -70,7 +70,11 @@
+         if 'Location' not in response.headers or response.status not in allowed_status:
+             return response
+ 
+-        location = safe_url_string(response.headers['location'])
++        location = safe_url_string(response.headers['Location'])
++
++        if response.headers['Location'].startswith(b'//'):
++            request_scheme = urlparse(request.url).scheme
++            location = request_scheme + '://' + location.lstrip('/')
+ 
+         redirected_url = urljoin(request.url, location)
+ 
+new file: scrapy/http/__pycache__/__init__.cpython-311.pyc
+new file: scrapy/http/__pycache__/common.cpython-311.pyc
+new file: scrapy/http/__pycache__/headers.cpython-311.pyc
+new file: scrapy/http/request/__pycache__/__init__.cpython-311.pyc
+new file: scrapy/http/request/__pycache__/form.cpython-311.pyc
+new file: scrapy/http/request/__pycache__/json_request.cpython-311.pyc
+new file: scrapy/http/request/__pycache__/rpc.cpython-311.pyc
+new file: scrapy/http/response/__pycache__/__init__.cpython-311.pyc
+new file: scrapy/http/response/__pycache__/html.cpython-311.pyc
+new file: scrapy/http/response/__pycache__/text.cpython-311.pyc
+new file: scrapy/http/response/__pycache__/xml.cpython-311.pyc
+new file: scrapy/utils/__pycache__/__init__.cpython-311.pyc
+new file: scrapy/utils/__pycache__/curl.cpython-311.pyc
+new file: scrapy/utils/__pycache__/datatypes.cpython-311.pyc
+new file: scrapy/utils/__pycache__/decorators.cpython-311.pyc
+new file: scrapy/utils/__pycache__/deprecate.cpython-311.pyc
+new file: scrapy/utils/__pycache__/python.cpython-311.pyc
+new file: scrapy/utils/__pycache__/response.cpython-311.pyc
+new file: scrapy/utils/__pycache__/trackref.cpython-311.pyc
+new file: scrapy/utils/__pycache__/url.cpython-311.pyc
+new file: tests/__pycache__/__init__.cpython-311.pyc
+new file: tests/__pycache__/test_downloadermiddleware_redirect.cpython-311.pyc

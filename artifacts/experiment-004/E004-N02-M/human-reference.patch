@@ -1,0 +1,12 @@
+--- a/src/taskqueue/resources.py
++++ b/src/taskqueue/resources.py
+@@ -47,6 +47,9 @@
+         self._in_use.discard(worker.worker_id)
+         if worker.healthy:
+             self._available.append(worker)
++        else:
++            self._available.append(Worker(self._next_id))
++            self._next_id += 1
+ 
+     def available(self) -> int:
+         return len(self._available)

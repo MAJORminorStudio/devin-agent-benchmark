@@ -1,0 +1,43 @@
+{
+  "charts": {
+    "cumulative-primary-result.png": {
+      "bytes": 28551,
+      "sha256": "ecdbd1591e24dc7ed345102c2d67461f8d0232b91d746725b9278741e5d7db4e"
+    },
+    "failure-mode-composition.png": {
+      "bytes": 32254,
+      "sha256": "1253d19856f71d2133c58f710096e0ab1806cedaa3256fc7b7d756f0edc7b162"
+    },
+    "historical-vs-withheld-success.png": {
+      "bytes": 30776,
+      "sha256": "ec7c1b93e3675ac3ff3a27b7933f23ca2ab7734d66fa1868d29a27d8034d555d"
+    },
+    "mean-wall-time-by-tier.png": {
+      "bytes": 29420,
+      "sha256": "2edb216eb423c54ae23896384947fb16ea0632c5f3bfd9bc1c59de58f3c48117"
+    },
+    "paired-outcome-composition.png": {
+      "bytes": 27403,
+      "sha256": "2b8453b4e240b1dea5c1fffbd521fb25c9cf7556ff3126288a3259fc93207c49"
+    },
+    "paired-wall-time-all-cases.png": {
+      "bytes": 69030,
+      "sha256": "b305eef3cb38870b58a923dd6ca9d7f040ad684d4d0b9e4c018c8cd96931e1ae"
+    },
+    "success-by-difficulty-tier.png": {
+      "bytes": 30869,
+      "sha256": "88f25478e59f9ae95edbbfb265596bf80c064eda41dd1848e05579f3be70e717"
+    },
+    "token-use-by-tier.png": {
+      "bytes": 29499,
+      "sha256": "16d0c333b6daa52c8a6c9ea941a22984ad08000b223f7c6c616c7ffb122e0cf1"
+    },
+    "unique-repairs-by-tier.png": {
+      "bytes": 25603,
+      "sha256": "9695fe3345cc298f4f4ce881fb800140eeb0fac6e3f93ec1cd733d008374c0fe"
+    }
+  },
+  "publication_version": "4.0.0",
+  "schema_version": 1,
+  "source_commit": "82915fc31c63cd8fb6a01a4e527be95e0d7de698"
+}

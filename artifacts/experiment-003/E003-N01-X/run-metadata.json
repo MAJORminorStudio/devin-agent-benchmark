@@ -1,0 +1,53 @@
+{
+  "acus": null,
+  "case_id": "E003-N01",
+  "condition": "X",
+  "cost": null,
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-003",
+  "interventions": 0,
+  "metrics": {
+    "steps": 15,
+    "tokens": {
+      "cached": 101669,
+      "completion": 1858,
+      "prompt": 108522
+    },
+    "tool_calls": 9
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "files_changed": [
+      "src/asset_index/discovery.py"
+    ],
+    "generated_or_environment_files": [],
+    "lines_added": 1,
+    "lines_deleted": 1,
+    "sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a",
+    "source_files_changed": [
+      "src/asset_index/discovery.py"
+    ]
+  },
+  "prompt_sha256": "a3434affd4ef855805dc1001edf5d9a9107427f5fc108f6f9b4fba0810e76db3",
+  "reference_comparison": {
+    "matches_human_reference_patch": true,
+    "performed_after_pair_closure": true,
+    "reference_patch_sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a"
+  },
+  "run_id": "E003-N01-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning and private paths are omitted.",
+  "session_id": "excited-headlight",
+  "termination_reason": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-15T21:48:17.238777+00:00",
+    "started_at_utc": "2026-09-15T21:46:12.149382+00:00",
+    "wall_time_seconds": 125.08838654204737
+  }
+}

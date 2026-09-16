@@ -1,0 +1,6 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The cache keys only by `name`, ignoring `mode` and `version`. Fixing:Fixed. The cache in `src/profile_runtime/cache.py` keyed artifacts only by profile name, so a `compact` artifact could be served for `verbose` loads and stale artifacts survived source updates. It now keys on `(name, mode, version)`, so each mode gets its own artifact and a version bump from `ProfileSource.replace` misses the old entry and re-normalizes. Serialization and normalization are untouched. Test suite passes.

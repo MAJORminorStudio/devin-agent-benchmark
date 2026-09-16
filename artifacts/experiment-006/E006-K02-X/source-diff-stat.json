@@ -1,0 +1,33 @@
+{
+  "changed_files": [
+    "pysnooper/tracer.py"
+  ],
+  "generated_or_environment_files": [
+    ".pytest_cache/.gitignore",
+    ".pytest_cache/README.md",
+    ".pytest_cache/v/cache/lastfailed",
+    ".pytest_cache/v/cache/nodeids",
+    ".pytest_cache/v/cache/stepwise",
+    "pysnooper/__pycache__/__init__.cpython-38.pyc",
+    "pysnooper/__pycache__/pycompat.cpython-38.pyc",
+    "pysnooper/__pycache__/tracer.cpython-38.pyc",
+    "pysnooper/__pycache__/utils.cpython-38.pyc",
+    "pysnooper/__pycache__/variables.cpython-38.pyc",
+    "tests/__pycache__/__init__.cpython-38.pyc",
+    "tests/__pycache__/test_chinese.cpython-38-PYTEST.pyc",
+    "tests/__pycache__/test_pysnooper.cpython-38-PYTEST.pyc",
+    "tests/__pycache__/test_source_encoding_compat.cpython-38-PYTEST.pyc",
+    "tests/__pycache__/utils.cpython-38-PYTEST.pyc",
+    "tests/samples/__pycache__/__init__.cpython-38.pyc",
+    "tests/samples/__pycache__/exception.cpython-38.pyc",
+    "tests/samples/__pycache__/indentation.cpython-38.pyc",
+    "tests/samples/__pycache__/recursion.cpython-38.pyc"
+  ],
+  "line_counts": {
+    "additions": 1,
+    "deletions": 1
+  },
+  "patch_byte_length": 443,
+  "patch_sha256": "5d8538b56f8a9e8d274d030c0c01bad76eb24f1cdf91ed0533c872eae9e4b90a",
+  "reference_match": false
+}

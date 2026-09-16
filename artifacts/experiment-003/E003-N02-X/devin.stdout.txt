@@ -1,0 +1,13 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the repository structure.The bug is visible already: `add` clears `_tag_cache` but `discard` doesn't, so a warmed tag lookup goes stale after a removal. Let me reproduce it with the test suite first.Failure reproduced. `discard` removes the record but leaves `_tag_cache` intact, unlike `add` which clears it. I'll add the same invalidation to `discard`.Fixed. The root cause: `ids_for_tag` memoizes results in `_tag_cache`, and `add` invalidated the cache on every mutation but `discard` didn't — so a warmed tag lookup kept returning removed records.
+
+The fix is a single line in `discard` mirroring `add`'s invalidation:
+
+- Before: `test_discard_updates_a_warmed_tag_lookup` failed — `ids_for_tag("blue")` returned `('blue-chair',)` after discard.
+- After: test passes, `ids_for_tag("blue")` returns `()`.
+
+[store.py:15-17](file:///workspace/src/catalog/store.py)

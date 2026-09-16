@@ -1,0 +1,1176 @@
+{
+  "cases": [
+    {
+      "buggy_tree": "artifacts/experiment-003/cases/E003-N01/buggy/",
+      "case_id": "E003-N01",
+      "category": "filesystem/path semantics",
+      "commands": {
+        "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+        "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+        "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+      },
+      "description": "Filesystem discovery must respect project boundaries when links point outside the root.",
+      "fixed_tree": "artifacts/experiment-003/cases/E003-N01/fixed/",
+      "heldout_tests": "artifacts/experiment-003/cases/E003-N01/evaluator/test_behavior.py",
+      "project": "asset-indexer",
+      "public_tests": "artifacts/experiment-003/cases/E003-N01/buggy/tests/",
+      "reference_patch": "artifacts/experiment-003/cases/E003-N01/reference.patch",
+      "regression_tests": "artifacts/experiment-003/cases/E003-N01/evaluator/test_regression.py"
+    },
+    {
+      "buggy_tree": "artifacts/experiment-003/cases/E003-N02/buggy/",
+      "case_id": "E003-N02",
+      "category": "stateful/cache invalidation",
+      "commands": {
+        "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+        "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+        "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+      },
+      "description": "Tag-filtered catalogue views must be invalidated after record removal.",
+      "fixed_tree": "artifacts/experiment-003/cases/E003-N02/fixed/",
+      "heldout_tests": "artifacts/experiment-003/cases/E003-N02/evaluator/test_behavior.py",
+      "project": "catalog-service",
+      "public_tests": "artifacts/experiment-003/cases/E003-N02/buggy/tests/",
+      "reference_patch": "artifacts/experiment-003/cases/E003-N02/reference.patch",
+      "regression_tests": "artifacts/experiment-003/cases/E003-N02/evaluator/test_regression.py"
+    },
+    {
+      "buggy_tree": "artifacts/experiment-003/cases/E003-N03/buggy/",
+      "case_id": "E003-N03",
+      "category": "nested data transformation",
+      "commands": {
+        "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+        "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+        "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+      },
+      "description": "Nested record export must recursively convert values in supported containers.",
+      "fixed_tree": "artifacts/experiment-003/cases/E003-N03/fixed/",
+      "heldout_tests": "artifacts/experiment-003/cases/E003-N03/evaluator/test_behavior.py",
+      "project": "record-exporter",
+      "public_tests": "artifacts/experiment-003/cases/E003-N03/buggy/tests/",
+      "reference_patch": "artifacts/experiment-003/cases/E003-N03/reference.patch",
+      "regression_tests": "artifacts/experiment-003/cases/E003-N03/evaluator/test_regression.py"
+    },
+    {
+      "buggy_tree": "artifacts/experiment-003/cases/E003-N04/buggy/",
+      "case_id": "E003-N04",
+      "category": "async/concurrency/lifecycle",
+      "commands": {
+        "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+        "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+        "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+      },
+      "description": "Async session close must await worker cleanup and remain idempotent.",
+      "fixed_tree": "artifacts/experiment-003/cases/E003-N04/fixed/",
+      "heldout_tests": "artifacts/experiment-003/cases/E003-N04/evaluator/test_behavior.py",
+      "project": "event-stream",
+      "public_tests": "artifacts/experiment-003/cases/E003-N04/buggy/tests/",
+      "reference_patch": "artifacts/experiment-003/cases/E003-N04/reference.patch",
+      "regression_tests": "artifacts/experiment-003/cases/E003-N04/evaluator/test_regression.py"
+    },
+    {
+      "buggy_tree": "artifacts/experiment-003/cases/E003-N05/buggy/",
+      "case_id": "E003-N05",
+      "category": "protocol/parser/state machine",
+      "commands": {
+        "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+        "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+        "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+      },
+      "description": "A line protocol parser must recover when a newer transaction begins before the previous one completes.",
+      "fixed_tree": "artifacts/experiment-003/cases/E003-N05/fixed/",
+      "heldout_tests": "artifacts/experiment-003/cases/E003-N05/evaluator/test_behavior.py",
+      "project": "line-protocol",
+      "public_tests": "artifacts/experiment-003/cases/E003-N05/buggy/tests/",
+      "reference_patch": "artifacts/experiment-003/cases/E003-N05/reference.patch",
+      "regression_tests": "artifacts/experiment-003/cases/E003-N05/evaluator/test_regression.py"
+    }
+  ],
+  "condition_summary": {
+    "combined": {
+      "M": {
+        "cached_tokens": {
+          "mean": 449178.8,
+          "median": 166350.5,
+          "n": 10,
+          "total": 4491788.0
+        },
+        "completion_tokens": {
+          "mean": 5760.0,
+          "median": 1972.0,
+          "n": 10,
+          "total": 57600.0
+        },
+        "generated_files_total": 0,
+        "prompt_tokens": {
+          "mean": 468122.2,
+          "median": 176579.0,
+          "n": 10,
+          "total": 4681222.0
+        },
+        "reported_acus": null,
+        "reported_cost": null,
+        "runs": 10,
+        "solved": 10,
+        "source_patch_lines_added": {
+          "mean": 13.7,
+          "median": 9.0,
+          "n": 10,
+          "total": 137.0
+        },
+        "source_patch_lines_deleted": {
+          "mean": 2.0,
+          "median": 1.0,
+          "n": 10,
+          "total": 20.0
+        },
+        "steps": {
+          "mean": 27.6,
+          "median": 19.5,
+          "n": 10,
+          "total": 276.0
+        },
+        "tool_calls": {
+          "mean": 21.6,
+          "median": 12.0,
+          "n": 10,
+          "total": 216.0
+        },
+        "wall_time_seconds": {
+          "mean": 231.52196160819065,
+          "median": 133.46378014549288,
+          "n": 10,
+          "total": 2315.2196160819067
+        }
+      },
+      "X": {
+        "cached_tokens": {
+          "mean": 1199331.9,
+          "median": 355611.5,
+          "n": 10,
+          "total": 11993319.0
+        },
+        "completion_tokens": {
+          "mean": 18001.8,
+          "median": 8888.0,
+          "n": 10,
+          "total": 180018.0
+        },
+        "generated_files_total": 0,
+        "prompt_tokens": {
+          "mean": 1236607.6,
+          "median": 374138.0,
+          "n": 10,
+          "total": 12366076.0
+        },
+        "reported_acus": null,
+        "reported_cost": null,
+        "runs": 10,
+        "solved": 9,
+        "source_patch_lines_added": {
+          "mean": 326.5,
+          "median": 10.5,
+          "n": 10,
+          "total": 3265.0
+        },
+        "source_patch_lines_deleted": {
+          "mean": 2.0,
+          "median": 1.0,
+          "n": 10,
+          "total": 20.0
+        },
+        "steps": {
+          "mean": 35.2,
+          "median": 26.0,
+          "n": 10,
+          "total": 352.0
+        },
+        "tool_calls": {
+          "mean": 38.2,
+          "median": 21.5,
+          "n": 10,
+          "total": 382.0
+        },
+        "wall_time_seconds": {
+          "mean": 433.4259599665967,
+          "median": 284.11760733303055,
+          "n": 10,
+          "total": 4334.259599665967
+        }
+      }
+    },
+    "historical": {
+      "M": {
+        "cached_tokens": {
+          "mean": 793781.8,
+          "median": 568967.0,
+          "n": 5,
+          "total": 3968909.0
+        },
+        "completion_tokens": {
+          "mean": 10462.6,
+          "median": 9374.0,
+          "n": 5,
+          "total": 52313.0
+        },
+        "generated_files_total": 0,
+        "prompt_tokens": {
+          "mean": 824095.2,
+          "median": 599955.0,
+          "n": 5,
+          "total": 4120476.0
+        },
+        "reported_acus": null,
+        "reported_cost": null,
+        "runs": 5,
+        "solved": 5,
+        "source_patch_lines_added": {
+          "mean": 25.6,
+          "median": 26.0,
+          "n": 5,
+          "total": 128.0
+        },
+        "source_patch_lines_deleted": {
+          "mean": 2.2,
+          "median": 1.0,
+          "n": 5,
+          "total": 11.0
+        },
+        "steps": {
+          "mean": 39.8,
+          "median": 35.0,
+          "n": 5,
+          "total": 199.0
+        },
+        "tool_calls": {
+          "mean": 33.8,
+          "median": 30.0,
+          "n": 5,
+          "total": 169.0
+        },
+        "wall_time_seconds": {
+          "mean": 363.2618,
+          "median": 299.332,
+          "n": 5,
+          "total": 1816.309
+        }
+      },
+      "X": {
+        "cached_tokens": {
+          "mean": 2281775.0,
+          "median": 774656.0,
+          "n": 5,
+          "total": 11408875.0
+        },
+        "completion_tokens": {
+          "mean": 32996.6,
+          "median": 11151.0,
+          "n": 5,
+          "total": 164983.0
+        },
+        "generated_files_total": 0,
+        "prompt_tokens": {
+          "mean": 2348190.2,
+          "median": 814278.0,
+          "n": 5,
+          "total": 11740951.0
+        },
+        "reported_acus": null,
+        "reported_cost": null,
+        "runs": 5,
+        "solved": 4,
+        "source_patch_lines_added": {
+          "mean": 650.4,
+          "median": 36.0,
+          "n": 5,
+          "total": 3252.0
+        },
+        "source_patch_lines_deleted": {
+          "mean": 2.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 10.0
+        },
+        "steps": {
+          "mean": 54.8,
+          "median": 42.0,
+          "n": 5,
+          "total": 274.0
+        },
+        "tool_calls": {
+          "mean": 64.4,
+          "median": 44.0,
+          "n": 5,
+          "total": 322.0
+        },
+        "wall_time_seconds": {
+          "mean": 729.956,
+          "median": 405.29,
+          "n": 5,
+          "total": 3649.7799999999997
+        }
+      }
+    },
+    "novel": {
+      "M": {
+        "cached_tokens": {
+          "mean": 104575.8,
+          "median": 100161.0,
+          "n": 5,
+          "total": 522879.0
+        },
+        "completion_tokens": {
+          "mean": 1057.4,
+          "median": 914.0,
+          "n": 5,
+          "total": 5287.0
+        },
+        "generated_files_total": 0,
+        "prompt_tokens": {
+          "mean": 112149.2,
+          "median": 106432.0,
+          "n": 5,
+          "total": 560746.0
+        },
+        "reported_acus": null,
+        "reported_cost": null,
+        "runs": 5,
+        "solved": 5,
+        "source_patch_lines_added": {
+          "mean": 1.8,
+          "median": 1.0,
+          "n": 5,
+          "total": 9.0
+        },
+        "source_patch_lines_deleted": {
+          "mean": 1.8,
+          "median": 1.0,
+          "n": 5,
+          "total": 9.0
+        },
+        "steps": {
+          "mean": 15.4,
+          "median": 15.0,
+          "n": 5,
+          "total": 77.0
+        },
+        "tool_calls": {
+          "mean": 9.4,
+          "median": 9.0,
+          "n": 5,
+          "total": 47.0
+        },
+        "wall_time_seconds": {
+          "mean": 99.7821232163813,
+          "median": 103.72602279100101,
+          "n": 5,
+          "total": 498.9106160819065
+        }
+      },
+      "X": {
+        "cached_tokens": {
+          "mean": 116888.8,
+          "median": 118345.0,
+          "n": 5,
+          "total": 584444.0
+        },
+        "completion_tokens": {
+          "mean": 3007.0,
+          "median": 1858.0,
+          "n": 5,
+          "total": 15035.0
+        },
+        "generated_files_total": 0,
+        "prompt_tokens": {
+          "mean": 125025.0,
+          "median": 125911.0,
+          "n": 5,
+          "total": 625125.0
+        },
+        "reported_acus": null,
+        "reported_cost": null,
+        "runs": 5,
+        "solved": 5,
+        "source_patch_lines_added": {
+          "mean": 2.6,
+          "median": 1.0,
+          "n": 5,
+          "total": 13.0
+        },
+        "source_patch_lines_deleted": {
+          "mean": 2.0,
+          "median": 1.0,
+          "n": 5,
+          "total": 10.0
+        },
+        "steps": {
+          "mean": 15.6,
+          "median": 16.0,
+          "n": 5,
+          "total": 78.0
+        },
+        "tool_calls": {
+          "mean": 12.0,
+          "median": 13.0,
+          "n": 5,
+          "total": 60.0
+        },
+        "wall_time_seconds": {
+          "mean": 136.89591993319337,
+          "median": 113.50124324997887,
+          "n": 5,
+          "total": 684.4795996659668
+        }
+      }
+    }
+  },
+  "datasets": {
+    "historical": {
+      "cases": 5,
+      "experiment": "E002"
+    },
+    "novel": {
+      "cases": 5,
+      "experiment": "E003"
+    }
+  },
+  "denominator": {
+    "e001_included": false,
+    "e001_status": "operational provenance only",
+    "unique_cases": 10,
+    "valid_capability_runs": 20
+  },
+  "limitations": [
+    "Exploratory paired study with ten unique cases; no statistical-significance claim.",
+    "One agent product and one model family under one frozen setup.",
+    "Observable activity is not internal reasoning.",
+    "Cost and ACUs were unavailable.",
+    "E002 and E003 differ in case provenance and project scale."
+  ],
+  "novelty_boundary": "E003 instances, defects, prompts, reference fixes, and held-out evaluations were newly constructed and withheld until the protocol was frozen and execution began; no training-data absence claim is made.",
+  "paired_outcomes": {
+    "Max only": 0,
+    "Medium only": 1,
+    "both failed": 0,
+    "both succeeded": 9
+  },
+  "pairs": [
+    {
+      "case_id": "black-16",
+      "max_minus_medium": {
+        "completion_tokens": 410,
+        "prompt_tokens": -311649,
+        "steps": -11,
+        "tool_calls": 1,
+        "wall_seconds": 33.55000000000001
+      },
+      "max_run": "E002-C01-X",
+      "max_success": true,
+      "medium_run": "E002-C01-M",
+      "medium_success": true,
+      "outcome": "both succeeded",
+      "provenance": "historical"
+    },
+    {
+      "case_id": "fastapi-3",
+      "max_minus_medium": {
+        "completion_tokens": 51241,
+        "prompt_tokens": 2905026,
+        "steps": 34,
+        "tool_calls": 41,
+        "wall_seconds": 838.418
+      },
+      "max_run": "E002-C02-X",
+      "max_success": true,
+      "medium_run": "E002-C02-M",
+      "medium_success": true,
+      "outcome": "both succeeded",
+      "provenance": "historical"
+    },
+    {
+      "case_id": "scrapy-3",
+      "max_minus_medium": {
+        "completion_tokens": 46380,
+        "prompt_tokens": 4085860,
+        "steps": 29,
+        "tool_calls": 76,
+        "wall_seconds": 562.603
+      },
+      "max_run": "E002-C03-X",
+      "max_success": true,
+      "medium_run": "E002-C03-M",
+      "medium_success": true,
+      "outcome": "both succeeded",
+      "provenance": "historical"
+    },
+    {
+      "case_id": "tornado-13",
+      "max_minus_medium": {
+        "completion_tokens": 5831,
+        "prompt_tokens": 347639,
+        "steps": 3,
+        "tool_calls": 5,
+        "wall_seconds": 150.922
+      },
+      "max_run": "E002-C05-X",
+      "max_success": true,
+      "medium_run": "E002-C05-M",
+      "medium_success": true,
+      "outcome": "both succeeded",
+      "provenance": "historical"
+    },
+    {
+      "case_id": "tqdm-5",
+      "max_minus_medium": {
+        "completion_tokens": 8808,
+        "prompt_tokens": 593599,
+        "steps": 20,
+        "tool_calls": 30,
+        "wall_seconds": 247.978
+      },
+      "max_run": "E002-C04-X",
+      "max_success": false,
+      "medium_run": "E002-C04-M",
+      "medium_success": true,
+      "outcome": "Medium only",
+      "provenance": "historical"
+    },
+    {
+      "case_id": "E003-N01",
+      "max_minus_medium": {
+        "completion_tokens": 754,
+        "prompt_tokens": -23957,
+        "steps": -2,
+        "tool_calls": -1,
+        "wall_seconds": 21.36236375104636
+      },
+      "max_run": "E003-N01-X",
+      "max_success": true,
+      "medium_run": "E003-N01-M",
+      "medium_success": true,
+      "outcome": "both succeeded",
+      "provenance": "novel"
+    },
+    {
+      "case_id": "E003-N02",
+      "max_minus_medium": {
+        "completion_tokens": 316,
+        "prompt_tokens": 1917,
+        "steps": 0,
+        "tool_calls": 3,
+        "wall_seconds": 1.867712749983184
+      },
+      "max_run": "E003-N02-X",
+      "max_success": true,
+      "medium_run": "E003-N02-M",
+      "medium_success": true,
+      "outcome": "both succeeded",
+      "provenance": "novel"
+    },
+    {
+      "case_id": "E003-N03",
+      "max_minus_medium": {
+        "completion_tokens": 874,
+        "prompt_tokens": 19479,
+        "steps": 1,
+        "tool_calls": 4,
+        "wall_seconds": 9.647103208000772
+      },
+      "max_run": "E003-N03-X",
+      "max_success": true,
+      "medium_run": "E003-N03-M",
+      "medium_success": true,
+      "outcome": "both succeeded",
+      "provenance": "novel"
+    },
+    {
+      "case_id": "E003-N04",
+      "max_minus_medium": {
+        "completion_tokens": 6858,
+        "prompt_tokens": 35166,
+        "steps": 0,
+        "tool_calls": 3,
+        "wall_seconds": 132.16265437507536
+      },
+      "max_run": "E003-N04-X",
+      "max_success": true,
+      "medium_run": "E003-N04-M",
+      "medium_success": true,
+      "outcome": "both succeeded",
+      "provenance": "novel"
+    },
+    {
+      "case_id": "E003-N05",
+      "max_minus_medium": {
+        "completion_tokens": 946,
+        "prompt_tokens": 31774,
+        "steps": 2,
+        "tool_calls": 4,
+        "wall_seconds": 20.529149499954656
+      },
+      "max_run": "E003-N05-X",
+      "max_success": true,
+      "medium_run": "E003-N05-M",
+      "medium_success": true,
+      "outcome": "both succeeded",
+      "provenance": "novel"
+    }
+  ],
+  "project": "Devin + SWE-2 Reasoning Effort Benchmark",
+  "public_paths": {
+    "artifacts": "artifacts/experiment-003/",
+    "csv": "results/publication-paired-results-v2.csv",
+    "methodology": "docs/methodology.md",
+    "report": "reports/devin-swe2-reasoning-effort-v2.md"
+  },
+  "publication_version": "2.0.0",
+  "repository": "https://github.com/MAJORminorStudio/devin-agent-benchmark",
+  "research_questions": [
+    "Does the E002 Medium-versus-Max result replicate on five newly constructed cases withheld until the protocol was frozen?",
+    "How do the conditions compare on behavioral success and observable resource use across the combined ten-case study?"
+  ],
+  "runs": [
+    {
+      "bug_id": "3",
+      "cached_tokens": 568967,
+      "case_id": "fastapi-3",
+      "completion_tokens": 9374,
+      "condition": "M",
+      "experiment": "E002",
+      "files_changed": 2,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "FastAPI 3",
+      "lines_added": 26,
+      "lines_deleted": 7,
+      "model": "swe-2-medium",
+      "project": "fastapi",
+      "prompt_tokens": 599955,
+      "provenance": "historical",
+      "public": "pass",
+      "regression": "clean",
+      "run_id": "E002-C02-M",
+      "session_id": "pumped-salad",
+      "source_files_changed": 1,
+      "steps": 35,
+      "success": true,
+      "tool_calls": 30,
+      "wall_seconds": 299.332
+    },
+    {
+      "bug_id": "5",
+      "cached_tokens": 774656,
+      "case_id": "tqdm-5",
+      "completion_tokens": 11151,
+      "condition": "X",
+      "experiment": "E002",
+      "files_changed": 11,
+      "generated_files": 0,
+      "heldout": "fail",
+      "label": "tqdm 5",
+      "lines_added": 12,
+      "lines_deleted": 0,
+      "model": "swe-2-max",
+      "project": "tqdm",
+      "prompt_tokens": 814278,
+      "provenance": "historical",
+      "public": "pass",
+      "regression": "clean",
+      "run_id": "E002-C04-X",
+      "session_id": "amethyst-border",
+      "source_files_changed": 1,
+      "steps": 42,
+      "success": false,
+      "tool_calls": 44,
+      "wall_seconds": 405.29
+    },
+    {
+      "bug_id": "16",
+      "cached_tokens": 873193,
+      "case_id": "black-16",
+      "completion_tokens": 10310,
+      "condition": "M",
+      "experiment": "E002",
+      "files_changed": 13,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "Black 16",
+      "lines_added": 22,
+      "lines_deleted": 1,
+      "model": "swe-2-medium",
+      "project": "black",
+      "prompt_tokens": 903193,
+      "provenance": "historical",
+      "public": "pass",
+      "regression": "clean",
+      "run_id": "E002-C01-M",
+      "session_id": "electric-afternoon",
+      "source_files_changed": 1,
+      "steps": 47,
+      "success": true,
+      "tool_calls": 41,
+      "wall_seconds": 366.269
+    },
+    {
+      "bug_id": "13",
+      "cached_tokens": 756333,
+      "case_id": "tornado-13",
+      "completion_tokens": 9317,
+      "condition": "X",
+      "experiment": "E002",
+      "files_changed": 36,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "Tornado 13",
+      "lines_added": 36,
+      "lines_deleted": 1,
+      "model": "swe-2-max",
+      "project": "tornado",
+      "prompt_tokens": 783919,
+      "provenance": "historical",
+      "public": "pass",
+      "regression": "clean",
+      "run_id": "E002-C05-X",
+      "session_id": "glitter-currant",
+      "source_files_changed": 1,
+      "steps": 36,
+      "success": true,
+      "tool_calls": 30,
+      "wall_seconds": 326.457
+    },
+    {
+      "bug_id": "3",
+      "cached_tokens": 1896201,
+      "case_id": "scrapy-3",
+      "completion_tokens": 26800,
+      "condition": "M",
+      "experiment": "E002",
+      "files_changed": 29,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "Scrapy 3",
+      "lines_added": 34,
+      "lines_deleted": 2,
+      "model": "swe-2-medium",
+      "project": "scrapy",
+      "prompt_tokens": 1960369,
+      "provenance": "historical",
+      "public": "pass",
+      "regression": "clean",
+      "run_id": "E002-C03-M",
+      "session_id": "airy-coffee",
+      "source_files_changed": 1,
+      "steps": 62,
+      "success": true,
+      "tool_calls": 59,
+      "wall_seconds": 817.861
+    },
+    {
+      "bug_id": "16",
+      "cached_tokens": 566965,
+      "case_id": "black-16",
+      "completion_tokens": 10720,
+      "condition": "X",
+      "experiment": "E002",
+      "files_changed": 1512,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "Black 16",
+      "lines_added": 1517,
+      "lines_deleted": 1,
+      "model": "swe-2-max",
+      "project": "black",
+      "prompt_tokens": 591544,
+      "provenance": "historical",
+      "public": "pass",
+      "regression": "clean",
+      "run_id": "E002-C01-X",
+      "session_id": "tundra-dancer",
+      "source_files_changed": 1,
+      "steps": 36,
+      "success": true,
+      "tool_calls": 42,
+      "wall_seconds": 399.819
+    },
+    {
+      "bug_id": "5",
+      "cached_tokens": 208403,
+      "case_id": "tqdm-5",
+      "completion_tokens": 2343,
+      "condition": "M",
+      "experiment": "E002",
+      "files_changed": 10,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "tqdm 5",
+      "lines_added": 15,
+      "lines_deleted": 0,
+      "model": "swe-2-medium",
+      "project": "tqdm",
+      "prompt_tokens": 220679,
+      "provenance": "historical",
+      "public": "pass",
+      "regression": "clean",
+      "run_id": "E002-C04-M",
+      "session_id": "bronze-experience",
+      "source_files_changed": 1,
+      "steps": 22,
+      "success": true,
+      "tool_calls": 14,
+      "wall_seconds": 157.312
+    },
+    {
+      "bug_id": "3",
+      "cached_tokens": 3400046,
+      "case_id": "fastapi-3",
+      "completion_tokens": 60615,
+      "condition": "X",
+      "experiment": "E002",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "FastAPI 3",
+      "lines_added": 25,
+      "lines_deleted": 7,
+      "model": "swe-2-max",
+      "project": "fastapi",
+      "prompt_tokens": 3504981,
+      "provenance": "historical",
+      "public": "pass",
+      "regression": "clean",
+      "run_id": "E002-C02-X",
+      "session_id": "ionian-wallaby",
+      "source_files_changed": 1,
+      "steps": 69,
+      "success": true,
+      "tool_calls": 71,
+      "wall_seconds": 1137.75
+    },
+    {
+      "bug_id": "13",
+      "cached_tokens": 422145,
+      "case_id": "tornado-13",
+      "completion_tokens": 3486,
+      "condition": "M",
+      "experiment": "E002",
+      "files_changed": 31,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "Tornado 13",
+      "lines_added": 31,
+      "lines_deleted": 1,
+      "model": "swe-2-medium",
+      "project": "tornado",
+      "prompt_tokens": 436280,
+      "provenance": "historical",
+      "public": "pass",
+      "regression": "clean",
+      "run_id": "E002-C05-M",
+      "session_id": "shadowed-wedge",
+      "source_files_changed": 1,
+      "steps": 33,
+      "success": true,
+      "tool_calls": 25,
+      "wall_seconds": 175.535
+    },
+    {
+      "bug_id": "3",
+      "cached_tokens": 5910875,
+      "case_id": "scrapy-3",
+      "completion_tokens": 73180,
+      "condition": "X",
+      "experiment": "E002",
+      "files_changed": 1663,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "Scrapy 3",
+      "lines_added": 1662,
+      "lines_deleted": 1,
+      "model": "swe-2-max",
+      "project": "scrapy",
+      "prompt_tokens": 6046229,
+      "provenance": "historical",
+      "public": "pass",
+      "regression": "clean",
+      "run_id": "E002-C03-X",
+      "session_id": "relieved-wish",
+      "source_files_changed": 1,
+      "steps": 91,
+      "success": true,
+      "tool_calls": 135,
+      "wall_seconds": 1380.464
+    },
+    {
+      "bug_id": "novel",
+      "cached_tokens": 101669,
+      "case_id": "E003-N01",
+      "completion_tokens": 1858,
+      "condition": "X",
+      "experiment": "E003",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "E003-N01",
+      "lines_added": 1,
+      "lines_deleted": 1,
+      "model": "swe-2-max",
+      "project": "asset-indexer",
+      "prompt_tokens": 108522,
+      "provenance": "novel",
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E003-N01-X",
+      "session_id": "excited-headlight",
+      "source_files_changed": 1,
+      "steps": 15,
+      "success": true,
+      "tool_calls": 9,
+      "wall_seconds": 125.08838654204737
+    },
+    {
+      "bug_id": "novel",
+      "cached_tokens": 100161,
+      "case_id": "E003-N03",
+      "completion_tokens": 875,
+      "condition": "M",
+      "experiment": "E003",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "E003-N03",
+      "lines_added": 3,
+      "lines_deleted": 1,
+      "model": "swe-2-medium",
+      "project": "record-exporter",
+      "prompt_tokens": 106432,
+      "provenance": "novel",
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E003-N03-M",
+      "session_id": "alive-steed",
+      "source_files_changed": 1,
+      "steps": 15,
+      "success": true,
+      "tool_calls": 9,
+      "wall_seconds": 103.8541400419781
+    },
+    {
+      "bug_id": "novel",
+      "cached_tokens": 101497,
+      "case_id": "E003-N02",
+      "completion_tokens": 1109,
+      "condition": "X",
+      "experiment": "E003",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "E003-N02",
+      "lines_added": 1,
+      "lines_deleted": 0,
+      "model": "swe-2-max",
+      "project": "catalog-service",
+      "prompt_tokens": 108023,
+      "provenance": "novel",
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E003-N02-X",
+      "session_id": "discreet-wing",
+      "source_files_changed": 1,
+      "steps": 15,
+      "success": true,
+      "tool_calls": 12,
+      "wall_seconds": 92.47625145793427
+    },
+    {
+      "bug_id": "novel",
+      "cached_tokens": 144258,
+      "case_id": "E003-N04",
+      "completion_tokens": 8459,
+      "condition": "X",
+      "experiment": "E003",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "E003-N04",
+      "lines_added": 9,
+      "lines_deleted": 6,
+      "model": "swe-2-max",
+      "project": "event-stream",
+      "prompt_tokens": 156732,
+      "provenance": "novel",
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E003-N04-X",
+      "session_id": "brick-spear",
+      "source_files_changed": 1,
+      "steps": 16,
+      "success": true,
+      "tool_calls": 13,
+      "wall_seconds": 241.7782146660611
+    },
+    {
+      "bug_id": "novel",
+      "cached_tokens": 118675,
+      "case_id": "E003-N05",
+      "completion_tokens": 1860,
+      "condition": "X",
+      "experiment": "E003",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "E003-N05",
+      "lines_added": 1,
+      "lines_deleted": 2,
+      "model": "swe-2-max",
+      "project": "line-protocol",
+      "prompt_tokens": 125937,
+      "provenance": "novel",
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E003-N05-X",
+      "session_id": "insidious-almanac",
+      "source_files_changed": 1,
+      "steps": 16,
+      "success": true,
+      "tool_calls": 13,
+      "wall_seconds": 111.6355037499452
+    },
+    {
+      "bug_id": "novel",
+      "cached_tokens": 118345,
+      "case_id": "E003-N03",
+      "completion_tokens": 1749,
+      "condition": "X",
+      "experiment": "E003",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "E003-N03",
+      "lines_added": 1,
+      "lines_deleted": 1,
+      "model": "swe-2-max",
+      "project": "record-exporter",
+      "prompt_tokens": 125911,
+      "provenance": "novel",
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E003-N03-X",
+      "session_id": "carbonated-finch",
+      "source_files_changed": 1,
+      "steps": 16,
+      "success": true,
+      "tool_calls": 13,
+      "wall_seconds": 113.50124324997887
+    },
+    {
+      "bug_id": "novel",
+      "cached_tokens": 84264,
+      "case_id": "E003-N05",
+      "completion_tokens": 914,
+      "condition": "M",
+      "experiment": "E003",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "E003-N05",
+      "lines_added": 1,
+      "lines_deleted": 2,
+      "model": "swe-2-medium",
+      "project": "line-protocol",
+      "prompt_tokens": 94163,
+      "provenance": "novel",
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E003-N05-M",
+      "session_id": "legendary-sole",
+      "source_files_changed": 1,
+      "steps": 14,
+      "success": true,
+      "tool_calls": 9,
+      "wall_seconds": 91.10635424999055
+    },
+    {
+      "bug_id": "novel",
+      "cached_tokens": 100079,
+      "case_id": "E003-N02",
+      "completion_tokens": 793,
+      "condition": "M",
+      "experiment": "E003",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "E003-N02",
+      "lines_added": 1,
+      "lines_deleted": 0,
+      "model": "swe-2-medium",
+      "project": "catalog-service",
+      "prompt_tokens": 106106,
+      "provenance": "novel",
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E003-N02-M",
+      "session_id": "marred-alpaca",
+      "source_files_changed": 1,
+      "steps": 15,
+      "success": true,
+      "tool_calls": 9,
+      "wall_seconds": 90.60853870795108
+    },
+    {
+      "bug_id": "novel",
+      "cached_tokens": 114077,
+      "case_id": "E003-N04",
+      "completion_tokens": 1601,
+      "condition": "M",
+      "experiment": "E003",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "E003-N04",
+      "lines_added": 3,
+      "lines_deleted": 5,
+      "model": "swe-2-medium",
+      "project": "event-stream",
+      "prompt_tokens": 121566,
+      "provenance": "novel",
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E003-N04-M",
+      "session_id": "sapphire-haddock",
+      "source_files_changed": 1,
+      "steps": 16,
+      "success": true,
+      "tool_calls": 10,
+      "wall_seconds": 109.61556029098574
+    },
+    {
+      "bug_id": "novel",
+      "cached_tokens": 124298,
+      "case_id": "E003-N01",
+      "completion_tokens": 1104,
+      "condition": "M",
+      "experiment": "E003",
+      "files_changed": 1,
+      "generated_files": 0,
+      "heldout": "pass",
+      "label": "E003-N01",
+      "lines_added": 1,
+      "lines_deleted": 1,
+      "model": "swe-2-medium",
+      "project": "asset-indexer",
+      "prompt_tokens": 132479,
+      "provenance": "novel",
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E003-N01-M",
+      "session_id": "absorbed-beaufort",
+      "source_files_changed": 1,
+      "steps": 17,
+      "success": true,
+      "tool_calls": 10,
+      "wall_seconds": 103.72602279100101
+    }
+  ],
+  "schema_version": 2,
+  "source_evidence_base_commit": "342679f87b5411f4c6217b0af38d14985e6e74ea"
+}

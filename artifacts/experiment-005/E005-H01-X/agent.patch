@@ -1,0 +1,38 @@
+--- a/src/feature_plan/resolver.py
++++ b/src/feature_plan/resolver.py
+@@ -14,10 +14,7 @@
+         return self._cache
+
+     def resolve(self, name: str) -> str:
+-        revisions = {name: self._graph.version(name)}
+-        revisions.update(
+-            {dependency: self._graph.version(dependency) for dependency in self._graph.direct_dependencies(name)}
+-        )
++        revisions = self._graph.revisions_for(name)
+         cached = self._cache.get(name, revisions)
+         if cached is not None:
+             return cached
+--- a/src/feature_plan/service.py
++++ b/src/feature_plan/service.py
+@@ -16,17 +16,17 @@
+     def __init__(self, graph: DependencyGraph) -> None:
+         self._graph = graph
+         self._resolver = PlanResolver(graph)
+-        self._published: dict[str, tuple[int, PublishedPlan]] = {}
++        self._published: dict[str, tuple[dict[str, int], PublishedPlan]] = {}
+
+     @property
+     def resolver(self) -> PlanResolver:
+         return self._resolver
+
+     def build(self, name: str) -> PublishedPlan:
+-        version = self._graph.version(name)
++        revisions = self._graph.revisions_for(name)
+         previous = self._published.get(name)
+-        if previous is not None and previous[0] == version:
++        if previous is not None and previous[0] == revisions:
+             return previous[1]
+         plan = PublishedPlan(name, self._resolver.resolve(name))
+-        self._published[name] = (version, plan)
++        self._published[name] = (revisions, plan)
+         return plan

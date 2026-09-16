@@ -1,0 +1,13 @@
+{
+  "generated_or_environment_examples": [
+    "src/feature_store/__pycache__/cache.cpython-38.pyc",
+    "src/feature_store/__pycache__/resolver.cpython-38.pyc"
+  ],
+  "generated_or_environment_files_count": 2,
+  "note": "Full workspaces and dependency environments are not published.",
+  "observed_changed_entry_count": 4,
+  "source_files": [
+    "src/feature_store/cache.py",
+    "src/feature_store/resolver.py"
+  ]
+}

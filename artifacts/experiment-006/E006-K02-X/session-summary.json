@@ -1,0 +1,20 @@
+{
+  "final_metrics": {
+    "cached": 172521,
+    "completion": 3661,
+    "prompt": 188263
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "brainy-scourge",
+  "steps": 17,
+  "tool_calls": 14,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 7,
+    "read": 6
+  }
+}

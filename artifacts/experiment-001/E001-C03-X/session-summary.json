@@ -1,0 +1,54 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": 1,
+    "fusion_enabled": false,
+    "model": "swe-2-max",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "subscription_or_usage": {
+      "amount": null,
+      "available": false,
+      "currency": null
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 43321,
+    "total_completion_tokens": 2008,
+    "total_prompt_tokens": 58561,
+    "total_steps": 11
+  },
+  "first_step_timestamp": "2026-09-15T00:34:11.445087+00:00",
+  "last_step_timestamp": "2026-09-15T00:34:36.830027+00:00",
+  "model": "swe-2-max",
+  "patch_empty": true,
+  "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "permission_warning": "warning: rejected a tool call that requires confirmation. Running in non-interactive mode. Use --permission-mode dangerous to auto-approve all tools.",
+  "rejected_tool_calls": [
+    {
+      "arguments": {
+        "command": "cd /agent-workspace && git log --oneline -5 2>/dev/null | head; python3 --version; which python3 python; pip list 2>/dev/null | grep -i -E \"scrapy|w3lib|six|pytest\" "
+      },
+      "attempted_operation": "dependency/environment inspection",
+      "function_name": "exec",
+      "rejection_message": "Tool execution was rejected by the user",
+      "requested_category": "shell execution",
+      "status": "rejected",
+      "step_id": 11,
+      "tool_call_id": "exec_6"
+    }
+  ],
+  "schema_version": 1,
+  "session_id": "sugar-fibre",
+  "source_step_counts": {
+    "agent": 4,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 7,
+  "tool_calls_by_function": {
+    "exec": 2,
+    "read": 5
+  },
+  "total_steps": 11
+}

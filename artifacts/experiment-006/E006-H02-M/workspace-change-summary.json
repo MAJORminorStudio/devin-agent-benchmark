@@ -1,0 +1,11 @@
+{
+  "generated_or_environment_examples": [
+    "src/work_queue/__pycache__/engine.cpython-38.pyc"
+  ],
+  "generated_or_environment_files_count": 1,
+  "note": "Full workspaces and dependency environments are not published.",
+  "observed_changed_entry_count": 2,
+  "source_files": [
+    "src/work_queue/engine.py"
+  ]
+}

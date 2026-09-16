@@ -1,0 +1,21 @@
+{
+  "changed_files": [
+    "fastapi/applications.py",
+    "fastapi/encoders.py",
+    "fastapi/openapi/utils.py",
+    "fastapi/routing.py"
+  ],
+  "classification_counts": {
+    "generated_or_environment": 0,
+    "source": 4
+  },
+  "generated_or_environment_files": [],
+  "note": "Full workspaces and dependency trees are not published.",
+  "source_files": [
+    "fastapi/applications.py",
+    "fastapi/encoders.py",
+    "fastapi/openapi/utils.py",
+    "fastapi/routing.py"
+  ],
+  "workspace_churn_files": 4
+}

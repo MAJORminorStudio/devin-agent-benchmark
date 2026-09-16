@@ -1,0 +1,13 @@
+{
+  "generated_or_environment_examples": [
+    "src/account_ledger/__pycache__/events.cpython-38.pyc",
+    "src/account_ledger/__pycache__/service.cpython-38.pyc"
+  ],
+  "generated_or_environment_files_count": 2,
+  "note": "Full workspaces and dependency environments are not published.",
+  "observed_changed_entry_count": 4,
+  "source_files": [
+    "src/account_ledger/events.py",
+    "src/account_ledger/service.py"
+  ]
+}

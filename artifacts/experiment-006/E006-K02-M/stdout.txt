@@ -1,0 +1,14 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The default fallback is `'ascii'` — Python 3 source defaults to UTF-8 per PEP 3120. Reproducing first:Confirmed: non-ASCII bytes decode with `ascii`/`replace`, producing ``. The fix is to default to UTF-8 (Python 3's source default per PEP 3120) while keeping the PEP 263 cookie check.Done. All 30 tests pass.
+
+**Diagnosis:** `get_source_from_frame` in `pysnooper/tracer.py` reads the file as bytes, then decodes each line. When no PEP 263 coding cookie was found, it fell back to `'ascii'` with `'replace'`, mangling non-ASCII source into ``. Since Python 3, source files default to UTF-8 (PEP 3120), so `ascii` was the wrong fallback.
+
+**Fix:** one-line change at `pysnooper/tracer.py:87` — default encoding `'ascii'` → `'utf-8'`. The explicit-cookie path is untouched, so declared encodings (e.g. `latin-1`) are still honored.
+
+**Verification:**
+- `test_source_encoding_compat.py` — previously failed (`'失败' not found in "..."`), now passes
+- `test_chinese.py` + `test_pysnooper.py` — all 28 tracing tests still pass, so ordinary behavior is preserved

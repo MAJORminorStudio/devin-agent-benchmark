@@ -1,0 +1,99 @@
+{
+  "buggy_heldout_fails": true,
+  "buggy_regression_passes": true,
+  "case_id": "black-16",
+  "environment": {
+    "install": [
+      "appdirs==1.4.3",
+      "attrs==19.3.0",
+      "click==7.0",
+      "pathspec==0.7.0",
+      "regex==2020.2.20",
+      "toml==0.10.0",
+      "typed-ast==1.4.0",
+      "pytest==5.4.3"
+    ],
+    "python": "3.8"
+  },
+  "fixed_heldout_passes": true,
+  "fixed_regression_passes": true,
+  "heldout_command": [
+    "python -m unittest -q test_heldout"
+  ],
+  "regression_commands": [
+    "python -m unittest -q tests.test_black.BlackTestCase.test_broken_symlink",
+    "python -m unittest -q tests.test_black.BlackTestCase.test_include_exclude"
+  ],
+  "reproducible": true,
+  "sides": {
+    "buggy": {
+      "heldout": {
+        "commands": [
+          {
+            "command": "python -m unittest -q test_heldout",
+            "elapsed_seconds": 0.083,
+            "output": "======================================================================\nERROR: test_external_python_symlink_is_ignored (test_heldout.ExternalSymlinkBehaviorTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"evaluation/experiment-001/black-16/test_heldout.py\", line 26, in test_external_python_symlink_is_ignored\n    discovered = list(\n  File \"results/runs/phase-1/black-16/verification/buggy/black.py\", line 2948, in gen_python_files_in_dir\n    normalized_path = \"/\" + child.resolve().relative_to(root).as_posix()\n  File \"local-user/.local/share/uv/python/cpython-3.8-macos-aarch64-none/lib/python3.8/pathlib.py\", line 908, in relative_to\n    raise ValueError(\"{!r} does not start with {!r}\"\nValueError: 'temporary-path/26/wh9xwr9n1_n2zbs83j99_nx40000gn/T/tmpne6f60km/outside.py' does not start with 'temporary-path/26/wh9xwr9n1_n2zbs83j99_nx40000gn/T/tmpne6f60km/workspace'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+            "returncode": 1,
+            "status": "fail"
+          }
+        ],
+        "overall": "fail"
+      },
+      "regression": {
+        "commands": [
+          {
+            "command": "python -m unittest -q tests.test_black.BlackTestCase.test_broken_symlink",
+            "elapsed_seconds": 0.085,
+            "output": "----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nOK\n",
+            "returncode": 0,
+            "status": "pass"
+          },
+          {
+            "command": "python -m unittest -q tests.test_black.BlackTestCase.test_include_exclude",
+            "elapsed_seconds": 0.084,
+            "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "workspace": "results/runs/phase-1/black-16/verification/buggy"
+    },
+    "fixed": {
+      "heldout": {
+        "commands": [
+          {
+            "command": "python -m unittest -q test_heldout",
+            "elapsed_seconds": 0.081,
+            "output": "----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nOK\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "regression": {
+        "commands": [
+          {
+            "command": "python -m unittest -q tests.test_black.BlackTestCase.test_broken_symlink",
+            "elapsed_seconds": 0.085,
+            "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+            "returncode": 0,
+            "status": "pass"
+          },
+          {
+            "command": "python -m unittest -q tests.test_black.BlackTestCase.test_include_exclude",
+            "elapsed_seconds": 0.086,
+            "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "workspace": "results/runs/phase-1/black-16/verification/fixed"
+    }
+  },
+  "validated_at_utc": "2026-09-14T23:28:53Z"
+}

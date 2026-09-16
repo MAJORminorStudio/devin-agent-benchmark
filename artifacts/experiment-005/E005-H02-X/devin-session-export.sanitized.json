@@ -1,0 +1,356 @@
+{
+  "agent": {
+    "model_name": "SWE-2 Max",
+    "name": "devin",
+    "version": "3000.10.21"
+  },
+  "final_metrics": {
+    "total_cached_tokens": 245632,
+    "total_completion_tokens": 15456,
+    "total_prompt_tokens": 251033,
+    "total_steps": 17
+  },
+  "hidden_reasoning_omitted": true,
+  "schema_version": "ATIF-v1.7",
+  "session_id": "leeward-primula",
+  "steps": [
+    {
+      "message": "Cancelling a running job releases its worker slot, but the job record can remain\nin a non-terminal state. This makes cancellation indistinguishable from a job\nthat is still running and makes later scheduling behavior difficult to reason\nabout. Repair the lifecycle handling so cancellation is recorded consistently,\nqueued work still behaves normally, and ordinary success and failure semantics\nremain unchanged.\n\nRun the available test suite with:\n\n    PYTHONPATH=src python -m unittest discover -s tests -v",
+      "source": "user",
+      "step_id": 6,
+      "timestamp": "2026-09-16T03:29:18.232546585+00:00"
+    },
+    {
+      "message": "I'll start by exploring the workspace structure.",
+      "metrics": {
+        "cached_tokens": 11648,
+        "completion_tokens": 89,
+        "prompt_tokens": 11977
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 8,
+      "timestamp": "2026-09-16T03:29:18.815668252+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "find /workspace -type f -name \"*.py\" | head -50 && echo \"---\" && ls -la /workspace"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell c264c0:\n/workspace/tests/test_scheduler.py\n/workspace/src/work_queue/registry.py\n/workspace/src/work_queue/__init__.py\n/workspace/src/work_queue/model.py\n/workspace/src/work_queue/scheduler.py\n/workspace/src/work_queue/executor.py\n---\ntotal 16\ndrwxr-xr-x 7 root root  224 Sep 16 01:10 .\ndrwxr-xr-x 1 root root 4096 Sep 16 03:28 ..\n-rw-r--r-- 1 root root  148 Sep 15 23:10 README.md\n-rw-r--r-- 1 root root  509 Sep 15 23:15 TASK.md\n-rw-r--r-- 1 root root  155 Sep 15 23:10 pyproject.toml\ndrwxr-xr-x 3 root root   96 Sep 15 23:10 src\ndrwxr-xr-x 3 root root   96 Sep 15 23:14 tests\n\n\nExit code: 0",
+            "content_length": 622,
+            "content_sha256": "e06b3b5286e105944020fe1b7483b414aee8750f88448fc44c953f8b882db26f"
+          },
+          "tool_call_id": "exec:0#4cec53324547439692d688790b78ccc4"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 12032,
+        "completion_tokens": 304,
+        "prompt_tokens": 12320
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 9,
+      "timestamp": "2026-09-16T03:29:20.200318169+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/TASK.md"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/TASK.md\" start_line=\"1\" end_line=\"10\" total_lines=\"10\">\n  1|Cancelling a running job releases its worker slot, but the job record can remain\n  2|in a non-terminal state. This makes cancellation indistinguishable from a job\n  3|that is still running and makes later scheduling behavior difficult to reason\n  4|about. Repair the lifecycle handling so cancellation is recorded consistently,\n  5|queued work still behaves normally, and ordinary success and failure semantics\n  6|remain unchanged.\n  7|\n  8|Run the available test suite with:\n  9|\n 10|    PYTHONPATH=src python -m unittest discover -s tests -v\n</file-view>",
+            "content_length": 645,
+            "content_sha256": "d6083edf8a31d72700f662d597b55cb13b724b3ffa8b19bdc618522a82618aec"
+          },
+          "tool_call_id": "read:1#040632be7d1541a0af4d5f96e370db8c"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/README.md"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/README.md\" start_line=\"1\" end_line=\"4\" total_lines=\"4\">\n  1|# Work Queue\n  2|\n  3|Work Queue accepts asynchronous jobs, limits the number of active workers, and\n  4|keeps a small lifecycle record for each submitted job.\n</file-view>",
+            "content_length": 260,
+            "content_sha256": "1225902ffdb348fadf56922eb83723332aa7ae7c7601e2ec8ee5fe9e26462cb4"
+          },
+          "tool_call_id": "read:2#2c911fb671e340efa4e3bf4aafb58a77"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/work_queue/model.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/work_queue/model.py\" start_line=\"1\" end_line=\"19\" total_lines=\"19\">\n  1|from __future__ import annotations\n  2|\n  3|from dataclasses import dataclass\n  4|from enum import Enum\n  5|from typing import Any, Awaitable, Callable\n  6|\n  7|\n  8|class JobState(str, Enum):\n  9|    QUEUED = \"queued\"\n 10|    RUNNING = \"running\"\n 11|    SUCCEEDED = \"succeeded\"\n 12|    FAILED = \"failed\"\n 13|    CANCELLED = \"cancelled\"\n 14|\n 15|\n 16|@dataclass(frozen=True)\n 17|class Job:\n 18|    job_id: str\n 19|    work: Callable[[], Awaitable[Any]]\n</file-view>",
+            "content_length": 569,
+            "content_sha256": "e7ee4ac0e9063db9b9b2971f3dad2a3aae69efc4b166d74727bef27befdbb098"
+          },
+          "tool_call_id": "read:3#f3d06f3f7d97493c82541195e1749d87"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/work_queue/scheduler.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/work_queue/scheduler.py\" start_line=\"1\" end_line=\"63\" total_lines=\"63\">\n  1|from __future__ import annotations\n  2|\n  3|import asyncio\n  4|from collections import deque\n  5|\n  6|from .executor import TaskExecutor\n  7|from .model import Job, JobState\n  8|from .registry import JobRegistry, LifecycleError\n  9|\n 10|\n 11|class Scheduler:\n 12|    def __init__(self, registry: JobRegistry, *, max_active: int = 1) -> None:\n 13|        if max_active < 1:\n 14|            raise ValueError(\"max_active must be positive\")\n 15|        self.registry = registry\n 16|        self._executor = TaskExecutor(registry)\n 17|        self._limit = max_active\n 18|        self._pending: deque[Job] = deque()\n 19|        self._tasks: dict[str, asyncio.Task[object]] = {}\n 20|\n 21|    def submit(self, job: Job) -> None:\n 22|        self.registry.add(job.job_id)\n 23|        self._pending.append(job)\n 24|        self._drain()\n 25|\n 26|    async def cancel(self, job_id: str) -> None:\n 27|        state = self.registry.state(job_id)\n 28|        if state is JobState.QUEUED:\n 29|            self._pending = deque(job for job in self._pending if job.job_id != job_id)\n 30|            self.registry.cancel_queued(job_id)\n 31|            self._drain()\n 32|            return\n 33|        if state is not JobState.RUNNING:\n 34|            return\n 35|        self.registry.request_cancel(job_id)\n 36|        task = self._tasks[job_id]\n 37|        task.cancel()\n 38|        try:\n 39|            await task\n 40|        except asyncio.CancelledError:\n 41|            pass\n 42|        self._tasks.pop(job_id, None)\n 43|        self._drain()\n 44|\n 45|    async def wait(self, job_id: str) -> object:\n 46|        task = self._tasks.get(job_id)\n 47|        if task is not None:\n 48|            return await task\n 49|        state = self.registry.state(job_id)\n 50|        if state is JobState.CANCELLED:\n 51|            return None\n 52|        raise LifecycleError(f\"job is not scheduled: {job_id}\")\n 53|\n 54|    def _drain(self) -> None:\n 55|        while self._pending and len(self._tasks) < self._limit:\n 56|            job = self._pending.popleft()\n 57|            task = asyncio.create_task(self._executor.run(job), name=f\"job:{job.job_id}\")\n 58|            self._tasks[job.job_id] = task\n 59|            task.add_done_callback(lambda completed, job_id=job.job_id: self._finished(job_id, completed))\n 60|\n 61|    def _finished(self, job_id: str, task: asyncio.Task[object]) -> None:\n 62|        self._tasks.pop(job_id, None)\n 63|        self._drain()\n</file-view>",
+            "content_length": 2563,
+            "content_sha256": "217a6cfb3943ffd4df2e6ebc73decc3f8beff696a94a8ea378c1ac4d372084c3"
+          },
+          "tool_call_id": "read:4#af8018a83f8c46bdbf1de981aa3015b3"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/work_queue/executor.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/work_queue/executor.py\" start_line=\"1\" end_line=\"24\" total_lines=\"24\">\n  1|from __future__ import annotations\n  2|\n  3|import asyncio\n  4|\n  5|from .model import Job, JobState\n  6|from .registry import JobRegistry\n  7|\n  8|\n  9|class TaskExecutor:\n 10|    def __init__(self, registry: JobRegistry) -> None:\n 11|        self._registry = registry\n 12|\n 13|    async def run(self, job: Job) -> object:\n 14|        self._registry.start(job.job_id)\n 15|        try:\n 16|            result = await job.work()\n 17|        except Exception as exc:\n 18|            self._registry.complete(job.job_id, JobState.FAILED, error=exc)\n 19|            raise\n 20|        else:\n 21|            self._registry.complete(job.job_id, JobState.SUCCEEDED, result=result)\n 22|            return result\n 23|        finally:\n 24|            self._registry.release_worker(job.job_id)\n</file-view>",
+            "content_length": 900,
+            "content_sha256": "7ca84d5be4214c9f33d186984a04326a5fa393e2f8c318e7bd8bbb7eefa53540"
+          },
+          "tool_call_id": "read:5#33c60e76b8c34fdc9f0795d45816aac8"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/work_queue/registry.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/work_queue/registry.py\" start_line=\"1\" end_line=\"76\" total_lines=\"76\">\n  1|from __future__ import annotations\n  2|\n  3|from dataclasses import dataclass\n  4|\n  5|from .model import JobState\n  6|\n  7|\n  8|class LifecycleError(RuntimeError):\n  9|    pass\n 10|\n 11|\n 12|@dataclass\n 13|class JobRecord:\n 14|    state: JobState\n 15|    result: object = None\n 16|    error: BaseException | None = None\n 17|    cancel_requested: bool = False\n 18|\n 19|\n 20|class JobRegistry:\n 21|    def __init__(self) -> None:\n 22|        self._records: dict[str, JobRecord] = {}\n 23|        self._active: set[str] = set()\n 24|\n 25|    def add(self, job_id: str) -> None:\n 26|        if job_id in self._records:\n 27|            raise LifecycleError(f\"duplicate job: {job_id}\")\n 28|        self._records[job_id] = JobRecord(JobState.QUEUED)\n 29|\n 30|    def start(self, job_id: str) -> None:\n 31|        record = self._record(job_id)\n 32|        if record.state is not JobState.QUEUED:\n 33|            raise LifecycleError(f\"cannot start {job_id} from {record.state}\")\n 34|        record.state = JobState.RUNNING\n 35|        self._active.add(job_id)\n 36|\n 37|    def complete(self, job_id: str, state: JobState, *, result: object = None, error: BaseException | None = None) -> None:\n 38|        record = self._record(job_id)\n 39|        if record.state is not JobState.RUNNING:\n 40|            raise LifecycleError(f\"cannot complete {job_id} from {record.state}\")\n 41|        if state not in {JobState.SUCCEEDED, JobState.FAILED, JobState.CANCELLED}:\n 42|            raise LifecycleError(f\"not a terminal state: {state}\")\n 43|        record.state = state\n 44|        record.result = result\n 45|        record.error = error\n 46|\n 47|    def cancel_queued(self, job_id: str) -> None:\n 48|        record = self._record(job_id)\n 49|        if record.state is JobState.QUEUED:\n 50|            record.state = JobState.CANCELLED\n 51|        elif record.state is not JobState.CANCELLED:\n 52|            raise LifecycleError(f\"cannot cancel queued job from {record.state}\")\n 53|\n 54|    def request_cancel(self, job_id: str) -> None:\n 55|        record = self._record(job_id)\n 56|        if record.state is JobState.RUNNING:\n 57|            record.cancel_requested = True\n 58|\n 59|    def release_worker(self, job_id: str) -> None:\n 60|        self._active.discard(job_id)\n 61|\n 62|    def state(self, job_id: str) -> JobState:\n 63|        return self._record(job_id).state\n 64|\n 65|    def record(self, job_id: str) -> JobRecord:\n 66|        return self._record(job_id)\n 67|\n 68|    @property\n 69|    def active_count(self) -> int:\n 70|        return len(self._active)\n 71|\n 72|    def _record(self, job_id: str) -> JobRecord:\n 73|        try:\n 74|            return self._records[job_id]\n 75|        except KeyError as exc:\n 76|            raise LifecycleError(f\"unknown job: {job_id}\") from exc\n</file-view>",
+            "content_length": 2909,
+            "content_sha256": "1ba6efc922111e599e9d3f2de2631e32a09b1a8f588ba4ca828406a8b4aa39ba"
+          },
+          "tool_call_id": "read:6#9cdf3313f25b47ac867c9cb2d3576f85"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/work_queue/__init__.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/work_queue/__init__.py\" start_line=\"1\" end_line=\"5\" total_lines=\"5\">\n  1|from .model import Job, JobState\n  2|from .registry import JobRegistry\n  3|from .scheduler import Scheduler\n  4|\n  5|__all__ = [\"Job\", \"JobState\", \"JobRegistry\", \"Scheduler\"]\n</file-view>",
+            "content_length": 292,
+            "content_sha256": "0fad10d99552bea1a463e9dd96fd7902a56003d500f26efe20586f77f48cc7c1"
+          },
+          "tool_call_id": "read:7#97d1ac8d1abe4e70a519ca25f064a700"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/tests/test_scheduler.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/tests/test_scheduler.py\" start_line=\"1\" end_line=\"35\" total_lines=\"35\">\n  1|import asyncio\n  2|import unittest\n  3|\n  4|from work_queue import Job, JobRegistry, JobState, Scheduler\n  5|\n  6|\n  7|class SchedulerTests(unittest.TestCase):\n  8|    def test_cancelling_a_running_job_releases_it_as_cancelled(self):\n  9|        async def scenario():\n 10|            started = asyncio.Event()\n 11|            release = asyncio.Event()\n 12|\n 13|            async def first():\n 14|                started.set()\n 15|                await release.wait()\n 16|                return \"first\"\n 17|\n 18|            async def second():\n 19|                return \"second\"\n 20|\n 21|            registry = JobRegistry()\n 22|            scheduler = Scheduler(registry)\n 23|            scheduler.submit(Job(\"first\", first))\n 24|            scheduler.submit(Job(\"second\", second))\n 25|            await started.wait()\n 26|            await scheduler.cancel(\"first\")\n 27|            self.assertEqual(registry.state(\"first\"), JobState.CANCELLED)\n 28|            self.assertEqual(await scheduler.wait(\"second\"), \"second\")\n 29|            self.assertEqual(registry.active_count, 0)\n 30|\n 31|        asyncio.run(scenario())\n 32|\n 33|\n 34|if __name__ == \"__main__\":\n 35|    unittest.main()\n</file-view>",
+            "content_length": 1302,
+            "content_sha256": "f4be76a606c62f4636a746cee60b95d5a269a2b8c63563375f6b0c3c5b7a7dc8"
+          },
+          "tool_call_id": "read:8#1a29f44d03a6440f8e84d54d42c8152c"
+        }
+      ]
+    },
+    {
+      "message": "The bug is in `executor.py`: when a running job is cancelled, `asyncio.CancelledError` (a `BaseException`, not an `Exception`) propagates through `await job.work()`, skipping the `except Exception` handler. The `finally` block releases the worker slot, but `registry.complete()` is never called \u2014 so the record stays `RUNNING` forever.\n\nLet me confirm by running the test first:",
+      "metrics": {
+        "cached_tokens": 12544,
+        "completion_tokens": 13077,
+        "prompt_tokens": 15525
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 10,
+      "timestamp": "2026-09-16T03:29:22.905743671+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python -m unittest discover -s tests -v 2>&1 | tail -15"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 79a2b5:\nbash: line 1: python: command not found\n\nExit code: 127",
+            "content_length": 92,
+            "content_sha256": "29e182211a4f68dcc077ad072d7e9583f72c6d8f0422609252c2af678c7bb0e0"
+          },
+          "tool_call_id": "exec:9#29036ecec8f642679abfce7b8618b367"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 28416,
+        "completion_tokens": 70,
+        "prompt_tokens": 28664
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 11,
+      "timestamp": "2026-09-16T03:34:30.745498258+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python3 -m unittest discover -s tests -v 2>&1 | tail -15"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 4941db:\n\u2026 (10 lines truncated)\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/asyncio/runners.py\", line 118, in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/asyncio/base_events.py\", line 653, in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/workspace/tests/test_scheduler.py\", line 27, in scenario\n    self.assertEqual(registry.state(\"first\"), JobState.CANCELLED)\nAssertionError: <JobState.RUNNING: 'running'> != <JobState.CANCELLED: 'cancelled'>\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n\nExit code: 1\n\n`| tail -15` was parsed out (15 of 25 total lines shown).\n<truncation_notice>\nFull output written to: /tmp/devin-overflow/44b707cc/content.txt\n</truncation_notice>",
+            "content_length": 897,
+            "content_sha256": "d7fcd679bd977ca43474f9e76b51313204c21976402db5819ef41b5ce53f63d4"
+          },
+          "tool_call_id": "exec:10#d4842b8c355f4887ac1d8415efe38caf"
+        }
+      ]
+    },
+    {
+      "message": "Confirmed \u2014 the record stays `RUNNING`. Now the fix in `executor.py`:\n\n1. Catch `asyncio.CancelledError` (which `except Exception` misses since it's a `BaseException`) and record `CANCELLED`.\n2. If `cancel_requested` is set but the work suppressed the cancellation and returned a value, the asyncio task still ends cancelled \u2014 so record `CANCELLED` rather than `SUCCEEDED` to keep the record consistent with the task's actual outcome.",
+      "metrics": {
+        "cached_tokens": 28672,
+        "completion_tokens": 528,
+        "prompt_tokens": 28993
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 12,
+      "timestamp": "2026-09-16T03:34:31.934731717+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/src/work_queue/executor.py",
+            "new_string": "    async def run(self, job: Job) -> object:\n        self._registry.start(job.job_id)\n        try:\n            result = await job.work()\n        except asyncio.CancelledError:\n            self._registry.complete(job.job_id, JobState.CANCELLED)\n            raise\n        except Exception as exc:\n            self._registry.complete(job.job_id, JobState.FAILED, error=exc)\n            raise\n        else:\n            if self._registry.record(job.job_id).cancel_requested:\n                self._registry.complete(job.job_id, JobState.CANCELLED, result=result)\n            else:\n                self._registry.complete(job.job_id, JobState.SUCCEEDED, result=result)\n            return result\n        finally:\n            self._registry.release_worker(job.job_id)",
+            "old_string": "    async def run(self, job: Job) -> object:\n        self._registry.start(job.job_id)\n        try:\n            result = await job.work()\n        except Exception as exc:\n            self._registry.complete(job.job_id, JobState.FAILED, error=exc)\n            raise\n        else:\n            self._registry.complete(job.job_id, JobState.SUCCEEDED, result=result)\n            return result\n        finally:\n            self._registry.release_worker(job.job_id)"
+          },
+          "function_name": "edit",
+          "observation": {
+            "content": "The file /workspace/src/work_queue/executor.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:\n  9|class TaskExecutor:\n 10|    def __init__(self, registry: JobRegistry) -> None:\n 11|        self._registry = registry\n 12|\n 13|    async def run(self, job: Job) -> object:\n 14|        self._registry.start(job.job_id)\n 15|        try:\n 16|            result = await job.work()\n 17|        except asyncio.CancelledError:\n 18|            self._registry.complete(job.job_id, JobState.CANCELLED)\n 19|            raise\n 20|        except Exception as exc:\n 21|            self._registry.complete(job.job_id, JobState.FAILED, error=exc)\n 22|            raise\n 23|        else:\n 24|            if self._registry.record(job.job_id).cancel_requested:\n 25|                self._registry.complete(job.job_id, JobState.CANCELLED, result=result)\n 26|            else:\n 27|                self._registry.complete(job.job_id, JobState.SUCCEEDED, result=result)\n 28|            return result\n 29|        finally:\n 30|            self._registry.release_worker(job.job_id)",
+            "content_length": 1092,
+            "content_sha256": "4d6777579376e8d80f99dac5d2e583eb5b5ffaad7576e00ab47120f48d4cd281"
+          },
+          "tool_call_id": "edit:11#de608b945fcb4f5ba86d2cc77c4124ac"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 29440,
+        "completion_tokens": 70,
+        "prompt_tokens": 29836
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 13,
+      "timestamp": "2026-09-16T03:34:38.531997720+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python3 -m unittest discover -s tests -v 2>&1 | tail -8"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 6da4fa:\ntest_cancelling_a_running_job_releases_it_as_cancelled (test_scheduler.SchedulerTests.test_cancelling_a_running_job_releases_it_as_cancelled) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n\nExit code: 0",
+            "content_length": 296,
+            "content_sha256": "6358c721a820ae830498666893befe7a4fd01f1f6424c75bdd752cd753f2e3df"
+          },
+          "tool_call_id": "exec:12#4dc156a2a4de49e1b6e4e6b5748af056"
+        }
+      ]
+    },
+    {
+      "message": "Test passes. Let me verify the other lifecycle paths (success, failure, queued cancel, suppressed-cancel edge case) with a quick sanity script:",
+      "metrics": {
+        "cached_tokens": 29824,
+        "completion_tokens": 736,
+        "prompt_tokens": 30007
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 14,
+      "timestamp": "2026-09-16T03:34:39.598093637+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python3 - <<'EOF'\nimport asyncio\nfrom work_queue import Job, JobRegistry, JobState, Scheduler\n\nasync def main():\n    # success path\n    reg = JobRegistry(); sch = Scheduler(reg)\n    sch.submit(Job(\"ok\", lambda: asyncio.sleep(0, result=\"done\")))\n    assert await sch.wait(\"ok\") == \"done\"\n    assert reg.state(\"ok\") is JobState.SUCCEEDED\n    assert reg.record(\"ok\").result == \"done\"\n\n    # failure path\n    reg = JobRegistry(); sch = Scheduler(reg)\n    async def boom(): raise ValueError(\"nope\")\n    sch.submit(Job(\"bad\", boom))\n    try:\n        await sch.wait(\"bad\")\n    except ValueError:\n        pass\n    assert reg.state(\"bad\") is JobState.FAILED\n    assert isinstance(reg.record(\"bad\").error, ValueError)\n\n    # queued cancel: slot limit 1, cancel \"q\" while \"r\" runs\n    reg = JobRegistry(); sch = Scheduler(reg, max_active=1)\n    gate = asyncio.Event()\n    async def r(): await gate.wait(); return \"r\"\n    sch.submit(Job(\"r\", r))\n    sch.submit(Job(\"q\", lambda: asyncio.sleep(0, result=\"q\")))\n    await asyncio.sleep(0)  # let r start\n    await sch.cancel(\"q\")\n    assert reg.state(\"q\") is JobState.CANCELLED\n    gate.set()\n    assert await sch.wait(\"r\") == \"r\"\n    assert reg.state(\"r\") is JobState.SUCCEEDED\n\n    # cancel a running job -> CANCELLED, slot freed\n    reg = JobRegistry(); sch = Scheduler(reg)\n    started = asyncio.Event()\n    async def hang(): started.set(); await asyncio.Event().wait()\n    sch.submit(Job(\"h\", hang))\n    await started.wait()\n    await sch.cancel(\"h\")\n    assert reg.state(\"h\") is JobState.CANCELLED\n    assert reg.active_count == 0\n\n    # work suppresses CancelledError and returns -> task still ends cancelled\n    reg = JobRegistry(); sch = Scheduler(reg)\n    started = asyncio.Event()\n    async def stubborn():\n        started.set()\n        try:\n            await asyncio.Event().wait()\n        except asyncio.CancelledError:\n            return \"suppressed\"\n    sch.submit(Job(\"s\", stubborn))\n    await started.wait()\n    await sch.cancel(\"s\")\n    assert reg.state(\"s\") is JobState.CANCELLED, reg.state(\"s\")\n    assert reg.active_count == 0\n\n    # cancel unknown/terminal job is a no-op\n    try:\n        await sch.cancel(\"missing\")\n    except Exception as e:\n        print(\"cancel missing raised:\", type(e).__name__, e)\n    print(\"all lifecycle checks passed\")\n\nasyncio.run(main())\nEOF"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell cee7ed:\ncancel missing raised: LifecycleError unknown job: missing\nall lifecycle checks passed\n\n\nExit code: 0",
+            "content_length": 138,
+            "content_sha256": "7e7167fabae0a22ea8fcc30ead674bb123a11fbc36dbfffd9995c01b61d0acf3"
+          },
+          "tool_call_id": "exec:13#73cc7ca5d6724e398464989290cb750c"
+        }
+      ]
+    },
+    {
+      "message": "All lifecycle paths verified. Final state of the fix:",
+      "metrics": {
+        "cached_tokens": 30720,
+        "completion_tokens": 178,
+        "prompt_tokens": 30807
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 15,
+      "timestamp": "2026-09-16T03:34:53.651102671+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/src/work_queue/executor.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/work_queue/executor.py\" start_line=\"1\" end_line=\"30\" total_lines=\"30\">\n  1|from __future__ import annotations\n  2|\n  3|import asyncio\n  4|\n  5|from .model import Job, JobState\n  6|from .registry import JobRegistry\n  7|\n  8|\n  9|class TaskExecutor:\n 10|    def __init__(self, registry: JobRegistry) -> None:\n 11|        self._registry = registry\n 12|\n 13|    async def run(self, job: Job) -> object:\n 14|        self._registry.start(job.job_id)\n 15|        try:\n 16|            result = await job.work()\n 17|        except asyncio.CancelledError:\n 18|            self._registry.complete(job.job_id, JobState.CANCELLED)\n 19|            raise\n 20|        except Exception as exc:\n 21|            self._registry.complete(job.job_id, JobState.FAILED, error=exc)\n 22|            raise\n 23|        else:\n 24|            if self._registry.record(job.job_id).cancel_requested:\n 25|                self._registry.complete(job.job_id, JobState.CANCELLED, result=result)\n 26|            else:\n 27|                self._registry.complete(job.job_id, JobState.SUCCEEDED, result=result)\n 28|            return result\n 29|        finally:\n 30|            self._registry.release_worker(job.job_id)\n</file-view>",
+            "content_length": 1225,
+            "content_sha256": "e36922de73a25977c3566a26cc38c09f241db42d0f04ec36da9290454eceb364"
+          },
+          "tool_call_id": "read:14#84be4492bf1d4390883607770a48a192"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 30976,
+        "completion_tokens": 90,
+        "prompt_tokens": 31357
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 16,
+      "timestamp": "2026-09-16T03:34:56.820989339+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python3 -m unittest discover -s tests -v 2>&1 | tail -6 && git diff --stat 2>/dev/null; git status --short 2>/dev/null"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell fd16b1:\ntest_cancelling_a_running_job_releases_it_as_cancelled (test_scheduler.SchedulerTests.test_cancelling_a_running_job_releases_it_as_cancelled) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n\n\nExit code: 128",
+            "content_length": 299,
+            "content_sha256": "a49d780ad88f6e41f6ac7bc6e41608209980a701b5b783835e349453bba27778"
+          },
+          "tool_call_id": "exec:15#0151b7edbca44068b5f7b631e758fa9f"
+        }
+      ]
+    },
+    {
+      "message": "Fixed. The bug was in `TaskExecutor.run` \u2014 `asyncio.CancelledError` inherits from `BaseException`, not `Exception`, so when `Scheduler.cancel()` cancelled a running task, the error propagated past the `except Exception` handler. The `finally` block released the worker slot but `registry.complete()` was never called, leaving the record stuck in `RUNNING`.\n\nChanges in <ref_file file=\"/workspace/src/work_queue/executor.py\" />:\n\n- Added an `except asyncio.CancelledError` clause that records `CANCELLED` via `registry.complete()` before re-raising, so the task still ends cancelled while the record reaches a terminal state.\n- In the success branch, check `cancel_requested`: if the work function suppresses the cancellation and returns a value, the asyncio task still finishes as cancelled \u2014 recording `CANCELLED` keeps the registry consistent with the task's actual outcome instead of reporting `SUCCEEDED`.\n\nVerified end-to-end:\n- Cancelling a running job \u2192 record `CANCELLED`, worker slot released, queued job drains and completes (the provided test now passes).\n- Cancelling a queued job \u2192 `CANCELLED`; queued work drains normally.\n- Success \u2192 `SUCCEEDED` with result; failure \u2192 `FAILED` with error \u2014 both unchanged.\n- Edge cases checked: work suppressing `CancelledError` and returning, and `active_count` returning to 0.",
+      "metrics": {
+        "cached_tokens": 31360,
+        "completion_tokens": 314,
+        "prompt_tokens": 31547
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 17,
+      "timestamp": "2026-09-16T03:34:58.220259090+00:00"
+    }
+  ]
+}

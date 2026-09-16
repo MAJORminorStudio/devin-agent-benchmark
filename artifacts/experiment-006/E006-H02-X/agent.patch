@@ -1,0 +1,73 @@
+--- a/src/work_queue/engine.py
++++ b/src/work_queue/engine.py
+@@ -14,7 +14,7 @@
+         self._attempt_tasks = {}
+ 
+     def start(self, name, worker, retries=1):
+-        if name in self._records and self._records[name].state in (JobState.RUNNING, JobState.RETRY_WAIT):
++        if name in self._records and self._records[name].state in (JobState.QUEUED, JobState.RUNNING, JobState.RETRY_WAIT):
+             raise ValueError("job is already active")
+         record = JobRecord(name)
+         self._records[name] = record
+@@ -35,8 +35,7 @@
+         while True:
+             attempt = record.attempt + 1
+             task = asyncio.create_task(self._attempt(record, worker, attempt))
+-            if attempt == 1:
+-                self._attempt_tasks[record.name] = task
++            self._attempt_tasks[record.name] = task
+             try:
+                 record.result = await task
+             except RetryableError as error:
+@@ -46,7 +45,12 @@
+                     return
+                 record.retries += 1
+                 record.state = JobState.RETRY_WAIT
+-                await self.retry_gate.wait()
++                try:
++                    await self.retry_gate.wait()
++                except asyncio.CancelledError as error:
++                    record.error = error
++                    record.state = JobState.CANCELLED
++                    return
+                 self.retry_gate.clear()
+                 continue
+             except asyncio.CancelledError as error:
+@@ -63,20 +67,29 @@
+ 
+     async def cancel(self, name):
+         record = self._records[name]
+-        task = self._attempt_tasks.get(name)
+         supervisor = self._supervisors.get(name)
+         if supervisor is None or supervisor.done():
+             return
+-        if task is None or task.done():
+-            # The supervisor owns the current attempt, but this branch is
+-            # intentionally reached when the attempt handle is stale.
+-            return
+-        task.cancel()
+-        await supervisor
++        # The supervisor owns the current attempt: cancelling it forwards the
++        # cancellation to whatever it is awaiting, either the live attempt
++        # task or the retry gate.
++        supervisor.cancel()
++        try:
++            await supervisor
++        except asyncio.CancelledError as error:
++            if not supervisor.cancelled():
++                raise
++            if record.state == JobState.QUEUED:
++                record.error = error
++                record.state = JobState.CANCELLED
+ 
+     async def wait(self, name):
+         supervisor = self._supervisors[name]
+-        await supervisor
++        try:
++            await supervisor
++        except asyncio.CancelledError:
++            if not supervisor.cancelled():
++                raise
+         return self._records[name]
+ 
+     def record(self, name):

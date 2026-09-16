@@ -1,0 +1,25 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 245632,
+    "total_completion_tokens": 15456,
+    "total_prompt_tokens": 251033,
+    "total_steps": 17
+  },
+  "first_observable_timestamp": "2026-09-16T03:29:18.232546585+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T03:34:58.220259090+00:00",
+  "model": "swe-2-max",
+  "observable_steps": 11,
+  "patch_sha256": "5c551c21d5e2b579effb7f2154a507e6c19013301487e9ba3a6d08df83c2d41e",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "leeward-primula",
+  "steps": 17,
+  "tool_calls": 16,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 6,
+    "read": 9
+  }
+}

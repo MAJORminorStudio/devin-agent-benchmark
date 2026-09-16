@@ -1,0 +1,15 @@
+{
+  "changed_files": [
+    "src/profile_runtime/cache.py"
+  ],
+  "generated_or_environment_files": [
+    "src/profile_runtime/__pycache__/cache.cpython-38.pyc"
+  ],
+  "line_counts": {
+    "additions": 2,
+    "deletions": 2
+  },
+  "patch_byte_length": 446,
+  "patch_sha256": "e12ede1084fc1184b63ec727ff2c7e109517fa8841f13f5e84b516741eba3328",
+  "reference_match": true
+}

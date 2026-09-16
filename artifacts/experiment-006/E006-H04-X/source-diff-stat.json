@@ -1,0 +1,17 @@
+{
+  "changed_files": [
+    "src/account_ledger/events.py",
+    "src/account_ledger/service.py"
+  ],
+  "generated_or_environment_files": [
+    "src/account_ledger/__pycache__/events.cpython-38.pyc",
+    "src/account_ledger/__pycache__/service.cpython-38.pyc"
+  ],
+  "line_counts": {
+    "additions": 8,
+    "deletions": 3
+  },
+  "patch_byte_length": 1275,
+  "patch_sha256": "8a3859b5f890aa86cbd8835051ddc61c58684d7ec445128523f56ab2dadd1f2b",
+  "reference_match": false
+}

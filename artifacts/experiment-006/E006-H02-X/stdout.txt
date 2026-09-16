@@ -1,0 +1,24 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace structure.Now let me look at the test and check the Python version.The bug is confirmed: `self._attempt_tasks[record.name]` is only stored for attempt 1, so `cancel()` sees a stale, already-done task handle and returns early — the running attempt 2 is never cancelled (job reports SUCCEEDED instead of CANCELLED).
+
+Two more lifecycle gaps I found:
+- **RETRY_WAIT cancellation**: even with a fresh handle, `cancel()` early-returns whenever the stored attempt task is done — i.e., during the retry-gate wait — so a "cancelled" job would still start its next attempt.
+- **Queued jobs**: a supervisor cancelled before its first step would leave the record stuck in `QUEUED` (never reaches a terminal state).
+
+The cleanest repair: keep `_attempt_tasks` pointing at the current attempt, route `cancel()` through the supervisor task (asyncio propagates the cancellation to whatever the supervisor is currently awaiting — the live attempt task or the retry gate), and handle `CancelledError` at the gate wait so the record lands on `CANCELLED`.Now let me run the test suite and also exercise the other lifecycle paths (retry-wait cancel, pre-start cancel, success/failure) with a quick ad-hoc check.The provided test passes. Now let me exercise the other lifecycle paths with an ad-hoc verification script to make sure nothing regressed.All lifecycle paths verified. Let me review the final file and run the official suite once more.Fixed. The suite passes. Here's a summary of the repair in `src/work_queue/engine.py`:
+
+**Root cause** — `self._attempt_tasks[record.name]` was only assigned when `attempt == 1`, so after a retry the handle pointed at the finished first-attempt task. `cancel()` saw `task.done()` and returned early, leaving the live attempt running (job reported SUCCEEDED, permit still held).
+
+**Changes**
+
+- `_supervise`: `_attempt_tasks[record.name] = task` now updates on every attempt, so the recorded handle always owns the current attempt.
+- `cancel`: instead of touching the attempt handle directly, it now cancels the **supervisor** task. asyncio forwards that cancellation to whatever the supervisor is currently awaiting — the live attempt task (permit released via `_attempt`'s `finally`, `await task` raises → `CANCELLED`) or the retry-gate future.
+- `_supervise` retry path: `await self.retry_gate.wait()` is wrapped so a cancellation during `RETRY_WAIT` records `CANCELLED` and returns instead of leaking out or letting a new attempt start later.
+- `cancel`/`wait`: guard `await supervisor` — a supervisor cancelled before its first step ends as a cancelled task (coroutine never ran), so the record's `QUEUED` state is corrected to `CANCELLED`; a genuine cancellation of the *caller* is still re-raised (`supervisor.cancelled()` discriminates).
+- `start`: the "already active" guard now includes `QUEUED`, so a second `start()` can't orphan a pending supervisor.
+
+**Verified** (via ad-hoc scenarios in addition to the suite): success, permanent failure, retries exhausted → `FAILED`, retry-then-success, cancel on attempt 1 / later attempt / during retry-wait / before first step, permit released in every path (`pool.available == 1`), pool-full → `FAILED`, restart after terminal state, and cancel on a terminal job as a no-op.

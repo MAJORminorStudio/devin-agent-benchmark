@@ -1,0 +1,12 @@
+--- a/src/line_protocol/transactions.py
++++ b/src/line_protocol/transactions.py
+@@ -15,8 +15,7 @@
+
+     def _consume(self, line: str) -> list[dict[str, object]]:
+         if line.startswith("BEGIN "):
+-            if self._current is None:
+-                self._current = {"id": line[6:], "fields": {}}
++            self._current = {"id": line[6:], "fields": {}}
+             return []
+         if line.startswith("FIELD ") and self._current is not None:
+             key, separator, value = line[6:].partition("=")

@@ -1,0 +1,20 @@
+--- a/src/wire_relay/framing.py
++++ b/src/wire_relay/framing.py
+@@ -29,7 +29,7 @@
+             length = struct.unpack("!I", self._buffer[:4])[0]
+             if length > self.MAX_BODY:
+                 del self._buffer[:4]
+-                events.append(ProtocolError("frame-too-large", 0))
++                events.append(ProtocolError("frame-too-large", self.HEADER))
+                 continue
+             if len(self._buffer) < self.HEADER + length:
+                 break
+@@ -38,7 +38,7 @@
+             try:
+                 payload = json.loads(raw.decode("utf-8"))
+             except (UnicodeDecodeError, ValueError):
+-                events.append(ProtocolError("invalid-payload", 0))
++                events.append(ProtocolError("invalid-payload", self.HEADER + length))
+             else:
+                 events.append(Frame(payload, self.HEADER + length))
+         return events

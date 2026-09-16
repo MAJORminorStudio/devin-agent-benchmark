@@ -1,0 +1,15 @@
+{
+  "changed_files": [
+    "src/work_queue/engine.py"
+  ],
+  "generated_or_environment_files": [
+    "src/work_queue/__pycache__/engine.cpython-38.pyc"
+  ],
+  "line_counts": {
+    "additions": 16,
+    "deletions": 8
+  },
+  "patch_byte_length": 1775,
+  "patch_sha256": "34989366674b97c5c698d09f135d60474475c1dd3bd3a968ac959188f2eae725",
+  "reference_match": false
+}

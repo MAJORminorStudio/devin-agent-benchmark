@@ -1,0 +1,30 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 5257216,
+    "total_completion_tokens": 52839,
+    "total_prompt_tokens": 5341349,
+    "total_steps": 81
+  },
+  "first_observable_timestamp": "2026-09-16T03:36:07.668308469+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T03:50:50.702325545+00:00",
+  "model": "swe-2-max",
+  "observable_steps": 75,
+  "patch_sha256": "7d8b18e8c67ca572b8931b43527ac65ba83bb794970603d37be256be85ffbbf4",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "possible-bromine",
+  "steps": 81,
+  "tool_calls": 101,
+  "tool_calls_by_function": {
+    "edit": 23,
+    "exec": 40,
+    "grep": 2,
+    "read": 17,
+    "todo_write": 2,
+    "web_search": 11,
+    "webfetch": 5,
+    "write": 1
+  }
+}

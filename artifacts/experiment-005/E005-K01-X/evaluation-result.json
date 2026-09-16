@@ -1,0 +1,82 @@
+{
+  "case_id": "E005-K01",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-005",
+  "failure_summary": null,
+  "heldout": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-K01",
+          "-p",
+          "test_behavior.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.185,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "patch": {
+    "additions": 144,
+    "changed_files": [
+      "fastapi/applications.py",
+      "fastapi/encoders.py",
+      "fastapi/openapi/utils.py",
+      "fastapi/routing.py"
+    ],
+    "deletions": 15,
+    "sha256": "7d8b18e8c67ca572b8931b43527ac65ba83bb794970603d37be256be85ffbbf4"
+  },
+  "public": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "pytest",
+          "tests/test_jsonable_encoder.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.905,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "regression": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-K01",
+          "-p",
+          "test_regression.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.096,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "run_id": "E005-K01-X",
+  "schema_version": 1,
+  "task_success": true
+}

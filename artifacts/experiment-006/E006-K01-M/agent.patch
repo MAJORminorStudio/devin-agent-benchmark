@@ -1,0 +1,271 @@
+--- a/black.py
++++ b/black.py
+@@ -136,19 +136,28 @@
+     NUMERIC_UNDERSCORES = 3
+     TRAILING_COMMA_IN_CALL = 4
+     TRAILING_COMMA_IN_DEF = 5
++    # The following two feature-flags are mutually exclusive, and exactly one can
++    # be set for a given version.
++    ASYNC_IDENTIFIERS = 6
++    ASYNC_KEYWORDS = 7
+ 
+ 
+ VERSION_TO_FEATURES: Dict[TargetVersion, Set[Feature]] = {
+     TargetVersion.PY27: set(),
+-    TargetVersion.PY33: {Feature.UNICODE_LITERALS},
+-    TargetVersion.PY34: {Feature.UNICODE_LITERALS},
+-    TargetVersion.PY35: {Feature.UNICODE_LITERALS, Feature.TRAILING_COMMA_IN_CALL},
++    TargetVersion.PY33: {Feature.UNICODE_LITERALS, Feature.ASYNC_IDENTIFIERS},
++    TargetVersion.PY34: {Feature.UNICODE_LITERALS, Feature.ASYNC_IDENTIFIERS},
++    TargetVersion.PY35: {
++        Feature.UNICODE_LITERALS,
++        Feature.TRAILING_COMMA_IN_CALL,
++        Feature.ASYNC_IDENTIFIERS,
++    },
+     TargetVersion.PY36: {
+         Feature.UNICODE_LITERALS,
+         Feature.F_STRINGS,
+         Feature.NUMERIC_UNDERSCORES,
+         Feature.TRAILING_COMMA_IN_CALL,
+         Feature.TRAILING_COMMA_IN_DEF,
++        Feature.ASYNC_IDENTIFIERS,
+     },
+     TargetVersion.PY37: {
+         Feature.UNICODE_LITERALS,
+@@ -156,6 +165,7 @@
+         Feature.NUMERIC_UNDERSCORES,
+         Feature.TRAILING_COMMA_IN_CALL,
+         Feature.TRAILING_COMMA_IN_DEF,
++        Feature.ASYNC_KEYWORDS,
+     },
+     TargetVersion.PY38: {
+         Feature.UNICODE_LITERALS,
+@@ -163,6 +173,7 @@
+         Feature.NUMERIC_UNDERSCORES,
+         Feature.TRAILING_COMMA_IN_CALL,
+         Feature.TRAILING_COMMA_IN_DEF,
++        Feature.ASYNC_KEYWORDS,
+     },
+ }
+ 
+@@ -752,16 +763,32 @@
+     if not target_versions:
+         # No target_version specified, so try all grammars.
+         return [
++            # Python 3.7+
++            pygram.python_grammar_no_print_statement_no_exec_statement_async_keywords,
++            # Python 3.0-3.6
+             pygram.python_grammar_no_print_statement_no_exec_statement,
++            # Python 2.7 with future print_function
+             pygram.python_grammar_no_print_statement,
++            # Python 2.7
+             pygram.python_grammar,
+         ]
+     elif all(version.is_python2() for version in target_versions):
+         # Python 2-only code, so try Python 2 grammars.
+         return [pygram.python_grammar_no_print_statement, pygram.python_grammar]
++    elif supports_feature(target_versions, Feature.ASYNC_IDENTIFIERS):
++        # Python 3.0-3.6
++        return [pygram.python_grammar_no_print_statement_no_exec_statement]
++    elif supports_feature(target_versions, Feature.ASYNC_KEYWORDS):
++        # Python 3.7+
++        return [
++            pygram.python_grammar_no_print_statement_no_exec_statement_async_keywords
++        ]
+     else:
+-        # Python 3-compatible code, so only try Python 3 grammar.
+-        return [pygram.python_grammar_no_print_statement_no_exec_statement]
++        # The target versions must straddle Python 3.6 and Python 3.7.
++        return [
++            pygram.python_grammar_no_print_statement_no_exec_statement_async_keywords,
++            pygram.python_grammar_no_print_statement_no_exec_statement,
++        ]
+ 
+ 
+ def lib2to3_parse(src_txt: str, target_versions: Iterable[TargetVersion] = ()) -> Node:
+--- a/blib2to3/pgen2/driver.py
++++ b/blib2to3/pgen2/driver.py
+@@ -97,7 +97,7 @@
+ 
+     def parse_stream_raw(self, stream, debug=False):
+         """Parse a stream and return the syntax tree."""
+-        tokens = tokenize.generate_tokens(stream.readline)
++        tokens = tokenize.generate_tokens(stream.readline, self.grammar)
+         return self.parse_tokens(tokens, debug)
+ 
+     def parse_stream(self, stream, debug=False):
+@@ -111,7 +111,7 @@
+ 
+     def parse_string(self, text, debug=False):
+         """Parse a string and return the syntax tree."""
+-        tokens = tokenize.generate_tokens(io.StringIO(text).readline)
++        tokens = tokenize.generate_tokens(io.StringIO(text).readline, self.grammar)
+         return self.parse_tokens(tokens, debug)
+ 
+     def _partially_consume_prefix(self, prefix, column):
+--- a/blib2to3/pgen2/grammar.py
++++ b/blib2to3/pgen2/grammar.py
+@@ -85,6 +85,7 @@
+         self.tokens = {}
+         self.symbol2label = {}
+         self.start = 256
++        self.async_keywords = False
+ 
+     def dump(self, filename):
+         """Dump the grammar tables to a pickle file."""
+@@ -113,6 +114,7 @@
+         new.labels = self.labels[:]
+         new.states = self.states[:]
+         new.start = self.start
++        new.async_keywords = self.async_keywords
+         return new
+ 
+     def report(self):
+--- a/blib2to3/pgen2/grammar.pyi
++++ b/blib2to3/pgen2/grammar.pyi
+@@ -19,6 +19,7 @@
+     tokens: Dict[int, int]
+     symbol2label: Dict[Text, int]
+     start: int
++    async_keywords: bool
+     def __init__(self) -> None: ...
+     def dump(self, filename: _Path) -> None: ...
+     def load(self, filename: _Path) -> None: ...
+--- a/blib2to3/pgen2/tokenize.py
++++ b/blib2to3/pgen2/tokenize.py
+@@ -334,7 +334,7 @@
+     ut = Untokenizer()
+     return ut.untokenize(iterable)
+ 
+-def generate_tokens(readline):
++def generate_tokens(readline, grammar=None):
+     """
+     The generate_tokens() generator requires one argument, readline, which
+     must be a callable object which provides the same interface as the
+@@ -361,6 +361,7 @@
+     async_def = False
+     async_def_indent = 0
+     async_def_nl = False
++    async_keywords = grammar is not None and grammar.async_keywords
+ 
+     while 1:                                   # loop over lines in stream
+         try:
+@@ -506,7 +507,7 @@
+                         yield (STRING, token, spos, epos, line)
+                 elif initial.isidentifier():               # ordinary name
+                     if token in ('async', 'await'):
+-                        if async_def:
++                        if async_def or async_keywords:
+                             yield (ASYNC if token == 'async' else AWAIT,
+                                    token, spos, epos, line)
+                             continue
+@@ -516,14 +517,13 @@
+                         stashed = tok
+                         continue
+ 
+-                    if token in ('def', 'for'):
++                    if token == 'def':
+                         if (stashed
+                                 and stashed[0] == NAME
+                                 and stashed[1] == 'async'):
+ 
+-                            if token == 'def':
+-                                async_def = True
+-                                async_def_indent = indents[-1]
++                            async_def = True
++                            async_def_indent = indents[-1]
+ 
+                             yield (ASYNC, stashed[1],
+                                    stashed[2], stashed[3],
+--- a/blib2to3/pgen2/tokenize.pyi
++++ b/blib2to3/pgen2/tokenize.pyi
+@@ -1,7 +1,8 @@
+ # Stubs for lib2to3.pgen2.tokenize (Python 3.6)
+ # NOTE: Only elements from __all__ are present.
+ 
+-from typing import Callable, Iterable, Iterator, List, Text, Tuple
++from typing import Callable, Iterable, Iterator, List, Optional, Text, Tuple
++from blib2to3.pgen2.grammar import Grammar
+ from blib2to3.pgen2.token import *  # noqa
+ 
+ 
+@@ -26,5 +27,5 @@
+ 
+ def untokenize(iterable: Iterable[_TokenInfo]) -> Text: ...
+ def generate_tokens(
+-    readline: Callable[[], Text]
++    readline: Callable[[], Text], grammar: Optional[Grammar] = ...
+ ) -> Iterator[_TokenInfo]: ...
+--- a/blib2to3/pygram.py
++++ b/blib2to3/pygram.py
+@@ -33,6 +33,7 @@
+     global python_grammar
+     global python_grammar_no_print_statement
+     global python_grammar_no_print_statement_no_exec_statement
++    global python_grammar_no_print_statement_no_exec_statement_async_keywords
+     global python_symbols
+     global pattern_grammar
+     global pattern_symbols
+@@ -52,6 +53,12 @@
+     del python_grammar_no_print_statement_no_exec_statement.keywords["print"]
+     del python_grammar_no_print_statement_no_exec_statement.keywords["exec"]
+ 
++    # Python 3.7+
++    python_grammar_no_print_statement_no_exec_statement_async_keywords = (
++        python_grammar_no_print_statement_no_exec_statement.copy()
++    )
++    python_grammar_no_print_statement_no_exec_statement_async_keywords.async_keywords = True
++
+     pattern_grammar = driver.load_packaged_grammar("blib2to3", _PATTERN_GRAMMAR_FILE,
+                                                    cache_dir)
+     pattern_symbols = Symbols(pattern_grammar)
+--- a/blib2to3/pygram.pyi
++++ b/blib2to3/pygram.pyi
+@@ -118,6 +118,7 @@
+ python_grammar: Grammar
+ python_grammar_no_print_statement: Grammar
+ python_grammar_no_print_statement_no_exec_statement: Grammar
++python_grammar_no_print_statement_no_exec_statement_async_keywords: Grammar
+ python_grammar_no_exec_statement: Grammar
+ pattern_grammar: Grammar
+ 
+--- a/tests/data/async_as_identifier.py
++++ b/tests/data/async_as_identifier.py
+@@ -21,6 +21,7 @@
+ 
+ async def async_fn():
+     await async_fn()
++
+ 
+ # output
+ def async():
+--- a/tests/data/python37.py
++++ b/tests/data/python37.py
+@@ -1,10 +1,16 @@
+ #!/usr/bin/env python3.7
+ 
++
+ def f():
+-    return (i*2 async for i in arange(42))
++    return (i * 2 async for i in arange(42))
++
+ 
+ def g():
+-    return (something_long * something_long async for something_long in async_generator(with_an_argument))
++    return (
++        something_long * something_long
++        async for something_long in async_generator(with_an_argument)
++    )
++
+ 
+ async def func():
+     if test:
+@@ -14,6 +20,8 @@
+                 self.async_inc, arange(8), batch_size=3
+             )
+         ]
++
++
+ # output
+ 
+ 

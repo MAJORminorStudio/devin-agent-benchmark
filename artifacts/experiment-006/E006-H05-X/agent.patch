@@ -1,0 +1,17 @@
+--- a/src/profile_runtime/cache.py
++++ b/src/profile_runtime/cache.py
+@@ -3,10 +3,12 @@
+         self._items = {}
+ 
+     def get(self, name, mode, version):
+-        return self._items.get(name)
++        return self._items.get((name, mode, version))
+ 
+     def put(self, name, mode, version, payload):
+-        self._items[name] = payload
++        for key in [k for k in self._items if k[0] == name and k[1] == mode and k[2] != version]:
++            del self._items[key]
++        self._items[(name, mode, version)] = payload
+ 
+     def clear(self):
+         self._items.clear()

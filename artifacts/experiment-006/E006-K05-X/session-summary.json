@@ -1,0 +1,22 @@
+{
+  "final_metrics": {
+    "cached": 3884714,
+    "completion": 49444,
+    "prompt": 4002470
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "rapid-mandible",
+  "steps": 73,
+  "tool_calls": 70,
+  "tool_calls_by_function": {
+    "edit": 4,
+    "exec": 26,
+    "read": 10,
+    "web_search": 19,
+    "webfetch": 11
+  }
+}

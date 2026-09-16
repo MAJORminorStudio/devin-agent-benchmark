@@ -1,0 +1,21 @@
+--- a/luigi/scheduler.py
++++ b/luigi/scheduler.py
+@@ -98,6 +98,8 @@
+     prune_done_tasks = parameter.BoolParameter(default=False)
+
+     record_task_history = parameter.BoolParameter(default=False)
++
++    prune_on_get_work = parameter.BoolParameter(default=False)
+
+     visualization_graph = parameter.Parameter(default="svg", config_path=dict(section='scheduler', name='visualization-graph'))
+
+@@ -709,6 +711,9 @@
+
+         # TODO: remove tasks that can't be done, figure out if the worker has absolutely
+         # nothing it can wait for
++
++        if self._config.prune_on_get_work:
++            self.prune()
+
+         worker_id = kwargs['worker']
+         # Return remaining tasks that have no FAILED descendents

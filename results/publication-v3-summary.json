@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "publication_version": "3.0.0",
+  "experiment": "publication-v3",
+  "title": "Reasoning Effort Across Moderate and Hard Repair Tasks",
+  "repository": "MAJORminorStudio/devin-agent-benchmark",
+  "source_commit": "d93650114bd7ec668efac49a3a0a6dcde744827c",
+  "primary": {
+    "unique_bugs": 20,
+    "valid_runs": 40,
+    "conditions": {
+      "Medium": {
+        "runs": 20,
+        "successes": 17,
+        "success_rate": 0.85,
+        "public_passes": 19,
+        "held_out_passes": 17,
+        "regression_passes": 20,
+        "wall_seconds": {
+          "total": 4089.3198339600267,
+          "mean": 204.46599169800132,
+          "median": 117.8397592715337
+        },
+        "steps": {
+          "total": 560,
+          "mean": 28,
+          "median": 20.0
+        },
+        "tools": {
+          "total": 523,
+          "mean": 26.15,
+          "median": 15.5
+        },
+        "tokens": {
+          "prompt": 5092384,
+          "completion": 61073,
+          "cached": 4867948
+        },
+        "patch": {
+          "additions": 328,
+          "deletions": 56,
+          "source_files_changed": 29,
+          "workspace_churn_files": 109
+        }
+      },
+      "Max": {
+        "runs": 20,
+        "successes": 14,
+        "success_rate": 0.7,
+        "public_passes": 20,
+        "held_out_passes": 15,
+        "regression_passes": 19,
+        "wall_seconds": {
+          "total": 8678.673881165072,
+          "mean": 433.93369405825365,
+          "median": 363.13800000000003
+        },
+        "steps": {
+          "total": 743,
+          "mean": 37.15,
+          "median": 28.0
+        },
+        "tools": {
+          "total": 835,
+          "mean": 41.75,
+          "median": 28.5
+        },
+        "tokens": {
+          "prompt": 13097233,
+          "completion": 190983,
+          "cached": 12682296
+        },
+        "patch": {
+          "additions": 3488,
+          "deletions": 59,
+          "source_files_changed": 30,
+          "workspace_churn_files": 3248
+        }
+      }
+    },
+    "paired_outcomes": {
+      "both success": 13,
+      "Medium-only": 4,
+      "Max-only": 1,
+      "both fail": 2
+    }
+  },
+  "tiers": {
+    "moderate": {
+      "unique_cases": 10,
+      "runs": 20,
+      "conditions": {
+        "Medium": {
+          "runs": 10,
+          "successes": 10,
+          "success_rate": 1.0,
+          "public_passes": 10,
+          "held_out_passes": 10,
+          "regression_passes": 10,
+          "wall_seconds": {
+            "total": 2228.798234625944,
+            "mean": 222.8798234625944,
+            "median": 123.96559891702515
+          },
+          "steps": {
+            "total": 280,
+            "mean": 28,
+            "median": 20.0
+          },
+          "tools": {
+            "total": 230,
+            "mean": 23,
+            "median": 15.5
+          },
+          "tokens": {
+            "prompt": 4773353,
+            "completion": 58202,
+            "cached": 4557005
+          },
+          "patch": {
+            "additions": 145,
+            "deletions": 21,
+            "source_files_changed": 10,
+            "workspace_churn_files": 90
+          }
+        },
+        "Max": {
+          "runs": 10,
+          "successes": 8,
+          "success_rate": 0.8,
+          "public_passes": 10,
+          "held_out_passes": 8,
+          "regression_passes": 10,
+          "wall_seconds": {
+            "total": 4294.827295750002,
+            "mean": 429.48272957500023,
+            "median": 250.7784359794776
+          },
+          "steps": {
+            "total": 362,
+            "mean": 36.2,
+            "median": 28.0
+          },
+          "tools": {
+            "total": 437,
+            "mean": 43.7,
+            "median": 28.5
+          },
+          "tokens": {
+            "prompt": 12598295,
+            "completion": 185635,
+            "cached": 12200427
+          },
+          "patch": {
+            "additions": 3267,
+            "deletions": 17,
+            "source_files_changed": 10,
+            "workspace_churn_files": 3228
+          }
+        }
+      },
+      "paired_outcomes": {
+        "both success": 8,
+        "Medium-only": 2,
+        "Max-only": 0,
+        "both fail": 0
+      }
+    },
+    "hard": {
+      "unique_cases": 10,
+      "runs": 20,
+      "conditions": {
+        "Medium": {
+          "runs": 10,
+          "successes": 7,
+          "success_rate": 0.7,
+          "public_passes": 9,
+          "held_out_passes": 7,
+          "regression_passes": 10,
+          "wall_seconds": {
+            "total": 1860.5215993340826,
+            "mean": 186.05215993340826,
+            "median": 117.74408158351434
+          },
+          "steps": {
+            "total": 280,
+            "mean": 28,
+            "median": 18.0
+          },
+          "tools": {
+            "total": 293,
+            "mean": 29.3,
+            "median": 14.5
+          },
+          "tokens": {
+            "prompt": 319031,
+            "completion": 2871,
+            "cached": 310943
+          },
+          "patch": {
+            "additions": 183,
+            "deletions": 35,
+            "source_files_changed": 19,
+            "workspace_churn_files": 19
+          }
+        },
+        "Max": {
+          "runs": 10,
+          "successes": 6,
+          "success_rate": 0.6,
+          "public_passes": 10,
+          "held_out_passes": 7,
+          "regression_passes": 9,
+          "wall_seconds": {
+            "total": 4383.846585415071,
+            "mean": 438.38465854150706,
+            "median": 409.52627831249265
+          },
+          "steps": {
+            "total": 381,
+            "mean": 38.1,
+            "median": 31.5
+          },
+          "tools": {
+            "total": 398,
+            "mean": 39.8,
+            "median": 32.0
+          },
+          "tokens": {
+            "prompt": 498938,
+            "completion": 5348,
+            "cached": 481869
+          },
+          "patch": {
+            "additions": 221,
+            "deletions": 42,
+            "source_files_changed": 20,
+            "workspace_churn_files": 20
+          }
+        }
+      },
+      "paired_outcomes": {
+        "both success": 5,
+        "Medium-only": 2,
+        "Max-only": 1,
+        "both fail": 2
+      }
+    }
+  },
+  "supplemental": {
+    "experiment": "E003",
+    "unique_bugs": 5,
+    "Medium": "5/5",
+    "Max": "5/5",
+    "counted_in_primary_denominator": false
+  },
+  "methodological_provenance": {
+    "experiment": "E001",
+    "capability_evidence": false,
+    "note": "Noninteractive permission gating rejected required tool calls; preserved as harness methodology evidence."
+  },
+  "publication_paths": {
+    "report": "reports/devin-swe2-reasoning-effort-v3.md",
+    "summary": "results/publication-v3-summary.json",
+    "paired_csv": "results/publication-v3-paired-results.csv",
+    "runs_csv": "results/publication-v3-runs.csv",
+    "charts": [
+      "assets/charts-v3/v3-success-by-tier.png",
+      "assets/charts-v3/v3-historical-vs-withheld.png",
+      "assets/charts-v3/v3-paired-outcomes.png",
+      "assets/charts-v3/v3-mean-wall-time.png",
+      "assets/charts-v3/v3-token-use.png",
+      "assets/charts-v3/v3-paired-wall-time.png"
+    ]
+  },
+  "claims_discipline": {
+    "observed": [
+      "Moderate Medium 10/10 and Max 8/10",
+      "Hard Medium 7/10 and Max 6/10",
+      "Max used more observable hard-tier resources",
+      "Hard-tier pair outcomes were mixed"
+    ],
+    "not_established": [
+      "General superiority",
+      "Causality",
+      "Training-data absence or contamination explanation",
+      "Universal coding-agent behavior"
+    ]
+  }
+}

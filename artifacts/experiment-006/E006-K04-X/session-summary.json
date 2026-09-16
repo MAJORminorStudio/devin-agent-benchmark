@@ -1,0 +1,23 @@
+{
+  "final_metrics": {
+    "cached": 2511811,
+    "completion": 32090,
+    "prompt": 2575863
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "aback-toaster",
+  "steps": 67,
+  "tool_calls": 70,
+  "tool_calls_by_function": {
+    "edit": 3,
+    "exec": 39,
+    "grep": 1,
+    "read": 12,
+    "web_search": 6,
+    "webfetch": 9
+  }
+}

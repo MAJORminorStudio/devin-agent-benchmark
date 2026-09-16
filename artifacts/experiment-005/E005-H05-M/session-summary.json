@@ -1,0 +1,24 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 87616,
+    "total_completion_tokens": 1259,
+    "total_prompt_tokens": 93968,
+    "total_steps": 14
+  },
+  "first_observable_timestamp": "2026-09-16T03:00:22.512998879+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T03:00:38.661593928+00:00",
+  "model": "swe-2-medium",
+  "observable_steps": 8,
+  "patch_sha256": "276f452ced303b5b8329c08fcf625a77cc1d568112855785ed7a4d230bab9c7c",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "lean-conga",
+  "steps": 14,
+  "tool_calls": 7,
+  "tool_calls_by_function": {
+    "edit": 2,
+    "exec": 5
+  }
+}

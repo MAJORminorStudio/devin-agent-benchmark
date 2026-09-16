@@ -1,0 +1,75 @@
+{
+  "buggy_heldout_fails": true,
+  "buggy_regression_passes": true,
+  "case_id": "tornado-13",
+  "environment": {
+    "install": [],
+    "python": "3.9"
+  },
+  "fixed_heldout_passes": true,
+  "fixed_regression_passes": true,
+  "heldout_command": [
+    "python -m unittest -q test_heldout"
+  ],
+  "regression_commands": [
+    "python -m unittest -q tornado.test.httputil_test"
+  ],
+  "reproducible": true,
+  "sides": {
+    "buggy": {
+      "heldout": {
+        "commands": [
+          {
+            "command": "python -m unittest -q test_heldout",
+            "elapsed_seconds": 0.08,
+            "output": "======================================================================\nERROR: test_http10_bodyless_response_without_length_is_read (test_heldout.HTTP10ResponseBehaviorTest)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"results/runs/phase-1/tornado-13/verification/buggy/tornado/testing.py\", line 132, in __call__\n    result = self.orig_method(*args, **kwargs)\n  File \"results/runs/phase-1/tornado-13/verification/buggy/tornado/testing.py\", line 523, in post_coroutine\n    return self.io_loop.run_sync(\n  File \"results/runs/phase-1/tornado-13/verification/buggy/tornado/ioloop.py\", line 453, in run_sync\n    return future_cell[0].result()\n  File \"results/runs/phase-1/tornado-13/verification/buggy/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1014, in run\n    yielded = self.gen.throw(*exc_info)\n  File \"local-user/.local/share/uv/python/cpython-3.9-macos-aarch64-none/lib/python3.9/types.py\", line 217, in throw\n    return self.__wrapped.throw(tp, *rest)\n  File \"evaluation/experiment-001/tornado-13/test_heldout.py\", line 59, in test_http10_bodyless_response_without_length_is_read\n    yield connection.read_response(Delegate())\n  File \"results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1008, in run\n    value = future.result()\n  File \"results/runs/phase-1/tornado-13/verification/buggy/tornado/concurrent.py\", line 237, in result\n    raise_exc_info(self._exc_info)\n  File \"<string>\", line 3, in raise_exc_info\n  File \"results/runs/phase-1/tornado-13/verification/buggy/tornado/gen.py\", line 1017, in run\n    yielded = self.gen.send(value)\n  File \"results/runs/phase-1/tornado-13/verification/buggy/tornado/http1connection.py\", line 181, in _read_message\n    self._disconnect_on_finish = not self._can_keep_alive(\n  File \"results/runs/phase-1/tornado-13/verification/buggy/tornado/http1connection.py\", line 484, in _can_keep_alive\n    or start_line.method in (\"HEAD\", \"GET\")):\nAttributeError: 'ResponseStartLine' object has no attribute 'method'\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+            "returncode": 1,
+            "status": "fail"
+          }
+        ],
+        "overall": "fail"
+      },
+      "regression": {
+        "commands": [
+          {
+            "command": "python -m unittest -q tornado.test.httputil_test",
+            "elapsed_seconds": 0.078,
+            "output": "----------------------------------------------------------------------\nRan 30 tests in 0.001s\n\nOK\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "workspace": "results/runs/phase-1/tornado-13/verification/buggy"
+    },
+    "fixed": {
+      "heldout": {
+        "commands": [
+          {
+            "command": "python -m unittest -q test_heldout",
+            "elapsed_seconds": 0.078,
+            "output": "----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "regression": {
+        "commands": [
+          {
+            "command": "python -m unittest -q tornado.test.httputil_test",
+            "elapsed_seconds": 0.078,
+            "output": "----------------------------------------------------------------------\nRan 30 tests in 0.001s\n\nOK\n",
+            "returncode": 0,
+            "status": "pass"
+          }
+        ],
+        "overall": "pass"
+      },
+      "workspace": "results/runs/phase-1/tornado-13/verification/fixed"
+    }
+  },
+  "validated_at_utc": "2026-09-14T23:28:56Z"
+}

@@ -1,0 +1,25 @@
+--- a/src/wire_relay/framing.py
++++ b/src/wire_relay/framing.py
+@@ -53,7 +53,6 @@
+                     raise ValueError("payload must be an object")
+             except (UnicodeDecodeError, json.JSONDecodeError, ValueError):
+                 events.append(FrameError("invalid-payload"))
+-                self._buffer.clear()
+             else:
+                 events.append(Message(kind if kind is not None else 0, decoded))
+         return events
+--- a/src/wire_relay/session.py
++++ b/src/wire_relay/session.py
+@@ -27,10 +27,9 @@
+             if isinstance(event, FrameError):
+                 self.state = SessionState.RECOVERING
+                 self.responses.append({"kind": "error", "code": event.code})
+-            elif self.state is SessionState.READY:
++            else:
++                self.state = SessionState.READY
+                 self.responses.append(self._router.dispatch(event.payload))
+-            else:
+-                self.responses.append({"kind": "error", "code": "recovery-required"})
+         return self.responses[before:]
+
+     def close(self) -> None:

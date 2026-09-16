@@ -1,0 +1,75 @@
+{
+  "case_id": "E005-K05",
+  "condition": "X",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 39488,
+    "completion": 798,
+    "prompt": 39692,
+    "steps": 46,
+    "tool_calls": 45
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 3054,
+      "deleted_bytes": 3034
+    },
+    "changed_files": [
+      "thefuck/shells/bash.py",
+      "thefuck/shells/zsh.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 7,
+      "deletions": 6
+    },
+    "sha256": "825754981699d80ed227a8ea313afa1a64f14ed14edbb89f58c56c88762b5143",
+    "source_files_changed": [
+      "thefuck/shells/bash.py",
+      "thefuck/shells/zsh.py"
+    ],
+    "workspace_churn_files": 2
+  },
+  "prompt_sha256": "7bac542a7b45b312873d92bc002efd933e83ad58979553c44add2253660ec9f6",
+  "provenance": "historical-public",
+  "retries": 0,
+  "run_id": "E005-K05-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "potent-click",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T04:00:18.531338+00:00",
+    "started_at_utc": "2026-09-16T03:53:28.257554+00:00",
+    "wall_time_seconds": 410.32000599999446
+  }
+}

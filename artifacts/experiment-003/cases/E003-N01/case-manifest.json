@@ -1,0 +1,15 @@
+{
+  "case_id": "E003-N01",
+  "category": "filesystem/path semantics",
+  "commands": {
+    "heldout": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_behavior.py' -v",
+    "public": "PYTHONPATH=src python -m unittest discover -s tests -v",
+    "regression": "PYTHONPATH=src python -m unittest discover -s evaluator -p 'test_regression.py' -v"
+  },
+  "description": "Filesystem discovery must respect project boundaries when links point outside the root.",
+  "expected_fixed_behavior": "public, held-out, and regression tests pass on the fixed source tree",
+  "experiment_id": "experiment-003",
+  "project_name": "asset-indexer",
+  "release_note": "The source, tests, and reference patch were embargoed until all ten E003 runs closed.",
+  "schema_version": 1
+}

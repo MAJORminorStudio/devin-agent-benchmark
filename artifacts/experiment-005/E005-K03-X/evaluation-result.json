@@ -1,0 +1,93 @@
+{
+  "case_id": "E005-K03",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-005",
+  "failure_summary": null,
+  "heldout": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-K03",
+          "-p",
+          "test_behavior.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.061,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "patch": {
+    "additions": 16,
+    "changed_files": [
+      "tornado/ioloop.py",
+      "tornado/platform/asyncio.py"
+    ],
+    "deletions": 2,
+    "sha256": "3c66ec89962cc37f578bddbdff45740b725123e81d09727030d03f60fc7362d6"
+  },
+  "public": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "-q",
+          "tornado.test.asyncio_test.LeakTest.test_ioloop_close_leak"
+        ],
+        "elapsed_seconds": 0.167,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      },
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "-q",
+          "tornado.test.asyncio_test.LeakTest.test_asyncio_close_leak"
+        ],
+        "elapsed_seconds": 0.076,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "regression": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-K03",
+          "-p",
+          "test_regression.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.051,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "run_id": "E005-K03-X",
+  "schema_version": 1,
+  "task_success": true
+}

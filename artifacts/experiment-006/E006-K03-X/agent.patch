@@ -1,0 +1,20 @@
+--- a/black.py
++++ b/black.py
+@@ -903,6 +903,17 @@
+         ):
+             return NO
+ 
++        elif (
++            prevp.type == token.RIGHTSHIFT
++            and prevp.parent
++            and prevp.parent.type == syms.shift_expr
++            and prevp.prev_sibling
++            and prevp.prev_sibling.type == token.NAME
++            and prevp.prev_sibling.value == 'print'
++        ):
++            # Python 2 print chevron
++            return NO
++
+     elif prev.type in OPENING_BRACKETS:
+         return NO
+ 

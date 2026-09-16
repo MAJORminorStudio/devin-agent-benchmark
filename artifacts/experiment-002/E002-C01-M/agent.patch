@@ -1,0 +1,32 @@
+new file: __pycache__/black.cpython-311.pyc
+--- a/black.py
++++ b/black.py
+@@ -2945,7 +2945,16 @@
+     """
+     assert root.is_absolute(), f"INTERNAL ERROR: `root` must be absolute but is {root}"
+     for child in path.iterdir():
+-        normalized_path = "/" + child.resolve().relative_to(root).as_posix()
++        try:
++            normalized_path = "/" + child.resolve().relative_to(root).as_posix()
++        except ValueError:
++            if child.is_symlink():
++                report.path_ignored(
++                    child, f"is a symbolic link that points outside {root}"
++                )
++                continue
++
++            raise
+         if child.is_dir():
+             normalized_path += "/"
+         exclude_match = exclude.search(normalized_path)
+new file: blib2to3/__pycache__/__init__.cpython-311.pyc
+new file: blib2to3/__pycache__/pygram.cpython-311.pyc
+new file: blib2to3/__pycache__/pytree.cpython-311.pyc
+new file: blib2to3/pgen2/__pycache__/__init__.cpython-311.pyc
+new file: blib2to3/pgen2/__pycache__/driver.cpython-311.pyc
+new file: blib2to3/pgen2/__pycache__/grammar.cpython-311.pyc
+new file: blib2to3/pgen2/__pycache__/parse.cpython-311.pyc
+new file: blib2to3/pgen2/__pycache__/pgen.cpython-311.pyc
+new file: blib2to3/pgen2/__pycache__/token.cpython-311.pyc
+new file: blib2to3/pgen2/__pycache__/tokenize.cpython-311.pyc
+new file: tests/__pycache__/test_black.cpython-311.pyc

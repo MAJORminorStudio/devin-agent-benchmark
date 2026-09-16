@@ -1,0 +1,3 @@
+# Unified diff artifacts intentionally retain context-marker spaces.
+artifacts/experiment-004/**/*.patch whitespace=-blank-at-eol
+artifacts/experiment-004/**/*.stdout.txt whitespace=-blank-at-eol

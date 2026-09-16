@@ -1,0 +1,81 @@
+{
+  "case_id": "E005-K05",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-005",
+  "failure_summary": null,
+  "heldout": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-K05",
+          "-p",
+          "test_behavior.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.086,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "patch": {
+    "additions": 7,
+    "changed_files": [
+      "thefuck/shells/bash.py",
+      "thefuck/shells/zsh.py"
+    ],
+    "deletions": 6,
+    "sha256": "8768dcc885489b2cb270605ad2833378f0da5ba875ded0a35fd07b34b9e84b7f"
+  },
+  "public": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "pytest",
+          "tests/shells/test_bash.py::TestBash::test_app_alias_variables_correctly_set",
+          "tests/shells/test_zsh.py::TestZsh::test_app_alias_variables_correctly_set",
+          "-q"
+        ],
+        "elapsed_seconds": 1.479,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "regression": {
+    "commands": [
+      {
+        "command": [
+          "/private-evaluator/venv-py38/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "/private-evaluator/evaluation/E005-K05",
+          "-p",
+          "test_regression.py",
+          "-q"
+        ],
+        "elapsed_seconds": 0.076,
+        "returncode": 0,
+        "status": "pass",
+        "timed_out": false
+      }
+    ],
+    "overall": "pass"
+  },
+  "run_id": "E005-K05-M",
+  "schema_version": 1,
+  "task_success": true
+}

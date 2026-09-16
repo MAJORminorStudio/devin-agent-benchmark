@@ -1,0 +1,130 @@
+{
+  "case": {
+    "bug_id": "23",
+    "case_id": "black-23",
+    "project": "black"
+  },
+  "condition": "M",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_case_id": "E006-K03",
+  "experiment_id": "experiment-006",
+  "failure_forensics": null,
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "cpus": 4,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed_to_agent": false,
+    "evaluator_started_after_container_closed": true,
+    "fusion": "disabled",
+    "image": "devin-e006:3000.10.21-r7@sha256:7557a0bc640492d8f77f271ebafc6402733fa0ba843c344f74ab613b94416699",
+    "memory": "4g",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "pids_limit": 512,
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 45,
+    "tokens": {
+      "cached": 561408,
+      "completion": 8069,
+      "prompt": 788115
+    },
+    "tool_calls": 39,
+    "tool_calls_by_function": {
+      "edit": 2,
+      "exec": 28,
+      "read": 9
+    }
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "bytes": 715,
+    "files_changed": [
+      ".pytest_cache/.gitignore",
+      ".pytest_cache/README.md",
+      ".pytest_cache/v/cache/lastfailed",
+      ".pytest_cache/v/cache/nodeids",
+      ".pytest_cache/v/cache/stepwise",
+      "__pycache__/black.cpython-38.pyc",
+      "black.py",
+      "blib2to3/Grammar3.8.3.final.0.pickle",
+      "blib2to3/PatternGrammar3.8.3.final.0.pickle",
+      "blib2to3/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/__pycache__/pygram.cpython-38.pyc",
+      "blib2to3/__pycache__/pytree.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/driver.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/grammar.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/parse.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/pgen.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/token.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/tokenize.cpython-38.pyc",
+      "tests/__pycache__/test_black.cpython-38-PYTEST.pyc",
+      "tests/__pycache__/test_black.cpython-38.pyc"
+    ],
+    "generated_or_environment_files": [
+      ".pytest_cache/.gitignore",
+      ".pytest_cache/README.md",
+      ".pytest_cache/v/cache/lastfailed",
+      ".pytest_cache/v/cache/nodeids",
+      ".pytest_cache/v/cache/stepwise",
+      "__pycache__/black.cpython-38.pyc",
+      "blib2to3/Grammar3.8.3.final.0.pickle",
+      "blib2to3/PatternGrammar3.8.3.final.0.pickle",
+      "blib2to3/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/__pycache__/pygram.cpython-38.pyc",
+      "blib2to3/__pycache__/pytree.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/__init__.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/driver.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/grammar.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/parse.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/pgen.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/token.cpython-38.pyc",
+      "blib2to3/pgen2/__pycache__/tokenize.cpython-38.pyc",
+      "tests/__pycache__/test_black.cpython-38-PYTEST.pyc",
+      "tests/__pycache__/test_black.cpython-38.pyc"
+    ],
+    "lines_added": 12,
+    "lines_deleted": 0,
+    "sha256": "d5b1efa5b99fb6ef14331681d2f84373f8049b528bd9db2597e0999316e281c0",
+    "source_files_changed": [
+      "black.py"
+    ]
+  },
+  "prompt_sha256": "a4c4029243b3d1d5b4e93ecd542087c8b3d89781400a3192d4a853406a3cfd0a",
+  "provenance": "historical-public",
+  "retries": 0,
+  "run_id": "E006-K03-M",
+  "run_index": 1,
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, raw machine paths, and full workspaces are excluded.",
+  "session_id": "flannel-yard",
+  "termination": {
+    "reason": "completed",
+    "runner_returncode": 0,
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T16:06:49.480946+00:00",
+    "started_at_utc": "2026-09-16T15:23:30.166978+00:00",
+    "wall_time_seconds": 2599.3454131250037
+  },
+  "workspace_churn": {
+    "changed_files": 21,
+    "generated_or_environment_files": 20,
+    "source_files": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "case_id": "scrapy-3",
+  "heldout_test_files": ["test_heldout.py"],
+  "heldout_commands": ["pytest -q test_heldout.py"],
+  "heldout_test_count": 1,
+  "behavior_under_test": "A three-slash Location value is normalized as a protocol-relative redirect using the original request scheme and the redirect host, while a GET redirect remains a GET.",
+  "ground_truth_basis": "The resulting Request URL and method are externally observable downloader behavior. The evaluator uses HTTPS, different hosts, and a GET request rather than copying the historical HEAD case.",
+  "independence": "Independent evaluator test adapted from the documented redirect contract, with different request method, scheme, host, and path from the historical regression test.",
+  "regression_commands": [
+    "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_redirect_3xx_permanent",
+    "pytest -q tests/test_downloadermiddleware_redirect.py::RedirectMiddlewareTest::test_latin1_location"
+  ],
+  "environment": {
+    "python": "3.8",
+    "install": [
+      "Scrapy==2.1.0",
+      "pytest==5.4.2",
+      "six==1.15.0",
+      "testfixtures==6.14.1"
+    ]
+  },
+  "limitations": "No network access is used; only Scrapy request/response and middleware behavior are exercised."
+}

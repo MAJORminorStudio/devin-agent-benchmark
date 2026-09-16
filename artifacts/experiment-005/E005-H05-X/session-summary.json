@@ -1,0 +1,25 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 154857,
+    "total_completion_tokens": 7445,
+    "total_prompt_tokens": 168863,
+    "total_steps": 17
+  },
+  "first_observable_timestamp": "2026-09-16T02:08:50.375573378+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T02:11:34.795154635+00:00",
+  "model": "swe-2-max",
+  "observable_steps": 11,
+  "patch_sha256": "cb028b53a080c4008334667523c039807237a69e38158d15537548973538ce43",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "jumpy-pegasus",
+  "steps": 17,
+  "tool_calls": 19,
+  "tool_calls_by_function": {
+    "edit": 3,
+    "exec": 8,
+    "read": 8
+  }
+}

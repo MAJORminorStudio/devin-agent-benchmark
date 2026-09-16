@@ -1,0 +1,17 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as [redacted].
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace to understand the codebase.The bug is visible: `BuildGraph.dependents` returns only direct dependents, and `BuildPlanner.invalidate` only evicts the changed artifact plus direct dependents — transitive dependents (like `package` in a `source → object → package` chain) keep their stale cached plans. Let me reproduce it first.Reproduced. The invalidation path: `replace("source")` → `invalidate("source")` evicts `source` and `dependents("source")` = `("object",)` — but `dependents` only returns *direct* dependents, so `package`'s cached plan survives and is returned stale.
+
+Fix: walk dependents transitively, with a visited set since the graph can contain cycles (see `test_cycle_is_reported`).All 10 tests pass. 
+
+**Root cause:** `BuildGraph.dependents` only returns *direct* dependents, and `BuildPlanner.invalidate` evicted just the changed artifact plus those direct dependents. In a chain `source → object → package`, `replace("source")` evicted `source` and `object` but left `package`'s cached `BuildPlan` intact, so `plan("package")` returned the stale object.
+
+**Fix** in [planner.py:49-58](file:///workspace/src/buildgraph/planner.py): `invalidate` now walks the dependents relation transitively (iterative DFS), evicting every downstream cache entry. A `seen` set guards against infinite traversal since the graph permits cycles.
+
+**Verification:**
+- `test_plan_rebuilds_when_a_transitive_dependency_changes` now passes — `package`'s plan is rebuilt with fresh revisions.
+- `test_unrelated_target_keeps_its_cached_plan` still passes — unrelated cached plans survive, so invalidation stays precise rather than nuking the whole cache.
+- Full suite: 10/10 OK.

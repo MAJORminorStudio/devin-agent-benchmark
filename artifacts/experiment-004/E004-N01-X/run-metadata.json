@@ -1,0 +1,59 @@
+{
+  "case_id": "E004-N01",
+  "condition": "X",
+  "effort_level": "max",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-004",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "frozen_image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true,
+    "status": "OK"
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 16,
+    "tokens": {
+      "cached": 128576,
+      "completion": 2232,
+      "prompt": 133867
+    },
+    "tool_calls": 14
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "files_changed": 1,
+    "generated_or_environment_files": [],
+    "lines_added": 9,
+    "lines_deleted": 3,
+    "reference_patch_sha256": "2b15fc9326234eee0e62b199fd51800243d450675153684bdd07db41d230a5be",
+    "sha256": "94f610276c00cf556ba3bacc7d21934fdef325ff47e7529bf7e1ca9df138c0a3",
+    "source_files_changed": [
+      "src/buildgraph/planner.py"
+    ]
+  },
+  "prompt_sha256": "187b110ed83a0ae5d6425ac75b316b0d64bbb774b7581ab9ab0f852951c53e43",
+  "run_id": "E004-N01-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "fate-leek",
+  "termination_state": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-16T00:05:46.604056+00:00",
+    "started_at_utc": "2026-09-16T00:04:01.073752+00:00",
+    "wall_time_seconds": 105.5202006669715
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "final_metrics": {
+    "cached": 1200323,
+    "completion": 18313,
+    "prompt": 1252164
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "dull-smoke",
+  "steps": 40,
+  "tool_calls": 58,
+  "tool_calls_by_function": {
+    "edit": 17,
+    "exec": 10,
+    "grep": 9,
+    "read": 22
+  }
+}

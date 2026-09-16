@@ -1,0 +1,13 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The tests expect the env exports inside `$(...)` before `thefuck`, not outside the alias. Fixing both shells:No pytest/pip available — I'll verify by importing the modules directly and checking the generated alias strings.Fixed. The generated aliases now put all exports inside the command substitution, matching what the tests expect:
+
+- `thefuck/shells/bash.py` — now emits `alias fuck='TF_CMD=$(TF_ALIAS=fuck PYTHONIOENCODING=utf-8 TF_SHELL_ALIASES=$(alias) thefuck $(fc -ln -1)) && eval $TF_CMD'` (with `&& history -s $TF_CMD` when `alter_history` is set).
+- `thefuck/shells/zsh.py` — same structure with `fc -ln -1 | tail -n 1` and `print -s $TF_CMD`.
+
+Previously `TF_ALIAS` was exported before the `alias` builtin (bash) and `TF_CMD=$(thefuck ...)` ran `thefuck` without `TF_ALIAS`/`TF_SHELL_ALIASES` in its environment (zsh), so the correction command saw the wrong alias context.
+
+Verification: `pytest` isn't installed in this environment (no pip/pytest modules), so I couldn't run the test suite directly. Instead I loaded both modules with stubbed dependencies and confirmed the output strings satisfy every assertion in `test_app_alias` and `test_app_alias_variables_correctly_set` in `tests/shells/test_bash.py` and `tests/shells/test_zsh.py`, including the `alter_history` suffixes.

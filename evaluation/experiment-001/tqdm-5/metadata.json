@@ -1,0 +1,22 @@
+{
+  "case_id": "tqdm-5",
+  "heldout_test_files": ["test_heldout.py"],
+  "heldout_commands": ["pytest -q test_heldout.py"],
+  "heldout_test_count": 1,
+  "behavior_under_test": "A disabled progress wrapper still exposes the inferred total for a sized iterable and reports its length consistently.",
+  "ground_truth_basis": "The total and length are public observable state. The evaluator uses a fresh three-element iterable and an isolated output stream rather than the historical explicit-total boolean case.",
+  "independence": "Independent evaluator test covering the same disabled-initialization contract with a sized iterable and different assertions.",
+  "regression_commands": [
+    "pytest -q tqdm/tests/tests_tqdm.py::test_disable",
+    "pytest -q tqdm/tests/tests_tqdm.py::test_repr"
+  ],
+  "environment": {
+    "python": "3.8",
+    "install": [
+      "pytest==5.4.3",
+      "nose==1.3.7",
+      "six==1.15.0"
+    ]
+  },
+  "limitations": "The historical tqdm test support layer uses older pytest/nose compatibility behavior, so the evaluator pins those tools."
+}

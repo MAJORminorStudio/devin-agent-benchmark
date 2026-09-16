@@ -1,0 +1,22 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace structure.The bug is in `executor.py`: when a running job is cancelled, `asyncio.CancelledError` (a `BaseException`, not an `Exception`) propagates through `await job.work()`, skipping the `except Exception` handler. The `finally` block releases the worker slot, but `registry.complete()` is never called — so the record stays `RUNNING` forever.
+
+Let me confirm by running the test first:Confirmed — the record stays `RUNNING`. Now the fix in `executor.py`:
+
+1. Catch `asyncio.CancelledError` (which `except Exception` misses since it's a `BaseException`) and record `CANCELLED`.
+2. If `cancel_requested` is set but the work suppressed the cancellation and returned a value, the asyncio task still ends cancelled — so record `CANCELLED` rather than `SUCCEEDED` to keep the record consistent with the task's actual outcome.Test passes. Let me verify the other lifecycle paths (success, failure, queued cancel, suppressed-cancel edge case) with a quick sanity script:All lifecycle paths verified. Final state of the fix:Fixed. The bug was in `TaskExecutor.run` — `asyncio.CancelledError` inherits from `BaseException`, not `Exception`, so when `Scheduler.cancel()` cancelled a running task, the error propagated past the `except Exception` handler. The `finally` block released the worker slot but `registry.complete()` was never called, leaving the record stuck in `RUNNING`.
+
+Changes in [executor.py](file:///workspace/src/work_queue/executor.py):
+
+- Added an `except asyncio.CancelledError` clause that records `CANCELLED` via `registry.complete()` before re-raising, so the task still ends cancelled while the record reaches a terminal state.
+- In the success branch, check `cancel_requested`: if the work function suppresses the cancellation and returns a value, the asyncio task still finishes as cancelled — recording `CANCELLED` keeps the registry consistent with the task's actual outcome instead of reporting `SUCCEEDED`.
+
+Verified end-to-end:
+- Cancelling a running job → record `CANCELLED`, worker slot released, queued job drains and completes (the provided test now passes).
+- Cancelling a queued job → `CANCELLED`; queued work drains normally.
+- Success → `SUCCEEDED` with result; failure → `FAILED` with error — both unchanged.
+- Edge cases checked: work suppressing `CancelledError` and returning, and `active_count` returning to 0.

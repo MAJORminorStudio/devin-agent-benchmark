@@ -1,0 +1,29 @@
+{
+  "generated_or_environment_examples": [
+    ".pytest_cache/.gitignore",
+    ".pytest_cache/README.md",
+    ".pytest_cache/v/cache/lastfailed",
+    ".pytest_cache/v/cache/nodeids",
+    ".pytest_cache/v/cache/stepwise",
+    "pysnooper/__pycache__/__init__.cpython-38.pyc",
+    "pysnooper/__pycache__/pycompat.cpython-38.pyc",
+    "pysnooper/__pycache__/tracer.cpython-38.pyc",
+    "pysnooper/__pycache__/utils.cpython-38.pyc",
+    "pysnooper/__pycache__/variables.cpython-38.pyc",
+    "tests/__pycache__/__init__.cpython-38.pyc",
+    "tests/__pycache__/test_chinese.cpython-38-PYTEST.pyc",
+    "tests/__pycache__/test_pysnooper.cpython-38-PYTEST.pyc",
+    "tests/__pycache__/test_source_encoding_compat.cpython-38-PYTEST.pyc",
+    "tests/__pycache__/utils.cpython-38-PYTEST.pyc",
+    "tests/samples/__pycache__/__init__.cpython-38.pyc",
+    "tests/samples/__pycache__/exception.cpython-38.pyc",
+    "tests/samples/__pycache__/indentation.cpython-38.pyc",
+    "tests/samples/__pycache__/recursion.cpython-38.pyc"
+  ],
+  "generated_or_environment_files_count": 19,
+  "note": "Full workspaces and dependency environments are not published.",
+  "observed_changed_entry_count": 20,
+  "source_files": [
+    "pysnooper/tracer.py"
+  ]
+}

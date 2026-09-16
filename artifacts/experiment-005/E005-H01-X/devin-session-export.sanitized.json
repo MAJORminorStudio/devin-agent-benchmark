@@ -1,0 +1,370 @@
+{
+  "agent": {
+    "model_name": "SWE-2 Max",
+    "name": "devin",
+    "version": "3000.10.21"
+  },
+  "final_metrics": {
+    "total_cached_tokens": 136000,
+    "total_completion_tokens": 5405,
+    "total_prompt_tokens": 155321,
+    "total_steps": 16
+  },
+  "hidden_reasoning_omitted": true,
+  "schema_version": "ATIF-v1.7",
+  "session_id": "quiet-newt",
+  "steps": [
+    {
+      "message": "The plan builder can return stale content after a definition used indirectly by\na published plan changes. A direct consumer may appear correct while a deeper\nconsumer continues to publish the old result. Make the implementation preserve\nthe existing reuse behavior while ensuring published plans always reflect the\ncurrent definitions in their dependency chain.\n\nRun the available test suite with:\n\n    PYTHONPATH=src python -m unittest discover -s tests -v\n\nKeep the public API and the existing behavior for unrelated definitions,\ninvalid definitions, and dependency errors intact.",
+      "source": "user",
+      "step_id": 6,
+      "timestamp": "2026-09-16T03:26:29.071976965+00:00"
+    },
+    {
+      "message": "I'll start by exploring the workspace structure.",
+      "metrics": {
+        "cached_tokens": 10816,
+        "completion_tokens": 87,
+        "prompt_tokens": 11984
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 8,
+      "timestamp": "2026-09-16T03:26:29.617434424+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "find /workspace -type f -name \"*.py\" | head -50 && echo \"---\" && ls /workspace"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell cab61f:\n/workspace/tests/test_service.py\n/workspace/src/feature_plan/service.py\n/workspace/src/feature_plan/graph.py\n/workspace/src/feature_plan/cache.py\n/workspace/src/feature_plan/__init__.py\n/workspace/src/feature_plan/resolver.py\n---\nREADME.md\nTASK.md\npyproject.toml\nsrc\ntests\n\n\nExit code: 0",
+            "content_length": 324,
+            "content_sha256": "aa40905ccf8deb9402005b93b3e79aad92f89d7fb13ce2e6062fc047302d0269"
+          },
+          "tool_call_id": "exec:0#f43e2879b2434b089cc0f24947a5065c"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 12032,
+        "completion_tokens": 292,
+        "prompt_tokens": 12177
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 9,
+      "timestamp": "2026-09-16T03:26:30.758779341+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/TASK.md"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/TASK.md\" start_line=\"1\" end_line=\"12\" total_lines=\"12\">\n  1|The plan builder can return stale content after a definition used indirectly by\n  2|a published plan changes. A direct consumer may appear correct while a deeper\n  3|consumer continues to publish the old result. Make the implementation preserve\n  4|the existing reuse behavior while ensuring published plans always reflect the\n  5|current definitions in their dependency chain.\n  6|\n  7|Run the available test suite with:\n  8|\n  9|    PYTHONPATH=src python -m unittest discover -s tests -v\n 10|\n 11|Keep the public API and the existing behavior for unrelated definitions,\n 12|invalid definitions, and dependency errors intact.\n</file-view>",
+            "content_length": 727,
+            "content_sha256": "7e624556366b20e17a360297c4cca43d809c0b874d5b685f0a5d4ce5aa0018e4"
+          },
+          "tool_call_id": "read:1#c8d984cbf3154992ae90be8981be54ad"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/README.md"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/README.md\" start_line=\"1\" end_line=\"5\" total_lines=\"5\">\n  1|# Feature Plan\n  2|\n  3|Feature Plan builds named plans from reusable definitions. Definitions may\n  4|refer to other definitions, and the builder keeps recent plans available for\n  5|repeated publication.\n</file-view>",
+            "content_length": 306,
+            "content_sha256": "dcd3e555bec0e3d28f3b2aaa1cf49ff647f18b8e9e6370cfb26c1570d6f3f122"
+          },
+          "tool_call_id": "read:2#9900e4db735c468caa50a3ed9f3dd6a6"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/feature_plan/service.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/feature_plan/service.py\" start_line=\"1\" end_line=\"32\" total_lines=\"32\">\n  1|from __future__ import annotations\n  2|\n  3|from dataclasses import dataclass\n  4|\n  5|from .graph import DependencyGraph\n  6|from .resolver import PlanResolver\n  7|\n  8|\n  9|@dataclass(frozen=True)\n 10|class PublishedPlan:\n 11|    name: str\n 12|    content: str\n 13|\n 14|\n 15|class FeatureBuilder:\n 16|    def __init__(self, graph: DependencyGraph) -> None:\n 17|        self._graph = graph\n 18|        self._resolver = PlanResolver(graph)\n 19|        self._published: dict[str, tuple[int, PublishedPlan]] = {}\n 20|\n 21|    @property\n 22|    def resolver(self) -> PlanResolver:\n 23|        return self._resolver\n 24|\n 25|    def build(self, name: str) -> PublishedPlan:\n 26|        version = self._graph.version(name)\n 27|        previous = self._published.get(name)\n 28|        if previous is not None and previous[0] == version:\n 29|            return previous[1]\n 30|        plan = PublishedPlan(name, self._resolver.resolve(name))\n 31|        self._published[name] = (version, plan)\n 32|        return plan\n</file-view>",
+            "content_length": 1131,
+            "content_sha256": "5d9b743956be7cd01c102c9683b3a0b877833a87739fdf2cd56723e5c257f1ab"
+          },
+          "tool_call_id": "read:3#adf0432a696f479e809a4e330be00783"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/feature_plan/graph.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/feature_plan/graph.py\" start_line=\"1\" end_line=\"80\" total_lines=\"80\">\n  1|from __future__ import annotations\n  2|\n  3|from dataclasses import dataclass\n  4|\n  5|\n  6|class DependencyError(ValueError):\n  7|    pass\n  8|\n  9|\n 10|@dataclass(frozen=True)\n 11|class Definition:\n 12|    name: str\n 13|    dependencies: tuple[str, ...]\n 14|    template: str\n 15|\n 16|\n 17|class DependencyGraph:\n 18|    def __init__(self) -> None:\n 19|        self._definitions: dict[str, Definition] = {}\n 20|        self._versions: dict[str, int] = {}\n 21|\n 22|    def register(self, name: str, dependencies: list[str], template: str) -> None:\n 23|        if name in self._definitions:\n 24|            raise DependencyError(f\"definition already exists: {name}\")\n 25|        self._check_dependencies(name, dependencies)\n 26|        self._definitions[name] = Definition(name, tuple(dependencies), template)\n 27|        self._versions[name] = 1\n 28|\n 29|    def update(self, name: str, template: str, dependencies: list[str] | None = None) -> None:\n 30|        if name not in self._definitions:\n 31|            raise DependencyError(f\"unknown definition: {name}\")\n 32|        current = self._definitions[name]\n 33|        next_dependencies = current.dependencies if dependencies is None else tuple(dependencies)\n 34|        self._check_dependencies(name, list(next_dependencies))\n 35|        self._definitions[name] = Definition(name, next_dependencies, template)\n 36|        self._versions[name] += 1\n 37|\n 38|    def definition(self, name: str) -> Definition:\n 39|        try:\n 40|            return self._definitions[name]\n 41|        except KeyError as exc:\n 42|            raise DependencyError(f\"unknown definition: {name}\") from exc\n 43|\n 44|    def direct_dependencies(self, name: str) -> tuple[str, ...]:\n 45|        return self.definition(name).dependencies\n 46|\n 47|    def transitive_dependencies(self, name: str) -> set[str]:\n 48|        self.definition(name)\n 49|        found: set[str] = set()\n 50|        visiting: set[str] = set()\n 51|\n 52|        def visit(current: str) -> None:\n 53|            if current in visiting:\n 54|                raise DependencyError(f\"dependency cycle at {current}\")\n 55|            if current in found:\n 56|                return\n 57|            visiting.add(current)\n 58|            for dependency in self.direct_dependencies(current):\n 59|                visit(dependency)\n 60|            visiting.remove(current)\n 61|            found.add(current)\n 62|\n 63|        visit(name)\n 64|        found.remove(name)\n 65|        return found\n 66|\n 67|    def revisions_for(self, name: str) -> dict[str, int]:\n 68|        names = self.transitive_dependencies(name) | {name}\n 69|        return {item: self._versions[item] for item in names}\n 70|\n 71|    def version(self, name: str) -> int:\n 72|        self.definition(name)\n 73|        return self._versions[name]\n 74|\n 75|    def _check_dependencies(self, name: str, dependencies: list[str]) -> None:\n 76|        if name in dependencies:\n 77|            raise DependencyError(f\"self dependency: {name}\")\n 78|        missing = [item for item in dependencies if item not in self._definitions]\n 79|        if missing:\n 80|            raise DependencyError(f\"unknown dependencies: {', '.join(missing)}\")\n</file-view>",
+            "content_length": 3312,
+            "content_sha256": "7507432eaecf4b732f1764b5c90c6548daf7e65c48f771f55a6b80e0fd61a9af"
+          },
+          "tool_call_id": "read:4#1a09a962433042cf80f8858cb9b51069"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/feature_plan/cache.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/feature_plan/cache.py\" start_line=\"1\" end_line=\"30\" total_lines=\"30\">\n  1|from __future__ import annotations\n  2|\n  3|from dataclasses import dataclass\n  4|\n  5|\n  6|@dataclass(frozen=True)\n  7|class CacheEntry:\n  8|    value: str\n  9|    revisions: dict[str, int]\n 10|\n 11|\n 12|class PlanCache:\n 13|    def __init__(self) -> None:\n 14|        self._entries: dict[str, CacheEntry] = {}\n 15|        self.hits = 0\n 16|        self.misses = 0\n 17|\n 18|    def get(self, name: str, revisions: dict[str, int]) -> str | None:\n 19|        entry = self._entries.get(name)\n 20|        if entry is not None and entry.revisions == revisions:\n 21|            self.hits += 1\n 22|            return entry.value\n 23|        self.misses += 1\n 24|        return None\n 25|\n 26|    def put(self, name: str, value: str, revisions: dict[str, int]) -> None:\n 27|        self._entries[name] = CacheEntry(value, dict(revisions))\n 28|\n 29|    def clear(self) -> None:\n 30|        self._entries.clear()\n</file-view>",
+            "content_length": 1021,
+            "content_sha256": "430f82015a7f732c2e63d7138fe078c30555c05bb3ca5e7441986d4e60315d34"
+          },
+          "tool_call_id": "read:5#8ae325bb1895474e9a7de71b295a25f9"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/feature_plan/resolver.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/feature_plan/resolver.py\" start_line=\"1\" end_line=\"28\" total_lines=\"28\">\n  1|from __future__ import annotations\n  2|\n  3|from .cache import PlanCache\n  4|from .graph import DependencyGraph\n  5|\n  6|\n  7|class PlanResolver:\n  8|    def __init__(self, graph: DependencyGraph, cache: PlanCache | None = None) -> None:\n  9|        self._graph = graph\n 10|        self._cache = cache or PlanCache()\n 11|\n 12|    @property\n 13|    def cache(self) -> PlanCache:\n 14|        return self._cache\n 15|\n 16|    def resolve(self, name: str) -> str:\n 17|        revisions = {name: self._graph.version(name)}\n 18|        revisions.update(\n 19|            {dependency: self._graph.version(dependency) for dependency in self._graph.direct_dependencies(name)}\n 20|        )\n 21|        cached = self._cache.get(name, revisions)\n 22|        if cached is not None:\n 23|            return cached\n 24|        definition = self._graph.definition(name)\n 25|        values = {dependency: self.resolve(dependency) for dependency in definition.dependencies}\n 26|        value = definition.template.format(**values)\n 27|        self._cache.put(name, value, revisions)\n 28|        return value\n</file-view>",
+            "content_length": 1209,
+            "content_sha256": "6827b4467adf804010ccb90b00de7c5028567e57593158eb25301bc33485d62b"
+          },
+          "tool_call_id": "read:6#9438466c344341c8873acc1238f3b35e"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/feature_plan/__init__.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/feature_plan/__init__.py\" start_line=\"1\" end_line=\"4\" total_lines=\"4\">\n  1|from .graph import DependencyGraph\n  2|from .service import FeatureBuilder\n  3|\n  4|__all__ = [\"DependencyGraph\", \"FeatureBuilder\"]\n</file-view>",
+            "content_length": 251,
+            "content_sha256": "00c0565226f415e22c5bad512574a49e83125b5d716fb1531fd8a8a645a0e3a8"
+          },
+          "tool_call_id": "read:7#b93bd751e6dd483bbd0a5259ce1cfe79"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/tests/test_service.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/tests/test_service.py\" start_line=\"1\" end_line=\"21\" total_lines=\"21\">\n  1|import unittest\n  2|\n  3|from feature_plan import DependencyGraph, FeatureBuilder\n  4|\n  5|\n  6|class FeatureBuilderTests(unittest.TestCase):\n  7|    def test_published_plan_reflects_a_changed_leaf(self):\n  8|        graph = DependencyGraph()\n  9|        graph.register(\"leaf\", [], \"v1\")\n 10|        graph.register(\"service\", [\"leaf\"], \"service({leaf})\")\n 11|        graph.register(\"app\", [\"service\"], \"app[{service}]\")\n 12|        builder = FeatureBuilder(graph)\n 13|\n 14|        self.assertEqual(builder.build(\"app\").content, \"app[service(v1)]\")\n 15|        graph.update(\"leaf\", \"v2\")\n 16|\n 17|        self.assertEqual(builder.build(\"app\").content, \"app[service(v2)]\")\n 18|\n 19|\n 20|if __name__ == \"__main__\":\n 21|    unittest.main()\n</file-view>",
+            "content_length": 850,
+            "content_sha256": "8f022bf7270c1146760f0ae649c14fa3fc2d2a01d416ef5d4a3967e6a1589c6c"
+          },
+          "tool_call_id": "read:8#8668815a4bce4e04b0c8a588270075e3"
+        }
+      ]
+    },
+    {
+      "message": "I found the issue. Both reuse checks only track shallow revisions:\n\n- `FeatureBuilder.build` keys the published plan on `graph.version(name)` \u2014 the plan's own version only, ignoring dependency updates (`service.py:26-29`).\n- `PlanResolver.resolve` builds its cache key from `name` plus **direct** dependencies only, so a change two levels down never invalidates the entry (`resolver.py:17-20`).\n\nThe graph already exposes `revisions_for(name)`, which returns versions for `name` plus its full transitive dependency chain \u2014 clearly the intended fix. I'll wire both reuse checks to it.",
+      "metrics": {
+        "cached_tokens": 11584,
+        "completion_tokens": 2691,
+        "prompt_tokens": 15094
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 10,
+      "timestamp": "2026-09-16T03:26:33.369266634+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/src/feature_plan/service.py",
+            "new_string": "        self._published: dict[str, tuple[dict[str, int], PublishedPlan]] = {}",
+            "old_string": "        self._published: dict[str, tuple[int, PublishedPlan]] = {}"
+          },
+          "function_name": "edit",
+          "observation": {
+            "content": "The file /workspace/src/feature_plan/service.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:\n 15|class FeatureBuilder:\n 16|    def __init__(self, graph: DependencyGraph) -> None:\n 17|        self._graph = graph\n 18|        self._resolver = PlanResolver(graph)\n 19|        self._published: dict[str, tuple[dict[str, int], PublishedPlan]] = {}\n 20|\n 21|    @property\n 22|    def resolver(self) -> PlanResolver:\n 23|        return self._resolver",
+            "content_length": 486,
+            "content_sha256": "f564ad240692d77039ac530bcdadd3bd7dd81dcfc2e2b7234bcd0a7be6efec77"
+          },
+          "tool_call_id": "edit:9#09740574d3c7406ea510c929682f322e"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/feature_plan/service.py",
+            "new_string": "        revisions = self._graph.revisions_for(name)\n        previous = self._published.get(name)\n        if previous is not None and previous[0] == revisions:\n            return previous[1]\n        plan = PublishedPlan(name, self._resolver.resolve(name))\n        self._published[name] = (revisions, plan)\n        return plan",
+            "old_string": "        version = self._graph.version(name)\n        previous = self._published.get(name)\n        if previous is not None and previous[0] == version:\n            return previous[1]\n        plan = PublishedPlan(name, self._resolver.resolve(name))\n        self._published[name] = (version, plan)\n        return plan"
+          },
+          "function_name": "edit",
+          "observation": {
+            "content": "The file /workspace/src/feature_plan/service.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:\n 22|    def resolver(self) -> PlanResolver:\n 23|        return self._resolver\n 24|\n 25|    def build(self, name: str) -> PublishedPlan:\n 26|        revisions = self._graph.revisions_for(name)\n 27|        previous = self._published.get(name)\n 28|        if previous is not None and previous[0] == revisions:\n 29|            return previous[1]\n 30|        plan = PublishedPlan(name, self._resolver.resolve(name))\n 31|        self._published[name] = (revisions, plan)\n 32|        return plan",
+            "content_length": 625,
+            "content_sha256": "b465ccda348940e61ee949fae79ffc9bf24b655eb48a1d76beb5df025dce4d9a"
+          },
+          "tool_call_id": "edit:10#cbc231038ae54fe6afdcb7d942d838d9"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/feature_plan/resolver.py",
+            "new_string": "        revisions = self._graph.revisions_for(name)\n        cached = self._cache.get(name, revisions)",
+            "old_string": "        revisions = {name: self._graph.version(name)}\n        revisions.update(\n            {dependency: self._graph.version(dependency) for dependency in self._graph.direct_dependencies(name)}\n        )\n        cached = self._cache.get(name, revisions)"
+          },
+          "function_name": "edit",
+          "observation": {
+            "content": "The file /workspace/src/feature_plan/resolver.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:\n 13|    def cache(self) -> PlanCache:\n 14|        return self._cache\n 15|\n 16|    def resolve(self, name: str) -> str:\n 17|        revisions = self._graph.revisions_for(name)\n 18|        cached = self._cache.get(name, revisions)\n 19|        if cached is not None:\n 20|            return cached\n 21|        definition = self._graph.definition(name)\n 22|        values = {dependency: self.resolve(dependency) for dependency in definition.dependencies}",
+            "content_length": 587,
+            "content_sha256": "1295f6563f8d559f2b3d89c77a9a11f65b99768f3ce75d20fc492332009d0386"
+          },
+          "tool_call_id": "edit:11#10a55927103246409776f3580ae28ec7"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 17664,
+        "completion_tokens": 61,
+        "prompt_tokens": 18296
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 11,
+      "timestamp": "2026-09-16T03:27:22.132280545+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python -m unittest discover -s tests -v"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell d7dd1c:\nbash: line 1: python: command not found\n\n\nExit code: 127",
+            "content_length": 93,
+            "content_sha256": "72627b4652ed3d48f9fd0554d5d563001d209e914ff905c75f78444f7e60ab70"
+          },
+          "tool_call_id": "exec:12#cd0f1b2485cb405c98d16a40894b5e52"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 18240,
+        "completion_tokens": 62,
+        "prompt_tokens": 18418
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 12,
+      "timestamp": "2026-09-16T03:27:23.426858338+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python3 -m unittest discover -s tests -v"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 13657b:\ntest_published_plan_reflects_a_changed_leaf (test_service.FeatureBuilderTests.test_published_plan_reflects_a_changed_leaf) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n\n\nExit code: 0",
+            "content_length": 278,
+            "content_sha256": "fc668f8b0f46a0fb53a2ab500e9b8461692524ce7e96b05e987b2048d1969128"
+          },
+          "tool_call_id": "exec:13#16933d20e746479cb7688ba26c99ef24"
+        }
+      ]
+    },
+    {
+      "message": "Test passes. Let me sanity-check the preserved behaviors: reuse identity, unrelated-definition isolation, deeper invalidation, and error paths.",
+      "metrics": {
+        "cached_tokens": 18432,
+        "completion_tokens": 660,
+        "prompt_tokens": 18571
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 13,
+      "timestamp": "2026-09-16T03:27:25.020948505+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python3 - <<'EOF'\nfrom feature_plan import DependencyGraph, FeatureBuilder\nfrom feature_plan.graph import DependencyError\n\ng = DependencyGraph()\ng.register(\"leaf\", [], \"v1\")\ng.register(\"mid\", [\"leaf\"], \"mid({leaf})\")\ng.register(\"app\", [\"mid\"], \"app[{mid}]\")\ng.register(\"other\", [], \"other\")\nb = FeatureBuilder(g)\n\np1 = b.build(\"app\")\nassert p1.content == \"app[mid(v1)]\"\n\n# reuse: same object, cache hit\np2 = b.build(\"app\")\nassert p2 is p1\n\n# unrelated update: still reused\ng.update(\"other\", \"other2\")\nassert b.build(\"app\") is p1\n\n# deep change: stale before, now fresh\ng.update(\"leaf\", \"v2\")\np3 = b.build(\"app\")\nassert p3.content == \"app[mid(v2)]\", p3.content\n\n# mid-level change also invalidates\ng.update(\"mid\", \"MID({leaf})\")\nassert b.build(\"app\").content == \"app[MID(v2)]\"\n\n# resolver-level reuse still works\nhits_before = b.resolver.cache.hits\nb.build(\"app\")\nassert b.resolver.cache.hits > hits_before\n\n# errors intact\nfor fn in [lambda: g.register(\"leaf\", [], \"x\"),\n           lambda: g.update(\"nope\", \"x\"),\n           lambda: g.register(\"bad\", [\"ghost\"], \"x\"),\n           lambda: b.build(\"ghost\")]:\n    try:\n        fn()\n        raise AssertionError(\"expected DependencyError\")\n    except DependencyError:\n        pass\n\n# template KeyError still propagates, nothing cached\ng.register(\"t\", [], \"{missing}\")\ntry:\n    b.build(\"t\")\n    raise AssertionError(\"expected KeyError\")\nexcept KeyError:\n    pass\n\nprint(\"all sanity checks passed\")\nEOF"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 0004f4:\nTraceback (most recent call last):\n  File \"<stdin>\", line 34, in <module>\nAssertionError\n\n\nExit code: 1",
+            "content_length": 140,
+            "content_sha256": "923ec257b94b09c5662dfee9452b34d8bcbfa59e0f3765abf30c2dc4789ca4fd"
+          },
+          "tool_call_id": "exec:14#9c8c0e8cc43c481cae1d6c659928dc73"
+        }
+      ]
+    },
+    {
+      "message": "That assertion was flawed \u2014 `build`'s own reuse path short-circuits before the resolver runs, so no cache hit is recorded (which is correct). Let me exercise the resolver cache properly: after a mid-level change, resolving `app` should still hit the cached `leaf` resolution.",
+      "metrics": {
+        "cached_tokens": 19200,
+        "completion_tokens": 1111,
+        "prompt_tokens": 19304
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 14,
+      "timestamp": "2026-09-16T03:27:44.873931750+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python3 - <<'EOF'\nfrom feature_plan import DependencyGraph, FeatureBuilder\nfrom feature_plan.graph import DependencyError\n\ng = DependencyGraph()\ng.register(\"leaf\", [], \"v1\")\ng.register(\"mid\", [\"leaf\"], \"mid({leaf})\")\ng.register(\"app\", [\"mid\"], \"app[{mid}]\")\ng.register(\"other\", [], \"other\")\nb = FeatureBuilder(g)\n\np1 = b.build(\"app\")\nassert p1.content == \"app[mid(v1)]\"\nassert b.build(\"app\") is p1                      # reuse: same object\n\ng.update(\"other\", \"other2\")\nassert b.build(\"app\") is p1                      # unrelated update: still reused\n\ng.update(\"leaf\", \"v2\")\nassert b.build(\"app\").content == \"app[mid(v2)]\"  # deep change now fresh\n\n# mid change -> app re-resolves, but leaf resolution is a cache hit\ng.update(\"mid\", \"MID({leaf})\")\nhits_before = b.resolver.cache.hits\nassert b.build(\"app\").content == \"app[MID(v2)]\"\nassert b.resolver.cache.hits > hits_before       # resolver cache still reused\n\n# errors intact\nfor fn in [lambda: g.register(\"leaf\", [], \"x\"),\n           lambda: g.update(\"nope\", \"x\"),\n           lambda: g.register(\"bad\", [\"ghost\"], \"x\"),\n           lambda: b.build(\"ghost\")]:\n    try:\n        fn()\n        raise AssertionError(\"expected DependencyError\")\n    except DependencyError:\n        pass\n\n# bad template still propagates KeyError, nothing cached\ng.register(\"t\", [], \"{missing}\")\ntry:\n    b.build(\"t\")\n    raise AssertionError(\"expected KeyError\")\nexcept KeyError:\n    pass\n\n# direct resolver use unaffected\nassert b.resolver.resolve(\"mid\") == \"MID(v2)\"\n\nprint(\"all sanity checks passed\")\nEOF"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell e1ee66:\nall sanity checks passed\n\n\nExit code: 0",
+            "content_length": 76,
+            "content_sha256": "3b0ffbe4d606f22a28a33fbacac35c4f73be0c5bd6ddf6051120bc954178caa7"
+          },
+          "tool_call_id": "exec:15#7b05806741f24ced8ffd224a9598966b"
+        }
+      ]
+    },
+    {
+      "message": "All checks pass. Final verification of the changed files and the test suite:",
+      "metrics": {
+        "cached_tokens": 20224,
+        "completion_tokens": 136,
+        "prompt_tokens": 20468
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 15,
+      "timestamp": "2026-09-16T03:28:04.550110718+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/src/feature_plan/resolver.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/feature_plan/resolver.py\" start_line=\"1\" end_line=\"25\" total_lines=\"25\">\n  1|from __future__ import annotations\n  2|\n  3|from .cache import PlanCache\n  4|from .graph import DependencyGraph\n  5|\n  6|\n  7|class PlanResolver:\n  8|    def __init__(self, graph: DependencyGraph, cache: PlanCache | None = None) -> None:\n  9|        self._graph = graph\n 10|        self._cache = cache or PlanCache()\n 11|\n 12|    @property\n 13|    def cache(self) -> PlanCache:\n 14|        return self._cache\n 15|\n 16|    def resolve(self, name: str) -> str:\n 17|        revisions = self._graph.revisions_for(name)\n 18|        cached = self._cache.get(name, revisions)\n 19|        if cached is not None:\n 20|            return cached\n 21|        definition = self._graph.definition(name)\n 22|        values = {dependency: self.resolve(dependency) for dependency in definition.dependencies}\n 23|        value = definition.template.format(**values)\n 24|        self._cache.put(name, value, revisions)\n 25|        return value\n</file-view>",
+            "content_length": 1045,
+            "content_sha256": "dcebb355e1688720137c4150da0a351288068b49f9a2b5b6b20da2ec094cb3bd"
+          },
+          "tool_call_id": "read:16#e2ed2678fe644a139d189c93cd382243"
+        },
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python3 -m unittest discover -s tests -v"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell fb2baf:\ntest_published_plan_reflects_a_changed_leaf (test_service.FeatureBuilderTests.test_published_plan_reflects_a_changed_leaf) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n\n\nExit code: 0",
+            "content_length": 278,
+            "content_sha256": "151b14d03db4a2f49c3901f99072b916f3609cacf13332ed2b9da7b727c5c5b0"
+          },
+          "tool_call_id": "exec:17#a50d53a88d3e488eae4acb0577fea680"
+        }
+      ]
+    },
+    {
+      "message": "Done. The staleness came from both reuse checks keying on shallow revision data:\n\n- `FeatureBuilder.build` compared only `graph.version(name)` \u2014 the plan's own version \u2014 so a leaf change never invalidated a published plan. It now compares the full revision map from `graph.revisions_for(name)` (`service.py:26-31`).\n- `PlanResolver.resolve` built its cache key from `name` plus direct dependencies, so a cached intermediate like `service` went stale when `leaf` changed. It now keys on the same transitive revision map (`resolver.py:17`).\n\n`revisions_for` already existed on the graph and returns versions for a definition plus its entire transitive dependency chain, so both layers now invalidate on any upstream change while still reusing identical plans (same object, cache hits preserved).\n\nVerified:\n- Test suite passes (`test_published_plan_reflects_a_changed_leaf`)\n- Reuse intact: repeat `build` returns the same `PublishedPlan`; unrelated updates don't invalidate; resolver cache still hits for unchanged subtrees\n- Errors intact: duplicate register, unknown update/build, missing dependencies \u2192 `DependencyError`; bad templates still raise `KeyError`; public API unchanged\n\nOne side effect worth noting: a dependency cycle introduced via `update` now raises `DependencyError(\"dependency cycle\")` from `revisions_for` instead of a `RecursionError` \u2014 still a `DependencyError`, just surfaced earlier.",
+      "metrics": {
+        "cached_tokens": 7808,
+        "completion_tokens": 305,
+        "prompt_tokens": 21009
+      },
+      "model_name": "swe-2-max",
+      "source": "agent",
+      "step_id": 16,
+      "timestamp": "2026-09-16T03:28:07.932412261+00:00"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Devin benchmark result",
+  "type": "object",
+  "required": ["experiment_id", "case_id", "agent", "prompt", "started_at", "ended_at", "elapsed_seconds", "interventions", "patch", "tests_before", "tests_after", "heldout_tests", "regression_tests", "evaluation_status", "task_success", "pass", "regression_status", "evaluator_notes"],
+  "properties": {
+    "experiment_id": {"type": "string"},
+    "experiment_case_id": {"type": ["string", "null"]},
+    "run_id": {"type": ["string", "null"]},
+    "condition": {"type": ["string", "null"], "enum": ["M", "X", null]},
+    "effort_level": {"type": ["string", "null"]},
+    "case_id": {"type": "string"},
+    "agent": {
+      "type": "object",
+      "required": ["name", "configuration", "model", "subscription_or_usage"],
+      "properties": {
+        "name": {"type": "string"},
+        "configuration": {"type": "string"},
+        "model": {"type": "string"},
+        "subscription_or_usage": {
+          "type": "object",
+          "required": ["available", "amount", "currency"],
+          "properties": {
+            "available": {"type": "boolean"},
+            "amount": {"type": ["number", "null"]},
+            "currency": {"type": ["string", "null"]}
+          }
+        }
+      }
+    },
+    "prompt": {"type": "string"},
+    "started_at": {"type": ["string", "null"]},
+    "ended_at": {"type": ["string", "null"]},
+    "elapsed_seconds": {"type": ["number", "null"]},
+    "steps": {"type": ["number", "null"]},
+    "termination_reason": {"type": ["string", "null"]},
+    "interventions": {"type": "array", "items": {"type": "object"}},
+    "patch": {
+      "type": "object",
+      "required": ["format", "path", "sha256"],
+      "properties": {
+        "format": {"type": "string"},
+        "path": {"type": ["string", "null"]},
+        "sha256": {"type": ["string", "null"]}
+      }
+    },
+    "tests_before": {"type": "object"},
+    "tests_after": {"type": "object"},
+    "hidden_tests": {"type": "object"},
+    "heldout_tests": {"type": "object"},
+    "regression_tests": {"type": "object"},
+    "evaluation_status": {"type": "string", "enum": ["OK", "EVALUATION_ERROR"]},
+    "task_success": {"type": ["boolean", "null"]},
+    "pass": {"type": ["boolean", "null"]},
+    "regression_status": {"type": "string", "enum": ["not-run", "clean", "regression", "inconclusive"]},
+    "evaluator_notes": {"type": "string"}
+  }
+}

@@ -1,0 +1,9 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The issues are clear: the event is published before the transaction commits (so reentrant `adjust` reads stale balance), `publish` iterates the live subscription list (so listeners added/closed mid-dispatch corrupt membership), and `once` listeners are only closed after their callback (so a reentrant publish re-fires them).Test passes. Summary of the fix:
+
+- `service.py` — `transaction.commit()` now runs before `bus.publish()`, so reentrant listeners observe committed state (nested `adjust` reads 9, not 10). [service.py](file:///workspace/src/account_ledger/service.py)
+- `events.py` — `publish` iterates a tuple snapshot of the subscription list, so listeners registering replacements or closing mid-dispatch don't perturb the current dispatch; `once` listeners are closed *before* their callback runs so a reentrant publish can't re-fire them; inactive subscriptions are pruned after dispatch. [events.py](file:///workspace/src/account_ledger/events.py)

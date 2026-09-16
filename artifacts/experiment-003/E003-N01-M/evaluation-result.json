@@ -1,0 +1,67 @@
+{
+  "case_id": "E003-N01",
+  "changed_files": [
+    "src/asset_index/discovery.py"
+  ],
+  "evaluated_at_utc": "2026-09-15T22:08:19.966873+00:00",
+  "evaluation_status": "OK",
+  "evaluation_version": 1,
+  "experiment_id": "experiment-003",
+  "heldout": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E003-N01",
+      "-p",
+      "test_behavior.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_boundary_and_in_project_links_are_handled_separately (test_behavior.DiscoveryBehaviorTests.test_boundary_and_in_project_links_are_handled_separately) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nOK\n",
+    "stdout": ""
+  },
+  "metadata_project": "asset-indexer",
+  "patch": {
+    "additions": 1,
+    "deletions": 1,
+    "sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a"
+  },
+  "public": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_files_outside_project_are_not_indexed (test_discovery.DiscoveryTests.test_files_outside_project_are_not_indexed) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+    "stdout": ""
+  },
+  "reference_patch_compared": false,
+  "regression": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E003-N01",
+      "-p",
+      "test_regression.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass",
+    "stderr": "test_regular_nested_files_are_sorted (test_regression.DiscoveryRegressionTests.test_regular_nested_files_are_sorted) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n",
+    "stdout": ""
+  },
+  "task_success": true
+}

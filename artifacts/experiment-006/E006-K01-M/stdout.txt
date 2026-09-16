@@ -1,0 +1,21 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+Let me reproduce the failing test first.Reproduced: `--target-version py37` exits 0 but should fail with 123. Now let me trace how ASYNC/AWAIT tokens are produced in the tokenizer/grammar.Now I'll trace how `Feature` and `VERSION_TO_FEATURES` are consumed elsewhere, since I'll be adding new features.Now I'll implement the fix, mirroring the approach upstream took: a second Python 3 grammar where `async`/`await` are always keywords, selected by target version via two new `Feature` flags.
+
+**1. `blib2to3/pgen2/grammar.py`** — add an `async_keywords` flag:**2. `blib2to3/pygram.py`** — add the async-keywords grammar variant:**3. `blib2to3/pgen2/tokenize.py`** — accept the grammar and honor `async_keywords`:**4. `blib2to3/pgen2/driver.py`** — pass the grammar to the tokenizer:**5. `black.py`** — new features and grammar selection:Update the type stubs to match:`test_async_as_identifier` now passes. The `py36` case for `python37.py` still passes when it should fail — let me see what that file contains:The remaining failure is `python37.py` under `py36` — it uses `async for` in comprehensions outside `async def`, which the soft-keyword grammar still accepts because the tokenizer converts a stashed `async` before `for`/`def` unconditionally. Let me check what the actual parse produces:The stashed-`async` conversion fires before `for` even outside `async def`, so `x async for ...` in a regular function parses under the 3.6 grammar. In Python ≤3.6, `async for`/`async with` are only legal inside `async def`, and inside `async def` the tokenizer already emits `ASYNC` via the `async_def` branch — the stash path only triggers when `async_def` is false. Restricting the stash trigger to `def` makes `async for` outside `async def` tokenize as a plain name, which the 3.6 grammar rejects (while the 3.7+ async-keywords grammar still accepts it).All three target tests pass. Now run the broader test suite to check for regressions:`test_black` requires `black.py` to be formatted by black itself. Let me self-format it:All tests pass (85 passed, 11 skipped). Summary of the change:
+
+**Root cause:** `get_grammars()` in `black.py` returned the same soft-keyword Python 3 grammar for every py3 target, so `--target-version py37` happily parsed `await = 5`. Additionally, the tokenizer converted a stashed `async` into an `ASYNC` token before `for`/`def` unconditionally, so `x async for ...` outside `async def` parsed under `py36` too.
+
+**Fix** (mirrors the upstream approach):
+
+- `blib2to3/pgen2/grammar.py` — `Grammar` gains an `async_keywords` flag (default `False`, propagated by `copy()`; old pickles keep the default via `__init__`).
+- `blib2to3/pygram.py` — new `python_grammar_no_print_statement_no_exec_statement_async_keywords` grammar (3.7+) with `async_keywords = True`.
+- `blib2to3/pgen2/tokenize.py` — `generate_tokens(readline, grammar=None)`; when `grammar.async_keywords` is set, `async`/`await` always yield `ASYNC`/`AWAIT` tokens. Also, a stashed `async` is now only promoted to `ASYNC` before `def` — before `for` it stays a `NAME`, which makes `async for` comprehensions outside `async def` (legal only in 3.7+) fail under the soft grammar while still working under the async-keywords grammar and inside `async def` (handled by the `async_def` branch).
+- `blib2to3/pgen2/driver.py` — `parse_stream_raw`/`parse_string` pass `self.grammar` to the tokenizer.
+- `black.py` — new `Feature.ASYNC_IDENTIFIERS` (py33–py36) and `Feature.ASYNC_KEYWORDS` (py37+); `get_grammars()` picks the matching py3 grammar, tries both when targets straddle 3.6/3.7, and tries all grammars when no target is given.
+- Type stubs (`grammar.pyi`, `pygram.pyi`, `tokenize.pyi`) updated accordingly.
+
+`black.py` was self-formatted (`python black.py black.py`) to satisfy `test_black`'s invariant that the file is already black-clean. Verified: `test_async_as_identifier`, `test_python37`, `test_lib2to3_parse`, and the full `tests/test_black.py` suite all pass.

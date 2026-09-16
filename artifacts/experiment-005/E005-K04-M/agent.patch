@@ -1,0 +1,22 @@
+--- a/tornado/web.py
++++ b/tornado/web.py
+@@ -993,6 +993,9 @@
+         self._log()
+         self._finished = True
+         self.on_finish()
++        self._break_cycles()
++
++    def _break_cycles(self):
+         # Break up a reference cycle between this handler and the
+         # _ui_module closures to allow for faster GC on CPython.
+         self.ui = None
+--- a/tornado/websocket.py
++++ b/tornado/websocket.py
+@@ -434,6 +434,7 @@
+         if not self._on_close_called:
+             self._on_close_called = True
+             self.on_close()
++            self._break_cycles()
+
+     def send_error(self, *args, **kwargs):
+         if self.stream is None:

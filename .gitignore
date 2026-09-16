@@ -1,0 +1,14 @@
+# Local benchmark outputs and external source checkouts.
+private-execution
+.cache/
+results/runs/
+results/reproducibility.json
+reports/generated/
+
+# Ground truth and source-derived files are deliberately not agent inputs.
+manifests/ground-truth/*.local.json
+
+# Python and editor noise.
+__pycache__/
+*.py[cod]
+.DS_Store

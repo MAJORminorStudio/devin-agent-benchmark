@@ -1,0 +1,24 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace structure.The bug is clear from the code. In `PlanResolver.resolve`, a cache hit returns `Resolved(cached, {name})` — collapsing the lineage to just the name itself. So when `page` resolves through cached `middle`, `page`'s cached lineage is `{page, middle}` instead of `{page, middle, leaf}`, and `invalidate({"leaf"})` misses it.
+
+Let me confirm by running the test:Confirmed. I'll add a `lineage` accessor to `PlanCache` (leaving `get` untouched) and have the resolver return the stored transitive lineage on cache hits:Test passes. Let me run a quick sanity check on related behaviors — deeper chains, unrelated updates, cycles, and missing definitions:My sanity check surfaced a second issue: cycles produce `RecursionError`, not the intended `ValueError`. The `_resolve` method builds an `active` set but calls `self.resolve(dependency)` — the public entry point — which restarts `_resolve` with a fresh `set()`, so `active` never propagates. Let me check git history to see if this is pre-existing or related:Not a git repo, so I can't check history — but this is a pre-existing issue: `_resolve` builds an `active` ancestor set for cycle detection, then calls `self.resolve(dependency)` which restarts `_resolve` with a fresh empty set. The cycle check is dead code and cycles crash with `RecursionError` instead of the designed `ValueError`.
+
+I'll restructure so `active` is threaded through the recursion while the cache check moves into `_resolve` — preserving reuse at every level and making the existing cycle check actually work:Now re-run the test suite and the sanity checks:Both bugs are fixed and everything passes. Summary of what I found and changed:
+
+**Root cause of stale publishes** — in `PlanResolver.resolve`, a cache hit returned `Resolved(cached, {name})`, discarding the stored transitive lineage. A deeper consumer (`page` resolving through cached `middle`) was then cached with lineage `{page, middle}` — missing `leaf` — so `invalidate({"leaf"})` skipped it and it kept serving the old value.
+
+**Changes:**
+
+- `src/feature_store/cache.py` — added a `lineage(name)` accessor returning a copy of the entry's stored dependency set; `get`, `put`, `invalidate` untouched.
+- `src/feature_store/resolver.py` — moved the cache check inside `_resolve` so the `active` ancestor set actually propagates through recursion, and cache hits now return the stored lineage instead of `{name}`. Every node is still cached on successful resolution, preserving reuse.
+
+**Verified:**
+
+- The provided test passes; deeper chains (`d→c→b→a`) refresh after leaf updates.
+- `Resolved.lineage` on a cache hit now reports the full chain (`{d,c,b,a}`), consistent with the miss path.
+- Unrelated definitions, transaction commit/rollback, missing definitions (`KeyError`), and invalid templates (`KeyError` from `format`) all behave as before.
+- Bonus fix the same restructure enables: cyclic graphs now raise the designed `ValueError("cyclic definition: ...")` — previously the `active` set never propagated, so cycles crashed with `RecursionError`.

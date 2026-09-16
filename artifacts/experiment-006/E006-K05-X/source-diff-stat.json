@@ -1,0 +1,38 @@
+{
+  "changed_files": [
+    "tqdm/std.py",
+    "tqdm/utils.py"
+  ],
+  "generated_or_environment_files": [
+    ".pytest_cache/.gitignore",
+    ".pytest_cache/CACHEDIR.TAG",
+    ".pytest_cache/README.md",
+    ".pytest_cache/v/cache/lastfailed",
+    ".pytest_cache/v/cache/nodeids",
+    ".pytest_cache/v/cache/stepwise",
+    "tqdm/__pycache__/__init__.cpython-36.pyc",
+    "tqdm/__pycache__/_monitor.cpython-36.pyc",
+    "tqdm/__pycache__/_tqdm_pandas.cpython-36.pyc",
+    "tqdm/__pycache__/_version.cpython-36.pyc",
+    "tqdm/__pycache__/auto.cpython-36.pyc",
+    "tqdm/__pycache__/autonotebook.cpython-36.pyc",
+    "tqdm/__pycache__/cli.cpython-36.pyc",
+    "tqdm/__pycache__/gui.cpython-36.pyc",
+    "tqdm/__pycache__/std.cpython-36.pyc",
+    "tqdm/__pycache__/utils.cpython-36.pyc",
+    "tqdm/contrib/__pycache__/__init__.cpython-36.pyc",
+    "tqdm/tests/__pycache__/tests_main.cpython-36-pytest-5.4.3.pyc",
+    "tqdm/tests/__pycache__/tests_pandas.cpython-36-pytest-5.4.3.pyc",
+    "tqdm/tests/__pycache__/tests_synchronisation.cpython-36-pytest-5.4.3.pyc",
+    "tqdm/tests/__pycache__/tests_tqdm.cpython-36-pytest-5.4.3.pyc",
+    "tqdm/tests/__pycache__/tests_tqdm.cpython-36.pyc",
+    "tqdm/tests/__pycache__/tests_version.cpython-36-pytest-5.4.3.pyc"
+  ],
+  "line_counts": {
+    "additions": 9,
+    "deletions": 6
+  },
+  "patch_byte_length": 1499,
+  "patch_sha256": "88d530c24859d575b07b33489f69387272895036c655b15f6d9df069f6414588",
+  "reference_match": false
+}

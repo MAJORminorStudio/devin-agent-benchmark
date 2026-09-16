@@ -1,0 +1,13 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+Found it — the `tuple` branch returns the tuple without converting its elements. Reproducing first:Reproduced. The fix: recurse into tuple items instead of returning the tuple as-is.Fixed. The bug was in `to_plain` — the `tuple` branch returned the value unchanged, so dataclass instances nested inside tuples were never converted to plain dicts. [convert.py:43-46](file:///workspace/src/record_export/convert.py)
+
+Now tuples recurse into `to_plain` per element, matching the existing `list` and `Mapping` handling, and the container shape (a tuple) is preserved.
+
+- Before: `result["lines"]` was `(Line(...), Line(...))` — test failed
+- After: `result["lines"]` is `({"sku": "book", ...}, {"sku": "pen", ...})` — test passes
+
+No API or dependency changes.

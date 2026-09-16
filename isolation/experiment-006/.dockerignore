@@ -1,0 +1,5 @@
+*
+!.dockerignore
+!Dockerfile
+!requirements-*.txt
+!runtime-lock.json

@@ -1,0 +1,29 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 2352828,
+    "total_completion_tokens": 16356,
+    "total_prompt_tokens": 2415510,
+    "total_steps": 56
+  },
+  "first_observable_timestamp": "2026-09-16T01:46:22.212759338+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T01:54:38.236580304+00:00",
+  "model": "swe-2-max",
+  "observable_steps": 50,
+  "patch_sha256": "d4e6591c4abe8c2fae09ea6ee9322849d4704fd6d16b04a2460348ff1160ec89",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "glorious-droplet",
+  "steps": 56,
+  "tool_calls": 54,
+  "tool_calls_by_function": {
+    "edit": 2,
+    "exec": 28,
+    "grep": 3,
+    "read": 16,
+    "web_search": 1,
+    "webfetch": 1,
+    "write": 3
+  }
+}

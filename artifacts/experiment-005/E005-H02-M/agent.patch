@@ -1,0 +1,12 @@
+--- a/src/work_queue/executor.py
++++ b/src/work_queue/executor.py
+@@ -14,6 +14,9 @@
+         self._registry.start(job.job_id)
+         try:
+             result = await job.work()
++        except asyncio.CancelledError:
++            self._registry.complete(job.job_id, JobState.CANCELLED)
++            raise
+         except Exception as exc:
+             self._registry.complete(job.job_id, JobState.FAILED, error=exc)
+             raise

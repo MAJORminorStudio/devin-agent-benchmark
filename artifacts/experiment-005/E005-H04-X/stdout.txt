@@ -1,0 +1,15 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace structure.The bug is clear: `CompensationLog.rollback` runs compensations in registration order, but saga compensations must run in reverse (LIFO). Tracing a failed `outbox.publish`: the inventory release runs *first*, sees the order still `pending` (cancel hasn't run yet), and raises `InventoryError` — so the payment void and order cancel never execute. Let me confirm by running the test.Confirmed. The fix is to unwind compensations in reverse order, so `orders.cancel` runs before `inventory.release` (which requires the order to be `cancelled`), and `billing.void` runs before the release as well.Test passes. Let me quickly sanity-check the other two paths — a successful place and a declined payment — to confirm nothing regressed.Fixed. The bug was in `CompensationLog.rollback` — it ran compensating actions in registration (forward) order instead of reverse order.
+
+When `outbox.publish` failed, rollback ran `inventory.release` first, but that release requires the order to already be `cancelled`. Since `orders.cancel` hadn't run yet, `release` raised `InventoryError`, which aborted the rollback entirely — leaving the reservation held, the payment authorized, and the order `pending`.
+
+The fix is a one-liner in [transaction.py:13-15](file:///workspace/src/order_flow/transaction.py): iterate `reversed(self._actions)` so the saga unwinds LIFO — `orders.cancel` → `billing.void` → `inventory.release`.
+
+Verified:
+- Test suite passes.
+- Success path unchanged: `reserve → authorize → pending → publish → confirmed`.
+- Declined payment unchanged: `PaymentError` propagates and the reservation is released.

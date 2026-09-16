@@ -1,0 +1,514 @@
+{
+  "control_commit": "6e94f6702601a0d0a3f52667e3e9dceb4817c70c",
+  "experiment_id": "experiment-003",
+  "freeze_manifest_sha256": "92c7e98c9f4b603954abf1cd6d581dc5909425f94471211a6a7f1f9e14426232",
+  "novelty": "newly constructed and withheld cases; no training-data absence claim",
+  "public_case_bundle": {
+    "cases": [
+      "E003-N01",
+      "E003-N02",
+      "E003-N03",
+      "E003-N04",
+      "E003-N05"
+    ],
+    "contents": [
+      "buggy source",
+      "fixed source",
+      "visible tests",
+      "held-out behavior tests",
+      "regression tests",
+      "reference patches",
+      "safe case manifests"
+    ],
+    "credentials_and_private_paths": "excluded",
+    "hidden_reasoning": "excluded",
+    "raw_session_exports": "excluded",
+    "root": "artifacts/experiment-003/cases/"
+  },
+  "publication_note": "Sanitized evidence only. Raw session exports and private evaluator source remain outside the public repository.",
+  "publication_status": "expanded-after-all-ten-runs-closed",
+  "runs": [
+    {
+      "case_id": "E003-N01",
+      "condition": "X",
+      "model": "swe-2-max",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 423,
+          "sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a"
+        },
+        "artifact-hashes.json": {
+          "bytes": 1447,
+          "sha256": "4fdaaaf8277d6eb7854451da0e3ba1a32d424d93e2b809a78bd456d002f9696a"
+        },
+        "devin.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "devin.stdout.txt": {
+          "bytes": 1465,
+          "sha256": "267fb17eb751683bf84a89e557f86b78b7ff54b92e8c8155601291561f398ca9"
+        },
+        "evaluation-result.json": {
+          "bytes": 2120,
+          "sha256": "0ae91aeeb0286d845140260ef25332c18c38fc7970be7074559c8c89ec75561d"
+        },
+        "human-reference.patch": {
+          "bytes": 423,
+          "sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a"
+        },
+        "prompt.md": {
+          "bytes": 484,
+          "sha256": "a3434affd4ef855805dc1001edf5d9a9107427f5fc108f6f9b4fba0810e76db3"
+        },
+        "run-metadata.json": {
+          "bytes": 1476,
+          "sha256": "c203ed328328bb20a9a9e911ca88130eafb06925afe03dbd01df98a7fb7a6665"
+        },
+        "session-summary.json": {
+          "bytes": 349,
+          "sha256": "4f55ee4f376c0599e03a3363db7e1dc36081ef19ea984cd9f104ecd35f401cec"
+        },
+        "tool-timeline.json": {
+          "bytes": 13485,
+          "sha256": "64d0fa79eb6f0b53d043fa7235ffe75d630153abdd9561a1ae2dcc3e4503248a"
+        }
+      },
+      "run_id": "E003-N01-X"
+    },
+    {
+      "case_id": "E003-N03",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 402,
+          "sha256": "a00cb21dc048cf141b550bc9dbd4acbd4b063a8e3ec95f3b846212c01578866f"
+        },
+        "artifact-hashes.json": {
+          "bytes": 1446,
+          "sha256": "39ac692d26fd1eed8293693b3b0973e1ac861c2d5de691abbc439466f53d14b6"
+        },
+        "devin.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "devin.stdout.txt": {
+          "bytes": 884,
+          "sha256": "6512e8f3d1bcc58fa9f10155f851caa52009e4c86838b45787999217e6e3932f"
+        },
+        "evaluation-result.json": {
+          "bytes": 2147,
+          "sha256": "ce540f32b5723d36b4a19d481a7f1d4600b1f21a1f862c986553ec68f9c7329e"
+        },
+        "human-reference.patch": {
+          "bytes": 378,
+          "sha256": "64bb843132d17f15a68ffab4528471f5fcc0754ccb696cc23cd258cc84f14698"
+        },
+        "prompt.md": {
+          "bytes": 511,
+          "sha256": "29d9b0526162e16eb0dbd9f9118220d33abbd32f4c3d44399276f3e1040cdd1e"
+        },
+        "run-metadata.json": {
+          "bytes": 1472,
+          "sha256": "c3b8100546f5e9ac919867cbaeccce548718ea9d44fe7862864c11e03ade5608"
+        },
+        "session-summary.json": {
+          "bytes": 345,
+          "sha256": "87625d951ee081c1f5ed43fa17cac47f795279f6f5489d79709a4331e1874e82"
+        },
+        "tool-timeline.json": {
+          "bytes": 12989,
+          "sha256": "85fe3883b820c153a358c013bf407589d87bfcb35260d6b5e39e123126146f8e"
+        }
+      },
+      "run_id": "E003-N03-M"
+    },
+    {
+      "case_id": "E003-N02",
+      "condition": "X",
+      "model": "swe-2-max",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 299,
+          "sha256": "a128cdc301a8b11b244ee3ecbb01f419ae1368d2c79c9eaea4bd3a509c64f308"
+        },
+        "artifact-hashes.json": {
+          "bytes": 1447,
+          "sha256": "d39bb43c17bd99a2ac10bfeebe7d474f394a36b337e14183aab2ffbf036783ac"
+        },
+        "devin.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "devin.stdout.txt": {
+          "bytes": 1014,
+          "sha256": "c96f63737bfa0eccf7343e7bb9cc9869db013e490ade3d09190a7fb253710e68"
+        },
+        "evaluation-result.json": {
+          "bytes": 2084,
+          "sha256": "c922a8af5260109c2a4eb6eaf63e45580d38da71f5006d3a89f57c6511b7ea42"
+        },
+        "human-reference.patch": {
+          "bytes": 299,
+          "sha256": "a128cdc301a8b11b244ee3ecbb01f419ae1368d2c79c9eaea4bd3a509c64f308"
+        },
+        "prompt.md": {
+          "bytes": 474,
+          "sha256": "a86a704e1fed5762335f55ad98ec1166a8eb3c764a71898527c9ca1651da664b"
+        },
+        "run-metadata.json": {
+          "bytes": 1456,
+          "sha256": "a1d450bae90e3b8ab78b9fbb564cf12075bcfb7219ec6bf7b4f5f6642bed3733"
+        },
+        "session-summary.json": {
+          "bytes": 346,
+          "sha256": "7094ab06de8f29f9f21783dc66dc705fd560cbdea513042f0b2abe3788d7e7e4"
+        },
+        "tool-timeline.json": {
+          "bytes": 14093,
+          "sha256": "d6153482dd22fc4a073fbacc9dddd220580e0f17228b19d42564750caf5eb0ff"
+        }
+      },
+      "run_id": "E003-N02-X"
+    },
+    {
+      "case_id": "E003-N04",
+      "condition": "X",
+      "model": "swe-2-max",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 611,
+          "sha256": "2261de387c3ca4ae675fc3b22f20e044a3fe17f432f7860009d450415e3b7538"
+        },
+        "artifact-hashes.json": {
+          "bytes": 1447,
+          "sha256": "0e4e647c2ac4ad5201ed56eac0797d476aab3bd3c5dbc15bf5633c6e01b93153"
+        },
+        "devin.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "devin.stdout.txt": {
+          "bytes": 2084,
+          "sha256": "06066fed3c242e0d7b57db2c8c28f71b461036648b059871c30241d2e3b5b344"
+        },
+        "evaluation-result.json": {
+          "bytes": 2064,
+          "sha256": "0cca7c50dafe0505de88bdf61496476bba65256ffbd29130e8cfca86b14a6bbd"
+        },
+        "human-reference.patch": {
+          "bytes": 296,
+          "sha256": "756929f1a4a1e13ac6a4ba55e2ec6333c01e82fdeeee519e2e6a5e8c08f11d7e"
+        },
+        "prompt.md": {
+          "bytes": 503,
+          "sha256": "f2b3cfbc14119a1e16549bfaaad807edd74b420dcf9f04466b791fd3494bd479"
+        },
+        "run-metadata.json": {
+          "bytes": 1469,
+          "sha256": "14d6043bc262d6f712fbee499a1ef1ff98b7ad082a6f392fc928ad066b6e4f4d"
+        },
+        "session-summary.json": {
+          "bytes": 344,
+          "sha256": "b301f6f6427e990ca434cdd5a3d7cfc66b2ff5cf8d4958275b7d6ecfecfef4d8"
+        },
+        "tool-timeline.json": {
+          "bytes": 17042,
+          "sha256": "b2a5d18d6e2db8279a79e25cbd7d35e533793f9db41a2fdf2d24eaa2d5036d6c"
+        }
+      },
+      "run_id": "E003-N04-X"
+    },
+    {
+      "case_id": "E003-N05",
+      "condition": "X",
+      "model": "swe-2-max",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 517,
+          "sha256": "572dd30bdb6f77645168a40913fbab5b75795ab763e0f25d8a047f870c99f301"
+        },
+        "artifact-hashes.json": {
+          "bytes": 1447,
+          "sha256": "5ff2f3404dc388b6b7c04f929869705d90d4b7b132ef968187a32c2eecf85832"
+        },
+        "devin.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "devin.stdout.txt": {
+          "bytes": 1616,
+          "sha256": "87cf9e2e39ef9dbdc2a5c45ae1c0a3735bc87935da4d4f02848371f43c546e8c"
+        },
+        "evaluation-result.json": {
+          "bytes": 2186,
+          "sha256": "69cfb63958d2e5056f188c42c6f3a418e330309d44f991b65fe728245059b981"
+        },
+        "human-reference.patch": {
+          "bytes": 517,
+          "sha256": "572dd30bdb6f77645168a40913fbab5b75795ab763e0f25d8a047f870c99f301"
+        },
+        "prompt.md": {
+          "bytes": 537,
+          "sha256": "db599705db27088ccdac0a2314f39b88b923853fccaa1faf8aaa38a274f61a9c"
+        },
+        "run-metadata.json": {
+          "bytes": 1486,
+          "sha256": "237be4e1520667ef39c2cd7479ce6b3a32b72cd21eb2992eb2958773f85db353"
+        },
+        "session-summary.json": {
+          "bytes": 350,
+          "sha256": "028cfca6ad94fa330cdb5397abae385162d0b27e3cb034aaf3d141c43a34c1da"
+        },
+        "tool-timeline.json": {
+          "bytes": 17321,
+          "sha256": "0fee108e472f0b1693f9802e9d7017135c7f96b49ef994558b1c6b25a37cd6a6"
+        }
+      },
+      "run_id": "E003-N05-X"
+    },
+    {
+      "case_id": "E003-N03",
+      "condition": "X",
+      "model": "swe-2-max",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 378,
+          "sha256": "64bb843132d17f15a68ffab4528471f5fcc0754ccb696cc23cd258cc84f14698"
+        },
+        "artifact-hashes.json": {
+          "bytes": 1447,
+          "sha256": "c4eb3b6c5af60ceb302400e16a5d1e0a9087daae1230740d4b2898f8e7bcd06e"
+        },
+        "devin.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "devin.stdout.txt": {
+          "bytes": 1376,
+          "sha256": "aeb194436d398335cf9089e0d4e5b888f9f31ae231b341351a138553a7f0b7a9"
+        },
+        "evaluation-result.json": {
+          "bytes": 2147,
+          "sha256": "f89347bae0e36384207cdf42b4d409c8c9fc94706f4cf29cdd3fcff93654b3ce"
+        },
+        "human-reference.patch": {
+          "bytes": 378,
+          "sha256": "64bb843132d17f15a68ffab4528471f5fcc0754ccb696cc23cd258cc84f14698"
+        },
+        "prompt.md": {
+          "bytes": 511,
+          "sha256": "29d9b0526162e16eb0dbd9f9118220d33abbd32f4c3d44399276f3e1040cdd1e"
+        },
+        "run-metadata.json": {
+          "bytes": 1476,
+          "sha256": "9abce6469789d169fb30e2ab6c557435d29d9fd833192bb5b8bf9b5a3c363f98"
+        },
+        "session-summary.json": {
+          "bytes": 349,
+          "sha256": "0c552a68f25ce4ab7244649a9105dbab487bff90bce4c58faaa7149908be03c8"
+        },
+        "tool-timeline.json": {
+          "bytes": 16576,
+          "sha256": "4028052f37642e42ea7c4caa3794c20bcfde017a55e38456a6f8638dc2cce256"
+        }
+      },
+      "run_id": "E003-N03-X"
+    },
+    {
+      "case_id": "E003-N05",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 517,
+          "sha256": "572dd30bdb6f77645168a40913fbab5b75795ab763e0f25d8a047f870c99f301"
+        },
+        "artifact-hashes.json": {
+          "bytes": 1447,
+          "sha256": "5d81ea698939ca63fafb7264261cfb12bc55449b4e74d175fb502759a85a98e9"
+        },
+        "devin.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "devin.stdout.txt": {
+          "bytes": 1128,
+          "sha256": "24fc9891286b3898515003afb3ec10d8225ecbc4921200f517910c2f1cfb877a"
+        },
+        "evaluation-result.json": {
+          "bytes": 2186,
+          "sha256": "7e7bd46437f0abcd51af4d95c690ceac948eefe18b3100c15955506d59863ca9"
+        },
+        "human-reference.patch": {
+          "bytes": 517,
+          "sha256": "572dd30bdb6f77645168a40913fbab5b75795ab763e0f25d8a047f870c99f301"
+        },
+        "prompt.md": {
+          "bytes": 537,
+          "sha256": "db599705db27088ccdac0a2314f39b88b923853fccaa1faf8aaa38a274f61a9c"
+        },
+        "run-metadata.json": {
+          "bytes": 1482,
+          "sha256": "2157754d85b99a65174cfbfacc55f8dca1d5a76915ce21f46c180bdca982f0fc"
+        },
+        "session-summary.json": {
+          "bytes": 346,
+          "sha256": "8619a3ad8c81e244c0879bfdd5cfbeee366552d5bfbabad2633adca4fbcd09eb"
+        },
+        "tool-timeline.json": {
+          "bytes": 13467,
+          "sha256": "e8fbbdc354bd21c8375600d7377866a3b4f5e6a780541657fa2bcf92f6c9e286"
+        }
+      },
+      "run_id": "E003-N05-M"
+    },
+    {
+      "case_id": "E003-N02",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 299,
+          "sha256": "a128cdc301a8b11b244ee3ecbb01f419ae1368d2c79c9eaea4bd3a509c64f308"
+        },
+        "artifact-hashes.json": {
+          "bytes": 1446,
+          "sha256": "32e06e18b7c75b5b1c0152811185643e6774ddaba52c5b32a7d486d98fb1a228"
+        },
+        "devin.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "devin.stdout.txt": {
+          "bytes": 656,
+          "sha256": "b718b8b7ccfcffce8a9255336eda6aee54039b368aaa4df5b496fda130030167"
+        },
+        "evaluation-result.json": {
+          "bytes": 2084,
+          "sha256": "25e30f3ec293e73c0fe9a12d016fea64a0cfdd0b24b402e92fe816186744e42b"
+        },
+        "human-reference.patch": {
+          "bytes": 299,
+          "sha256": "a128cdc301a8b11b244ee3ecbb01f419ae1368d2c79c9eaea4bd3a509c64f308"
+        },
+        "prompt.md": {
+          "bytes": 474,
+          "sha256": "a86a704e1fed5762335f55ad98ec1166a8eb3c764a71898527c9ca1651da664b"
+        },
+        "run-metadata.json": {
+          "bytes": 1457,
+          "sha256": "416226f3e4f9e9a7f12f731a2f15d08c7b654b3fab5dc53cdb52fddffac9c52b"
+        },
+        "session-summary.json": {
+          "bytes": 347,
+          "sha256": "bab279275a38331f7e7e7b4627712d14e31f3d4036e9d527dc86d80dee0f48aa"
+        },
+        "tool-timeline.json": {
+          "bytes": 11664,
+          "sha256": "927aa04d169a60db3bdf4e34ed12e831d0d900d3f3db7291b59f421eb6e3d56a"
+        }
+      },
+      "run_id": "E003-N02-M"
+    },
+    {
+      "case_id": "E003-N04",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 408,
+          "sha256": "2921cc33c44fb6a070d5e2b4c28084edb4d8a4a21b6ecab4f76167a2f72526a0"
+        },
+        "artifact-hashes.json": {
+          "bytes": 1447,
+          "sha256": "fd8e7c1c8085dc82aa80b5b2cf539349429e7cb7163f55bc5dd300feb34b0b34"
+        },
+        "devin.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "devin.stdout.txt": {
+          "bytes": 1721,
+          "sha256": "c9d91a107fec37f739f773396892a5db38817ce135e3b6c4872adfd9dedfcace"
+        },
+        "evaluation-result.json": {
+          "bytes": 2064,
+          "sha256": "ceae85753e62a48e67b8f2c7a9bd431133fa759a8d47924c059790d84f678459"
+        },
+        "human-reference.patch": {
+          "bytes": 296,
+          "sha256": "756929f1a4a1e13ac6a4ba55e2ec6333c01e82fdeeee519e2e6a5e8c08f11d7e"
+        },
+        "prompt.md": {
+          "bytes": 503,
+          "sha256": "f2b3cfbc14119a1e16549bfaaad807edd74b420dcf9f04466b791fd3494bd479"
+        },
+        "run-metadata.json": {
+          "bytes": 1478,
+          "sha256": "7b7224963aa36971925f0abb14c49fab47ca0868694a74c8e0fd25236be29ff2"
+        },
+        "session-summary.json": {
+          "bytes": 352,
+          "sha256": "fe2be7b19f70fad5d521eb7ebb92e2e0ecc156e5a29df7fec55ce1101ffb4e83"
+        },
+        "tool-timeline.json": {
+          "bytes": 14240,
+          "sha256": "5d80402ddb589f54df1fe1f509aecd61bb6cd33a3da4cc2181094a013d370692"
+        }
+      },
+      "run_id": "E003-N04-M"
+    },
+    {
+      "case_id": "E003-N01",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "published_files": {
+        "agent.patch": {
+          "bytes": 423,
+          "sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a"
+        },
+        "artifact-hashes.json": {
+          "bytes": 1447,
+          "sha256": "8aa7e705c7205c288c20d7c30d4b0019cd0888dc165222eeab61d1ee2acce310"
+        },
+        "devin.stderr.txt": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "devin.stdout.txt": {
+          "bytes": 1019,
+          "sha256": "5531727537bbc95e995d126e4ad89fbc8c7f83d0b254810c913ece7a0ff1d863"
+        },
+        "evaluation-result.json": {
+          "bytes": 2120,
+          "sha256": "b8de4c009f36b3e93f67acedad92864a432a75e84f6ec49cd0de8ec4f868eb51"
+        },
+        "human-reference.patch": {
+          "bytes": 423,
+          "sha256": "97d3a2295912e203b2c91651092873b705d31368ffb0c3e8f8cdc8af9811f22a"
+        },
+        "prompt.md": {
+          "bytes": 484,
+          "sha256": "a3434affd4ef855805dc1001edf5d9a9107427f5fc108f6f9b4fba0810e76db3"
+        },
+        "run-metadata.json": {
+          "bytes": 1480,
+          "sha256": "c995d1c3e83fe2cd71977c82c8bef00e75a4c440b9ddc58f30439706120a5c91"
+        },
+        "session-summary.json": {
+          "bytes": 353,
+          "sha256": "44e1799a694532a3d04bcc8dfc2b05eaba5008080ceda2de00bce335ac6d2d45"
+        },
+        "tool-timeline.json": {
+          "bytes": 13270,
+          "sha256": "524836dc6561033af4ff8cb724d50e6c032349c8fda88739a660850e98b104d8"
+        }
+      },
+      "run_id": "E003-N01-M"
+    }
+  ],
+  "schema_version": 1,
+  "status": "completed"
+}

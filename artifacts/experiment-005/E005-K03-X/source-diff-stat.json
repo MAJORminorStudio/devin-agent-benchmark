@@ -1,0 +1,21 @@
+{
+  "byte_counts": {
+    "added_bytes": 58021,
+    "deleted_bytes": 57263
+  },
+  "changed_files": [
+    "tornado/ioloop.py",
+    "tornado/platform/asyncio.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 16,
+    "deletions": 2
+  },
+  "sha256": "3c66ec89962cc37f578bddbdff45740b725123e81d09727030d03f60fc7362d6",
+  "source_files_changed": [
+    "tornado/ioloop.py",
+    "tornado/platform/asyncio.py"
+  ],
+  "workspace_churn_files": 2
+}

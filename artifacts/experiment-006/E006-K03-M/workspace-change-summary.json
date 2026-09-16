@@ -1,0 +1,30 @@
+{
+  "generated_or_environment_examples": [
+    ".pytest_cache/.gitignore",
+    ".pytest_cache/README.md",
+    ".pytest_cache/v/cache/lastfailed",
+    ".pytest_cache/v/cache/nodeids",
+    ".pytest_cache/v/cache/stepwise",
+    "__pycache__/black.cpython-38.pyc",
+    "blib2to3/Grammar3.8.3.final.0.pickle",
+    "blib2to3/PatternGrammar3.8.3.final.0.pickle",
+    "blib2to3/__pycache__/__init__.cpython-38.pyc",
+    "blib2to3/__pycache__/pygram.cpython-38.pyc",
+    "blib2to3/__pycache__/pytree.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/__init__.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/driver.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/grammar.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/parse.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/pgen.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/token.cpython-38.pyc",
+    "blib2to3/pgen2/__pycache__/tokenize.cpython-38.pyc",
+    "tests/__pycache__/test_black.cpython-38-PYTEST.pyc",
+    "tests/__pycache__/test_black.cpython-38.pyc"
+  ],
+  "generated_or_environment_files_count": 20,
+  "note": "Full workspaces and dependency environments are not published.",
+  "observed_changed_entry_count": 21,
+  "source_files": [
+    "black.py"
+  ]
+}

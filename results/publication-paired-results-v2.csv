@@ -1,0 +1,21 @@
+provenance,experiment,case_id,label,project,bug_id,run_id,condition,model,success,public,heldout,regression,wall_seconds,steps,tool_calls,prompt_tokens,completion_tokens,cached_tokens,source_files_changed,lines_added,lines_deleted,files_changed,generated_files,session_id
+historical,E002,fastapi-3,FastAPI 3,fastapi,3,E002-C02-M,M,swe-2-medium,True,pass,pass,clean,299.332,35,30,599955,9374,568967,1,26,7,2,0,pumped-salad
+historical,E002,tqdm-5,tqdm 5,tqdm,5,E002-C04-X,X,swe-2-max,False,pass,fail,clean,405.29,42,44,814278,11151,774656,1,12,0,11,0,amethyst-border
+historical,E002,black-16,Black 16,black,16,E002-C01-M,M,swe-2-medium,True,pass,pass,clean,366.269,47,41,903193,10310,873193,1,22,1,13,0,electric-afternoon
+historical,E002,tornado-13,Tornado 13,tornado,13,E002-C05-X,X,swe-2-max,True,pass,pass,clean,326.457,36,30,783919,9317,756333,1,36,1,36,0,glitter-currant
+historical,E002,scrapy-3,Scrapy 3,scrapy,3,E002-C03-M,M,swe-2-medium,True,pass,pass,clean,817.861,62,59,1960369,26800,1896201,1,34,2,29,0,airy-coffee
+historical,E002,black-16,Black 16,black,16,E002-C01-X,X,swe-2-max,True,pass,pass,clean,399.819,36,42,591544,10720,566965,1,1517,1,1512,0,tundra-dancer
+historical,E002,tqdm-5,tqdm 5,tqdm,5,E002-C04-M,M,swe-2-medium,True,pass,pass,clean,157.312,22,14,220679,2343,208403,1,15,0,10,0,bronze-experience
+historical,E002,fastapi-3,FastAPI 3,fastapi,3,E002-C02-X,X,swe-2-max,True,pass,pass,clean,1137.75,69,71,3504981,60615,3400046,1,25,7,1,0,ionian-wallaby
+historical,E002,tornado-13,Tornado 13,tornado,13,E002-C05-M,M,swe-2-medium,True,pass,pass,clean,175.535,33,25,436280,3486,422145,1,31,1,31,0,shadowed-wedge
+historical,E002,scrapy-3,Scrapy 3,scrapy,3,E002-C03-X,X,swe-2-max,True,pass,pass,clean,1380.464,91,135,6046229,73180,5910875,1,1662,1,1663,0,relieved-wish
+novel,E003,E003-N01,E003-N01,asset-indexer,novel,E003-N01-X,X,swe-2-max,True,pass,pass,pass,125.08838654204737,15,9,108522,1858,101669,1,1,1,1,0,excited-headlight
+novel,E003,E003-N03,E003-N03,record-exporter,novel,E003-N03-M,M,swe-2-medium,True,pass,pass,pass,103.8541400419781,15,9,106432,875,100161,1,3,1,1,0,alive-steed
+novel,E003,E003-N02,E003-N02,catalog-service,novel,E003-N02-X,X,swe-2-max,True,pass,pass,pass,92.47625145793427,15,12,108023,1109,101497,1,1,0,1,0,discreet-wing
+novel,E003,E003-N04,E003-N04,event-stream,novel,E003-N04-X,X,swe-2-max,True,pass,pass,pass,241.7782146660611,16,13,156732,8459,144258,1,9,6,1,0,brick-spear
+novel,E003,E003-N05,E003-N05,line-protocol,novel,E003-N05-X,X,swe-2-max,True,pass,pass,pass,111.6355037499452,16,13,125937,1860,118675,1,1,2,1,0,insidious-almanac
+novel,E003,E003-N03,E003-N03,record-exporter,novel,E003-N03-X,X,swe-2-max,True,pass,pass,pass,113.50124324997887,16,13,125911,1749,118345,1,1,1,1,0,carbonated-finch
+novel,E003,E003-N05,E003-N05,line-protocol,novel,E003-N05-M,M,swe-2-medium,True,pass,pass,pass,91.10635424999055,14,9,94163,914,84264,1,1,2,1,0,legendary-sole
+novel,E003,E003-N02,E003-N02,catalog-service,novel,E003-N02-M,M,swe-2-medium,True,pass,pass,pass,90.60853870795108,15,9,106106,793,100079,1,1,0,1,0,marred-alpaca
+novel,E003,E003-N04,E003-N04,event-stream,novel,E003-N04-M,M,swe-2-medium,True,pass,pass,pass,109.61556029098574,16,10,121566,1601,114077,1,3,5,1,0,sapphire-haddock
+novel,E003,E003-N01,E003-N01,asset-indexer,novel,E003-N01-M,M,swe-2-medium,True,pass,pass,pass,103.72602279100101,17,10,132479,1104,124298,1,1,1,1,0,absorbed-beaufort

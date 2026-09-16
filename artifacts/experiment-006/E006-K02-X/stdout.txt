@@ -1,0 +1,21 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace to understand the project structure.There's a dedicated test file for source encoding. Let me read it and the relevant source files.I can see the issue forming. Let me check `pycompat.py` and the other test files, then reproduce the failure.Now I understand the codebase. Let me reproduce the failing test.Test reproduced: `'失败'` becomes `''` — UTF-8 bytes decoded as ASCII with `errors='replace'`.
+
+**Diagnosis:** In `get_source_from_frame` at [tracer.py:86-96](file:///workspace/pysnooper/tracer.py), when source is read as bytes, the fallback encoding is `'ascii'`. But per PEP 3120, Python 3 source without a coding cookie defaults to UTF-8. The cookie regex still honors explicitly declared encodings — only the fallback is wrong.
+
+The focused fix: change the fallback to `'utf-8'`.Now run the encoding test plus the full suite to verify nothing regressed.Both pass. Let me verify the cookie path still honors a declared non-UTF-8 encoding, then run the full suite.Done. Summary of the work:
+
+**Reproduced** — `tests/test_source_encoding_compat.py` failed: `'失败'` decoded to `''`.
+
+**Diagnosis** — `get_source_from_frame` reads source files in binary mode, then decodes line-by-line. When no PEP-263 coding cookie is found in the first two lines, the fallback encoding was `'ascii'` with `errors='replace'`, so UTF-8 non-ASCII bytes became U+FFFD replacement characters. Per PEP 3120, Python 3 source defaults to UTF-8, so the fallback was wrong.
+
+**Fix** — one-line change in `tracer.py:87`: fallback `encoding = 'ascii'` → `'utf-8'`. The cookie regex still overrides it, so declared encodings remain honored.
+
+**Verified:**
+- New test passes: file without cookie preserves `失败`
+- Manual check: file with `# -*- coding: latin-1 -*-` cookie still decodes `café` correctly
+- Full suite: 30/30 tests pass, including `test_chinese` (end-to-end tracing with non-ASCII output) — ordinary tracing behavior preserved

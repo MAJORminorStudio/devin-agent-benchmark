@@ -1,0 +1,79 @@
+{
+  "case_id": "E005-K01",
+  "condition": "X",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 134400,
+    "completion": 503,
+    "prompt": 134630,
+    "steps": 81,
+    "tool_calls": 101
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 92859,
+      "deleted_bytes": 85838
+    },
+    "changed_files": [
+      "fastapi/applications.py",
+      "fastapi/encoders.py",
+      "fastapi/openapi/utils.py",
+      "fastapi/routing.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 144,
+      "deletions": 15
+    },
+    "sha256": "7d8b18e8c67ca572b8931b43527ac65ba83bb794970603d37be256be85ffbbf4",
+    "source_files_changed": [
+      "fastapi/applications.py",
+      "fastapi/encoders.py",
+      "fastapi/openapi/utils.py",
+      "fastapi/routing.py"
+    ],
+    "workspace_churn_files": 4
+  },
+  "prompt_sha256": "7e73a8187e9e5554d95b2f36c724054b2770587af63781ee5873fe1f573c79af",
+  "provenance": "historical-public",
+  "retries": 0,
+  "run_id": "E005-K01-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "possible-bromine",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T03:50:56.943179+00:00",
+    "started_at_utc": "2026-09-16T03:35:03.918103+00:00",
+    "wall_time_seconds": 953.0180655829608
+  }
+}

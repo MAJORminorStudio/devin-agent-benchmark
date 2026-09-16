@@ -1,0 +1,15 @@
+{
+  "final_metrics": {
+    "cached": 128576,
+    "completion": 2232,
+    "prompt": 133867
+  },
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "fate-leek",
+  "steps": 16,
+  "tool_calls": 14,
+  "tool_calls_by_function": {}
+}

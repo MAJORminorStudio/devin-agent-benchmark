@@ -1,0 +1,24 @@
+--- a/tornado/platform/asyncio.py
++++ b/tornado/platform/asyncio.py
+@@ -39,6 +39,13 @@
+         self.writers = set()
+         self.closing = False
+         IOLoop._ioloop_for_asyncio[asyncio_loop] = self
++        # Remove any entries for asyncio loops that were closed without
++        # going through IOLoop.close (e.g. by calling the asyncio loop's
++        # close method directly), since their wrappers can never be used
++        # again.
++        for loop in list(IOLoop._ioloop_for_asyncio):
++            if loop is not asyncio_loop and loop.is_closed():
++                del IOLoop._ioloop_for_asyncio[loop]
+         super(BaseAsyncIOLoop, self).initialize(**kwargs)
+
+     def close(self, all_fds=False):
+@@ -49,6 +56,7 @@
+             if all_fds:
+                 self.close_fd(fileobj)
+         self.asyncio_loop.close()
++        del IOLoop._ioloop_for_asyncio[self.asyncio_loop]
+
+     def add_handler(self, fd, handler, events):
+         fd, fileobj = self.split_fd(fd)

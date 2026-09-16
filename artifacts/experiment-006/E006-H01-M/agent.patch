@@ -1,0 +1,26 @@
+--- a/src/feature_store/cache.py
++++ b/src/feature_store/cache.py
+@@ -16,6 +16,9 @@
+         entry = self._entries.get(name)
+         return entry.value if entry is not None else None
+ 
++    def get_entry(self, name: str) -> Optional[CacheEntry]:
++        return self._entries.get(name)
++
+     def put(self, name: str, value: str, lineage: Set[str]) -> None:
+         self._entries[name] = CacheEntry(value, set(lineage))
+ 
+--- a/src/feature_store/resolver.py
++++ b/src/feature_store/resolver.py
+@@ -16,9 +16,9 @@
+         self.cache = cache
+ 
+     def resolve(self, name: str) -> Resolved:
+-        cached = self.cache.get(name)
++        cached = self.cache.get_entry(name)
+         if cached is not None:
+-            return Resolved(cached, {name})
++            return Resolved(cached.value, set(cached.lineage))
+         value, lineage = self._resolve(name, set())
+         self.cache.put(name, value, lineage)
+         return Resolved(value, lineage)

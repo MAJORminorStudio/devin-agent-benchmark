@@ -1,0 +1,23 @@
+{
+  "case_id": "E006-H04",
+  "evaluation_status": "OK",
+  "experiment_id": "experiment-006",
+  "failure_forensics": "Held-out stable dispatch membership failed: a listener closed during dispatch was skipped instead of receiving the current event; public and regression passed.",
+  "heldout": {
+    "status": "fail"
+  },
+  "matches_human_reference_patch": false,
+  "public": {
+    "returncodes": [
+      0
+    ],
+    "status": "pass"
+  },
+  "reference_patch_compared": true,
+  "regression": {
+    "status": "pass"
+  },
+  "run_id": "E006-H04-M",
+  "schema_version": 1,
+  "task_success": false
+}

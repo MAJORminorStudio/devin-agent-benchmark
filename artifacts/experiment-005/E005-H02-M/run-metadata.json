@@ -1,0 +1,73 @@
+{
+  "case_id": "E005-H02",
+  "condition": "M",
+  "evaluator": {
+    "heldout": "fail",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": false
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 15616,
+    "completion": 159,
+    "prompt": 15786,
+    "steps": 13,
+    "tool_calls": 10
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 814,
+      "deleted_bytes": 689
+    },
+    "changed_files": [
+      "src/work_queue/executor.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 3,
+      "deletions": 0
+    },
+    "sha256": "38c929d3c0c4588c197591d51049a9c1c9a57f17a0c926db2b3b759344ba99fd",
+    "source_files_changed": [
+      "src/work_queue/executor.py"
+    ],
+    "workspace_churn_files": 1
+  },
+  "prompt_sha256": "01235131c0b9c35053abb5b3ac701cc1b1ba4ff3e896548c5fff41828e38f268",
+  "provenance": "newly-constructed-withheld",
+  "retries": 0,
+  "run_id": "E005-H02-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "casual-department",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T03:23:59.789635+00:00",
+    "started_at_utc": "2026-09-16T03:22:45.120769+00:00",
+    "wall_time_seconds": 74.66823312500492
+  }
+}

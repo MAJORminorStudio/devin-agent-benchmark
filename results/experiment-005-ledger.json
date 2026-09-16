@@ -1,0 +1,1191 @@
+{
+  "configuration_sha256": "2257ee49acd86a80c2eb356285c848006fc4dba64a1907a89d2e8f33993e1684",
+  "control_commit": "11bbf007d2d332e4108805f6e28bbdcb3e8bf2ac",
+  "experiment_id": "experiment-005",
+  "freeze_manifest_sha256": "4c948de5d65bc90ca327d8f7a729b6cc3df571bcde0fab7bf6e7d6bb0c8602c1",
+  "note": "Complete record-level ledger. Raw test output, hidden reasoning, private evaluator source, credentials, and full workspaces are excluded; per-run sanitized timelines and evaluator status derivatives are published under artifacts/experiment-005/.",
+  "records": [
+    {
+      "artifact_path": "artifacts/experiment-005/E005-K04-X/",
+      "case_id": "E005-K04",
+      "condition": "X",
+      "ended_at_utc": "2026-09-16T01:42:49.062726+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-max",
+      "orchestrator_elapsed_seconds": 723.597,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 177109,
+          "deleted_bytes": 176555
+        },
+        "changed_files": [
+          "tornado/web.py",
+          "tornado/websocket.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 13,
+          "deletions": 0
+        },
+        "sha256": "763abeeb4e68471830fcb7984d4ce8c936deb357911616aa7fbfcd5f1f969f28",
+        "source_files_changed": [
+          "tornado/web.py",
+          "tornado/websocket.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "501105ece57baf6cbdfdc356c34f7966fc5c92ecb55c6a15599499256ffe88d8",
+      "provenance": "historical-public",
+      "retries": 0,
+      "run_id": "E005-K04-X",
+      "run_index": 1,
+      "runner_returncode": 0,
+      "session_id": "quixotic-spear",
+      "started_at_utc": "2026-09-16T01:30:45.522017+00:00",
+      "steps": 69,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 79946,
+        "completion": 980,
+        "prompt": 80422
+      },
+      "tool_calls": 67,
+      "wall_time_seconds": 723.5595000410685
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-K05-M/",
+      "case_id": "E005-K05",
+      "condition": "M",
+      "ended_at_utc": "2026-09-16T01:45:16.331548+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-medium",
+      "orchestrator_elapsed_seconds": 146.741,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 3054,
+          "deleted_bytes": 3034
+        },
+        "changed_files": [
+          "thefuck/shells/bash.py",
+          "thefuck/shells/zsh.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 7,
+          "deletions": 6
+        },
+        "sha256": "8768dcc885489b2cb270605ad2833378f0da5ba875ded0a35fd07b34b9e84b7f",
+        "source_files_changed": [
+          "thefuck/shells/bash.py",
+          "thefuck/shells/zsh.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "7bac542a7b45b312873d92bc002efd933e83ad58979553c44add2253660ec9f6",
+      "provenance": "historical-public",
+      "retries": 0,
+      "run_id": "E005-K05-M",
+      "run_index": 2,
+      "runner_returncode": 0,
+      "session_id": "polite-factory",
+      "started_at_utc": "2026-09-16T01:42:49.627023+00:00",
+      "steps": 22,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 19220,
+        "completion": 354,
+        "prompt": 20055
+      },
+      "tool_calls": 18,
+      "wall_time_seconds": 146.70502375008073
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-K02-X/",
+      "case_id": "E005-K02",
+      "condition": "X",
+      "ended_at_utc": "2026-09-16T01:54:50.113636+00:00",
+      "evaluation": {
+        "heldout": "fail",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": false
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-max",
+      "orchestrator_elapsed_seconds": 571.785,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 40340,
+          "deleted_bytes": 40207
+        },
+        "changed_files": [
+          "luigi/scheduler.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 5,
+          "deletions": 0
+        },
+        "sha256": "d4e6591c4abe8c2fae09ea6ee9322849d4704fd6d16b04a2460348ff1160ec89",
+        "source_files_changed": [
+          "luigi/scheduler.py"
+        ],
+        "workspace_churn_files": 1
+      },
+      "prompt_sha256": "f666e127b503c5e6953b39e4bdd5482e1a8f68f0e9f1229804f23bb26493e485",
+      "provenance": "historical-public",
+      "retries": 0,
+      "run_id": "E005-K02-X",
+      "run_index": 3,
+      "runner_returncode": 0,
+      "session_id": "glorious-droplet",
+      "started_at_utc": "2026-09-16T01:45:18.365497+00:00",
+      "steps": 56,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 68252,
+        "completion": 639,
+        "prompt": 68993
+      },
+      "tool_calls": 54,
+      "wall_time_seconds": 571.7501981660025
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-K01-M/",
+      "case_id": "E005-K01",
+      "condition": "M",
+      "ended_at_utc": "2026-09-16T02:07:45.192529+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-medium",
+      "orchestrator_elapsed_seconds": 771.781,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 92906,
+          "deleted_bytes": 85838
+        },
+        "changed_files": [
+          "fastapi/applications.py",
+          "fastapi/encoders.py",
+          "fastapi/openapi/utils.py",
+          "fastapi/routing.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 145,
+          "deletions": 14
+        },
+        "sha256": "ba0351317e0531e4ef8abc11829b19b63640062e7f94f9d89eec7c135d9956ff",
+        "source_files_changed": [
+          "fastapi/applications.py",
+          "fastapi/encoders.py",
+          "fastapi/openapi/utils.py",
+          "fastapi/routing.py"
+        ],
+        "workspace_churn_files": 4
+      },
+      "prompt_sha256": "7e73a8187e9e5554d95b2f36c724054b2770587af63781ee5873fe1f573c79af",
+      "provenance": "historical-public",
+      "retries": 0,
+      "run_id": "E005-K01-M",
+      "run_index": 4,
+      "runner_returncode": 0,
+      "session_id": "trail-study",
+      "started_at_utc": "2026-09-16T01:54:53.459968+00:00",
+      "steps": 81,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 127499,
+        "completion": 583,
+        "prompt": 129859
+      },
+      "tool_calls": 132,
+      "wall_time_seconds": 771.6972634169506
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-H05-X/",
+      "case_id": "E005-H05",
+      "condition": "X",
+      "ended_at_utc": "2026-09-16T02:11:42.148786+00:00",
+      "evaluation": {
+        "heldout": "fail",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": false
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-max",
+      "orchestrator_elapsed_seconds": 277.033,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 3035,
+          "deleted_bytes": 2771
+        },
+        "changed_files": [
+          "src/event_ledger/bus.py",
+          "src/event_ledger/projection.py",
+          "src/event_ledger/subscriptions.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 13,
+          "deletions": 5
+        },
+        "sha256": "cb028b53a080c4008334667523c039807237a69e38158d15537548973538ce43",
+        "source_files_changed": [
+          "src/event_ledger/bus.py",
+          "src/event_ledger/projection.py",
+          "src/event_ledger/subscriptions.py"
+        ],
+        "workspace_churn_files": 3
+      },
+      "prompt_sha256": "c133e06d8336e9f94871aa5748f21b61b6104fa3904335743548472c5cc5cb4c",
+      "provenance": "newly-constructed-withheld",
+      "retries": 0,
+      "run_id": "E005-H05-X",
+      "run_index": 5,
+      "runner_returncode": 0,
+      "session_id": "jumpy-pegasus",
+      "started_at_utc": "2026-09-16T02:07:46.588801+00:00",
+      "steps": 17,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 20967,
+        "completion": 411,
+        "prompt": 22189
+      },
+      "tool_calls": 19,
+      "wall_time_seconds": 235.5587586669717
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-K04-M/",
+      "case_id": "E005-K04",
+      "condition": "M",
+      "ended_at_utc": "2026-09-16T02:59:18.146379+00:00",
+      "evaluation": {
+        "heldout": "fail",
+        "public": "fail",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": false
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-medium",
+      "orchestrator_elapsed_seconds": 145.123,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 176647,
+          "deleted_bytes": 176555
+        },
+        "changed_files": [
+          "tornado/web.py",
+          "tornado/websocket.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 4,
+          "deletions": 0
+        },
+        "sha256": "bee13c162100aa94f5d780bb97a2d2c5212b0b1da2e12f777a50dbe0137db161",
+        "source_files_changed": [
+          "tornado/web.py",
+          "tornado/websocket.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "501105ece57baf6cbdfdc356c34f7966fc5c92ecb55c6a15599499256ffe88d8",
+      "provenance": "historical-public",
+      "retries": 0,
+      "run_id": "E005-K04-M",
+      "run_index": 6,
+      "runner_returncode": 0,
+      "session_id": "internal-system-exhaust",
+      "started_at_utc": "2026-09-16T02:56:53.085097+00:00",
+      "steps": 32,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 26368,
+        "completion": 282,
+        "prompt": 26590
+      },
+      "tool_calls": 26,
+      "wall_time_seconds": 145.0603207090171
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-H05-M/",
+      "case_id": "E005-H05",
+      "condition": "M",
+      "ended_at_utc": "2026-09-16T03:00:40.287966+00:00",
+      "evaluation": {
+        "heldout": "fail",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": false
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-medium",
+      "orchestrator_elapsed_seconds": 81.593,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 2205,
+          "deleted_bytes": 2107
+        },
+        "changed_files": [
+          "src/event_ledger/projection.py",
+          "src/event_ledger/subscriptions.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 3,
+          "deletions": 1
+        },
+        "sha256": "276f452ced303b5b8329c08fcf625a77cc1d568112855785ed7a4d230bab9c7c",
+        "source_files_changed": [
+          "src/event_ledger/projection.py",
+          "src/event_ledger/subscriptions.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "c133e06d8336e9f94871aa5748f21b61b6104fa3904335743548472c5cc5cb4c",
+      "provenance": "newly-constructed-withheld",
+      "retries": 0,
+      "run_id": "E005-H05-M",
+      "run_index": 7,
+      "runner_returncode": 0,
+      "session_id": "lean-conga",
+      "started_at_utc": "2026-09-16T02:59:18.734814+00:00",
+      "steps": 14,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 14592,
+        "completion": 130,
+        "prompt": 14770
+      },
+      "tool_calls": 7,
+      "wall_time_seconds": 81.55256687500514
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-H04-X/",
+      "case_id": "E005-H04",
+      "condition": "X",
+      "ended_at_utc": "2026-09-16T03:02:34.129113+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-max",
+      "orchestrator_elapsed_seconds": 113.636,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 377,
+          "deleted_bytes": 367
+        },
+        "changed_files": [
+          "src/order_flow/transaction.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 1,
+          "deletions": 1
+        },
+        "sha256": "50e657161f7392b006ee0feeec2513c09b282f97d0cf00240487fd2dc7fe1f57",
+        "source_files_changed": [
+          "src/order_flow/transaction.py"
+        ],
+        "workspace_churn_files": 1
+      },
+      "prompt_sha256": "8da5f0ae6607276212ce31148317f491c1b9f0f93ca9bb53a03fc1220581137b",
+      "provenance": "newly-constructed-withheld",
+      "retries": 0,
+      "run_id": "E005-H04-X",
+      "run_index": 8,
+      "runner_returncode": 0,
+      "session_id": "sideways-gasosaurus",
+      "started_at_utc": "2026-09-16T03:00:40.532071+00:00",
+      "steps": 16,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 17920,
+        "completion": 293,
+        "prompt": 18259
+      },
+      "tool_calls": 16,
+      "wall_time_seconds": 113.59624950005673
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-H03-X/",
+      "case_id": "E005-H03",
+      "condition": "X",
+      "ended_at_utc": "2026-09-16T03:06:20.435084+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "fail",
+        "status": "OK",
+        "task_success": false
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-max",
+      "orchestrator_elapsed_seconds": 226.104,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 3313,
+          "deleted_bytes": 3150
+        },
+        "changed_files": [
+          "src/wire_relay/framing.py",
+          "src/wire_relay/session.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 10,
+          "deletions": 4
+        },
+        "sha256": "c0d7c29c8140076451efa5a739b3c27cef439894d2e4a04aa5626007d3210227",
+        "source_files_changed": [
+          "src/wire_relay/framing.py",
+          "src/wire_relay/session.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "cb515641dff9ccc69ad8cc58046fb036e58b71b6f476f1a610d06e81cc73289b",
+      "provenance": "newly-constructed-withheld",
+      "retries": 0,
+      "run_id": "E005-H03-X",
+      "run_index": 9,
+      "runner_returncode": 0,
+      "session_id": "flannel-geology",
+      "started_at_utc": "2026-09-16T03:02:34.367993+00:00",
+      "steps": 18,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 24832,
+        "completion": 304,
+        "prompt": 25074
+      },
+      "tool_calls": 16,
+      "wall_time_seconds": 226.06557695800439
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-K02-M/",
+      "case_id": "E005-K02",
+      "condition": "M",
+      "ended_at_utc": "2026-09-16T03:10:19.264498+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-medium",
+      "orchestrator_elapsed_seconds": 238.35,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 56218,
+          "deleted_bytes": 56064
+        },
+        "changed_files": [
+          "luigi/interface.py",
+          "luigi/scheduler.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 5,
+          "deletions": 1
+        },
+        "sha256": "8de8d046231c631d1229852bf52f0dee64f78fbf5f07bbea53e3fb647826f5e0",
+        "source_files_changed": [
+          "luigi/interface.py",
+          "luigi/scheduler.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "f666e127b503c5e6953b39e4bdd5482e1a8f68f0e9f1229804f23bb26493e485",
+      "provenance": "historical-public",
+      "retries": 0,
+      "run_id": "E005-K02-M",
+      "run_index": 10,
+      "runner_returncode": 0,
+      "session_id": "mesquite-trail",
+      "started_at_utc": "2026-09-16T03:06:20.947249+00:00",
+      "steps": 54,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 37376,
+        "completion": 400,
+        "prompt": 37616
+      },
+      "tool_calls": 49,
+      "wall_time_seconds": 238.30983433302026
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-H03-M/",
+      "case_id": "E005-H03",
+      "condition": "M",
+      "ended_at_utc": "2026-09-16T03:11:51.931529+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-medium",
+      "orchestrator_elapsed_seconds": 90.467,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 3024,
+          "deleted_bytes": 3150
+        },
+        "changed_files": [
+          "src/wire_relay/framing.py",
+          "src/wire_relay/session.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 2,
+          "deletions": 4
+        },
+        "sha256": "257d4e97425953e49123bf6e2012b07e20c6ca033220729b148d598a4e6b1f9b",
+        "source_files_changed": [
+          "src/wire_relay/framing.py",
+          "src/wire_relay/session.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "cb515641dff9ccc69ad8cc58046fb036e58b71b6f476f1a610d06e81cc73289b",
+      "provenance": "newly-constructed-withheld",
+      "retries": 0,
+      "run_id": "E005-H03-M",
+      "run_index": 11,
+      "runner_returncode": 0,
+      "session_id": "respected-fahrenheit",
+      "started_at_utc": "2026-09-16T03:10:21.502500+00:00",
+      "steps": 14,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 11968,
+        "completion": 229,
+        "prompt": 15506
+      },
+      "tool_calls": 10,
+      "wall_time_seconds": 90.42784245801158
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-K03-X/",
+      "case_id": "E005-K03",
+      "condition": "X",
+      "ended_at_utc": "2026-09-16T03:21:22.539435+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-max",
+      "orchestrator_elapsed_seconds": 569.624,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 58021,
+          "deleted_bytes": 57263
+        },
+        "changed_files": [
+          "tornado/ioloop.py",
+          "tornado/platform/asyncio.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 16,
+          "deletions": 2
+        },
+        "sha256": "3c66ec89962cc37f578bddbdff45740b725123e81d09727030d03f60fc7362d6",
+        "source_files_changed": [
+          "tornado/ioloop.py",
+          "tornado/platform/asyncio.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "299f94c0da2286f18b285b3c26a78cbdd4b9dccf64d55a575571b1279914b4c8",
+      "provenance": "historical-public",
+      "retries": 0,
+      "run_id": "E005-K03-X",
+      "run_index": 12,
+      "runner_returncode": 0,
+      "session_id": "shining-radio",
+      "started_at_utc": "2026-09-16T03:11:52.991875+00:00",
+      "steps": 45,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 56896,
+        "completion": 801,
+        "prompt": 57123
+      },
+      "tool_calls": 46,
+      "wall_time_seconds": 569.5430964579573
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-H01-M/",
+      "case_id": "E005-H01",
+      "condition": "M",
+      "ended_at_utc": "2026-09-16T03:22:44.727554+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-medium",
+      "orchestrator_elapsed_seconds": 81.668,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 1738,
+          "deleted_bytes": 1867
+        },
+        "changed_files": [
+          "src/feature_plan/resolver.py",
+          "src/feature_plan/service.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 5,
+          "deletions": 8
+        },
+        "sha256": "0857469b7b76e45cb3668c0f3811cb672b865eee5482ea1a4f160180cf2884cc",
+        "source_files_changed": [
+          "src/feature_plan/resolver.py",
+          "src/feature_plan/service.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "c60707dae70637ff3e44369f4d908784ef54460e21d338bfef6a6c1e3e5fed83",
+      "provenance": "newly-constructed-withheld",
+      "retries": 0,
+      "run_id": "E005-H01-M",
+      "run_index": 13,
+      "runner_returncode": 0,
+      "session_id": "triangular-chemistry",
+      "started_at_utc": "2026-09-16T03:21:23.132147+00:00",
+      "steps": 13,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 16000,
+        "completion": 238,
+        "prompt": 16161
+      },
+      "tool_calls": 12,
+      "wall_time_seconds": 81.59428570896853
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-H02-M/",
+      "case_id": "E005-H02",
+      "condition": "M",
+      "ended_at_utc": "2026-09-16T03:23:59.789635+00:00",
+      "evaluation": {
+        "heldout": "fail",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": false
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-medium",
+      "orchestrator_elapsed_seconds": 74.719,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 814,
+          "deleted_bytes": 689
+        },
+        "changed_files": [
+          "src/work_queue/executor.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 3,
+          "deletions": 0
+        },
+        "sha256": "38c929d3c0c4588c197591d51049a9c1c9a57f17a0c926db2b3b759344ba99fd",
+        "source_files_changed": [
+          "src/work_queue/executor.py"
+        ],
+        "workspace_churn_files": 1
+      },
+      "prompt_sha256": "01235131c0b9c35053abb5b3ac701cc1b1ba4ff3e896548c5fff41828e38f268",
+      "provenance": "newly-constructed-withheld",
+      "retries": 0,
+      "run_id": "E005-H02-M",
+      "run_index": 14,
+      "runner_returncode": 0,
+      "session_id": "casual-department",
+      "started_at_utc": "2026-09-16T03:22:45.120769+00:00",
+      "steps": 13,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 15616,
+        "completion": 159,
+        "prompt": 15786
+      },
+      "tool_calls": 10,
+      "wall_time_seconds": 74.66823312500492
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-H04-M/",
+      "case_id": "E005-H04",
+      "condition": "M",
+      "ended_at_utc": "2026-09-16T03:25:21.899966+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-medium",
+      "orchestrator_elapsed_seconds": 81.664,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 377,
+          "deleted_bytes": 367
+        },
+        "changed_files": [
+          "src/order_flow/transaction.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 1,
+          "deletions": 1
+        },
+        "sha256": "50e657161f7392b006ee0feeec2513c09b282f97d0cf00240487fd2dc7fe1f57",
+        "source_files_changed": [
+          "src/order_flow/transaction.py"
+        ],
+        "workspace_churn_files": 1
+      },
+      "prompt_sha256": "8da5f0ae6607276212ce31148317f491c1b9f0f93ca9bb53a03fc1220581137b",
+      "provenance": "newly-constructed-withheld",
+      "retries": 0,
+      "run_id": "E005-H04-M",
+      "run_index": 15,
+      "runner_returncode": 0,
+      "session_id": "pastoral-sunshine",
+      "started_at_utc": "2026-09-16T03:24:00.287387+00:00",
+      "steps": 14,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 15936,
+        "completion": 224,
+        "prompt": 16113
+      },
+      "tool_calls": 12,
+      "wall_time_seconds": 81.61153829097748
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-H01-X/",
+      "case_id": "E005-H01",
+      "condition": "X",
+      "ended_at_utc": "2026-09-16T03:28:14.124111+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-max",
+      "orchestrator_elapsed_seconds": 171.952,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 1738,
+          "deleted_bytes": 1867
+        },
+        "changed_files": [
+          "src/feature_plan/resolver.py",
+          "src/feature_plan/service.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 5,
+          "deletions": 8
+        },
+        "sha256": "0857469b7b76e45cb3668c0f3811cb672b865eee5482ea1a4f160180cf2884cc",
+        "source_files_changed": [
+          "src/feature_plan/resolver.py",
+          "src/feature_plan/service.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "c60707dae70637ff3e44369f4d908784ef54460e21d338bfef6a6c1e3e5fed83",
+      "provenance": "newly-constructed-withheld",
+      "retries": 0,
+      "run_id": "E005-H01-X",
+      "run_index": 16,
+      "runner_returncode": 0,
+      "session_id": "quiet-newt",
+      "started_at_utc": "2026-09-16T03:25:22.420104+00:00",
+      "steps": 16,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 7808,
+        "completion": 305,
+        "prompt": 21009
+      },
+      "tool_calls": 18,
+      "wall_time_seconds": 171.70258341706358
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-H02-X/",
+      "case_id": "E005-H02",
+      "condition": "X",
+      "ended_at_utc": "2026-09-16T03:35:03.069592+00:00",
+      "evaluation": {
+        "heldout": "fail",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": false
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-max",
+      "orchestrator_elapsed_seconds": 408.769,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 990,
+          "deleted_bytes": 689
+        },
+        "changed_files": [
+          "src/work_queue/executor.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 7,
+          "deletions": 1
+        },
+        "sha256": "5c551c21d5e2b579effb7f2154a507e6c19013301487e9ba3a6d08df83c2d41e",
+        "source_files_changed": [
+          "src/work_queue/executor.py"
+        ],
+        "workspace_churn_files": 1
+      },
+      "prompt_sha256": "01235131c0b9c35053abb5b3ac701cc1b1ba4ff3e896548c5fff41828e38f268",
+      "provenance": "newly-constructed-withheld",
+      "retries": 0,
+      "run_id": "E005-H02-X",
+      "run_index": 17,
+      "runner_returncode": 0,
+      "session_id": "leeward-primula",
+      "started_at_utc": "2026-09-16T03:28:14.334683+00:00",
+      "steps": 17,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 31360,
+        "completion": 314,
+        "prompt": 31547
+      },
+      "tool_calls": 16,
+      "wall_time_seconds": 408.73255062499084
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-K01-X/",
+      "case_id": "E005-K01",
+      "condition": "X",
+      "ended_at_utc": "2026-09-16T03:50:56.943179+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-max",
+      "orchestrator_elapsed_seconds": 953.053,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 92859,
+          "deleted_bytes": 85838
+        },
+        "changed_files": [
+          "fastapi/applications.py",
+          "fastapi/encoders.py",
+          "fastapi/openapi/utils.py",
+          "fastapi/routing.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 144,
+          "deletions": 15
+        },
+        "sha256": "7d8b18e8c67ca572b8931b43527ac65ba83bb794970603d37be256be85ffbbf4",
+        "source_files_changed": [
+          "fastapi/applications.py",
+          "fastapi/encoders.py",
+          "fastapi/openapi/utils.py",
+          "fastapi/routing.py"
+        ],
+        "workspace_churn_files": 4
+      },
+      "prompt_sha256": "7e73a8187e9e5554d95b2f36c724054b2770587af63781ee5873fe1f573c79af",
+      "provenance": "historical-public",
+      "retries": 0,
+      "run_id": "E005-K01-X",
+      "run_index": 18,
+      "runner_returncode": 0,
+      "session_id": "possible-bromine",
+      "started_at_utc": "2026-09-16T03:35:03.918103+00:00",
+      "steps": 81,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 134400,
+        "completion": 503,
+        "prompt": 134630
+      },
+      "tool_calls": 101,
+      "wall_time_seconds": 953.0180655829608
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-K03-M/",
+      "case_id": "E005-K03",
+      "condition": "M",
+      "ended_at_utc": "2026-09-16T03:53:27.564321+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-medium",
+      "orchestrator_elapsed_seconds": 148.929,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 10083,
+          "deleted_bytes": 9621
+        },
+        "changed_files": [
+          "tornado/platform/asyncio.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 8,
+          "deletions": 0
+        },
+        "sha256": "1bd305f79188a1f696ad88002dd2547e02c9c03be7db0bfa2c66f44335bdd12c",
+        "source_files_changed": [
+          "tornado/platform/asyncio.py"
+        ],
+        "workspace_churn_files": 1
+      },
+      "prompt_sha256": "299f94c0da2286f18b285b3c26a78cbdd4b9dccf64d55a575571b1279914b4c8",
+      "provenance": "historical-public",
+      "retries": 0,
+      "run_id": "E005-K03-M",
+      "run_index": 19,
+      "runner_returncode": 0,
+      "session_id": "petite-crater",
+      "started_at_utc": "2026-09-16T03:50:58.668462+00:00",
+      "steps": 23,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 26368,
+        "completion": 272,
+        "prompt": 26575
+      },
+      "tool_calls": 17,
+      "wall_time_seconds": 148.89469066704623
+    },
+    {
+      "artifact_path": "artifacts/experiment-005/E005-K05-X/",
+      "case_id": "E005-K05",
+      "condition": "X",
+      "ended_at_utc": "2026-09-16T04:00:18.531338+00:00",
+      "evaluation": {
+        "heldout": "pass",
+        "public": "pass",
+        "regression": "pass",
+        "status": "OK",
+        "task_success": true
+      },
+      "infrastructure_incident": null,
+      "interventions": 0,
+      "leak_audit": "pass",
+      "model": "swe-2-max",
+      "orchestrator_elapsed_seconds": 410.357,
+      "patch": {
+        "byte_counts": {
+          "added_bytes": 3054,
+          "deleted_bytes": 3034
+        },
+        "changed_files": [
+          "thefuck/shells/bash.py",
+          "thefuck/shells/zsh.py"
+        ],
+        "generated_or_environment_files_changed": [],
+        "line_counts": {
+          "additions": 7,
+          "deletions": 6
+        },
+        "sha256": "825754981699d80ed227a8ea313afa1a64f14ed14edbb89f58c56c88762b5143",
+        "source_files_changed": [
+          "thefuck/shells/bash.py",
+          "thefuck/shells/zsh.py"
+        ],
+        "workspace_churn_files": 2
+      },
+      "prompt_sha256": "7bac542a7b45b312873d92bc002efd933e83ad58979553c44add2253660ec9f6",
+      "provenance": "historical-public",
+      "retries": 0,
+      "run_id": "E005-K05-X",
+      "run_index": 20,
+      "runner_returncode": 0,
+      "session_id": "potent-click",
+      "started_at_utc": "2026-09-16T03:53:28.257554+00:00",
+      "steps": 46,
+      "termination": {
+        "reason": "completed",
+        "timed_out": false
+      },
+      "tokens": {
+        "cached": 39488,
+        "completion": 798,
+        "prompt": 39692
+      },
+      "tool_calls": 45,
+      "wall_time_seconds": 410.32000599999446
+    }
+  ],
+  "run_count": 20,
+  "run_order_sha256": "21bfd3d3c514bdb221bfcb2e3c5a7dc14d94c5f98e98b555775b2244b67c6daf",
+  "schema_version": 1,
+  "status": "complete"
+}

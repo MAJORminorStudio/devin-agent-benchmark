@@ -1,0 +1,10 @@
+[build-system]
+requires = []
+build-backend = "setuptools.build_meta:__legacy__"
+
+[project]
+name = "asset-indexer"
+version = "0.1.0"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

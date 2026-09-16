@@ -1,0 +1,53 @@
+{
+  "acus": null,
+  "case_id": "E003-N02",
+  "condition": "M",
+  "cost": null,
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-003",
+  "interventions": 0,
+  "metrics": {
+    "steps": 15,
+    "tokens": {
+      "cached": 100079,
+      "completion": 793,
+      "prompt": 106106
+    },
+    "tool_calls": 9
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "files_changed": [
+      "src/catalog/store.py"
+    ],
+    "generated_or_environment_files": [],
+    "lines_added": 1,
+    "lines_deleted": 0,
+    "sha256": "76d6b3a602a4f76bce2518a169ea8723d08a1301b09c25eb74a94258cc02568f",
+    "source_files_changed": [
+      "src/catalog/store.py"
+    ]
+  },
+  "prompt_sha256": "a86a704e1fed5762335f55ad98ec1166a8eb3c764a71898527c9ca1651da664b",
+  "reference_comparison": {
+    "matches_human_reference_patch": true,
+    "performed_after_pair_closure": true,
+    "reference_patch_sha256": "76d6b3a602a4f76bce2518a169ea8723d08a1301b09c25eb74a94258cc02568f"
+  },
+  "run_id": "E003-N02-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning and private paths are omitted.",
+  "session_id": "marred-alpaca",
+  "termination_reason": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-15T22:04:11.835431+00:00",
+    "started_at_utc": "2026-09-15T22:02:41.226300+00:00",
+    "wall_time_seconds": 90.60853870795108
+  }
+}

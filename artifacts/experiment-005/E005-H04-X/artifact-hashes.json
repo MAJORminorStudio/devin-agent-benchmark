@@ -1,0 +1,71 @@
+{
+  "excluded_local_artifacts": [
+    "raw session export with hidden reasoning and machine paths",
+    "raw runner/evaluator ledgers with private local paths",
+    "private held-out evaluator source and reference fixes",
+    "full agent workspaces and dependency environments"
+  ],
+  "published_artifacts": {
+    "agent.patch": {
+      "bytes": 270,
+      "sha256": "f180757329ac009a34c75ead239a5227e5711638d0416f413d1e65105b4260d0"
+    },
+    "devin-session-export.sanitized.json": {
+      "bytes": 26416,
+      "sha256": "fde31f41d953ea4b35ef3dca647011cc5f999c25df238a6ee15a1adad836a6a2"
+    },
+    "evaluation-result.json": {
+      "bytes": 1695,
+      "sha256": "29777474a67ce60cab6d3f3a17245f61f733d5309a6e6bf92cc789c515818d97"
+    },
+    "prompt.md": {
+      "bytes": 454,
+      "sha256": "8da5f0ae6607276212ce31148317f491c1b9f0f93ca9bb53a03fc1220581137b"
+    },
+    "run-metadata.json": {
+      "bytes": 2138,
+      "sha256": "f98fccfdde29a06cf9525769279e86edbd307e267149e0da9f116c895e4af758"
+    },
+    "session-summary.json": {
+      "bytes": 707,
+      "sha256": "e14d5335a820ad21bb1dc51d0f0b457ae486128ca1e86594ce4f51dfaef9697a"
+    },
+    "source-diff-stat.json": {
+      "bytes": 428,
+      "sha256": "b0c963b99cd38993c204296b5a9f2063eaaa0562ac60d703f5854d316f98f16f"
+    },
+    "stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stdout.txt": {
+      "bytes": 1801,
+      "sha256": "be1af91dc3b312dd30e96d7f6799387874a70fe3517fd113316553a684df9bdb"
+    },
+    "tool-timeline.json": {
+      "bytes": 26117,
+      "sha256": "7ce417489ee3bf25d297df279e90a2150973d17f201a945c8d629900cb8c4c95"
+    },
+    "workspace-change-summary.json": {
+      "bytes": 350,
+      "sha256": "174c33b1ebea448a65e4308a22d54d242bf3ade58ba5694701e29301c524d828"
+    }
+  },
+  "raw_local_artifacts": {
+    "agent_patch": {
+      "bytes": 271,
+      "sha256": "50e657161f7392b006ee0feeec2513c09b282f97d0cf00240487fd2dc7fe1f57"
+    },
+    "prompt": {
+      "bytes": 454,
+      "sha256": "8da5f0ae6607276212ce31148317f491c1b9f0f93ca9bb53a03fc1220581137b"
+    },
+    "session_export": {
+      "bytes": 99728,
+      "sha256": "f71e85720b9f5ec0194b4cf8c071b2c78c5ec66e4789501c6f462cd8019fa031"
+    }
+  },
+  "run_id": "E005-H04-X",
+  "sanitization": "Private paths, secrets, system boilerplate, hidden reasoning, private evaluator source, and full workspaces were excluded or redacted; observable tool calls, messages, patches, outcomes, and aggregate metrics were retained.",
+  "schema_version": 1
+}

@@ -1,0 +1,12 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+The parse puts `>>` (RIGHTSHIFT) as a direct child of `print_stmt`, and the following expression's first leaf gets a default SPACE via `preceding_leaf`. I'll add a rule in `whitespace()`:The parser uses `python_grammar_no_print_statement`, so `print >>` parses as a shift expression. Let me check that tree:Under the no-print grammar, `print` is a direct NAME child of `shift_expr`, followed by the `>>` leaf. I'll tighten the rule to only fire when the operand before `>>` is a bare `print` leaf:Matches expected output and `a >> b` / `foo >> bar` keep normal spacing. Running the suite:All 16 tests pass. Summary of what I found and did:
+
+**Root cause** — `lib2to3_parse` uses `pygram.python_grammar_no_print_statement` [black.py:238-246](file:///workspace/black.py), so `print >>sys.stderr` parses as a `shift_expr` (`print` NAME, `>>` RIGHTSHIFT leaf, `power` node) rather than a `print_stmt`. When `whitespace()` computed the prefix for `sys`, its preceding leaf was `>>`, which fell through to the default SPACE, producing `print >> sys.stderr`.
+
+**Fix** — added a `token.RIGHTSHIFT` branch in `whitespace()` [black.py:895-905](file:///workspace/black.py) that returns NO only when the `>>` is genuinely print-redirection: either inside a `print_stmt` node (real print grammar), or inside a `shift_expr` whose left operand is a bare `print` NAME leaf. The `prev_sibling` Leaf check excludes cases like `x.print >> y` or `foo >> bar`, so regular shift expressions in Python 3 keep their spaces.
+
+**Verified** — `test_python2` and the full suite pass; manually confirmed `x = a >> b` and `foo >> bar` still format with spaces.

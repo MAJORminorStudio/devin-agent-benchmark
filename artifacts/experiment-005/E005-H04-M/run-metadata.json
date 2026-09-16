@@ -1,0 +1,73 @@
+{
+  "case_id": "E005-H04",
+  "condition": "M",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-005",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "effective_permission_mode": "Bypass",
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "permission_mode": "dangerous",
+    "platform": "linux/arm64",
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true
+  },
+  "infrastructure_incident": null,
+  "interventions": 0,
+  "leak_audit": "pass",
+  "metrics": {
+    "cached": 15936,
+    "completion": 224,
+    "prompt": 16113,
+    "steps": 14,
+    "tool_calls": 12
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "byte_counts": {
+      "added_bytes": 377,
+      "deleted_bytes": 367
+    },
+    "changed_files": [
+      "src/order_flow/transaction.py"
+    ],
+    "generated_or_environment_files_changed": [],
+    "line_counts": {
+      "additions": 1,
+      "deletions": 1
+    },
+    "sha256": "50e657161f7392b006ee0feeec2513c09b282f97d0cf00240487fd2dc7fe1f57",
+    "source_files_changed": [
+      "src/order_flow/transaction.py"
+    ],
+    "workspace_churn_files": 1
+  },
+  "prompt_sha256": "8da5f0ae6607276212ce31148317f491c1b9f0f93ca9bb53a03fc1220581137b",
+  "provenance": "newly-constructed-withheld",
+  "retries": 0,
+  "run_id": "E005-H04-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "pastoral-sunshine",
+  "termination": {
+    "reason": "completed",
+    "timed_out": false
+  },
+  "timing": {
+    "ended_at_utc": "2026-09-16T03:25:21.899966+00:00",
+    "started_at_utc": "2026-09-16T03:24:00.287387+00:00",
+    "wall_time_seconds": 81.61153829097748
+  }
+}

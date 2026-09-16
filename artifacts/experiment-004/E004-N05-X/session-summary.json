@@ -1,0 +1,15 @@
+{
+  "final_metrics": {
+    "cached": 155456,
+    "completion": 5410,
+    "prompt": 163640
+  },
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "mire-session",
+  "steps": 17,
+  "tool_calls": 26,
+  "tool_calls_by_function": {}
+}

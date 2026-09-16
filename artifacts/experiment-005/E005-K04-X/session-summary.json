@@ -1,0 +1,29 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 2936323,
+    "total_completion_tokens": 24889,
+    "total_prompt_tokens": 3073878,
+    "total_steps": 69
+  },
+  "first_observable_timestamp": "2026-09-16T01:31:53.727080505+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T01:42:29.635265258+00:00",
+  "model": "swe-2-max",
+  "observable_steps": 63,
+  "patch_sha256": "763abeeb4e68471830fcb7984d4ce8c936deb357911616aa7fbfcd5f1f969f28",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "quixotic-spear",
+  "steps": 69,
+  "tool_calls": 67,
+  "tool_calls_by_function": {
+    "edit": 2,
+    "exec": 32,
+    "grep": 4,
+    "read": 13,
+    "web_search": 7,
+    "webfetch": 8,
+    "write": 1
+  }
+}

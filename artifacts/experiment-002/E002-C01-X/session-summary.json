@@ -1,0 +1,46 @@
+{
+  "agent": {
+    "cli_version": "3000.10.21 (611c1cba)",
+    "configuration": "experiment-002",
+    "effective_permission_mode": "Bypass",
+    "fusion_enabled": false,
+    "model": "swe-2-max",
+    "model_family": "SWE-2",
+    "name": "Devin",
+    "permission_mode": "dangerous",
+    "provider_metrics": {
+      "total_cached_tokens": 566965,
+      "total_completion_tokens": 10720,
+      "total_prompt_tokens": 591544,
+      "total_steps": 36
+    }
+  },
+  "final_metrics": {
+    "total_cached_tokens": 566965,
+    "total_completion_tokens": 10720,
+    "total_prompt_tokens": 591544,
+    "total_steps": 36
+  },
+  "first_step_timestamp": "2026-09-15T02:41:18.987417760+00:00",
+  "last_step_timestamp": "2026-09-15T02:46:54.931478888+00:00",
+  "model": "swe-2-max",
+  "patch_empty": false,
+  "patch_sha256": "51fec1f580065c1c76e23006eb2d6803418c2f0f20500fbb571c13b3d6cb97fa",
+  "permission_warning": null,
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "tundra-dancer",
+  "source_step_counts": {
+    "agent": 29,
+    "system": 6,
+    "user": 1
+  },
+  "tool_call_count": 42,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 27,
+    "read": 9,
+    "write": 5
+  },
+  "total_steps": 36
+}

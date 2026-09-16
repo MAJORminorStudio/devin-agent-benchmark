@@ -1,0 +1,7 @@
+[build-system]
+requires = []
+build-backend = "setuptools.build_meta:__legacy__"
+
+[project]
+name = "catalog-service"
+version = "0.1.0"

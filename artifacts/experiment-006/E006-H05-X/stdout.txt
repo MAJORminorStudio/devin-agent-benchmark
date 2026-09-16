@@ -1,0 +1,13 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace to understand the codebase.Found it — the cache keys only on `name`, ignoring `mode` and `version`. Let me read the rest of the source and tests.Confirmed — the cache keys artifacts by `name` only, so the compact-mode artifact is returned for verbose loads, and stale artifacts survive version bumps. Fix: key the cache on the full `(name, mode, version)` tuple.Now run the test suite plus a quick check that source updates also invalidate stale artifacts.Fixed. The bug was in `ArtifactCache` — artifacts were keyed by profile `name` only, so the first artifact cached for a profile was returned for every mode and every source revision. [cache.py](file:///workspace/src/profile_runtime/cache.py)
+
+Changes:
+- `get`/`put` now key on the full `(name, mode, version)` tuple, so compact and verbose artifacts for the same profile coexist without contaminating each other, and a bumped `version` misses the stale entry and re-normalizes.
+- `put` evicts same-name/same-mode entries at older versions so superseded revisions don't linger.
+- `normalize`, `encode`/`decode` (sorted keys, compact separators) are untouched.
+
+Verified: the test suite passes, plus a manual check covering mode isolation in both directions, post-update reloads returning the new revision, and deterministic serialization.

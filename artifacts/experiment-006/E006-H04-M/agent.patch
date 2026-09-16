@@ -1,0 +1,30 @@
+--- a/src/account_ledger/events.py
++++ b/src/account_ledger/events.py
+@@ -20,9 +20,13 @@
+         return item
+ 
+     def publish(self, event):
+-        for item in self._subscriptions.get(event["topic"], []):
++        topic = event["topic"]
++        for item in tuple(self._subscriptions.get(topic, ())):
+             if not item.active:
+                 continue
+-            item.callback(event)
+             if item.once:
+                 item.close()
++            item.callback(event)
++        subscribers = self._subscriptions.get(topic)
++        if subscribers:
++            self._subscriptions[topic] = [item for item in subscribers if item.active]
+--- a/src/account_ledger/service.py
++++ b/src/account_ledger/service.py
+@@ -10,8 +10,8 @@
+         transaction = self.store.begin()
+         balance = self.store.balance(account) + delta
+         transaction.set(account, balance)
++        transaction.commit()
+         self.bus.publish({"topic": "account.changed", "account": account, "balance": balance, "delta": delta})
+-        transaction.commit()
+ 
+     def balance(self, account):
+         return self.store.balance(account)

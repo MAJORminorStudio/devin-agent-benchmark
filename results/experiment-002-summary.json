@@ -1,0 +1,858 @@
+{
+  "experiment_id": "experiment-002",
+  "analysis_type": "exploratory paired evaluation",
+  "control_commit": "25ebc43318d2628665c87a3d5c11b3b0371d4d4f",
+  "frozen_order": [
+    "E002-C02-M",
+    "E002-C04-X",
+    "E002-C01-M",
+    "E002-C05-X",
+    "E002-C03-M",
+    "E002-C01-X",
+    "E002-C04-M",
+    "E002-C02-X",
+    "E002-C05-M",
+    "E002-C03-X"
+  ],
+  "protocol": {
+    "permission_mode": "dangerous",
+    "effective_permission_mode": "Bypass",
+    "fusion": "disabled",
+    "container": "linux/arm64 disposable Docker; read-only root; cap-drop ALL; no-new-privileges; no Docker socket; no host/control-repo mounts",
+    "intervention_policy": "zero substantive assistance",
+    "retries": 0
+  },
+  "runs_completed": 10,
+  "runs": [
+    {
+      "run_id": "E002-C02-M",
+      "experiment_case_id": "E001-C02",
+      "case_id": "fastapi-3",
+      "project": "fastapi",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "effort_level": "medium",
+      "session_id": "pumped-salad",
+      "task_success": true,
+      "evaluation_status": "OK",
+      "public_tests": "pass",
+      "heldout_tests": "pass",
+      "regression_status": "clean",
+      "wall_time_seconds": 299.332,
+      "steps": 35,
+      "tool_calls": 30,
+      "tokens": {
+        "prompt": 599955,
+        "completion": 9374,
+        "cached": 568967
+      },
+      "usage_cost": null,
+      "usage_acus": null,
+      "interventions": [],
+      "intervention_count": 0,
+      "termination_reason": "completed",
+      "files_changed": 2,
+      "source_files_changed": 1,
+      "source_changed_paths": [
+        "fastapi/routing.py"
+      ],
+      "lines_added": 26,
+      "lines_deleted": 7,
+      "patch_sha256": "a6980526a0cfd2e87d467d9ca3da2c571e151be8763ed115e001a0bb67cd5a25",
+      "patch_path": "results/runs/experiment-002/E002-C02-M/output/agent.patch",
+      "raw_artifact_dir": "results/runs/experiment-002/E002-C02-M/output",
+      "failure_classification": "successful repair",
+      "actual_tool_rejections": [],
+      "reference_comparison": {
+        "reference_files": [
+          "fastapi/routing.py"
+        ],
+        "reference_lines_added": 25,
+        "reference_lines_deleted": 7,
+        "agent_source_overlap": [
+          "fastapi/routing.py"
+        ]
+      },
+      "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace."
+    },
+    {
+      "run_id": "E002-C04-X",
+      "experiment_case_id": "E001-C04",
+      "case_id": "tqdm-5",
+      "project": "tqdm",
+      "condition": "X",
+      "model": "swe-2-max",
+      "effort_level": "max",
+      "session_id": "amethyst-border",
+      "task_success": false,
+      "evaluation_status": "OK",
+      "public_tests": "pass",
+      "heldout_tests": "fail",
+      "regression_status": "clean",
+      "wall_time_seconds": 405.29,
+      "steps": 42,
+      "tool_calls": 44,
+      "tokens": {
+        "prompt": 814278,
+        "completion": 11151,
+        "cached": 774656
+      },
+      "usage_cost": null,
+      "usage_acus": null,
+      "interventions": [],
+      "intervention_count": 0,
+      "termination_reason": "completed",
+      "files_changed": 11,
+      "source_files_changed": 1,
+      "source_changed_paths": [
+        "tqdm/_tqdm.py"
+      ],
+      "lines_added": 12,
+      "lines_deleted": 0,
+      "patch_sha256": "134e4f61496f1d027cbe42059944a6b1733d841e345a3e93e39968d8d747be21",
+      "patch_path": "results/runs/experiment-002/E002-C04-X/output/agent.patch",
+      "raw_artifact_dir": "results/runs/experiment-002/E002-C04-X/output",
+      "failure_classification": "partial fix / correct target but incomplete implementation",
+      "actual_tool_rejections": [],
+      "reference_comparison": {
+        "reference_files": [
+          "tqdm/_tqdm.py"
+        ],
+        "reference_lines_added": 7,
+        "reference_lines_deleted": 6,
+        "agent_source_overlap": [
+          "tqdm/_tqdm.py"
+        ]
+      },
+      "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace."
+    },
+    {
+      "run_id": "E002-C01-M",
+      "experiment_case_id": "E001-C01",
+      "case_id": "black-16",
+      "project": "black",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "effort_level": "medium",
+      "session_id": "electric-afternoon",
+      "task_success": true,
+      "evaluation_status": "OK",
+      "public_tests": "pass",
+      "heldout_tests": "pass",
+      "regression_status": "clean",
+      "wall_time_seconds": 366.269,
+      "steps": 47,
+      "tool_calls": 41,
+      "tokens": {
+        "prompt": 903193,
+        "completion": 10310,
+        "cached": 873193
+      },
+      "usage_cost": null,
+      "usage_acus": null,
+      "interventions": [],
+      "intervention_count": 0,
+      "termination_reason": "completed",
+      "files_changed": 13,
+      "source_files_changed": 1,
+      "source_changed_paths": [
+        "black.py"
+      ],
+      "lines_added": 22,
+      "lines_deleted": 1,
+      "patch_sha256": "821655e93e617df5b527fca8218b264093bdcb6e1c56f70dc8017d8a6d0bc270",
+      "patch_path": "results/runs/experiment-002/E002-C01-M/output/agent.patch",
+      "raw_artifact_dir": "results/runs/experiment-002/E002-C01-M/output",
+      "failure_classification": "successful repair",
+      "actual_tool_rejections": [],
+      "reference_comparison": {
+        "reference_files": [
+          "black.py"
+        ],
+        "reference_lines_added": 14,
+        "reference_lines_deleted": 1,
+        "agent_source_overlap": [
+          "black.py"
+        ]
+      },
+      "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace."
+    },
+    {
+      "run_id": "E002-C05-X",
+      "experiment_case_id": "E001-C05",
+      "case_id": "tornado-13",
+      "project": "tornado",
+      "condition": "X",
+      "model": "swe-2-max",
+      "effort_level": "max",
+      "session_id": "glitter-currant",
+      "task_success": true,
+      "evaluation_status": "OK",
+      "public_tests": "pass",
+      "heldout_tests": "pass",
+      "regression_status": "clean",
+      "wall_time_seconds": 326.457,
+      "steps": 36,
+      "tool_calls": 30,
+      "tokens": {
+        "prompt": 783919,
+        "completion": 9317,
+        "cached": 756333
+      },
+      "usage_cost": null,
+      "usage_acus": null,
+      "interventions": [],
+      "intervention_count": 0,
+      "termination_reason": "completed",
+      "files_changed": 36,
+      "source_files_changed": 1,
+      "source_changed_paths": [
+        "tornado/http1connection.py"
+      ],
+      "lines_added": 36,
+      "lines_deleted": 1,
+      "patch_sha256": "918158b21c59961b6dd27f1cc4bcd257de38557ef8ec6adf45387c49fbb1eb03",
+      "patch_path": "results/runs/experiment-002/E002-C05-X/output/agent.patch",
+      "raw_artifact_dir": "results/runs/experiment-002/E002-C05-X/output",
+      "failure_classification": "successful repair",
+      "actual_tool_rejections": [],
+      "reference_comparison": {
+        "reference_files": [
+          "tornado/http1connection.py",
+          "tornado/test/runtests.py"
+        ],
+        "reference_lines_added": 4,
+        "reference_lines_deleted": 1,
+        "agent_source_overlap": [
+          "tornado/http1connection.py"
+        ]
+      },
+      "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace."
+    },
+    {
+      "run_id": "E002-C03-M",
+      "experiment_case_id": "E001-C03",
+      "case_id": "scrapy-3",
+      "project": "scrapy",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "effort_level": "medium",
+      "session_id": "airy-coffee",
+      "task_success": true,
+      "evaluation_status": "OK",
+      "public_tests": "pass",
+      "heldout_tests": "pass",
+      "regression_status": "clean",
+      "wall_time_seconds": 817.861,
+      "steps": 62,
+      "tool_calls": 59,
+      "tokens": {
+        "prompt": 1960369,
+        "completion": 26800,
+        "cached": 1896201
+      },
+      "usage_cost": null,
+      "usage_acus": null,
+      "interventions": [],
+      "intervention_count": 0,
+      "termination_reason": "completed",
+      "files_changed": 29,
+      "source_files_changed": 1,
+      "source_changed_paths": [
+        "scrapy/downloadermiddlewares/redirect.py"
+      ],
+      "lines_added": 34,
+      "lines_deleted": 2,
+      "patch_sha256": "5f2065c0e38b075a1878c45b44283503b96da74536a95ebb5526d8c0ea819122",
+      "patch_path": "results/runs/experiment-002/E002-C03-M/output/agent.patch",
+      "raw_artifact_dir": "results/runs/experiment-002/E002-C03-M/output",
+      "failure_classification": "successful repair",
+      "actual_tool_rejections": [],
+      "reference_comparison": {
+        "reference_files": [
+          "scrapy/downloadermiddlewares/redirect.py"
+        ],
+        "reference_lines_added": 5,
+        "reference_lines_deleted": 2,
+        "agent_source_overlap": [
+          "scrapy/downloadermiddlewares/redirect.py"
+        ]
+      },
+      "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace."
+    },
+    {
+      "run_id": "E002-C01-X",
+      "experiment_case_id": "E001-C01",
+      "case_id": "black-16",
+      "project": "black",
+      "condition": "X",
+      "model": "swe-2-max",
+      "effort_level": "max",
+      "session_id": "tundra-dancer",
+      "task_success": true,
+      "evaluation_status": "OK",
+      "public_tests": "pass",
+      "heldout_tests": "pass",
+      "regression_status": "clean",
+      "wall_time_seconds": 399.819,
+      "steps": 36,
+      "tool_calls": 42,
+      "tokens": {
+        "prompt": 591544,
+        "completion": 10720,
+        "cached": 566965
+      },
+      "usage_cost": null,
+      "usage_acus": null,
+      "interventions": [],
+      "intervention_count": 0,
+      "termination_reason": "completed",
+      "files_changed": 1512,
+      "source_files_changed": 1,
+      "source_changed_paths": [
+        "black.py"
+      ],
+      "lines_added": 1517,
+      "lines_deleted": 1,
+      "patch_sha256": "51fec1f580065c1c76e23006eb2d6803418c2f0f20500fbb571c13b3d6cb97fa",
+      "patch_path": "results/runs/experiment-002/E002-C01-X/output/agent.patch",
+      "raw_artifact_dir": "results/runs/experiment-002/E002-C01-X/output",
+      "failure_classification": "successful repair",
+      "actual_tool_rejections": [],
+      "reference_comparison": {
+        "reference_files": [
+          "black.py"
+        ],
+        "reference_lines_added": 14,
+        "reference_lines_deleted": 1,
+        "agent_source_overlap": [
+          "black.py"
+        ]
+      },
+      "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace."
+    },
+    {
+      "run_id": "E002-C04-M",
+      "experiment_case_id": "E001-C04",
+      "case_id": "tqdm-5",
+      "project": "tqdm",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "effort_level": "medium",
+      "session_id": "bronze-experience",
+      "task_success": true,
+      "evaluation_status": "OK",
+      "public_tests": "pass",
+      "heldout_tests": "pass",
+      "regression_status": "clean",
+      "wall_time_seconds": 157.312,
+      "steps": 22,
+      "tool_calls": 14,
+      "tokens": {
+        "prompt": 220679,
+        "completion": 2343,
+        "cached": 208403
+      },
+      "usage_cost": null,
+      "usage_acus": null,
+      "interventions": [],
+      "intervention_count": 0,
+      "termination_reason": "completed",
+      "files_changed": 10,
+      "source_files_changed": 1,
+      "source_changed_paths": [
+        "tqdm/_tqdm.py"
+      ],
+      "lines_added": 15,
+      "lines_deleted": 0,
+      "patch_sha256": "917b7bcc147712d6243df7ee7475f59cf882b991ab5d23e2f50dbf50a4cd1d0e",
+      "patch_path": "results/runs/experiment-002/E002-C04-M/output/agent.patch",
+      "raw_artifact_dir": "results/runs/experiment-002/E002-C04-M/output",
+      "failure_classification": "successful repair",
+      "actual_tool_rejections": [],
+      "reference_comparison": {
+        "reference_files": [
+          "tqdm/_tqdm.py"
+        ],
+        "reference_lines_added": 7,
+        "reference_lines_deleted": 6,
+        "agent_source_overlap": [
+          "tqdm/_tqdm.py"
+        ]
+      },
+      "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace."
+    },
+    {
+      "run_id": "E002-C02-X",
+      "experiment_case_id": "E001-C02",
+      "case_id": "fastapi-3",
+      "project": "fastapi",
+      "condition": "X",
+      "model": "swe-2-max",
+      "effort_level": "max",
+      "session_id": "ionian-wallaby",
+      "task_success": true,
+      "evaluation_status": "OK",
+      "public_tests": "pass",
+      "heldout_tests": "pass",
+      "regression_status": "clean",
+      "wall_time_seconds": 1137.75,
+      "steps": 69,
+      "tool_calls": 71,
+      "tokens": {
+        "prompt": 3504981,
+        "completion": 60615,
+        "cached": 3400046
+      },
+      "usage_cost": null,
+      "usage_acus": null,
+      "interventions": [],
+      "intervention_count": 0,
+      "termination_reason": "completed",
+      "files_changed": 1,
+      "source_files_changed": 1,
+      "source_changed_paths": [
+        "fastapi/routing.py"
+      ],
+      "lines_added": 25,
+      "lines_deleted": 7,
+      "patch_sha256": "3747195a3cd9e36b1d4fdbb65b444d8a6901a5e02dd6e40f5bff0724574aaba9",
+      "patch_path": "results/runs/experiment-002/E002-C02-X/output/agent.patch",
+      "raw_artifact_dir": "results/runs/experiment-002/E002-C02-X/output",
+      "failure_classification": "successful repair",
+      "actual_tool_rejections": [],
+      "reference_comparison": {
+        "reference_files": [
+          "fastapi/routing.py"
+        ],
+        "reference_lines_added": 25,
+        "reference_lines_deleted": 7,
+        "agent_source_overlap": [
+          "fastapi/routing.py"
+        ]
+      },
+      "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace."
+    },
+    {
+      "run_id": "E002-C05-M",
+      "experiment_case_id": "E001-C05",
+      "case_id": "tornado-13",
+      "project": "tornado",
+      "condition": "M",
+      "model": "swe-2-medium",
+      "effort_level": "medium",
+      "session_id": "shadowed-wedge",
+      "task_success": true,
+      "evaluation_status": "OK",
+      "public_tests": "pass",
+      "heldout_tests": "pass",
+      "regression_status": "clean",
+      "wall_time_seconds": 175.535,
+      "steps": 33,
+      "tool_calls": 25,
+      "tokens": {
+        "prompt": 436280,
+        "completion": 3486,
+        "cached": 422145
+      },
+      "usage_cost": null,
+      "usage_acus": null,
+      "interventions": [],
+      "intervention_count": 0,
+      "termination_reason": "completed",
+      "files_changed": 31,
+      "source_files_changed": 1,
+      "source_changed_paths": [
+        "tornado/http1connection.py"
+      ],
+      "lines_added": 31,
+      "lines_deleted": 1,
+      "patch_sha256": "6972874bf7cf7317f900c823ace3fc839ee42c16b653fdfe23bef698eb5579b5",
+      "patch_path": "results/runs/experiment-002/E002-C05-M/output/agent.patch",
+      "raw_artifact_dir": "results/runs/experiment-002/E002-C05-M/output",
+      "failure_classification": "successful repair",
+      "actual_tool_rejections": [],
+      "reference_comparison": {
+        "reference_files": [
+          "tornado/http1connection.py",
+          "tornado/test/runtests.py"
+        ],
+        "reference_lines_added": 4,
+        "reference_lines_deleted": 1,
+        "agent_source_overlap": [
+          "tornado/http1connection.py"
+        ]
+      },
+      "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace."
+    },
+    {
+      "run_id": "E002-C03-X",
+      "experiment_case_id": "E001-C03",
+      "case_id": "scrapy-3",
+      "project": "scrapy",
+      "condition": "X",
+      "model": "swe-2-max",
+      "effort_level": "max",
+      "session_id": "relieved-wish",
+      "task_success": true,
+      "evaluation_status": "OK",
+      "public_tests": "pass",
+      "heldout_tests": "pass",
+      "regression_status": "clean",
+      "wall_time_seconds": 1380.464,
+      "steps": 91,
+      "tool_calls": 135,
+      "tokens": {
+        "prompt": 6046229,
+        "completion": 73180,
+        "cached": 5910875
+      },
+      "usage_cost": null,
+      "usage_acus": null,
+      "interventions": [],
+      "intervention_count": 0,
+      "termination_reason": "completed",
+      "files_changed": 1663,
+      "source_files_changed": 1,
+      "source_changed_paths": [
+        "scrapy/downloadermiddlewares/redirect.py"
+      ],
+      "lines_added": 1662,
+      "lines_deleted": 1,
+      "patch_sha256": "0e92366995587c2a7a2b2f430ceeeca355c63b9b68dc399db4ccce09e8323184",
+      "patch_path": "results/runs/experiment-002/E002-C03-X/output/agent.patch",
+      "raw_artifact_dir": "results/runs/experiment-002/E002-C03-X/output",
+      "failure_classification": "successful repair",
+      "actual_tool_rejections": [],
+      "reference_comparison": {
+        "reference_files": [
+          "scrapy/downloadermiddlewares/redirect.py"
+        ],
+        "reference_lines_added": 5,
+        "reference_lines_deleted": 2,
+        "agent_source_overlap": [
+          "scrapy/downloadermiddlewares/redirect.py"
+        ]
+      },
+      "evaluator_notes": "Evaluator-side result. Reference patch and hidden tests, when supplied, were not copied into the agent workspace."
+    }
+  ],
+  "condition_summary": {
+    "M": {
+      "model": "swe-2-medium",
+      "solved": 5,
+      "total": 5,
+      "wall_time_seconds": {
+        "total": 1816.309,
+        "mean": 363.262,
+        "median": 299.332
+      },
+      "steps": {
+        "values_in_frozen_order": [
+          35,
+          47,
+          62,
+          22,
+          33
+        ],
+        "mean": 39.8,
+        "median": 35
+      },
+      "tokens": {
+        "prompt_total": 4120476,
+        "completion_total": 52313,
+        "cached_total": 3968909,
+        "prompt_mean": 824095,
+        "completion_mean": 10463,
+        "cached_mean": 793782
+      },
+      "patch_size": {
+        "total_files_changed": 85,
+        "mean_files_changed": 17.0,
+        "total_source_files_changed": 5,
+        "total_lines_added": 128,
+        "total_lines_deleted": 11
+      },
+      "reported_cost": null,
+      "reported_acus": null
+    },
+    "X": {
+      "model": "swe-2-max",
+      "solved": 4,
+      "total": 5,
+      "wall_time_seconds": {
+        "total": 3649.78,
+        "mean": 729.956,
+        "median": 405.29
+      },
+      "steps": {
+        "values_in_frozen_order": [
+          42,
+          36,
+          36,
+          69,
+          91
+        ],
+        "mean": 54.8,
+        "median": 42
+      },
+      "tokens": {
+        "prompt_total": 11740951,
+        "completion_total": 164983,
+        "cached_total": 11408875,
+        "prompt_mean": 2348190,
+        "completion_mean": 32997,
+        "cached_mean": 2281775
+      },
+      "patch_size": {
+        "total_files_changed": 3223,
+        "mean_files_changed": 644.6,
+        "total_source_files_changed": 5,
+        "total_lines_added": 3252,
+        "total_lines_deleted": 10
+      },
+      "reported_cost": null,
+      "reported_acus": null
+    }
+  },
+  "scores": {
+    "Medium": "5/5",
+    "Max": "4/5"
+  },
+  "paired_outcomes": {
+    "both_succeeded": [
+      "black-16",
+      "fastapi-3",
+      "scrapy-3",
+      "tornado-13"
+    ],
+    "medium_only": [
+      "tqdm-5"
+    ],
+    "max_only": [],
+    "both_failed": []
+  },
+  "pairs": [
+    {
+      "case_id": "black-16",
+      "medium_run": "E002-C01-M",
+      "max_run": "E002-C01-X",
+      "outcome": "both succeeded",
+      "exploration": "Max used -11 steps versus Medium and took +33.550s wall time.",
+      "diagnosis": "Both conditions produced a source edit overlapping the reference target file; correctness is established by evaluator behavior, not implementation identity.",
+      "test_strategy": "Both conditions passed public, held-out, and regression checks.",
+      "edit_strategy": "Max changed +1499 total filesystem entries versus Medium; source-file overlap was 1 for Medium and 1 for Max.",
+      "verification": "Both conditions passed public, held-out, and regression checks.",
+      "final_outcome": "Medium=success; Max=success.",
+      "medium": {
+        "wall_time_seconds": 366.269,
+        "steps": 47,
+        "tokens": {
+          "prompt": 903193,
+          "completion": 10310,
+          "cached": 873193
+        },
+        "patch_files": 13,
+        "lines_added": 22,
+        "lines_deleted": 1,
+        "task_success": true
+      },
+      "max": {
+        "wall_time_seconds": 399.819,
+        "steps": 36,
+        "tokens": {
+          "prompt": 591544,
+          "completion": 10720,
+          "cached": 566965
+        },
+        "patch_files": 1512,
+        "lines_added": 1517,
+        "lines_deleted": 1,
+        "task_success": true
+      }
+    },
+    {
+      "case_id": "fastapi-3",
+      "medium_run": "E002-C02-M",
+      "max_run": "E002-C02-X",
+      "outcome": "both succeeded",
+      "exploration": "Max used +34 steps versus Medium and took +838.418s wall time.",
+      "diagnosis": "Both conditions produced a source edit overlapping the reference target file; correctness is established by evaluator behavior, not implementation identity.",
+      "test_strategy": "Both conditions passed public, held-out, and regression checks.",
+      "edit_strategy": "Max changed -1 total filesystem entries versus Medium; source-file overlap was 1 for Medium and 1 for Max.",
+      "verification": "Both conditions passed public, held-out, and regression checks.",
+      "final_outcome": "Medium=success; Max=success.",
+      "medium": {
+        "wall_time_seconds": 299.332,
+        "steps": 35,
+        "tokens": {
+          "prompt": 599955,
+          "completion": 9374,
+          "cached": 568967
+        },
+        "patch_files": 2,
+        "lines_added": 26,
+        "lines_deleted": 7,
+        "task_success": true
+      },
+      "max": {
+        "wall_time_seconds": 1137.75,
+        "steps": 69,
+        "tokens": {
+          "prompt": 3504981,
+          "completion": 60615,
+          "cached": 3400046
+        },
+        "patch_files": 1,
+        "lines_added": 25,
+        "lines_deleted": 7,
+        "task_success": true
+      }
+    },
+    {
+      "case_id": "scrapy-3",
+      "medium_run": "E002-C03-M",
+      "max_run": "E002-C03-X",
+      "outcome": "both succeeded",
+      "exploration": "Max used +29 steps versus Medium and took +562.603s wall time.",
+      "diagnosis": "Both conditions produced a source edit overlapping the reference target file; correctness is established by evaluator behavior, not implementation identity.",
+      "test_strategy": "Both conditions passed public, held-out, and regression checks.",
+      "edit_strategy": "Max changed +1634 total filesystem entries versus Medium; source-file overlap was 1 for Medium and 1 for Max.",
+      "verification": "Both conditions passed public, held-out, and regression checks.",
+      "final_outcome": "Medium=success; Max=success.",
+      "medium": {
+        "wall_time_seconds": 817.861,
+        "steps": 62,
+        "tokens": {
+          "prompt": 1960369,
+          "completion": 26800,
+          "cached": 1896201
+        },
+        "patch_files": 29,
+        "lines_added": 34,
+        "lines_deleted": 2,
+        "task_success": true
+      },
+      "max": {
+        "wall_time_seconds": 1380.464,
+        "steps": 91,
+        "tokens": {
+          "prompt": 6046229,
+          "completion": 73180,
+          "cached": 5910875
+        },
+        "patch_files": 1663,
+        "lines_added": 1662,
+        "lines_deleted": 1,
+        "task_success": true
+      }
+    },
+    {
+      "case_id": "tqdm-5",
+      "medium_run": "E002-C04-M",
+      "max_run": "E002-C04-X",
+      "outcome": "Medium only",
+      "exploration": "Max used +20 steps versus Medium and took +247.978s wall time.",
+      "diagnosis": "Max reached the disabled-state area, but its implementation missed the held-out sized-iterable behavior; Medium passed it.",
+      "test_strategy": "Medium passed public, held-out, and regression checks; Max passed public/regression but failed held-out.",
+      "edit_strategy": "Max changed +1 total filesystem entries versus Medium; source-file overlap was 1 for Medium and 1 for Max.",
+      "verification": "Medium passed public, held-out, and regression checks; Max passed public/regression but failed held-out.",
+      "final_outcome": "Medium=success; Max=failure.",
+      "medium": {
+        "wall_time_seconds": 157.312,
+        "steps": 22,
+        "tokens": {
+          "prompt": 220679,
+          "completion": 2343,
+          "cached": 208403
+        },
+        "patch_files": 10,
+        "lines_added": 15,
+        "lines_deleted": 0,
+        "task_success": true
+      },
+      "max": {
+        "wall_time_seconds": 405.29,
+        "steps": 42,
+        "tokens": {
+          "prompt": 814278,
+          "completion": 11151,
+          "cached": 774656
+        },
+        "patch_files": 11,
+        "lines_added": 12,
+        "lines_deleted": 0,
+        "task_success": false
+      }
+    },
+    {
+      "case_id": "tornado-13",
+      "medium_run": "E002-C05-M",
+      "max_run": "E002-C05-X",
+      "outcome": "both succeeded",
+      "exploration": "Max used +3 steps versus Medium and took +150.922s wall time.",
+      "diagnosis": "Both conditions produced a source edit overlapping the reference target file; correctness is established by evaluator behavior, not implementation identity.",
+      "test_strategy": "Both conditions passed public, held-out, and regression checks.",
+      "edit_strategy": "Max changed +5 total filesystem entries versus Medium; source-file overlap was 1 for Medium and 1 for Max.",
+      "verification": "Both conditions passed public, held-out, and regression checks.",
+      "final_outcome": "Medium=success; Max=success.",
+      "medium": {
+        "wall_time_seconds": 175.535,
+        "steps": 33,
+        "tokens": {
+          "prompt": 436280,
+          "completion": 3486,
+          "cached": 422145
+        },
+        "patch_files": 31,
+        "lines_added": 31,
+        "lines_deleted": 1,
+        "task_success": true
+      },
+      "max": {
+        "wall_time_seconds": 326.457,
+        "steps": 36,
+        "tokens": {
+          "prompt": 783919,
+          "completion": 9317,
+          "cached": 756333
+        },
+        "patch_files": 36,
+        "lines_added": 36,
+        "lines_deleted": 1,
+        "task_success": true
+      }
+    }
+  ],
+  "failure_classifications": {
+    "E002-C02-M": "successful repair",
+    "E002-C04-X": "partial fix / correct target but incomplete implementation",
+    "E002-C01-M": "successful repair",
+    "E002-C05-X": "successful repair",
+    "E002-C03-M": "successful repair",
+    "E002-C01-X": "successful repair",
+    "E002-C04-M": "successful repair",
+    "E002-C02-X": "successful repair",
+    "E002-C05-M": "successful repair",
+    "E002-C03-X": "successful repair"
+  },
+  "infrastructure_incidents": [],
+  "protocol_deviations": [],
+  "actual_harness_tool_rejections": {
+    "count": 0,
+    "note": "No Devin/harness tool-call rejection messages were found. Ordinary command stderr containing permission/operation errors is not a tool-call rejection."
+  },
+  "e001_contrast": {
+    "medium_score": "0/5",
+    "max_score": "0/5",
+    "valid_capability_comparison": false,
+    "reason": "E001 used noninteractive accept-edits permission gating, causing tool calls to be rejected and patches to remain empty; E002 enabled dangerous/Bypass inside isolation."
+  },
+  "cost": {
+    "reported_cost": null,
+    "reported_acus": null,
+    "note": "No cost or ACU fields were reported by the preserved runner/provider metadata."
+  },
+  "raw_results_root": "results/runs/experiment-002",
+  "security_review": "Generated artifacts and preserved raw artifacts were scanned before commit; no account credential values, auth tokens, cookies, authentication headers, private URLs, or environment secrets were found. Ignored raw workspace copies contain only upstream test-fixture PEM material, not account credentials, and are not committed."
+}

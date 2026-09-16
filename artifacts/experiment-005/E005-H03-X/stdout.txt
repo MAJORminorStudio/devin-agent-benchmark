@@ -1,0 +1,23 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as redacted-account.
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace to understand the codebase.Now let me check the git history and the package init to understand intended behavior.No git history available. Let me run the test suite to see the current failure.The test fails — `responses` only has 1 element, so the valid frame after the malformed one is lost. I found two bugs:
+
+**Bug 1 — `framing.py:56`**: on `invalid-payload`, `self._buffer.clear()` wipes all buffered bytes. With coalesced input, the next frame's bytes (already in the buffer) are destroyed.
+
+**Bug 2 — `session.py:28-33`**: on `FrameError` the session enters `RECOVERING` and never leaves it. Every subsequent valid message gets `recovery-required` instead of being dispatched — this is the "split across reads" half, since the decoder itself resyncs fine across feeds.
+
+There's also a related gap in `framing.py`: on `payload-too-large`, the decoder emits the error but doesn't skip the oversized payload, so those bytes get reparsed as frame headers — losing/garbling whatever follows. Reliable recovery needs to discard the declared payload length.
+
+Let me fix `framing.py` first:Now `session.py` — after reporting an error the session should recover on the next valid frame instead of rejecting everything with `recovery-required`:The test passes. Let me verify the edge cases the task mentions — split reads, fragmented frames, oversized payloads, ordering, and close behavior — with a quick sanity script:All cases verified. Final test suite run:Done. Two bugs were breaking protocol recovery:
+
+**`src/wire_relay/framing.py`**
+- `invalid-payload` called `self._buffer.clear()`, which destroyed bytes of *subsequent* frames already buffered — that's why a coalesced valid command vanished. The malformed frame's payload is already consumed before parsing, so remaining bytes belong to the next frame. Removed the `clear()`.
+- `payload-too-large` emitted the error but left the oversized payload in the stream, so those bytes were reparsed as frame headers, garbling everything after. Added a `_skip` counter that discards the declared payload length, even when it arrives split across multiple `feed()` calls.
+
+**`src/wire_relay/session.py`**
+- On `FrameError` the session entered `RECOVERING` permanently and answered every later valid message with `recovery-required` — the "treated as unusable" half, visible with split reads. Now a `Message` always dispatches through the router and transitions the state back to `READY`; `RECOVERING` just reflects that the last event was an error.
+
+Verified: coalesced `bad+valid` → `invalid-payload` + `ack`; split reads recover on the next `receive`; fragmented frames still buffer correctly; a too-large payload split across feeds is skipped and the following command parses cleanly; ordering is preserved; `close()` behavior is unchanged.

@@ -1,0 +1,15 @@
+{
+  "changed_files": [
+    "src/wire_relay/framing.py"
+  ],
+  "generated_or_environment_files": [
+    "src/wire_relay/__pycache__/framing.cpython-38.pyc"
+  ],
+  "line_counts": {
+    "additions": 2,
+    "deletions": 2
+  },
+  "patch_byte_length": 891,
+  "patch_sha256": "1591c7d717c34a6513849a8e59ca4affe3373d2e82ffe9c6242f9bad6e846e5d",
+  "reference_match": false
+}

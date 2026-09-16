@@ -1,0 +1,20 @@
+{
+  "final_metrics": {
+    "cached": 91832,
+    "completion": 1676,
+    "prompt": 99965
+  },
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "sudden-option",
+  "steps": 14,
+  "tool_calls": 11,
+  "tool_calls_by_function": {
+    "edit": 3,
+    "exec": 2,
+    "read": 6
+  }
+}

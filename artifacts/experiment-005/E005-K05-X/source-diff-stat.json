@@ -1,0 +1,21 @@
+{
+  "byte_counts": {
+    "added_bytes": 3054,
+    "deleted_bytes": 3034
+  },
+  "changed_files": [
+    "thefuck/shells/bash.py",
+    "thefuck/shells/zsh.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 7,
+    "deletions": 6
+  },
+  "sha256": "825754981699d80ed227a8ea313afa1a64f14ed14edbb89f58c56c88762b5143",
+  "source_files_changed": [
+    "thefuck/shells/bash.py",
+    "thefuck/shells/zsh.py"
+  ],
+  "workspace_churn_files": 2
+}

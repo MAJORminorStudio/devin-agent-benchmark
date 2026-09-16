@@ -1,0 +1,19 @@
+{
+  "byte_counts": {
+    "added_bytes": 990,
+    "deleted_bytes": 689
+  },
+  "changed_files": [
+    "src/work_queue/executor.py"
+  ],
+  "generated_or_environment_files_changed": [],
+  "line_counts": {
+    "additions": 7,
+    "deletions": 1
+  },
+  "sha256": "5c551c21d5e2b579effb7f2154a507e6c19013301487e9ba3a6d08df83c2d41e",
+  "source_files_changed": [
+    "src/work_queue/executor.py"
+  ],
+  "workspace_churn_files": 1
+}

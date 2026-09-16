@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "session_id": "respected-fahrenheit",
+  "steps": [
+    {
+      "message": "The stream handler reports a malformed frame, but a valid command arriving\nafter that frame can be lost or treated as unusable. The problem is visible\nwith both coalesced input and input split across reads. Restore reliable\nprotocol recovery without changing normal fragmented-frame handling, command\nordering, or the session close behavior.\n\nRun the available test suite with:\n\n    PYTHONPATH=src python -m unittest discover -s tests -v",
+      "source": "user",
+      "step_id": 6,
+      "timestamp": "2026-09-16T03:11:25.139445547+00:00"
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 11648,
+        "completion_tokens": 57,
+        "prompt_tokens": 11968
+      },
+      "model_name": "swe-2-medium",
+      "source": "agent",
+      "step_id": 8,
+      "timestamp": "2026-09-16T03:11:26.270190881+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "ls -R /workspace | head -50"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 30c9e8:\n/workspace:\nREADME.md\nTASK.md\npyproject.toml\nsrc\ntests\n\n/workspace/src:\nwire_relay\n\n/workspace/src/wire_relay:\n__init__.py\ncommands.py\nframing.py\nsession.py\n\n/workspace/tests:\ntest_session.py\n\nExit code: 0",
+            "content_length": 242,
+            "content_sha256": "5fe76562307425d99547a40408e9412164312412fb5b9214d8d513e700db8d9a"
+          },
+          "tool_call_id": "exec:0#0545f05f488b4aeba80bf9a7b3c7b839"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "completion_tokens": 157,
+        "prompt_tokens": 12127
+      },
+      "model_name": "swe-2-medium",
+      "source": "agent",
+      "step_id": 9,
+      "timestamp": "2026-09-16T03:11:28.240561882+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/framing.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/framing.py\" start_line=\"1\" end_line=\"59\" total_lines=\"59\">\n  1|from __future__ import annotations\n  2|\n  3|import json\n  4|import struct\n  5|from dataclasses import dataclass\n  6|\n  7|\n  8|MAX_PAYLOAD = 1024\n  9|_HEADER = struct.Struct(\"!BBH\")\n 10|\n 11|\n 12|@dataclass(frozen=True)\n 13|class Message:\n 14|    kind: int\n 15|    payload: dict[str, object]\n 16|\n 17|\n 18|@dataclass(frozen=True)\n 19|class FrameError:\n 20|    code: str\n 21|\n 22|\n 23|class FrameDecoder:\n 24|    def __init__(self) -> None:\n 25|        self._buffer = bytearray()\n 26|        self._expected: int | None = None\n 27|        self._kind: int | None = None\n 28|\n 29|    def feed(self, chunk: bytes) -> list[Message | FrameError]:\n 30|        self._buffer.extend(chunk)\n 31|        events: list[Message | FrameError] = []\n 32|        while True:\n 33|            if self._expected is None:\n 34|                if len(self._buffer) < _HEADER.size:\n 35|                    break\n 36|                self._kind, _flags, length = _HEADER.unpack(self._buffer[:_HEADER.size])\n 37|                del self._buffer[:_HEADER.size]\n 38|                if length > MAX_PAYLOAD:\n 39|                    self._kind = None\n 40|                    events.append(FrameError(\"payload-too-large\"))\n 41|                    continue\n 42|                self._expected = length\n 43|            if len(self._buffer) < self._expected:\n 44|                break\n 45|            body = bytes(self._buffer[:self._expected])\n 46|            del self._buffer[:self._expected]\n 47|            kind = self._kind\n 48|            self._expected = None\n 49|            self._kind = None\n 50|            try:\n 51|                decoded = json.loads(body.decode(\"utf-8\"))\n 52|                if not isinstance(decoded, dict):\n 53|                    raise ValueError(\"payload must be an object\")\n 54|            except (UnicodeDecodeError, json.JSONDecodeError, ValueError):\n 55|                events.append(FrameError(\"invalid-payload\"))\n 56|                self._buffer.clear()\n 57|            else:\n 58|                events.append(Message(kind if kind is not None else 0, decoded))\n 59|        return events\n</file-view>",
+            "content_length": 2205,
+            "content_sha256": "1969b5549893bcd38b47a36927fab56c63547e62f97b5f5defb33a9d7235f2fa"
+          },
+          "tool_call_id": "read:1#2220c770201e4a4db84c673f9ab16317"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/session.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/session.py\" start_line=\"1\" end_line=\"37\" total_lines=\"37\">\n  1|from __future__ import annotations\n  2|\n  3|from enum import Enum\n  4|\n  5|from .commands import CommandRouter\n  6|from .framing import FrameDecoder, FrameError, Message\n  7|\n  8|\n  9|class SessionState(str, Enum):\n 10|    READY = \"ready\"\n 11|    RECOVERING = \"recovering\"\n 12|    CLOSED = \"closed\"\n 13|\n 14|\n 15|class ProtocolSession:\n 16|    def __init__(self, router: CommandRouter | None = None) -> None:\n 17|        self._decoder = FrameDecoder()\n 18|        self._router = router or CommandRouter()\n 19|        self.state = SessionState.READY\n 20|        self.responses: list[dict[str, object]] = []\n 21|\n 22|    def receive(self, chunk: bytes) -> list[dict[str, object]]:\n 23|        if self.state is SessionState.CLOSED:\n 24|            raise RuntimeError(\"session is closed\")\n 25|        before = len(self.responses)\n 26|        for event in self._decoder.feed(chunk):\n 27|            if isinstance(event, FrameError):\n 28|                self.state = SessionState.RECOVERING\n 29|                self.responses.append({\"kind\": \"error\", \"code\": event.code})\n 30|            elif self.state is SessionState.READY:\n 31|                self.responses.append(self._router.dispatch(event.payload))\n 32|            else:\n 33|                self.responses.append({\"kind\": \"error\", \"code\": \"recovery-required\"})\n 34|        return self.responses[before:]\n 35|\n 36|    def close(self) -> None:\n 37|        self.state = SessionState.CLOSED\n</file-view>",
+            "content_length": 1557,
+            "content_sha256": "d68b3d83d09c000a4c5b0136dac7573d4b3a814c31fe893e7fe561c4ea1c8140"
+          },
+          "tool_call_id": "read:2#7cc7a5c5ee3b48c5b13b56ea899d06f6"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/TASK.md"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/TASK.md\" start_line=\"1\" end_line=\"9\" total_lines=\"9\">\n  1|The stream handler reports a malformed frame, but a valid command arriving\n  2|after that frame can be lost or treated as unusable. The problem is visible\n  3|with both coalesced input and input split across reads. Restore reliable\n  4|protocol recovery without changing normal fragmented-frame handling, command\n  5|ordering, or the session close behavior.\n  6|\n  7|Run the available test suite with:\n  8|\n  9|    PYTHONPATH=src python -m unittest discover -s tests -v\n</file-view>",
+            "content_length": 568,
+            "content_sha256": "672572464d8578d4b1c787d12e0a05b500e39db6a2f04c3ebeb97d0582d67483"
+          },
+          "tool_call_id": "read:3#72cecfde686048868630804d65a6e5d4"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/tests/test_session.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/tests/test_session.py\" start_line=\"1\" end_line=\"25\" total_lines=\"25\">\n  1|import json\n  2|import struct\n  3|import unittest\n  4|\n  5|from wire_relay import ProtocolSession\n  6|\n  7|\n  8|def frame(message: object, kind: int = 1) -> bytes:\n  9|    body = json.dumps(message, separators=(\",\", \":\")).encode()\n 10|    return struct.pack(\"!BBH\", kind, 0, len(body)) + body\n 11|\n 12|\n 13|class SessionTests(unittest.TestCase):\n 14|    def test_invalid_frame_is_reported_without_losing_following_command(self):\n 15|        invalid = struct.pack(\"!BBH\", 1, 0, 4) + b\"{bad\"\n 16|        session = ProtocolSession()\n 17|\n 18|        responses = session.receive(invalid + frame({\"command\": \"increment\", \"amount\": 2}))\n 19|\n 20|        self.assertEqual(responses[0], {\"kind\": \"error\", \"code\": \"invalid-payload\"})\n 21|        self.assertEqual(responses[1], {\"kind\": \"ack\", \"counter\": 2})\n 22|\n 23|\n 24|if __name__ == \"__main__\":\n 25|    unittest.main()\n</file-view>",
+            "content_length": 978,
+            "content_sha256": "4a91f00d81210aa965b99be0764f0563c39ecc769a1330a2c38e43476fa6f561"
+          },
+          "tool_call_id": "read:4#35353945ba7a4c68931d47f12c66891c"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 7808,
+        "completion_tokens": 52,
+        "prompt_tokens": 13887
+      },
+      "model_name": "swe-2-medium",
+      "source": "agent",
+      "step_id": 10,
+      "timestamp": "2026-09-16T03:11:30.619171425+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/commands.py"
+          },
+          "function_name": "read",
+          "observation": {
+            "content": "<file-view path=\"/workspace/src/wire_relay/commands.py\" start_line=\"1\" end_line=\"18\" total_lines=\"18\">\n  1|from __future__ import annotations\n  2|\n  3|\n  4|class CommandRouter:\n  5|    def __init__(self) -> None:\n  6|        self._counter = 0\n  7|\n  8|    def dispatch(self, message: dict[str, object]) -> dict[str, object]:\n  9|        command = message.get(\"command\")\n 10|        if command == \"increment\":\n 11|            amount = message.get(\"amount\", 1)\n 12|            if not isinstance(amount, int) or isinstance(amount, bool):\n 13|                return {\"kind\": \"error\", \"code\": \"invalid-amount\"}\n 14|            self._counter += amount\n 15|            return {\"kind\": \"ack\", \"counter\": self._counter}\n 16|        if command == \"read\":\n 17|            return {\"kind\": \"value\", \"counter\": self._counter}\n 18|        return {\"kind\": \"error\", \"code\": \"unknown-command\"}\n</file-view>",
+            "content_length": 888,
+            "content_sha256": "dde723a7da8c298bdd3b8ee5c9736907b6fccff6b51fa13f937e912c1230a72c"
+          },
+          "tool_call_id": "read:5#3704ab5ad6d54717a7bed3a16c870aa6"
+        }
+      ]
+    },
+    {
+      "message": "Found two bugs: the decoder clears its buffer on a bad payload (dropping coalesced frames after it), and the session never leaves `RECOVERING`, so every later valid message gets `recovery-required`. Fixing both.",
+      "metrics": {
+        "cached_tokens": 13888,
+        "completion_tokens": 646,
+        "prompt_tokens": 14229
+      },
+      "model_name": "swe-2-medium",
+      "source": "agent",
+      "step_id": 11,
+      "timestamp": "2026-09-16T03:11:31.647623342+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/framing.py",
+            "new_string": "                events.append(FrameError(\"invalid-payload\"))",
+            "old_string": "                events.append(FrameError(\"invalid-payload\"))\n                self._buffer.clear()"
+          },
+          "function_name": "edit",
+          "observation": {
+            "content": "The file /workspace/src/wire_relay/framing.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:\n 51|                decoded = json.loads(body.decode(\"utf-8\"))\n 52|                if not isinstance(decoded, dict):\n 53|                    raise ValueError(\"payload must be an object\")\n 54|            except (UnicodeDecodeError, json.JSONDecodeError, ValueError):\n 55|                events.append(FrameError(\"invalid-payload\"))\n 56|            else:\n 57|                events.append(Message(kind if kind is not None else 0, decoded))\n 58|        return events",
+            "content_length": 598,
+            "content_sha256": "f740776edabe7700637fd5c432f81dafcd43a6bb4919119f92bc05d0108850e4"
+          },
+          "tool_call_id": "edit:6#d3647193ca9e4fe6b14075c840ddf720"
+        },
+        {
+          "arguments": {
+            "file_path": "/workspace/src/wire_relay/session.py",
+            "new_string": "            else:\n                self.state = SessionState.READY\n                self.responses.append(self._router.dispatch(event.payload))",
+            "old_string": "            elif self.state is SessionState.READY:\n                self.responses.append(self._router.dispatch(event.payload))\n            else:\n                self.responses.append({\"kind\": \"error\", \"code\": \"recovery-required\"})"
+          },
+          "function_name": "edit",
+          "observation": {
+            "content": "The file /workspace/src/wire_relay/session.py has been updated. Here's the result of running `cat -n` on a snippet of the edited file:\n 26|        for event in self._decoder.feed(chunk):\n 27|            if isinstance(event, FrameError):\n 28|                self.state = SessionState.RECOVERING\n 29|                self.responses.append({\"kind\": \"error\", \"code\": event.code})\n 30|            else:\n 31|                self.state = SessionState.READY\n 32|                self.responses.append(self._router.dispatch(event.payload))\n 33|        return self.responses[before:]\n 34|\n 35|    def close(self) -> None:\n 36|        self.state = SessionState.CLOSED",
+            "content_length": 654,
+            "content_sha256": "44cf07cb445abfbd7df1bbc0e978fde941311e606c0f76d2d09452a786977df9"
+          },
+          "tool_call_id": "edit:7#1164641fb81646d19a0b7a22f9b9d99f"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 14848,
+        "completion_tokens": 61,
+        "prompt_tokens": 15224
+      },
+      "model_name": "swe-2-medium",
+      "source": "agent",
+      "step_id": 12,
+      "timestamp": "2026-09-16T03:11:45.976615251+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python -m unittest discover -s tests -v"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 6a7f83:\nbash: line 1: python: command not found\n\n\nExit code: 127",
+            "content_length": 93,
+            "content_sha256": "34efe8faf2cb2e3ae3b0344fb1472f2a1f45e4317ae0386d5f168bd32b32935f"
+          },
+          "tool_call_id": "exec:8#43fd5ceb1252422a93ea4171378f2959"
+        }
+      ]
+    },
+    {
+      "message": "",
+      "metrics": {
+        "cached_tokens": 15168,
+        "completion_tokens": 62,
+        "prompt_tokens": 15347
+      },
+      "model_name": "swe-2-medium",
+      "source": "agent",
+      "step_id": 13,
+      "timestamp": "2026-09-16T03:11:47.194635793+00:00",
+      "tool_calls": [
+        {
+          "arguments": {
+            "command": "cd /workspace && PYTHONPATH=src python3 -m unittest discover -s tests -v"
+          },
+          "function_name": "exec",
+          "observation": {
+            "content": "Output from command in shell 5389a1:\ntest_invalid_frame_is_reported_without_losing_following_command (test_session.SessionTests.test_invalid_frame_is_reported_without_losing_following_command) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n\n\nExit code: 0",
+            "content_length": 311,
+            "content_sha256": "f9b21b2b5851f5eebb985ec6d1b39ea878c8ea083ca80ded8d96b5fcd6cb71ee"
+          },
+          "tool_call_id": "exec:9#845d86b53aca4594bad9b0ad6d739001"
+        }
+      ]
+    },
+    {
+      "message": "Fixed. Two bugs were compounding:\n\n1. **`framing.py`** \u2014 on an `invalid-payload` error the decoder called `self._buffer.clear()`, discarding any bytes already fed after the bad frame. Removed the clear so following frames in coalesced input are still parsed.\n2. **`session.py`** \u2014 after a `FrameError` the session entered `RECOVERING` and never left, so every subsequent valid `Message` was answered with `recovery-required`. Now a valid message transitions the session back to `READY` and is dispatched normally (a `FrameError` still sets `RECOVERING` and emits the error response; `CLOSED` behavior is untouched).\n\nTest passes:\n\n```\ntest_invalid_frame_is_reported_without_losing_following_command ... ok\nRan 1 test in 0.000s \u2014 OK\n```\n\nNote: `python` isn't on PATH here, so I ran it with `python3` \u2014 same command otherwise.",
+      "metrics": {
+        "cached_tokens": 11968,
+        "completion_tokens": 229,
+        "prompt_tokens": 15506
+      },
+      "model_name": "swe-2-medium",
+      "source": "agent",
+      "step_id": 14,
+      "timestamp": "2026-09-16T03:11:48.305293835+00:00"
+    }
+  ]
+}

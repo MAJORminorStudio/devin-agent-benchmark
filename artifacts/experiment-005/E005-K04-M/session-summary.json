@@ -1,0 +1,25 @@
+{
+  "final_metrics": {
+    "total_cached_tokens": 487744,
+    "total_completion_tokens": 5356,
+    "total_prompt_tokens": 515022,
+    "total_steps": 32
+  },
+  "first_observable_timestamp": "2026-09-16T02:57:57.167885173+00:00",
+  "hidden_reasoning_published": false,
+  "intervention_count": 0,
+  "last_observable_timestamp": "2026-09-16T02:59:15.552386626+00:00",
+  "model": "swe-2-medium",
+  "observable_steps": 26,
+  "patch_sha256": "bee13c162100aa94f5d780bb97a2d2c5212b0b1da2e12f777a50dbe0137db161",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "internal-system-exhaust",
+  "steps": 32,
+  "tool_calls": 26,
+  "tool_calls_by_function": {
+    "edit": 3,
+    "exec": 19,
+    "read": 4
+  }
+}

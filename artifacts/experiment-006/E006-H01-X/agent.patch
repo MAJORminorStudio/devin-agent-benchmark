@@ -1,0 +1,48 @@
+--- a/src/feature_store/cache.py
++++ b/src/feature_store/cache.py
+@@ -16,6 +16,10 @@
+         entry = self._entries.get(name)
+         return entry.value if entry is not None else None
+ 
++    def lineage(self, name: str) -> Optional[Set[str]]:
++        entry = self._entries.get(name)
++        return set(entry.lineage) if entry is not None else None
++
+     def put(self, name: str, value: str, lineage: Set[str]) -> None:
+         self._entries[name] = CacheEntry(value, set(lineage))
+ 
+--- a/src/feature_store/resolver.py
++++ b/src/feature_store/resolver.py
+@@ -16,23 +16,24 @@
+         self.cache = cache
+ 
+     def resolve(self, name: str) -> Resolved:
+-        cached = self.cache.get(name)
+-        if cached is not None:
+-            return Resolved(cached, {name})
+         value, lineage = self._resolve(name, set())
+-        self.cache.put(name, value, lineage)
+         return Resolved(value, lineage)
+ 
+     def _resolve(self, name: str, active: Set[str]):
+         if name in active:
+             raise ValueError("cyclic definition: " + name)
++        cached = self.cache.get(name)
++        if cached is not None:
++            return cached, self.cache.lineage(name) or {name}
+         dependencies, template = self.graph.lookup(name)
+         active = set(active)
+         active.add(name)
+         values = {}
+         lineage = {name}
+         for dependency in dependencies:
+-            child = self.resolve(dependency)
+-            values[dependency] = child.value
+-            lineage.update(child.lineage)
+-        return template.format(**values), lineage
++            child_value, child_lineage = self._resolve(dependency, active)
++            values[dependency] = child_value
++            lineage.update(child_lineage)
++        value = template.format(**values)
++        self.cache.put(name, value, lineage)
++        return value, lineage

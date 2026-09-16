@@ -1,0 +1,53 @@
+{
+  "acus": null,
+  "case_id": "E003-N05",
+  "condition": "M",
+  "cost": null,
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-003",
+  "interventions": 0,
+  "metrics": {
+    "steps": 14,
+    "tokens": {
+      "cached": 84264,
+      "completion": 914,
+      "prompt": 94163
+    },
+    "tool_calls": 9
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "files_changed": [
+      "src/line_protocol/transactions.py"
+    ],
+    "generated_or_environment_files": [],
+    "lines_added": 1,
+    "lines_deleted": 2,
+    "sha256": "139b52e072dc6134ef26b66877423efd7d6b4be491d10745ce60381d045a03ec",
+    "source_files_changed": [
+      "src/line_protocol/transactions.py"
+    ]
+  },
+  "prompt_sha256": "db599705db27088ccdac0a2314f39b88b923853fccaa1faf8aaa38a274f61a9c",
+  "reference_comparison": {
+    "matches_human_reference_patch": true,
+    "performed_after_pair_closure": true,
+    "reference_patch_sha256": "139b52e072dc6134ef26b66877423efd7d6b4be491d10745ce60381d045a03ec"
+  },
+  "run_id": "E003-N05-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning and private paths are omitted.",
+  "session_id": "legendary-sole",
+  "termination_reason": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-15T22:02:27.746795+00:00",
+    "started_at_utc": "2026-09-15T22:00:56.639861+00:00",
+    "wall_time_seconds": 91.10635424999055
+  }
+}

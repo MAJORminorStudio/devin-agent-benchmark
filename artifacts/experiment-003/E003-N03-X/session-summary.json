@@ -1,0 +1,19 @@
+{
+  "final_metrics": {
+    "cached": 118345,
+    "completion": 1749,
+    "prompt": 125911
+  },
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "carbonated-finch",
+  "steps": 16,
+  "tool_calls": 13,
+  "tool_calls_by_function": {
+    "edit": 1,
+    "exec": 6,
+    "read": 6
+  }
+}
