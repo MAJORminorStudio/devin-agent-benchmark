@@ -1,76 +1,99 @@
 # Experiment 005 Difficulty Calibration
 
-E005 is calibrated manually against the known historical E002 baseline. No
-Devin, SWE-2, or other autonomous coding agent was used to calibrate, inspect,
-or pre-solve the cases. The comparison is structural and predictive; it is not
-a claim about realized model success before execution.
+E005 is calibrated manually against the historical E002 and novel E004
+moderate baselines. No Devin, SWE-2, or other autonomous coding agent was used
+to calibrate, inspect, or pre-solve any case. The assessment is structural and
+predictive; it is not a claim about realized model success.
 
-## Baseline
+## Baselines
 
-E002's five repairs were real historical BugsInPy defects. The reference
-repairs centered on one production source file in four cases, with Tornado
-also carrying a test-side reference change. The observed source reference
-patches were 2 to 32 changed lines. The E002 tasks were meaningful framework
-defects, but the visible failure generally localized to a single implementation
-area and did not require reconstructing a new multi-component contract.
+E002’s five historical repairs mostly centered on one production file and
+small local behavior changes. Its selected records were black-16 (112
+checkout files, 1 relevant production file, +14/-1), fastapi-3 (686, 1,
++25/-7), scrapy-3 (473, 1, +5/-2), tqdm-5 (39, 1, +7/-6), and tornado-13
+(295, 1 source file plus a test-side oracle change, +4/-1).
 
-The E002 longest observed run was 1,380.464 seconds; E005's frozen ceiling is
-5,400 seconds. Runtime allowance is preparation, not a difficulty metric.
+E004’s five novel repairs used 17–21-file workspaces, 2–3 relevant modules,
+and +3/-0 to +10/-3 reference changes. They were useful moderate controls, but
+their contracts and state paths were intentionally narrower than the E005
+selection.
 
-## Detailed structural calibration
+The E002 longest observed run was 1,380.464 seconds; E005’s 5,400-second
+ceiling is an execution allowance, not a difficulty score.
+
+## Case-level structural calibration
 
 Scores are manual ordinal estimates: 1 = low, 3 = E002-like, and 5 = clearly
-beyond the E002 baseline. Counts are approximate relevant implementation files
-or conceptual modules, not repository size. “Visible-test specificity” is
-scored in the opposite direction: 5 means the public evidence is useful but
-does not point to a single local patch.
+beyond the E002 baseline. Counts refer to relevant implementation files or
+conceptual modules, not repository size. “Visible-test specificity” is scored
+in the opposite direction: 5 means the public evidence is useful but does not
+point to one obvious local patch.
 
-| Dimension | E002 baseline | H01 | H02 | H03 | H04 | H05 |
-|---|---:|---:|---:|---:|---:|---:|
-| Relevant-file count | 1–2 | 4 | 4 | 3 | 6 | 4 |
-| Interacting-module count | 1–2 | 4 | 4 | 4 | 5 | 4 |
-| Symptom/root-cause distance | 2 | 5 | 4 | 5 | 5 | 4 |
-| Data/control-flow depth | 2 | 4 | 4 | 5 | 5 | 4 |
-| Plausible competing hypotheses | 2 | 4 | 4 | 5 | 4 | 4 |
-| Reference patch breadth | 1–2 | 4 | 2 | 4 | 2 | 4 |
-| Regression surface | 2 | 4 | 4 | 4 | 4 | 5 |
-| Behavioral contract breadth | 2 | 5 | 4 | 5 | 5 | 5 |
-| State required to understand | 2 | 5 | 5 | 5 | 5 | 5 |
-| Subsystems involved | 1–2 | 4 | 4 | 4 | 5 | 4 |
-| Visible-test specificity | 2 | 5 | 4 | 5 | 4 | 5 |
-| Opportunity for incomplete local repair | 2 | 5 | 4 | 5 | 5 | 5 |
+| Case | Provenance | Relevant files / modules | Symptom → root distance | Depth | Competing hypotheses | Patch breadth | Contract / regression | Incomplete-repair opportunity | Band |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| K01 FastAPI-1 | historical | 4 / 4 | 5 | 4 | 4 | 4 | 5 / 4 | 5 | upper-hard |
+| K02 Luigi-23 | historical | 2 / 3 | 5 | 4 | 4 | 2 | 4 / 4 | 4 | middle-hard |
+| K03 Tornado-6 | historical | 2 / 4 | 5 | 5 | 5 | 4 | 5 / 4 | 5 | upper-hard |
+| K04 Tornado-10 | historical | 2 / 2 | 4 | 4 | 4 | 3 | 4 / 4 | 4 | middle-hard |
+| K05 thefuck-16 | historical | 4 / 3 | 4 | 3 | 3 | 3 | 4 / 3 | 4 | lower-hard |
+| H01 feature-plan | constructed | 4 / 4 | 5 | 4 | 4 | 4 | 5 / 4 | 5 | upper-hard |
+| H02 work-queue | constructed | 4 / 4 | 4 | 4 | 4 | 2 | 4 / 4 | 4 | middle-hard |
+| H03 wire-relay | constructed | 3 / 4 | 5 | 5 | 5 | 4 | 5 / 4 | 5 | upper-hard |
+| H04 order-flow | constructed | 6 / 5 | 5 | 5 | 4 | 2 | 5 / 4 | 5 | middle-hard |
+| H05 event-ledger | constructed | 4 / 4 | 4 | 4 | 4 | 4 | 5 / 5 | 5 | middle-hard |
 
-### Why each case is expected to exceed E002
+Patch breadth is a signal, not the target: K02 and H02 are deliberately
+compact lifecycle/configuration cases, while K01’s broad patch does not by
+itself establish difficulty. The selection is balanced by mixing historical
+and constructed provenance, lifecycle/state-machine and data-flow defects,
+and compact versus broad repairs.
 
-| Case | Evidence beyond E002 | Why a local symptom patch is insufficient |
+## Why the selected cases exceed E002
+
+| Cases | Structural evidence | Why a local symptom patch is insufficient |
 |---|---|---|
-| H01 | Two independent memoization layers sit above a reusable transitive graph; the root can remain unchanged while a leaf revision changes. | Refreshing only the resolver or only the facade leaves the other cache stale; held-out shared consumers and rewiring expose that split. |
-| H02 | Cancellation crosses a task boundary, an exception hierarchy boundary, a worker-slot release, and a registry state machine. | Assigning a cancelled state in the scheduler can make the public assertion pass while the executor path still leaves inconsistent terminal/error data; held-out successor and ordinary-failure checks cover this. |
-| H03 | Fragment boundaries, malformed body consumption, session recovery, and command dispatch interact in one stream. | Preserving buffered bytes without resetting session recovery still rejects the next command; resetting the session without fixing decoder consumption still loses bytes. |
-| H04 | A final outbox failure must unwind three earlier stateful subsystems in dependency order. | Releasing stock or voiding payment locally cannot restore the order lifecycle and subsequent capacity; the audit order and follow-up purchase distinguish incomplete compensation. |
-| H05 | Projection ownership and event-bus dispatch semantics are separate lifecycle contracts, with callbacks mutating subscriptions during iteration. | A start guard prevents duplicate totals but does not stabilize the current dispatch; a tuple snapshot prevents skipped listeners but does not prevent duplicate ownership. |
+| K01 | Decorator defaults, route state, response serialization, and direct encoding form a four-file propagation path. | Fixing only the encoder or only the route leaves one caller contract stale; direct, nested, and router-backed held-out behavior separates those repairs. |
+| K02 | Factory defaults, scheduler configuration, pruning, and external-task completion form a three-step control path. | Enabling a flag in one construction path leaves explicit configuration or ordinary dependency scheduling broken. |
+| K03 | Tornado and asyncio own different close paths while sharing a persistent adapter map. | Cleaning only one owner’s close path leaves stale wrappers for the other path; repeated close and new registration expose the split. |
+| K04 | Generic RequestHandler cleanup and WebSocket-specific status/close lifecycle must coordinate. | Breaking cycles immediately makes the visible render test fail; unconditional deferral leaks ordinary/failed-handshake handlers, so both paths are held out. |
+| K05 | Bash, Zsh, and Fish generators express one correction-context contract through shell evaluation rules. | Reordering one alias or one shell does not repair the cross-shell environment contract, while parser/conversion regression tests reject collateral changes. |
+| H01 | Two memoization layers sit above a reusable transitive dependency graph. | Refreshing only the resolver or only the facade leaves another consumer stale; shared roots and rewiring expose that split. |
+| H02 | Cancellation crosses an async task boundary, exception provenance, worker-slot release, and registry state machine. | A scheduler-only terminal-state assignment can satisfy the visible state assertion while losing cancellation provenance; held-out successor and ordinary-failure checks cover it. |
+| H03 | Fragment boundaries, malformed-body consumption, session recovery, and command dispatch interact in one stream. | Preserving buffered bytes without resetting recovery still rejects the next command; resetting recovery without fixing decoder consumption still loses bytes. |
+| H04 | A final outbox failure must unwind three earlier stateful subsystems in dependency order. | Releasing stock or voiding payment locally cannot restore order lifecycle and subsequent capacity; compensation order and a follow-up purchase distinguish incomplete fixes. |
+| H05 | Projection ownership and event-bus dispatch semantics are separate lifecycle contracts, with callbacks mutating subscriptions during iteration. | A start guard prevents duplicate totals but not dispatch mutation bugs; a snapshot prevents skipped listeners but not duplicate ownership. |
 
-## Pre-freeze challenge
+## Balance and residual risk
 
-The proposed set was challenged against the question: “Could a strong coding
-agent read the failing assertion, jump to one function, and make a local patch
-that solves most cases?” The answer is no for the set as frozen: H01, H03, H04,
-and H05 each have a public-visible partial repair that is rejected by held-out
-behavior, and H02 requires tracing scheduler, executor, and registry lifecycle
-state even though its minimal patch is compact. Four cases require multiple
-modules and three reference repairs span at least two source files.
+The historical and constructed halves occupy broadly comparable hard ranges:
+K01/K03/H01/H03 are upper-hard, K02/K04/H02/H04/H05 are middle-hard, and K05
+is lower-hard. This is not an assertion that all ten have equal difficulty.
+The historical half is harder than E002 in aggregate because K01–K04 include
+multi-module propagation or lifecycle ownership, and every K case has a
+behavioral contract broader than its visible oracle. The constructed half
+retains the original E005 stateful interactions and independent hidden
+contracts.
 
-H02 is the leanest case and its three-line reference repair is a deliberate
-lower-bound async lifecycle stressor. It is the one case most likely to be
-underestimated from patch size alone. Before execution, a review that finds
-its public contract can be satisfied by a scheduler-only status assignment
-would require redesign; the current held-out terminal error and successor
-checks are the guard against that local workaround.
+K05 is the clearest “possibly too easy” case: a strong agent may recognize the
+shell-evaluation ordering quickly. H04 is also compact, but its compensation
+ordering and follow-up-capacity contract provide a distinct stateful check.
+Those cases remain as lower/middle-hard anchors rather than being inflated by
+large repositories, obsolete dependencies, timing thresholds, or network
+requirements. The rejected Ansible-13 alternative was removed for exactly that
+reason: its 17,954-file sanitized checkout made repository bulk a material
+confound.
 
-## Limits of the calibration
+## H02 shortcut review
+
+The apparent scheduler-only shortcut was tested in a disposable copy before
+freeze. It passed the public test and regression suite, but failed the held-out
+requirement that the terminal record preserve an `asyncio.CancelledError`
+instance. The canonical H02 scheduler files are identical between buggy and
+fixed trees; H02 remains unchanged and its executor-side cancellation handling
+is the validated repair. The direct review is recorded privately in
+`.benchmarks/experiment-005-private/h02-review.json`.
 
 These estimates do not predict which effort will win, how long an agent will
-reason, or whether the cases are absent from training data. They establish
+reason, or whether a historical case appeared in training data. They establish
 that E005 is structurally more coupled and contract-broad than E002 without
-manufacturing difficulty through repository size, dependencies, timing,
-network access, obscure syntax, or adversarial wording.
+manufacturing difficulty through repository size or setup pain.

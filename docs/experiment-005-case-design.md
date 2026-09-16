@@ -1,6 +1,12 @@
-# Experiment 005 Case Design
+# Experiment 005 Novel Case Design
 
-E005 is a deliberately harder stress set, not a cosmetic refresh of E003 or
+This file records the five preserved newly constructed/withheld H cases only.
+The authoritative E005 set is ten cases: historical/public K01-K05 plus these
+H01-H05. See the [historical candidate survey](experiment-005-historical-candidate-survey.md),
+[difficulty calibration](experiment-005-difficulty-calibration.md), and
+[protocol](experiment-005-protocol.md) for the complete hard-tier design.
+
+The H half is a deliberately harder stress set, not a cosmetic refresh of E003 or
 E004. The five projects are small enough to inspect locally, but their visible
 failures sit at the boundary between ordinary components. Four of five cases
 require tracing at least three implementation modules; three reference repairs
@@ -8,7 +14,7 @@ touch two source files.
 
 | Case | Failure class | Modules/subsystems | Visible symptom | Held-out behavioral contract | Reference breadth |
 |---|---|---|---|---|---|
-| E005-H01 | Dependency graph and transitive cache invalidation | graph, recursive resolver, plan cache, publication facade | A published plan stays on an old leaf value after an indirect dependency changes. | Shared and nested consumers refresh after leaf changes; dependency rewiring refreshes the old root; unrelated updates remain cache-safe. | 2 source files, +5/-8 (13 changed lines) |
+| E005-H01 | Dependency graph and transitive cache invalidation | graph, recursive resolver, plan cache, publication facade | A published plan stays on an old leaf value after an indirect dependency changes. | Shared and nested consumers refresh after leaf changes; dependency rewiring refreshes the old root; unrelated updates remain cache-safe. | 2 source files, +7/-7 (14 changed lines) |
 | E005-H02 | Async cancellation and worker lifecycle consistency | job state machine, executor, active-slot accounting, pending queue | A cancelled running job releases capacity but remains recorded as running. | Cancellation is terminal, a queued successor runs, queued cancellation is idempotent, and success/failure records remain unchanged. | 1 source file, 3 added lines |
 | E005-H03 | Incremental framed-protocol parsing and recovery state machine | fragmented decoder, malformed-input recovery, session lifecycle, command router | A valid command after a malformed frame is lost or reported as unusable. | Recovery works across read boundaries, preserves frame order, and handles multiple valid frames after malformed or oversized input. | 2 source files, 2 added/4 deleted lines |
 | E005-H04 | Transactional multi-stage operation and compensation ordering | inventory, billing, order lifecycle, outbox, compensation log | A notification failure leaves stock, payment, and order state inconsistent. | Rollback restores capacity for a following purchase, unwinds in dependency order, and leaves payment-decline and success behavior intact. | 1 source file, 1 added/1 deleted line |
