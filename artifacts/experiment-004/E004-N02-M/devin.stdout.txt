@@ -1,0 +1,10 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as [redacted].
+
+You're all set. Run [1mdevin[0m to get started.
+I can see the bug. Let me run the tests to reproduce first.Reproduced. The lifecycle bug: `ResourcePool._return` drops an unhealthy worker but never replaces it, so the pool permanently shrinks. The unused `_next_id` field is clearly meant for minting replacements — and the test expects the replacement to have `worker_id == 1` (i.e., `_next_id` for a size-1 pool).All 7 tests pass.
+
+**Root cause:** In `ResourcePool._return` (src/taskqueue/resources.py), when a lease released an unhealthy worker, the pool discarded it from `_in_use` and simply didn't re-queue it. The pool permanently lost capacity, so every subsequent `acquire` raised `PoolExhausted`.
+
+**Fix:** On return of a failed worker, mint a replacement `Worker` using the previously unused `_next_id` counter and queue that instead — matching the documented lifecycle ("an operationally failed worker must leave the pool before another job starts", and the README's "taken out of service and replaced"). The failed job's worker retires; the pool's capacity stays constant.

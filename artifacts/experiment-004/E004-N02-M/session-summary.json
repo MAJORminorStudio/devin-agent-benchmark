@@ -1,0 +1,15 @@
+{
+  "final_metrics": {
+    "cached": 125056,
+    "completion": 1233,
+    "prompt": 132236
+  },
+  "intervention_count": 0,
+  "model": "swe-2-medium",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "elite-foxtail",
+  "steps": 16,
+  "tool_calls": 15,
+  "tool_calls_by_function": {}
+}

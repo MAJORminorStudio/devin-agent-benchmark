@@ -1,0 +1,15 @@
+{
+  "final_metrics": {
+    "cached": 147136,
+    "completion": 3977,
+    "prompt": 156183
+  },
+  "intervention_count": 0,
+  "model": "swe-2-max",
+  "rejected_tool_calls": [],
+  "schema_version": 1,
+  "session_id": "abundant-trowel",
+  "steps": 17,
+  "tool_calls": 21,
+  "tool_calls_by_function": {}
+}

@@ -1,0 +1,16 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as [redacted].
+
+You're all set. Run [1mdevin[0m to get started.
+I'll start by exploring the workspace to understand the codebase.Now let me look at the tests and remaining source files.Let me check the remaining source files and run the tests to reproduce the failure.The failure is reproduced. Now let me trace the boundary — `snapshot()` in `store.py` does a shallow `dict()` copy, so nested dicts are shared between the working copy and the store. Let me check all usages of `snapshot`/`replace` before fixing.Root cause found. The trace:
+
+1. `EditSession.__enter__` calls `store.snapshot()`, which returns `dict(self._values)` — a **shallow** copy. Nested dicts like `{"email": {"daily": False}}` are shared objects between the working copy and the store's saved values.
+2. `edit.set("notifications.email.daily", True)` mutates that shared nested dict **in place**, so the store's saved state changes immediately.
+3. When `ValueError` is raised, `__exit__` correctly skips `store.replace(working)` — but the nested mutation already leaked. Hence `store.get("notifications.email.daily")` is `True`.
+
+`snapshot()` is the storage boundary and has exactly one caller (`EditSession.__enter__`). The focused fix is to make it return an isolated copy — a session's working state must share no mutable structure with saved state until `replace()` publishes it on clean exit.Fixed. All 7 tests pass.
+
+**Root cause:** `EditSession.__enter__` staged edits on `store.snapshot()`, which returned a shallow `dict()` copy. Nested dicts were shared with the store's saved values, so `edit.set()`/`edit.delete()` mutated saved state in place *before* commit. When the session body raised, `__exit__` correctly skipped `store.replace()` — but the nested mutation had already leaked past the storage boundary.
+
+**Fix:** `snapshot()` now returns `copy.deepcopy(self._values)` in [store.py:13-14](file:///workspace/src/preferences/store.py), giving the session a fully isolated working copy. Nothing reaches saved state until `replace()` publishes it on clean exit — which also fixes the same leak through `edit.delete()`.

@@ -1,0 +1,19 @@
+--- a/src/buildgraph/planner.py
++++ b/src/buildgraph/planner.py
+@@ -47,6 +47,13 @@
+         self.invalidate(name)
+ 
+     def invalidate(self, changed: str) -> None:
+-        self._cache.pop(changed, None)
+-        for dependent in self.graph.dependents(changed):
+-            self._cache.pop(dependent, None)
++        pending = [changed]
++        affected: set[str] = set()
++        while pending:
++            name = pending.pop()
++            if name in affected:
++                continue
++            affected.add(name)
++            pending.extend(self.graph.dependents(name))
++        for name in affected:
++            self._cache.pop(name, None)

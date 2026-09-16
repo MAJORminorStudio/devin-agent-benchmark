@@ -1,0 +1,14 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as [redacted].
+
+You're all set. Run [1mdevin[0m to get started.
+Reproduced: the failed edit leaks through because `snapshot()` is a shallow copy — nested dicts are shared with the store, so `edit.set` mutates saved state before the session aborts. Fix is to deep-copy at the storage boundary.Fixed. All 7 tests pass.
+
+**Root cause:** `PreferenceStore.snapshot()` returned a shallow `dict()` copy, so nested dicts were shared by reference. `EditSession.set()` mutated the store's live nested dicts directly, and the `__exit__`/`replace()` commit boundary only guarded the top-level dict — a raised exception couldn't roll back the nested mutation.
+
+**Fix:** deep-copy at the storage boundary in `src/preferences/store.py`:
+- `snapshot()` → `copy.deepcopy` so the working copy is fully isolated
+- `replace()` → `copy.deepcopy` so the committed values can't be aliased back by the caller
+
+This also protects `delete()`, which previously could mutate shared nested dicts the same way.

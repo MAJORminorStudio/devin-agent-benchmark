@@ -1,0 +1,59 @@
+{
+  "case_id": "E004-N03",
+  "condition": "X",
+  "effort_level": "max",
+  "evaluator": {
+    "heldout": "fail",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": false
+  },
+  "experiment_id": "experiment-004",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "frozen_image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true,
+    "status": "OK"
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 17,
+    "tokens": {
+      "cached": 147136,
+      "completion": 3977,
+      "prompt": 156183
+    },
+    "tool_calls": 21
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "files_changed": 1,
+    "generated_or_environment_files": [],
+    "lines_added": 2,
+    "lines_deleted": 1,
+    "reference_patch_sha256": "859bc7ce7186d19d880fb41d23114b1b1638bbb48a52bba8bf3451934553125d",
+    "sha256": "214959326b3c4d11f1ff6697262545979a9b9ce7d8db1baf008bfca77e2232e6",
+    "source_files_changed": [
+      "src/preferences/store.py"
+    ]
+  },
+  "prompt_sha256": "cde85aa4334405da6b635378fa57a373e1a1eee60ece9ebe1225a4ad74aa9936",
+  "run_id": "E004-N03-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "abundant-trowel",
+  "termination_state": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-16T00:12:16.425165+00:00",
+    "started_at_utc": "2026-09-16T00:10:17.063978+00:00",
+    "wall_time_seconds": 119.36251529096626
+  }
+}

@@ -1,0 +1,641 @@
+{
+  "analysis_type": "descriptive paired execution analysis",
+  "comparison": {
+    "E002_historical": {
+      "Max": "4/5",
+      "Medium": "5/5"
+    },
+    "E003_novel_easier": {
+      "Max": "5/5",
+      "Medium": "5/5"
+    },
+    "E004_novel_E002_calibrated": {
+      "Max": "4/5",
+      "Medium": "5/5"
+    },
+    "descriptive_assessment": "Outcome-wise E004 matched E002 with one Medium-only pair and did not match E003's all-success tie; E004 was much lighter in raw wall time than historical E002, so this is not evidence of full difficulty equivalence."
+  },
+  "condition_summary": {
+    "M": {
+      "generated_or_environment_files_changed": 0,
+      "patch": {
+        "files_changed": {
+          "mean": 1,
+          "median": 1,
+          "n": 5,
+          "total": 5
+        },
+        "lines_added": {
+          "mean": 3.4,
+          "median": 3,
+          "n": 5,
+          "total": 17
+        },
+        "lines_deleted": {
+          "mean": 2,
+          "median": 2,
+          "n": 5,
+          "total": 10
+        }
+      },
+      "runs": 5,
+      "steps": {
+        "mean": 16.2,
+        "median": 16,
+        "n": 5,
+        "total": 81
+      },
+      "successes": 5,
+      "tokens": {
+        "cached": {
+          "mean": 117619.2,
+          "median": 119360,
+          "n": 5,
+          "total": 588096
+        },
+        "completion": {
+          "mean": 1177.8,
+          "median": 1204,
+          "n": 5,
+          "total": 5889
+        },
+        "prompt": {
+          "mean": 130575.4,
+          "median": 125364,
+          "n": 5,
+          "total": 652877
+        }
+      },
+      "tool_calls": {
+        "mean": 12.2,
+        "median": 12,
+        "n": 5,
+        "total": 61
+      },
+      "wall_time_seconds": {
+        "mean": 82.49784692518878,
+        "median": 81.51801574998535,
+        "n": 5,
+        "total": 412.48923462594394
+      }
+    },
+    "X": {
+      "generated_or_environment_files_changed": 0,
+      "patch": {
+        "files_changed": {
+          "mean": 1,
+          "median": 1,
+          "n": 5,
+          "total": 5
+        },
+        "lines_added": {
+          "mean": 3,
+          "median": 2,
+          "n": 5,
+          "total": 15
+        },
+        "lines_deleted": {
+          "mean": 1.4,
+          "median": 1,
+          "n": 5,
+          "total": 7
+        }
+      },
+      "runs": 5,
+      "steps": {
+        "mean": 17.6,
+        "median": 17,
+        "n": 5,
+        "total": 88
+      },
+      "successes": 4,
+      "tokens": {
+        "cached": {
+          "mean": 158310.4,
+          "median": 151040,
+          "n": 5,
+          "total": 791552
+        },
+        "completion": {
+          "mean": 4130.4,
+          "median": 3977,
+          "n": 5,
+          "total": 20652
+        },
+        "prompt": {
+          "mean": 171468.8,
+          "median": 163640,
+          "n": 5,
+          "total": 857344
+        }
+      },
+      "tool_calls": {
+        "mean": 23,
+        "median": 26,
+        "n": 5,
+        "total": 115
+      },
+      "wall_time_seconds": {
+        "mean": 129.00945915000048,
+        "median": 119.36251529096626,
+        "n": 5,
+        "total": 645.0472957500024
+      }
+    }
+  },
+  "control_commit": "e16bd2b031069a2607b40a54b5483468ce5d4411",
+  "experiment_id": "experiment-004",
+  "freeze_manifest_sha256": "711b71aa929cfcd45310817b298283b1ca13f103247fdc534bcc346d1495930c",
+  "frozen_run_order": [
+    "E004-N05-X",
+    "E004-N04-M",
+    "E004-N01-M",
+    "E004-N04-X",
+    "E004-N05-M",
+    "E004-N01-X",
+    "E004-N02-M",
+    "E004-N03-M",
+    "E004-N02-X",
+    "E004-N03-X"
+  ],
+  "infrastructure_incidents": [],
+  "interventions": 0,
+  "limitations": [
+    "Ten observations form five paired cases and do not support causal or statistical-significance claims.",
+    "Only observable steps, tool calls, tokens, and filesystem changes are reported; hidden reasoning is not inferred.",
+    "Cost and ACUs were unavailable from the captured interface.",
+    "E004 cases are novel and E002-calibrated, but the set is small and synthetic projects may not reproduce mature OSS discovery costs."
+  ],
+  "paired_outcomes": {
+    "Max-only": 0,
+    "Medium-only": 1,
+    "both fail": 0,
+    "both success": 4
+  },
+  "pairs": [
+    {
+      "case_id": "E004-N01",
+      "max_minus_medium": {
+        "cached_tokens": 38528,
+        "completion_tokens": 1249,
+        "prompt_tokens": 21035,
+        "source_patch_lines": 0,
+        "steps": 1,
+        "tool_calls": 4,
+        "wall_time_seconds": 31.208520625019446
+      },
+      "max_run": "E004-N01-X",
+      "max_success": true,
+      "medium_run": "E004-N01-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "source_patch_same": false,
+      "visible_heldout_disagreement": false
+    },
+    {
+      "case_id": "E004-N02",
+      "max_minus_medium": {
+        "cached_tokens": 25984,
+        "completion_tokens": 1628,
+        "prompt_tokens": 44924,
+        "source_patch_lines": -3,
+        "steps": 2,
+        "tool_calls": 12,
+        "wall_time_seconds": 18.974988375091925
+      },
+      "max_run": "E004-N02-X",
+      "max_success": true,
+      "medium_run": "E004-N02-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "source_patch_same": false,
+      "visible_heldout_disagreement": false
+    },
+    {
+      "case_id": "E004-N03",
+      "max_minus_medium": {
+        "cached_tokens": 27776,
+        "completion_tokens": 2825,
+        "prompt_tokens": 32370,
+        "source_patch_lines": -2,
+        "steps": 1,
+        "tool_calls": 9,
+        "wall_time_seconds": 37.94154837401584
+      },
+      "max_run": "E004-N03-X",
+      "max_success": false,
+      "medium_run": "E004-N03-M",
+      "medium_success": true,
+      "outcome": "Medium-only",
+      "source_patch_same": false,
+      "visible_heldout_disagreement": true
+    },
+    {
+      "case_id": "E004-N04",
+      "max_minus_medium": {
+        "cached_tokens": 103296,
+        "completion_tokens": 4968,
+        "prompt_tokens": 101130,
+        "source_patch_lines": 0,
+        "steps": 4,
+        "tool_calls": 19,
+        "wall_time_seconds": 84.48067412490491
+      },
+      "max_run": "E004-N04-X",
+      "max_success": true,
+      "medium_run": "E004-N04-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "source_patch_same": false,
+      "visible_heldout_disagreement": false
+    },
+    {
+      "case_id": "E004-N05",
+      "max_minus_medium": {
+        "cached_tokens": 7872,
+        "completion_tokens": 4093,
+        "prompt_tokens": 5008,
+        "source_patch_lines": 0,
+        "steps": -1,
+        "tool_calls": 10,
+        "wall_time_seconds": 59.95232962502632
+      },
+      "max_run": "E004-N05-X",
+      "max_success": true,
+      "medium_run": "E004-N05-M",
+      "medium_success": true,
+      "outcome": "both success",
+      "source_patch_same": true,
+      "visible_heldout_disagreement": false
+    }
+  ],
+  "runs": [
+    {
+      "case_id": "E004-N05",
+      "condition": "X",
+      "effort_level": "max",
+      "evaluation_status": "OK",
+      "heldout": "pass",
+      "interventions": 0,
+      "model": "swe-2-max",
+      "patch": {
+        "files_changed": 1,
+        "generated_or_environment_files": [],
+        "lines_added": 0,
+        "lines_deleted": 2,
+        "matches_reference_patch": true,
+        "reference_patch_sha256": "ce5c917589404d9df619d256025f2a93b48dc8dd30c1b7a46686d47ce772d28c",
+        "sha256": "ce5c917589404d9df619d256025f2a93b48dc8dd30c1b7a46686d47ce772d28c",
+        "source_files_changed": [
+          "src/reportpipe/publishing.py"
+        ]
+      },
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E004-N05-X",
+      "session_id": "mire-session",
+      "steps": 17,
+      "task_success": true,
+      "termination_state": "completed",
+      "tokens": {
+        "cached": 155456,
+        "completion": 5410,
+        "prompt": 163640
+      },
+      "tool_calls": 26,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 141.47034537501168
+    },
+    {
+      "case_id": "E004-N04",
+      "condition": "M",
+      "effort_level": "medium",
+      "evaluation_status": "OK",
+      "heldout": "pass",
+      "interventions": 0,
+      "model": "swe-2-medium",
+      "patch": {
+        "files_changed": 1,
+        "generated_or_environment_files": [],
+        "lines_added": 1,
+        "lines_deleted": 1,
+        "matches_reference_patch": false,
+        "reference_patch_sha256": "a5621c78b4d5bea3915f2f816981370617fa455042bc2c5c8aaf1970e24db1fa",
+        "sha256": "bf76442b4d08c1bef4791e0fc134b792731f5fbd32b1a512f3299a5e6902d0e1",
+        "source_files_changed": [
+          "src/signalhub/subscriptions.py"
+        ]
+      },
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E004-N04-M",
+      "session_id": "tame-cricket",
+      "steps": 16,
+      "task_success": true,
+      "termination_state": "completed",
+      "tokens": {
+        "cached": 106048,
+        "completion": 1204,
+        "prompt": 125364
+      },
+      "tool_calls": 8,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 90.61919783405028
+    },
+    {
+      "case_id": "E004-N01",
+      "condition": "M",
+      "effort_level": "medium",
+      "evaluation_status": "OK",
+      "heldout": "pass",
+      "interventions": 0,
+      "model": "swe-2-medium",
+      "patch": {
+        "files_changed": 1,
+        "generated_or_environment_files": [],
+        "lines_added": 9,
+        "lines_deleted": 3,
+        "matches_reference_patch": false,
+        "reference_patch_sha256": "2b15fc9326234eee0e62b199fd51800243d450675153684bdd07db41d230a5be",
+        "sha256": "3c49fc318b30f3a63fe0ae9481ca23f01d59f45397a054cf7fdfbf2e740056c5",
+        "source_files_changed": [
+          "src/buildgraph/planner.py"
+        ]
+      },
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E004-N01-M",
+      "session_id": "wirehaired-street",
+      "steps": 15,
+      "task_success": true,
+      "termination_state": "completed",
+      "tokens": {
+        "cached": 90048,
+        "completion": 983,
+        "prompt": 112832
+      },
+      "tool_calls": 10,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 74.31168004195206
+    },
+    {
+      "case_id": "E004-N04",
+      "condition": "X",
+      "effort_level": "max",
+      "evaluation_status": "OK",
+      "heldout": "pass",
+      "interventions": 0,
+      "model": "swe-2-max",
+      "patch": {
+        "files_changed": 1,
+        "generated_or_environment_files": [],
+        "lines_added": 1,
+        "lines_deleted": 1,
+        "matches_reference_patch": false,
+        "reference_patch_sha256": "a5621c78b4d5bea3915f2f816981370617fa455042bc2c5c8aaf1970e24db1fa",
+        "sha256": "0bb3b3c8821698956c2407416ad58dd889e9a33b09caedfadedb2dcabd68ae92",
+        "source_files_changed": [
+          "src/signalhub/subscriptions.py"
+        ]
+      },
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E004-N04-X",
+      "session_id": "mint-bill",
+      "steps": 20,
+      "task_success": true,
+      "termination_state": "completed",
+      "tokens": {
+        "cached": 209344,
+        "completion": 6172,
+        "prompt": 226494
+      },
+      "tool_calls": 27,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 175.0998719589552
+    },
+    {
+      "case_id": "E004-N05",
+      "condition": "M",
+      "effort_level": "medium",
+      "evaluation_status": "OK",
+      "heldout": "pass",
+      "interventions": 0,
+      "model": "swe-2-medium",
+      "patch": {
+        "files_changed": 1,
+        "generated_or_environment_files": [],
+        "lines_added": 0,
+        "lines_deleted": 2,
+        "matches_reference_patch": true,
+        "reference_patch_sha256": "ce5c917589404d9df619d256025f2a93b48dc8dd30c1b7a46686d47ce772d28c",
+        "sha256": "ce5c917589404d9df619d256025f2a93b48dc8dd30c1b7a46686d47ce772d28c",
+        "source_files_changed": [
+          "src/reportpipe/publishing.py"
+        ]
+      },
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E004-N05-M",
+      "session_id": "hungry-helper",
+      "steps": 18,
+      "task_success": true,
+      "termination_state": "completed",
+      "tokens": {
+        "cached": 147584,
+        "completion": 1317,
+        "prompt": 158632
+      },
+      "tool_calls": 16,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 81.51801574998535
+    },
+    {
+      "case_id": "E004-N01",
+      "condition": "X",
+      "effort_level": "max",
+      "evaluation_status": "OK",
+      "heldout": "pass",
+      "interventions": 0,
+      "model": "swe-2-max",
+      "patch": {
+        "files_changed": 1,
+        "generated_or_environment_files": [],
+        "lines_added": 9,
+        "lines_deleted": 3,
+        "matches_reference_patch": false,
+        "reference_patch_sha256": "2b15fc9326234eee0e62b199fd51800243d450675153684bdd07db41d230a5be",
+        "sha256": "94f610276c00cf556ba3bacc7d21934fdef325ff47e7529bf7e1ca9df138c0a3",
+        "source_files_changed": [
+          "src/buildgraph/planner.py"
+        ]
+      },
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E004-N01-X",
+      "session_id": "fate-leek",
+      "steps": 16,
+      "task_success": true,
+      "termination_state": "completed",
+      "tokens": {
+        "cached": 128576,
+        "completion": 2232,
+        "prompt": 133867
+      },
+      "tool_calls": 14,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 105.5202006669715
+    },
+    {
+      "case_id": "E004-N02",
+      "condition": "M",
+      "effort_level": "medium",
+      "evaluation_status": "OK",
+      "heldout": "pass",
+      "interventions": 0,
+      "model": "swe-2-medium",
+      "patch": {
+        "files_changed": 1,
+        "generated_or_environment_files": [],
+        "lines_added": 4,
+        "lines_deleted": 2,
+        "matches_reference_patch": false,
+        "reference_patch_sha256": "1cd24ce7f2ac978f68f621633f8953a7d3da609212480a25479bb909ddb6d2d6",
+        "sha256": "485568f466ddb91fd6bcf1cb340283c1cfd4cc96fa866cbf3c5533c1b41dbce0",
+        "source_files_changed": [
+          "src/taskqueue/resources.py"
+        ]
+      },
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E004-N02-M",
+      "session_id": "elite-foxtail",
+      "steps": 16,
+      "task_success": true,
+      "termination_state": "completed",
+      "tokens": {
+        "cached": 125056,
+        "completion": 1233,
+        "prompt": 132236
+      },
+      "tool_calls": 15,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 84.61937408300582
+    },
+    {
+      "case_id": "E004-N03",
+      "condition": "M",
+      "effort_level": "medium",
+      "evaluation_status": "OK",
+      "heldout": "pass",
+      "interventions": 0,
+      "model": "swe-2-medium",
+      "patch": {
+        "files_changed": 1,
+        "generated_or_environment_files": [],
+        "lines_added": 3,
+        "lines_deleted": 2,
+        "matches_reference_patch": false,
+        "reference_patch_sha256": "859bc7ce7186d19d880fb41d23114b1b1638bbb48a52bba8bf3451934553125d",
+        "sha256": "e7106befb7005cb406a14937036211a250751fc29a580e397ba62f8a6c2038a4",
+        "source_files_changed": [
+          "src/preferences/store.py"
+        ]
+      },
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E004-N03-M",
+      "session_id": "elite-raincoat",
+      "steps": 16,
+      "task_success": true,
+      "termination_state": "completed",
+      "tokens": {
+        "cached": 119360,
+        "completion": 1152,
+        "prompt": 123813
+      },
+      "tool_calls": 12,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 81.42096691695042
+    },
+    {
+      "case_id": "E004-N02",
+      "condition": "X",
+      "effort_level": "max",
+      "evaluation_status": "OK",
+      "heldout": "pass",
+      "interventions": 0,
+      "model": "swe-2-max",
+      "patch": {
+        "files_changed": 1,
+        "generated_or_environment_files": [],
+        "lines_added": 3,
+        "lines_deleted": 0,
+        "matches_reference_patch": true,
+        "reference_patch_sha256": "1cd24ce7f2ac978f68f621633f8953a7d3da609212480a25479bb909ddb6d2d6",
+        "sha256": "1cd24ce7f2ac978f68f621633f8953a7d3da609212480a25479bb909ddb6d2d6",
+        "source_files_changed": [
+          "src/taskqueue/resources.py"
+        ]
+      },
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E004-N02-X",
+      "session_id": "savory-paprika",
+      "steps": 18,
+      "task_success": true,
+      "termination_state": "completed",
+      "tokens": {
+        "cached": 151040,
+        "completion": 2861,
+        "prompt": 177160
+      },
+      "tool_calls": 27,
+      "visible_heldout_disagreement": false,
+      "wall_time_seconds": 103.59436245809775
+    },
+    {
+      "case_id": "E004-N03",
+      "condition": "X",
+      "effort_level": "max",
+      "evaluation_status": "OK",
+      "heldout": "fail",
+      "interventions": 0,
+      "model": "swe-2-max",
+      "patch": {
+        "files_changed": 1,
+        "generated_or_environment_files": [],
+        "lines_added": 2,
+        "lines_deleted": 1,
+        "matches_reference_patch": false,
+        "reference_patch_sha256": "859bc7ce7186d19d880fb41d23114b1b1638bbb48a52bba8bf3451934553125d",
+        "sha256": "214959326b3c4d11f1ff6697262545979a9b9ce7d8db1baf008bfca77e2232e6",
+        "source_files_changed": [
+          "src/preferences/store.py"
+        ]
+      },
+      "public": "pass",
+      "regression": "pass",
+      "run_id": "E004-N03-X",
+      "session_id": "abundant-trowel",
+      "steps": 17,
+      "task_success": false,
+      "termination_state": "completed",
+      "tokens": {
+        "cached": 147136,
+        "completion": 3977,
+        "prompt": 156183
+      },
+      "tool_calls": 21,
+      "visible_heldout_disagreement": true,
+      "wall_time_seconds": 119.36251529096626
+    }
+  ],
+  "successes": {
+    "Max": 4,
+    "Medium": 5
+  },
+  "visible_heldout_disagreements": [
+    "E004-N03-X"
+  ]
+}

@@ -1,0 +1,12 @@
+[1mWelcome to Devin CLI![0m
+
+ ✓ Logged in as [redacted].
+
+You're all set. Run [1mdevin[0m to get started.
+The bug is visible already: `invalidate` only evicts the changed artifact and its direct dependents, but transitive dependents (e.g. `package` → `object` → `source`) stay cached. Let me confirm with the test.Confirmed. Fix `invalidate` to walk the full transitive dependent set:All 10 tests pass. 
+
+**Root cause:** `BuildPlanner.invalidate` only evicted the changed artifact and its *direct* dependents from `_cache`. In a chain like `source` → `object` → `package`, replacing `source` evicted `object` but left the stale `package` plan cached.
+
+**Fix:** [planner.py:49-58](file:///workspace/src/buildgraph/planner.py) now walks the dependents relation transitively (iterative DFS with a `seen` set for cycle safety), evicting every reachable cached plan.
+
+**Verification:** `test_plan_rebuilds_when_a_transitive_dependency_changes` failed before (`assertIsNot` — the same cached `BuildPlan` was returned) and now passes; `test_unrelated_target_keeps_its_cached_plan` confirms unaffected targets still hit the cache.

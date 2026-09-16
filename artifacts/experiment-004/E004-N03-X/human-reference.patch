@@ -1,0 +1,26 @@
+--- a/src/preferences/store.py
++++ b/src/preferences/store.py
+@@ -1,5 +1,6 @@
+ from __future__ import annotations
+ 
++from copy import deepcopy
+ from typing import Any
+ 
+ from .editor import EditSession
+@@ -7,13 +8,13 @@
+ 
+ class PreferenceStore:
+     def __init__(self, values: dict[str, Any] | None = None) -> None:
+-        self._values = dict(values or {})
++        self._values = deepcopy(values or {})
+ 
+     def snapshot(self) -> dict[str, Any]:
+-        return dict(self._values)
++        return deepcopy(self._values)
+ 
+     def replace(self, values: dict[str, Any]) -> None:
+-        self._values = dict(values)
++        self._values = deepcopy(values)
+ 
+     def get(self, path: str, default: Any = None) -> Any:
+         current: Any = self._values

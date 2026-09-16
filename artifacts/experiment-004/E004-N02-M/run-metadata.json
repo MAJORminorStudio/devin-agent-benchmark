@@ -1,0 +1,59 @@
+{
+  "case_id": "E004-N02",
+  "condition": "M",
+  "effort_level": "medium",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-004",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "frozen_image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true,
+    "status": "OK"
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 16,
+    "tokens": {
+      "cached": 125056,
+      "completion": 1233,
+      "prompt": 132236
+    },
+    "tool_calls": 15
+  },
+  "model": "swe-2-medium",
+  "patch": {
+    "files_changed": 1,
+    "generated_or_environment_files": [],
+    "lines_added": 4,
+    "lines_deleted": 2,
+    "reference_patch_sha256": "1cd24ce7f2ac978f68f621633f8953a7d3da609212480a25479bb909ddb6d2d6",
+    "sha256": "485568f466ddb91fd6bcf1cb340283c1cfd4cc96fa866cbf3c5533c1b41dbce0",
+    "source_files_changed": [
+      "src/taskqueue/resources.py"
+    ]
+  },
+  "prompt_sha256": "3185712db445e1b1fda202222f026b4108de7a2ce044fb7dc49fe0f2db940893",
+  "run_id": "E004-N02-M",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "elite-foxtail",
+  "termination_state": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-16T00:07:11.375029+00:00",
+    "started_at_utc": "2026-09-16T00:05:46.756472+00:00",
+    "wall_time_seconds": 84.61937408300582
+  }
+}

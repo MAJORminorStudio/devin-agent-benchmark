@@ -1,0 +1,43 @@
+{
+  "published_files": {
+    "agent.patch": {
+      "bytes": 468,
+      "sha256": "214959326b3c4d11f1ff6697262545979a9b9ce7d8db1baf008bfca77e2232e6"
+    },
+    "devin.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "devin.stdout.txt": {
+      "bytes": 2166,
+      "sha256": "8284b5454e224f25aef3a32b18b357d12fa7788c602c508f1bfa527bd04196bb"
+    },
+    "evaluation-result.json": {
+      "bytes": 1249,
+      "sha256": "7a61b6f5c2db8f1abd458a07055aea97bd9a30dddfc698adef827bf2bfb27ae8"
+    },
+    "human-reference.patch": {
+      "bytes": 760,
+      "sha256": "859bc7ce7186d19d880fb41d23114b1b1638bbb48a52bba8bf3451934553125d"
+    },
+    "prompt.md": {
+      "bytes": 215,
+      "sha256": "cde85aa4334405da6b635378fa57a373e1a1eee60ece9ebe1225a4ad74aa9936"
+    },
+    "run-metadata.json": {
+      "bytes": 1852,
+      "sha256": "1439542c952131e3aea0fb164f42f098313972c6a42f2a7463df00d3766bfe4f"
+    },
+    "session-summary.json": {
+      "bytes": 301,
+      "sha256": "6e9f21e02b497d54391f2287dbd6c081a1ce3ebfd99af7c269867e5e2faea1bb"
+    },
+    "tool-timeline.json": {
+      "bytes": 28525,
+      "sha256": "dd6c39d85285f4a51f2899bca708b94784bd287a3e2577a28167e991944a5d69"
+    }
+  },
+  "run_id": "E004-N03-X",
+  "sanitization": "Private paths and high-confidence secrets were redacted; hidden reasoning, private evaluator source, credentials, and full workspaces were not published.",
+  "schema_version": 1
+}

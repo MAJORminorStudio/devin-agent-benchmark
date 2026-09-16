@@ -1,0 +1,11 @@
+--- a/src/signalhub/subscriptions.py
++++ b/src/signalhub/subscriptions.py
+@@ -26,7 +26,7 @@
+             self._items.remove(subscription)
+ 
+     def __iter__(self) -> Iterator[Subscription]:
+-        return iter(self._items)
++        return iter(tuple(self._items))
+ 
+     def __len__(self) -> int:
+         return len(self._items)

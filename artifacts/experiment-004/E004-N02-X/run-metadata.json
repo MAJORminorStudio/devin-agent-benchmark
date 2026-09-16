@@ -1,0 +1,59 @@
+{
+  "case_id": "E004-N02",
+  "condition": "X",
+  "effort_level": "max",
+  "evaluator": {
+    "heldout": "pass",
+    "public": "pass",
+    "regression": "pass",
+    "status": "OK",
+    "task_success": true
+  },
+  "experiment_id": "experiment-004",
+  "infrastructure": {
+    "capabilities_dropped": true,
+    "control_repository_mounted": false,
+    "docker_socket_mounted": false,
+    "evaluator_or_reference_exposed": false,
+    "evaluator_started_after_container_closed": true,
+    "frozen_image": "devin-e002:3000.10.21@sha256:bb045374bc655c185cced99a6cb769a6695c88527fb432456eb8e0d6dd0e4bb6",
+    "network": "e002-internal",
+    "no_new_privileges": true,
+    "proxy": "http://egress-proxy:3128",
+    "read_only_root": true,
+    "status": "OK"
+  },
+  "interventions": 0,
+  "metrics": {
+    "steps": 18,
+    "tokens": {
+      "cached": 151040,
+      "completion": 2861,
+      "prompt": 177160
+    },
+    "tool_calls": 27
+  },
+  "model": "swe-2-max",
+  "patch": {
+    "files_changed": 1,
+    "generated_or_environment_files": [],
+    "lines_added": 3,
+    "lines_deleted": 0,
+    "reference_patch_sha256": "1cd24ce7f2ac978f68f621633f8953a7d3da609212480a25479bb909ddb6d2d6",
+    "sha256": "1cd24ce7f2ac978f68f621633f8953a7d3da609212480a25479bb909ddb6d2d6",
+    "source_files_changed": [
+      "src/taskqueue/resources.py"
+    ]
+  },
+  "prompt_sha256": "3185712db445e1b1fda202222f026b4108de7a2ce044fb7dc49fe0f2db940893",
+  "run_id": "E004-N02-X",
+  "schema_version": 1,
+  "security_note": "Sanitized derivative; hidden reasoning, private evaluator source, credentials, and full workspaces are excluded.",
+  "session_id": "savory-paprika",
+  "termination_state": "completed",
+  "timing": {
+    "ended_at_utc": "2026-09-16T00:10:16.711731+00:00",
+    "started_at_utc": "2026-09-16T00:08:33.118493+00:00",
+    "wall_time_seconds": 103.59436245809775
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "case_id": "E004-N01",
+  "changed_files": [
+    "src/buildgraph/planner.py"
+  ],
+  "evaluated_at_utc": "2026-09-16T00:05:46.604056+00:00",
+  "evaluation_status": "OK",
+  "evaluation_version": 1,
+  "experiment_id": "experiment-004",
+  "heldout": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E004-N01",
+      "-p",
+      "test_behavior.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass"
+  },
+  "patch": {
+    "additions": 9,
+    "deletions": 3,
+    "sha256": "94f610276c00cf556ba3bacc7d21934fdef325ff47e7529bf7e1ca9df138c0a3"
+  },
+  "public": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass"
+  },
+  "reference_patch_compared": true,
+  "regression": {
+    "command": [
+      "/user/.pyenv/versions/3.11.15/bin/python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "/research-private/evaluation/E004-N01",
+      "-p",
+      "test_regression.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "status": "pass"
+  },
+  "task_success": true
+}
