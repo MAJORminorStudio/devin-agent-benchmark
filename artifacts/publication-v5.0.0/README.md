@@ -1,6 +1,6 @@
-# Devin SWE-2 benchmark follow-up — public release draft v5.0.0
+# Devin SWE-2 benchmark follow-up — public release v5.0.0
 
-This directory is a locally prepared publication package for E007 and E008. It is a draft for review; it has not been pushed, tagged, released, or deployed. E007 and E008 source evidence remains preserved in `artifacts/experiment-007/` and `artifacts/experiment-008/`.
+This is the published v5.0.0 package for E007 and E008. It is available in the [v5.0.0 GitHub release](https://github.com/MAJORminorStudio/devin-agent-benchmark/releases/tag/v5.0.0). E007 and E008 source evidence remains preserved in `artifacts/experiment-007/` and `artifacts/experiment-008/`.
 
 The study began as a comparison of SWE-2 Medium, High, and Max effort. E008 then exposed an evaluator-staging defect in the historical E007 results, and targeted repeats showed mixed outcomes in some previously discordant case/effort conditions. The public account preserves the order of discovery and both E007 score sets.
 

@@ -19,4 +19,4 @@ The evidence cannot distinguish ordinary stochastic variation from temporal/back
 
 ## Package
 
-See `PUBLICATION.md`, `METHODOLOGY.md`, `LIMITATIONS.md`, `CORRECTION.md`, `docs/`, `data/`, and `figures/`. This local draft is intended to become the asset for a future GitHub release at tag `v5.0.0`; no tag or release has been created.
+See `PUBLICATION.md`, `METHODOLOGY.md`, `LIMITATIONS.md`, `CORRECTION.md`, `docs/`, `data/`, and `figures/`. This is the published v5.0.0 release package. The [GitHub release](https://github.com/MAJORminorStudio/devin-agent-benchmark/releases/tag/v5.0.0) contains the current archive and checksum.
