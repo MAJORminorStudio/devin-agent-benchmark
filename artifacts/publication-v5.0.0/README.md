@@ -23,7 +23,7 @@ The study began as a comparison of SWE-2 Medium, High, and Max effort. E008 then
 
 ## Rebuild and verify
 
-From the repository root, use the bundled publication Python environment or install `requirements-publication.txt`, then run:
+These commands are maintainer-side release tools. They build from the original E007 and E008 source ledgers, which are intentionally not included in the public repository or release package because they contain private run evidence. They cannot regenerate this release from a public clone; the sanitized outputs and checksums are included here for verification. In the maintainer checkout, use the bundled publication Python environment or install `requirements-publication.txt`, then run:
 
 ```sh
 python3 scripts/build_publication_v5.py
