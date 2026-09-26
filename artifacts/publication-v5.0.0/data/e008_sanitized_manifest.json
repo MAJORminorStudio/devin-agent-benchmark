@@ -1,0 +1,87 @@
+{
+  "actual_cost": "unknown",
+  "conditions": [
+    {
+      "case_id": "E002-C02",
+      "difficulty": "moderate",
+      "effort": "medium",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    },
+    {
+      "case_id": "E002-C05",
+      "difficulty": "moderate",
+      "effort": "medium",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    },
+    {
+      "case_id": "E002-C05",
+      "difficulty": "moderate",
+      "effort": "max",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    },
+    {
+      "case_id": "E004-N03",
+      "difficulty": "moderate",
+      "effort": "medium",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    },
+    {
+      "case_id": "E004-N03",
+      "difficulty": "moderate",
+      "effort": "max",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    },
+    {
+      "case_id": "E005-K04",
+      "difficulty": "hard",
+      "effort": "medium",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    },
+    {
+      "case_id": "E005-K02",
+      "difficulty": "hard",
+      "effort": "max",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    },
+    {
+      "case_id": "E005-K01",
+      "difficulty": "hard",
+      "effort": "medium",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    },
+    {
+      "case_id": "E005-H03",
+      "difficulty": "hard",
+      "effort": "max",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    },
+    {
+      "case_id": "E006-H03",
+      "difficulty": "very-hard",
+      "effort": "medium",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    },
+    {
+      "case_id": "E006-H01",
+      "difficulty": "very-hard",
+      "effort": "max",
+      "new_trials": 3,
+      "reason": "This same case-condition changed binary outcome between the original benchmark and E007; three new independent trials are the preregistered default to distinguish observed instability from a consistent direction. No case-specific protocol invalidity was identified."
+    }
+  ],
+  "experiment_id": "E008",
+  "planned_runs": 33,
+  "selected_cases": 9,
+  "selected_conditions": 11,
+  "trials_per_condition": 3
+}

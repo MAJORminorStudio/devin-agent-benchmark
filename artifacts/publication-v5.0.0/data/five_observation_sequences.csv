@@ -1,0 +1,12 @@
+case_id,difficulty,effort,original,e007_clean_recheck,e008_r1,e008_r2,e008_r3,successes_out_of_five,e008_repeats_successes_out_of_three,e008_repeat_consistency
+E002-C02,moderate,medium,True,False,True,False,True,3,2,mixed
+E002-C05,moderate,medium,True,False,False,False,False,1,0,unanimous_fail
+E002-C05,moderate,max,True,False,False,False,False,1,0,unanimous_fail
+E004-N03,moderate,medium,True,False,False,False,False,1,0,unanimous_fail
+E004-N03,moderate,max,False,True,True,True,True,4,3,unanimous_pass
+E005-K04,hard,medium,False,True,True,True,True,4,3,unanimous_pass
+E005-K02,hard,max,False,True,True,True,True,4,3,unanimous_pass
+E005-K01,hard,medium,True,False,False,True,True,3,2,mixed
+E005-H03,hard,max,False,True,False,True,True,3,2,mixed
+E006-H03,very-hard,medium,False,True,True,True,False,3,2,mixed
+E006-H01,very-hard,max,True,False,False,True,True,3,2,mixed

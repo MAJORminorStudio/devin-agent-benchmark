@@ -1,0 +1,468 @@
+{
+  "case_count": 30,
+  "case_effort_cells": [
+    {
+      "case_id": "E002-C02",
+      "difficulty": "moderate",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E002-C02",
+      "difficulty": "moderate",
+      "effort": "high"
+    },
+    {
+      "case_id": "E002-C02",
+      "difficulty": "moderate",
+      "effort": "max"
+    },
+    {
+      "case_id": "E002-C04",
+      "difficulty": "moderate",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E002-C04",
+      "difficulty": "moderate",
+      "effort": "high"
+    },
+    {
+      "case_id": "E002-C04",
+      "difficulty": "moderate",
+      "effort": "max"
+    },
+    {
+      "case_id": "E002-C01",
+      "difficulty": "moderate",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E002-C01",
+      "difficulty": "moderate",
+      "effort": "high"
+    },
+    {
+      "case_id": "E002-C01",
+      "difficulty": "moderate",
+      "effort": "max"
+    },
+    {
+      "case_id": "E002-C05",
+      "difficulty": "moderate",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E002-C05",
+      "difficulty": "moderate",
+      "effort": "high"
+    },
+    {
+      "case_id": "E002-C05",
+      "difficulty": "moderate",
+      "effort": "max"
+    },
+    {
+      "case_id": "E002-C03",
+      "difficulty": "moderate",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E002-C03",
+      "difficulty": "moderate",
+      "effort": "high"
+    },
+    {
+      "case_id": "E002-C03",
+      "difficulty": "moderate",
+      "effort": "max"
+    },
+    {
+      "case_id": "E004-N05",
+      "difficulty": "moderate",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E004-N05",
+      "difficulty": "moderate",
+      "effort": "high"
+    },
+    {
+      "case_id": "E004-N05",
+      "difficulty": "moderate",
+      "effort": "max"
+    },
+    {
+      "case_id": "E004-N04",
+      "difficulty": "moderate",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E004-N04",
+      "difficulty": "moderate",
+      "effort": "high"
+    },
+    {
+      "case_id": "E004-N04",
+      "difficulty": "moderate",
+      "effort": "max"
+    },
+    {
+      "case_id": "E004-N01",
+      "difficulty": "moderate",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E004-N01",
+      "difficulty": "moderate",
+      "effort": "high"
+    },
+    {
+      "case_id": "E004-N01",
+      "difficulty": "moderate",
+      "effort": "max"
+    },
+    {
+      "case_id": "E004-N02",
+      "difficulty": "moderate",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E004-N02",
+      "difficulty": "moderate",
+      "effort": "high"
+    },
+    {
+      "case_id": "E004-N02",
+      "difficulty": "moderate",
+      "effort": "max"
+    },
+    {
+      "case_id": "E004-N03",
+      "difficulty": "moderate",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E004-N03",
+      "difficulty": "moderate",
+      "effort": "high"
+    },
+    {
+      "case_id": "E004-N03",
+      "difficulty": "moderate",
+      "effort": "max"
+    },
+    {
+      "case_id": "E005-K04",
+      "difficulty": "hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E005-K04",
+      "difficulty": "hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E005-K04",
+      "difficulty": "hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E005-K05",
+      "difficulty": "hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E005-K05",
+      "difficulty": "hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E005-K05",
+      "difficulty": "hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E005-K02",
+      "difficulty": "hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E005-K02",
+      "difficulty": "hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E005-K02",
+      "difficulty": "hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E005-K01",
+      "difficulty": "hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E005-K01",
+      "difficulty": "hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E005-K01",
+      "difficulty": "hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E005-H05",
+      "difficulty": "hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E005-H05",
+      "difficulty": "hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E005-H05",
+      "difficulty": "hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E005-H04",
+      "difficulty": "hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E005-H04",
+      "difficulty": "hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E005-H04",
+      "difficulty": "hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E005-H03",
+      "difficulty": "hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E005-H03",
+      "difficulty": "hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E005-H03",
+      "difficulty": "hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E005-K03",
+      "difficulty": "hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E005-K03",
+      "difficulty": "hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E005-K03",
+      "difficulty": "hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E005-H01",
+      "difficulty": "hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E005-H01",
+      "difficulty": "hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E005-H01",
+      "difficulty": "hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E005-H02",
+      "difficulty": "hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E005-H02",
+      "difficulty": "hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E005-H02",
+      "difficulty": "hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E006-K03",
+      "difficulty": "very-hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E006-K03",
+      "difficulty": "very-hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E006-K03",
+      "difficulty": "very-hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E006-H02",
+      "difficulty": "very-hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E006-H02",
+      "difficulty": "very-hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E006-H02",
+      "difficulty": "very-hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E006-H03",
+      "difficulty": "very-hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E006-H03",
+      "difficulty": "very-hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E006-H03",
+      "difficulty": "very-hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E006-K05",
+      "difficulty": "very-hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E006-K05",
+      "difficulty": "very-hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E006-K05",
+      "difficulty": "very-hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E006-K04",
+      "difficulty": "very-hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E006-K04",
+      "difficulty": "very-hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E006-K04",
+      "difficulty": "very-hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E006-H01",
+      "difficulty": "very-hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E006-H01",
+      "difficulty": "very-hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E006-H01",
+      "difficulty": "very-hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E006-H05",
+      "difficulty": "very-hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E006-H05",
+      "difficulty": "very-hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E006-H05",
+      "difficulty": "very-hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E006-K02",
+      "difficulty": "very-hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E006-K02",
+      "difficulty": "very-hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E006-K02",
+      "difficulty": "very-hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E006-H04",
+      "difficulty": "very-hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E006-H04",
+      "difficulty": "very-hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E006-H04",
+      "difficulty": "very-hard",
+      "effort": "max"
+    },
+    {
+      "case_id": "E006-K01",
+      "difficulty": "very-hard",
+      "effort": "medium"
+    },
+    {
+      "case_id": "E006-K01",
+      "difficulty": "very-hard",
+      "effort": "high"
+    },
+    {
+      "case_id": "E006-K01",
+      "difficulty": "very-hard",
+      "effort": "max"
+    }
+  ],
+  "difficulty_tier_counts": {
+    "hard": 10,
+    "moderate": 10,
+    "very-hard": 10
+  },
+  "efforts": [
+    "medium",
+    "high",
+    "max"
+  ],
+  "experiment_id": "E007",
+  "note": "Sanitized manifest; private paths, session IDs, and command records are omitted.",
+  "runs_planned": 90
+}

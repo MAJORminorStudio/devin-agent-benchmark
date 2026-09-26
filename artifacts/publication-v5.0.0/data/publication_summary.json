@@ -1,0 +1,119 @@
+{
+  "E008_clean_recheck_of_E007": {
+    "high": {
+      "n": 30,
+      "successes": 24
+    },
+    "max": {
+      "n": 30,
+      "successes": 24
+    },
+    "medium": {
+      "n": 30,
+      "successes": 22
+    }
+  },
+  "E008_targeted_repeats": {
+    "actual_cost": "unknown",
+    "five_observation_denominator": 55,
+    "five_observation_passes": 30,
+    "human_interventions": 0,
+    "initial_E002_adapter_errors": 9,
+    "mixed_conditions": 5,
+    "new_trial_denominator": 33,
+    "passes": 19,
+    "planned_and_completed": 33,
+    "replacement_or_retry_sessions": 0,
+    "selected_case_effort_conditions": 11,
+    "selected_cases": 9,
+    "slot_10_serialization_recovered_without_rerun": true,
+    "unanimous_conditions": 6,
+    "valid_final_evaluations": 33
+  },
+  "agent_sessions": {
+    "E007": 90,
+    "E008": 33,
+    "combined": 123
+  },
+  "clean_E007_difficulty_tiers": {
+    "hard": {
+      "high": {
+        "n": 10,
+        "successes": 8
+      },
+      "max": {
+        "n": 10,
+        "successes": 8
+      },
+      "medium": {
+        "n": 10,
+        "successes": 7
+      }
+    },
+    "moderate": {
+      "high": {
+        "n": 10,
+        "successes": 8
+      },
+      "max": {
+        "n": 10,
+        "successes": 8
+      },
+      "medium": {
+        "n": 10,
+        "successes": 7
+      }
+    },
+    "very-hard": {
+      "high": {
+        "n": 10,
+        "successes": 8
+      },
+      "max": {
+        "n": 10,
+        "successes": 8
+      },
+      "medium": {
+        "n": 10,
+        "successes": 8
+      }
+    }
+  },
+  "historical_E007_scores": {
+    "high": {
+      "n": 30,
+      "successes": 18
+    },
+    "max": {
+      "n": 30,
+      "successes": 18
+    },
+    "medium": {
+      "n": 30,
+      "successes": 16
+    }
+  },
+  "original_to_clean_E007_agreement": {
+    "max": {
+      "agreement": 25,
+      "clean_E007_only_solves": 3,
+      "n": 30,
+      "original_only_solves": 2,
+      "stable_failures": 4,
+      "stable_solves": 21
+    },
+    "medium": {
+      "agreement": 24,
+      "clean_E007_only_solves": 2,
+      "n": 30,
+      "original_only_solves": 4,
+      "stable_failures": 4,
+      "stable_solves": 20
+    }
+  },
+  "sources": {
+    "clean_E007_recheck_and_case_matrix": "E008-E007-EVALUATOR-RECHECK.json and E008-REPLICATION-MATRIX.json",
+    "historical_E007": "E007-RESULTS.json and E007-RUNS.jsonl",
+    "targeted_repeats": "E008-RUNS.jsonl and E008-STABILITY-ANALYSIS.json"
+  }
+}
